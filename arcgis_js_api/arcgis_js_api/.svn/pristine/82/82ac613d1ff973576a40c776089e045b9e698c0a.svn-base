@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <!--The viewport meta tag is used to improve the presentation and behavior of the samples 
+      on iOS devices-->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+    <title>Mobile Popup</title>
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/esri/css/esri.css">
+    <style>
+      html, body, #mapDiv { height: 100%; width: 100%; margin: 0; padding: 0; }
+      .esriScalebar{
+        padding: 20px 20px;
+      }
+    </style>
+
+    <script src="http://js.arcgis.com/3.8compact/"></script>
+    <script>
+      var map;
+      require([
+        "esri/map", 
+        "esri/arcgis/utils",
+        "esri/dijit/PopupMobile",
+        "dojo/dom-construct",
+        "dojo/domReady!"
+      ], function(
+          Map,
+          arcgisUtils,
+          PopupMobile,
+          domConstruct
+        ) {
+          var popup = new PopupMobile(null, domConstruct.create("div"));
+          arcgisUtils.createMap("661826977c5948eca3c55276fa1b0960", "mapDiv",{
+            mapOptions: {
+              center: [-59.48,44.066],
+              zoom: 4,
+              infoWindow: popup
+            }
+          });
+
+
+      });
+    </script>
+  </head>
+  
+  <body>
+    <div id="mapDiv"></div>
+  </body>
+</html>

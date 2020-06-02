@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <!--The viewport meta tag is used to improve the presentation and behavior of the samples 
+      on iOS devices-->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+    <title>Esri Map and Ext JS</title>
+
+    <link rel="stylesheet" href="http://extjs.cachefly.net/ext-3.2.1/resources/css/ext-all.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/esri/css/esri.css">
+    <style>
+      .myTip .x-tip-header-text, .myTip .x-tip-body { font-size: 16px; }
+    </style>
+
+    <script src="http://js.arcgis.com/3.8compact/"></script>
+    <!-- Load Ext JS -->
+    <script src="http://extjs.cachefly.net/ext-3.2.1/adapter/ext/ext-base.js"></script>
+    <script src="http://extjs.cachefly.net/ext-3.2.1/ext-all.js"></script>
+    <script>
+      dojo.require("esri.map");
+      dojo.ready(init);
+      
+      var map;
+
+      function init() {
+        // change the symbol used for shift + drag zooming
+        var zoomSymbol = new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID, new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new dojo.Color([20,156,255]), 1), new dojo.Color([141,185,219,0.3]));
+        esri.config.defaults.map.zoomSymbol = zoomSymbol.toJson();
+        
+        map = new esri.Map("map", { 
+          basemap: "streets",
+          center: [2.306, 48.871],
+          zoom: 12,
+          slider: false 
+        });
+        
+        // register for some map events
+        dojo.connect(map, "onLoad", function() {
+          console.log("Map onLoad event");
+  
+          // Hook up Ext JS
+          Ext.onReady(extReady);
+        });
+        
+        dojo.connect(map, "onLayerAdd", function() {
+          console.log("Map onLayerAdd event");
+        });
+
+        dojo.connect(map, "onExtentChange", showExtent);
+      }
+
+      function showExtent(extent) {
+        var s = "";
+        s = "XMin: "+ extent.xmin.toFixed(2) + "&nbsp;"
+           +"YMin: " + extent.ymin.toFixed(2) + "&nbsp;"
+           +"XMax: " + extent.xmax.toFixed(2) + "&nbsp;"
+           +"YMax: " + extent.ymax.toFixed(2);
+        dojo.byId("info").innerHTML = s;
+      }
+      
+      // Ext stuff
+      function extReady() {
+        console.log("Ext ready event");
+        
+        // Create Ext Slider widget
+        createSlider();
+        
+        // Create and configure a Ext Tooltip widget for use as an info window
+        var tooltip = new Ext.Tip({
+          title: "Location",
+          width: 200,
+          autoHide: false,
+          closable: true,
+          draggable: true,
+          floating: true,
+          shadow: "frame",
+          cls: "myTip"
+        });
+
+        var markerSymbol = new esri.symbol.SimpleMarkerSymbol(esri.symbol.SimpleMarkerSymbol.STYLE_X, 12, new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new dojo.Color([255,0,0,0.75]), 4));
+        var graphic;
+
+        dojo.connect(map, "onClick", function(evt) {
+          console.log("Map onClick event");
+          
+          // Add a graphic at the clicked location
+          if (graphic) {
+            graphic.setGeometry(evt.mapPoint);
+          }
+          else {
+            graphic = new esri.Graphic(evt.mapPoint, markerSymbol);
+            map.graphics.add(graphic);
+          }
+          
+          var content = "Latitude = ${y} <br/> Longitude = ${x}";
+          tooltip.showAt([ evt.pageX + 10, evt.pageY + 10 ]);
+          tooltip.body.update(esri.substitute(esri.geometry.webMercatorToGeographic(evt.mapPoint), content));
+        });
+
+        dojo.connect(map, "onMouseDragStart", function(evt) {
+          tooltip.hide();
+        });
+
+        dojo.connect(map, "onZoomStart", function(evt) {
+          tooltip.hide();
+        });
+      }
+      
+      function createSlider() {
+        var slider = new Ext.slider.SingleSlider({
+          renderTo: "extSlider",
+          height: 180,
+          increment: 1,
+          minValue: 0,
+          maxValue: map.getLayer(map.layerIds[0]).tileInfo.lods.length - 1,
+          value: map.getLevel(),
+          vertical: true,
+          plugins: new Ext.slider.Tip()
+        });
+        
+        slider.on("changecomplete", function(slider, newValue) {
+          map.setLevel(newValue);
+        });
+        
+        dojo.connect(map, "onZoomEnd", function() {
+          slider.setValue(map.getLevel());
+        });
+      }
+      
+    </script>
+  </head>
+
+  
+  <body style="font-family: Arial Unicode MS,Arial,sans-serif; padding: 10px;">
+    <p style="padding-bottom: 10px;">
+      This sample demonstrates the use of <a href="http://www.sencha.com/products/js/" target="_blank">Ext JS</a> library with ArcGIS API (compact). The following UI widgets are used: 
+      <a href="http://www.sencha.com/deploy/dev/docs/?class=Ext.slider.SingleSlider" target="_blank">Slider</a>,
+      <a href="http://www.sencha.com/deploy/dev/docs/?class=Ext.Tip" target="_blank">Tip</a>
+    </p>
+  
+    <div id="map" style="position: relative; width:700px; height:500px; border:1px solid #000;">
+
+      <!-- Div that will render Ext Slider widget --> 
+      <div id="extSlider" style="position: absolute; right: 20px; top: 20px; height: 180px; z-index: 100;"></div>
+    </div>
+    
+    <br/>
+    <p style="font-weight: bold; padding-bottom: 10px;">Click on the map to get location details.</p>
+    <div id="info" style="width: 700px; color: black;"></div>
+  </body>
+</html>

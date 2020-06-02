@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+    <title></title>
+
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/dojo/dijit/themes/tundra/tundra.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/esri/css/esri.css">
+    <style>
+      html, body { height: 100%; width: 100%; margin: 0; padding: 0; }
+      #map{ margin: 0; padding: 0; }
+      #tpDiv {
+        z-index: 40; 
+        right: 30px; 
+        position: absolute;
+        width: 100px;
+        height: auto;
+        top: 30px;
+        background: #fff;
+      }
+    </style>
+    
+    <script>var dojoConfig = { parseOnLoad: true };</script>
+    <script src="http://js.arcgis.com/3.8/"></script>
+    <script>
+      dojo.require("dijit.layout.BorderContainer");
+      dojo.require("dijit.layout.ContentPane");
+      dojo.require("esri.map");
+      dojo.require("esri.dijit.editing.TemplatePicker-all");
+      
+      var map;
+      function init() {
+        esri.config.defaults.io.proxyUrl = '/arcgisserver/apis/javascript/proxy/proxy.ashx';
+
+        map = new esri.Map("map", { 
+          basemap: "topo",
+          center: [-91.499, 37.509],
+          zoom: 4, 
+          logo: false 
+        });
+        
+        // Configure editing when the point layer loads
+        dojo.connect(map, "onLayersAddResult", initEditing);
+
+        var points = new esri.layers.FeatureLayer("http://servicesbeta.esri.com/ArcGIS/rest/services/webmercatormap_utmdatasource/FeatureServer/0", {
+          id: "Landuse Points",
+          mode: esri.layers.FeatureLayer.MODE_SNAPSHOT,
+          outFields: ["*"]
+        });
+        map.addLayers([points]);
+      }
+      
+      function initEditing(results) {
+        var map = this;
+        var currentLayer = null;
+        var layers = dojo.map(results, function(result) {
+          result.layer.name = result.layer.id;
+          return result.layer;
+        });
+
+        dojo.forEach(layers, function(layer) {
+          dojo.connect(layer, "onClick", function(evt) {
+            dojo.stopEvent(evt);
+            if (evt.ctrlKey === true || evt.metaKey === true) {  
+              //delete feature if ctrl or cmd key is depressed
+              layer.applyEdits(null,null,[evt.graphic]);
+            }
+          });
+        });
+
+        var templatePicker = new esri.dijit.editing.TemplatePicker({
+          featureLayers: layers,
+          rows: "auto",
+          columns:1,
+          grouping: true
+        }, "tpDiv");
+
+        templatePicker.startup();
+
+        var drawToolbar = new esri.toolbars.Draw(map);
+        var selectedTemplate;
+
+        dojo.connect(templatePicker, "onSelectionChange", function() {
+          if(templatePicker.getSelected()){
+            selectedTemplate = templatePicker.getSelected();
+            // Always points for this demo
+            drawToolbar.activate(esri.toolbars.Draw.POINT);
+          } else {
+            drawToolbar.deactivate();
+          }
+        });
+
+        dojo.connect(drawToolbar, "onDrawEnd", function(geometry) {
+          var newAttributes = dojo.mixin({},selectedTemplate.template.prototype.attributes);
+          var newGraphic = new esri.Graphic(geometry,null,newAttributes);
+          selectedTemplate.featureLayer.applyEdits([newGraphic], null, null);
+        });
+      }  
+      dojo.ready(init);
+    </script>
+  </head>
+  
+  <body class="tundra">
+    <div data-dojo-type="dijit.layout.BorderContainer" 
+         data-dojo-props="design:'headline',gutters:false" 
+         style="width: 100%; height: 100%; margin: 0;">
+      <div id="map" 
+           data-dojo-type="dijit.layout.ContentPane" 
+           data-dojo-props="region:'center'"> 
+        <div id="tpDiv"></div>
+      </div>
+    </div>
+  </body>
+</html>
+

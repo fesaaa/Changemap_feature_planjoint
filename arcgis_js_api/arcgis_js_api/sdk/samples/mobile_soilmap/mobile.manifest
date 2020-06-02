@@ -1,0 +1,14 @@
+CACHE MANIFEST
+#2011-07-05:v2.5
+
+#cached items 
+CACHE:
+http://serverapi.arcgisonline.com/jsapi/arcgis/?v=2.4compact
+http://code.jquery.com/jquery-1.6.1.min.js
+http://code.jquery.com/mobile/1.0b1/jquery.mobile-1.0b1.min.js
+http://code.jquery.com/mobile/1.0b1/jquery.mobile-1.0b1.min.css
+images/bluedot.png
+
+#browser should always go to server for resources except the ones specified in manifest
+NETWORK:
+*

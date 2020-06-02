@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="ie lt-ie9 lt-ie8 lt-ie7 ie6"> <![endif]-->
+<!--[if IE 7]>         <html class="ie lt-ie9 lt-ie8 ie7"> <![endif]-->
+<!--[if IE 8]>         <html class="ie lt-ie9 ie8"> <![endif]-->
+<!--[if gt IE 8]><!--> <html> <!--<![endif]-->
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+  <meta name="content-language" content="en">
+  <meta name="product" content="js-api-arcgis">
+  <meta name="subject" content="DEVELOPER,WEB,WEB APPLICATIONS,MOBILE">
+  <meta name="sub_category" content="JavaScript API">
+  <meta name="search-collection" content="help">
+  <meta name="search-category" content="help-api">
+  <meta name="version" content="arcgis-3.8"> <!-- API version -->
+  <meta name="content_type" content="Help Topic"> <!-- options: Help Topic, API Reference, Sample OR Tutorial -->
+  <meta name="last-modified" content="2013-12-19"> <!-- sub 1:  put in date docs were generated -->
+
+  <link rel="stylesheet" href="../styles/screen.css">
+  <link rel="stylesheet" href="../styles/jsdoc.css">
+  <link rel="stylesheet" href="../styles/homepage.css">
+  <link rel="stylesheet" href="../styles/grid.css">
+  <link rel="stylesheet" href="../styles/tree.css">
+  <link rel="stylesheet" href="../prettify/prettify.css">
+  <style>
+    html {
+      overflow-y: auto;
+    }
+    .navigation-bar, .section-bar {
+      margin-bottom: 0;
+    }
+    .navigation-bar header h1, .section-bar header h1 {
+      margin-top: .35294em;
+    }
+    .navigation-bar, .section-bar {
+      background: url('../graphics/banner.jpg') no-repeat center center #762783;
+      min-height: 48px;
+      color: white;
+    }
+    #esri-logo {
+      background: url('../graphics/logo-esri.png') no-repeat center center ;
+      width: 100px;
+    }
+    @font-face {
+    font-family:'icomoon';src:url('../fonts/icons.eot');src:url('../fonts/icons.eot?#iefix') format("embedded-opentype"),url('../fonts/icons.woff') format("woff"),url('../fonts/icons.ttf') format("truetype"),url('../fonts/icons.svg#icomoon') format("svg");font-weight:400;font-style:normal
+    }[data-icon]:before {
+      font-family: 'icomoon';
+      content: attr(data-icon);
+      speak: none;
+      font-weight: 400;
+      line-height: 1;
+      -webkit-font-smoothing: antialiased
+    }[class*="icon-"]:before {
+      font-family: 'icomoon';
+      speak: none;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 1;
+      -webkit-font-smoothing: antialiased;
+      text-transform: none
+    }
+    pre {
+      font-size: 1.1em;
+      line-height: normal;
+      margin: 0;
+    }
+    #header nav li a {
+      font-size: .875em;
+    }
+    #esri-logo {
+      margin-left: 0;
+    }
+  </style>
+  <!--[if lt IE 9]>
+    <script src="../scripts/libs/html5shiv.js"></script>
+    <script src="../scripts/libs/selectivizr-min.js"></script>
+    <style>
+      #wrapper {
+        min-width: 960px;
+      }
+    </style>
+  <![endif]-->
+  <title>
+    Guide | ArcGIS API for JavaScript 
+  </title>
+</head>
+  
+<body>
+<div id="nav">
+<header id="header">
+  <div class="container relative-container">
+    <div class="header-inner ">
+      <div class="logo-wrap"><a href="../" id="site-logo">Arc<span>GIS</span> API for JavaScript</a><!--span class="down-arrow" id="down-arrow"></span--></div>
+      <nav id="site-nav" class="">
+        <a href="/en/" class="selected">
+          <h4 class="developers">Arc<span>GIS</span> API for JavaScript</h4>
+          <p>Build location-aware applications with ArcGIS</p>
+        </a>
+
+        <a href="https://www.arcgis.com/about/">
+          <h4 class="organizations">Arc<span>GIS</span> for Organizations</h4>
+          <p>Learn more about ArcGIS</p>
+        </a>
+      </nav>
+
+      <a id="esri-logo" href="http://esri.com">Esri</a>
+      <div id="logged-out-navigation" class="dropdown-navigation hide">
+  <a id="login-link" class="btn small light" href="/en/log-in/">Log In</a>
+</div>
+<div id="logged-in-navigation" class="dropdown-navigation dropdown-wrapper hide">
+  <a href="/en/usage-summary" class="dropdown btn small light">
+    <!-- <img src="http://d3w50ib5d2uy0g.cloudfront.net/cdn/2464//js/esri/arcgisonline/css/images/no-user-thumb.jpg" width="16" height="16" alt=""> --><span id="username"></span>
+  </a>
+  <div class="dropdown-content">
+    <ul>
+      <li><a href="/en/usage-summary/">Usage Summary</a></li>
+      <li><a href="/en/applications/">Applications</a></li>
+      <li></li>
+      <li><a href="/en/tools/">GIS Tools</a></li>
+    </ul>
+    <hr>
+    <ul>
+      <li><a href="/en/account/profile/">Account Settings</a></li>
+      <li><a href="/en/feedback/">Feedback</a></li>
+    </ul>
+    <hr>
+    <ul>
+      <li><a id="log-out-link" href="#">Log Out</a></li>
+    </ul>
+  </div>
+</div>
+
+      <div id="mobile-navigation" class="dropdown-navigation dropdown-wrapper">
+        <a href="#" class="dropdown btn small light icon icon-list-2">Select <span>a Section</span></a>
+        <div class="dropdown-content">
+          <ul>
+            <li><a href="../jstutorials/">Tutorials</a></li>
+            <li><a href="../jsapi/">API Reference</a></li>
+            <li><a href="../jssamples/">Samples</a></li>
+            <li><a href="http://forums.arcgis.com/forums/15">Forum</a></li>
+            <li><a href="../../">All Developer Resources</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="navigation-bar">
+  <div class="container">
+    <nav>
+      <div id="section-label"><a href=".">Concepts</a></div>
+      <ul>
+        <!--li class="current"><a href="/en/javascript/">Home</a></li-->
+        <li><a href="../jstutorials/">Tutorials</a></li>
+        <li class="current"><a href=".">Concepts</a></li>
+        <li><a href="../jsapi/">API Reference</a></li>
+        <li><a href="../jssamples/">Samples</a></li>
+        <li><a href="http://forums.arcgis.com/forums/15">Forum</a></li>
+        <li><a href="../../">All Developer Resources</a></li>
+      </ul>
+    </nav>
+  </div>
+</div> 
+</div><!-- end nav bar --> <!-- sub 2: header and navigation -->
+
+<div class="container_12">
+  <div class="grid_3 contentWrapper">
+    <div id="toggleToc">
+      <img src="../graphics/tochide.gif"> Hide Table of Contents
+    </div>
+    <div id="apiToc"><div class="treeDiv" id="tree" style="top: 35px; left: 0px;">
+  <div id="treeRoot" ondragstart="return false" onselectstart="return false">
+    <div class="treeNode">
+      <a class="treeUnselected" href="." onclick="clickAnchor(this)">ArcGIS JavaScript API Overview</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="whats_new.html" onclick="clickAnchor(this)">What's New in Version 3.8</a>
+    </div>
+    <!-- About the API-->
+    <div class="treeNode">
+      <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+      <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">About the API</span>
+      <div class="treeSubnodesHidden">
+        <div class="treeNode">
+          <a class="treeUnselected" href="intro_accessapi.html" onclick="clickAnchor(this)">Get the API</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="inside_compactbuild.html" onclick="clickAnchor(this)">Compact build</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="localization.html" onclick="clickAnchor(this)">Localization</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="css.html" onclick="clickAnchor(this)">Required CSS</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="supported_browsers.html" onclick="clickAnchor(this)">Supported Browsers</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="community.html" onclick="clickAnchor(this)">Community</a>
+        </div>
+        <!--Working with Dojo-->
+        <div class="treeNode">
+          <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif">
+          <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">
+            Dojo
+          </span>
+          <div class="treeSubnodesHidden">
+            <div class="treeNode">
+              <a class="treeUnselected" href="inside_dojo.html" onclick="clickAnchor(this)">Working with Dojo</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="inside_dojoversion.html" onclick="clickAnchor(this)">Get Dojo</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="inside_dojodijits.html" onclick="clickAnchor(this)">Dojo dijits</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="inside_dojo_amd.html" onclick="clickAnchor(this)">Dojo and AMD</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="inside_dojohelp.html" onclick="clickAnchor(this)">Additional resources</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="why_dojo.html" onclick="clickAnchor(this)">Why Dojo?</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--End About the API-->
+    <!--Getting Started-->
+    <div class="treeNode">
+      <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif">
+      <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">
+        Getting Started
+      </span>
+      <div class="treeSubnodesHidden">
+        <div class="treeNode">
+          <a class="treeUnselected" href="intro_gettingstarted.html" onclick="clickAnchor(this)">Overview</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="intro_devenv.html" onclick="clickAnchor(this)">Setting up a development environment</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="../jstutorials/intro_firstmap.html" onclick="clickAnchor(this)">Build your first application</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="../jstutorials/intro_agstemplate.html" onclick="clickAnchor(this)">Build a web map based application
+          </a>
+        </div>
+      </div>
+    </div>
+    <!--Inside the API-->
+    <div class="treeNode">
+      <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif">
+      <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">
+        Working with the API
+      </span>
+      <div class="treeSubnodesHidden">
+        <div class="treeNode">
+          <a class="treeUnselected" href="inside_defaults.html" onclick="clickAnchor(this)">Default API configurations</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="inside_bundle.html" onclick="clickAnchor(this)">Default API strings</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="inside_esri_request.html" onclick="clickAnchor(this)">Retrieve data from a web server</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="intro_navigation.html" onclick="clickAnchor(this)">Map navigation</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="inside_events.html" onclick="clickAnchor(this)">Events</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="intro_extents.html" onclick="clickAnchor(this)">Setting Extents</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="inside_editing.html" onclick="clickAnchor(this)">Editing</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="inside_temporal.html" onclick="clickAnchor(this)">Time aware data</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="intro_firsttask.html" onclick="clickAnchor(this)">Adding a task</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="intro_querytask.html" onclick="clickAnchor(this)">Using QueryTask</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="inside_custom_layers.html" onclick="clickAnchor(this)">Creating custom layer types</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="../jstutorials/intro_javascript_classes.html" onclick="clickAnchor(this)">Writing a class</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="../jstutorials/intro_custom_dijit.html" onclick="clickAnchor(this)">Writing a custom widget</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="intro_webmap.html" onclick="clickAnchor(this)">Web maps</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="intro_analysiswidgets.html" onclick="clickAnchor(this)">Working with Analysis Widgets</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="intro_geoenrichment.html" onclick="clickAnchor(this)">Working with GeoEnrichment Widgets</a>
+        </div>
+        <!-- graphics -->
+        <div class="treeNode">
+          <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+          <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">Graphics and feature layers</span>
+          <div class="treeSubnodesHidden">
+            <div class="treeNode">
+              <a class="treeUnselected" href="inside_graphics.html" onclick="clickAnchor(this)">Graphics overview</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="inside_feature_layers.html" onclick="clickAnchor(this)">Feature layer overview</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="inside_renderers.html" onclick="clickAnchor(this)">Symbols and renderers</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="intro_bettermaps.html" onclick="clickAnchor(this)">Better vector mapping</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="inside_styling_svg.html" onclick="clickAnchor(this)">Styling features with CSS</a>
+            </div>
+          </div>
+        </div>
+        <!--info window-->
+        <div class="treeNode">
+          <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif">
+          <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">
+            Popups and Info Windows
+          </span>
+          <div class="treeSubnodesHidden">
+            <div class="treeNode">
+              <a class="treeUnselected" href="intro_infowindow.html" onclick="clickAnchor(this)">Info window overview</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="intro_formatinfowindow.html" onclick="clickAnchor(this)">Format info window content</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="intro_customize.html" onclick="clickAnchor(this)">Customize info windows</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="intro_agspopup.html" onclick="clickAnchor(this)">Popup overview</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="intro_popuptemplate.html" onclick="clickAnchor(this)">Format popup content</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="intro_customizepopup.html" onclick="clickAnchor(this)">Customize popup</a>
+            </div>
+          </div>
+        </div>
+        <!--routing book-->
+        <div class="treeNode">
+          <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif">
+          <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">
+            Using the RouteTask
+          </span>
+          <div class="treeSubnodesHidden">
+            <div class="treeNode">
+              <a class="treeUnselected" href="intro_route_overview.html" onclick="clickAnchor(this)">Routing overview</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="intro_route_routetask.html" onclick="clickAnchor(this)">Working with the route task</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="intro_route_stop_seq.html" onclick="clickAnchor(this)">Optimize the route</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="intro_route_directions.html" onclick="clickAnchor(this)">Driving directions</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="intro_route_time_windows.html" onclick="clickAnchor(this)">Routing with time windows</a>
+            </div>
+          </div>
+        </div>
+        <!--end routing book-->
+        <!--geoprocessing book-->
+        <div class="treeNode">
+          <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif">
+          <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">
+            Using the Geoprocessor
+          </span>
+          <div class="treeSubnodesHidden">
+            <div class="treeNode">
+              <a class="treeUnselected" href="intro_gp_overview.html" onclick="clickAnchor(this)">Geoprocessing overview</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="intro_gp_creating.html" onclick="clickAnchor(this)">Creating the geoprocessor</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="intro_gp_parameters.html" onclick="clickAnchor(this)">Geoprocessor parameters</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="intro_gp_running.html" onclick="clickAnchor(this)">Geoprocessing results</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--end book-->
+    <!-- Mobile -->
+    <div class="treeNode">
+      <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif">
+      <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">Mobile</span>
+      <div class="treeSubnodesHidden">
+        <div class="treeNode">
+          <a class="treeUnselected" href="../jstutorials/mobile_dev.html" onclick="clickAnchor(this)">Getting Started Mobile Tutorial</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="mobile_viewport.html" onclick="clickAnchor(this)">Viewport Settings</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="mobile_hardware.html" onclick="clickAnchor(this)">Feature Detection and Browser Sniffing</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="mobile_orientation.html" onclick="clickAnchor(this)">Device Orientation</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="mobile_geolocation.html" onclick="clickAnchor(this)">Geolocation</a>
+        </div>
+        <!-- <div class="treeNode"> <img src="../graphics/treenodeplus.gif" class="treeLinkImage" onclick="expandCollapse(this.parentNode)"/> <span style="cursor: pointer;" onclick="expandCollapse(this.parentNode)">HTML5</span> <div class="treeSubnodesHidden"> <div class="treeNode"> <img src="../graphics/treenodedot.gif" class="treeNoLinkImage"> <a href="jshelp/mobile_touch.htm" class="treeUnselected" onclick="clickAnchor(this)">Touch Events</a> </div> <div class="treeNode"> <img src="../graphics/treenodedot.gif" class="treeNoLinkImage"> <a href="jshelp/mobile_geolocation.htm" class="treeUnselected" onclick="clickAnchor(this)">Geolocation</a> </div> <div class="treeNode"> <img src="../graphics/treenodedot.gif" class="treeNoLinkImage"> <a href="jshelp/mobile_offline.htm" class="treeUnselected" onclick="clickAnchor(this)">Offline</a> </div> <div class="treeNode"> <img src="../graphics/treenodedot.gif" class="treeNoLinkImage"> <a href="jshelp/mobile_storage.htm" class="treeUnselected" onclick="clickAnchor(this)">Web Storage</a> </div> </div> </div> -->
+        <!-- <div class="treeNode"> <img src="../graphics/treenodedot.gif" class="treeNoLinkImage"> <a href="jshelp/mobile_hybrid.htm" class="treeUnselected" onclick="clickAnchor(this)">Hybrid Applications</a> </div> -->
+        <div class="treeNode">
+          <a class="treeUnselected" href="mobile_frameworks.html" onclick="clickAnchor(this)">Frameworks</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="mobile_references.html" onclick="clickAnchor(this)">References</a>
+        </div>
+      </div>
+    </div>
+    <!-- end book -->
+    <!--Recommendations-->
+    <div class="treeNode">
+      <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif">
+      <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">
+        Recommendations
+      </span>
+      <div class="treeSubnodesHidden">
+        <div class="treeNode">
+          <a class="treeUnselected" href="limits_for_graphics.html" onclick="clickAnchor(this)">Determining limits for map graphics</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="best_practices_feature_layers.html" onclick="clickAnchor(this)">Feature layer best practices</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="inside_guidelines.html" onclick="clickAnchor(this)">Coding guidelines</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="inside_faq.html" onclick="clickAnchor(this)">Frequently asked questions</a>
+        </div>
+      </div>
+    </div>
+    <!--end book-->
+    <!-- Layout book -->
+    <div class="treeNode">
+      <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif">
+      <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">
+        Application Layouts
+      </span>
+      <div class="treeSubnodesHidden">
+        <div class="treeNode">
+          <a class="treeUnselected" href="inside_dojoLayouts.html" onclick="clickAnchor(this)">Dojo layouts</a>
+        </div>
+      </div>
+    </div>
+    <!--End layout book -->
+    <!--Working with ArcGIS Server Services-->
+    <div class="treeNode">
+      <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif">
+      <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">
+        ArcGIS Server Services
+      </span>
+      <div class="treeSubnodesHidden">
+        <div class="treeNode">
+          <a class="treeUnselected" href="ags_overview.html" onclick="clickAnchor(this)">Overview</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="ags_rest.html" onclick="clickAnchor(this)">Services directory and the REST API</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="ags_secureservices.html" onclick="clickAnchor(this)">Working with secure resources</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="ags_proxy.html" onclick="clickAnchor(this)">Using the proxy page</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="ref_coordsystems.html" onclick="clickAnchor(this)">Coordinate system IDs</a>
+        </div>
+      </div>
+    </div>
+    <!--end book-->
+    <!--What's new -->
+    <div class="treeNode">
+      <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif">
+      <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">
+        What's New archive
+      </span>
+      <div class="treeSubnodesHidden">
+        <div class="treeNode">
+          <a class="treeUnselected" href="migration_30.html" onclick="clickAnchor(this)">Migrating to 3.0</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="migration_20.html" onclick="clickAnchor(this)">Migrating to 2.0</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v37.html" onclick="clickAnchor(this)">What's New in Version 3.7</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v36.html" onclick="clickAnchor(this)">What's New in Version 3.6</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v35.html" onclick="clickAnchor(this)">What's New in Version 3.5</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v34.html" onclick="clickAnchor(this)">What's New in Version 3.4</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v33.html" onclick="clickAnchor(this)">What's New in Version 3.3</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v32.html" onclick="clickAnchor(this)">What's New in Version 3.2</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v31.html" onclick="clickAnchor(this)">What's New in Version 3.1</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v30.html" onclick="clickAnchor(this)">What's New in Version 3.0</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v28.html" onclick="clickAnchor(this)">What's New in Version 2.8</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v27.html" onclick="clickAnchor(this)">What's New in Version 2.7</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v26.html" onclick="clickAnchor(this)">What's New in Version 2.6</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v25.html" onclick="clickAnchor(this)">What's New in Version 2.5</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v24.html" onclick="clickAnchor(this)">What's New in Version 2.4</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v23.html" onclick="clickAnchor(this)">What's New in Version 2.3</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v22.html" onclick="clickAnchor(this)">What's New in Version 2.2</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v21.html" onclick="clickAnchor(this)">What's New in Version 2.1</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v20.html" onclick="clickAnchor(this)">What's New in Version 2.0</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v16.html" onclick="clickAnchor(this)">What's New in Version 1.6</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v15.html" onclick="clickAnchor(this)">What's New in Version 1.5</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v14.html" onclick="clickAnchor(this)">What's New in Version 1.4</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v13.html" onclick="clickAnchor(this)">What's New in Version 1.3</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v12.html" onclick="clickAnchor(this)">What's New in Version 1.2</a>
+        </div>
+      </div>
+    </div>
+    <!--end book-->
+    <!-- Book template <div class="treeNode"> <img src="../graphics/treenodeplus.gif" class="treeLinkImage" onclick="expandCollapse(this.parentNode)"/> <span style="cursor: pointer;" onclick="expandCollapse(this.parentNode)">Layers</span> <div class="treeSubnodesHidden"> <div class="treeNode"><img src="../graphics/treenodedot.gif" class="treeNoLinkImage"/><a href="http://skrzat/axlguide/jsdoc/class_style.cfm?theClass=ArcGISTiledMapServiceLayer" class="treeUnselected" onclick="clickAnchor(this)">ArcGISTiledMapServiceLayer</a></div> </div> </div>-->
+    <!--end book-->
+  </div>
+</div>
+<!-- pretty printed via http://prettydiff.com/?m=beautify&html --></div> <!-- sub 3:  Conceptual help TOC -->
+  </div>
+  <div class="grid_9 contentWrapper">
+    <div id="topicPane">		<div id="pageBanner">Working with GeoEnrichment Widgets</div>
+		<div id="nstext">
+			<!--***START TEXT - DO NOT WRITE ABOVE THIS LINE***-->
+      <p>The <b>GeoEnrichment</b> widgets provide access to the <a href="http://resources.arcgis.com/en/help/arcgis-rest-api/index.html#/GeoEnrichment_Service_Overview/02r30000021r000000/" target="_blank">ArcGIS GeoEnrichment Service</a> via ArcGIS JavaScript API. Using GeoEnrichment, you can get information about the people, places, and businesses in a specific area or within a certain distance or drive time from a location. After executing a GeoEnrichment task, the widgets return either an <b>Infographic</b> or an <b>InfographicsCarousel</b>, where the information you requested is properly summarized and visualized in tables or/and charts.</p>
+      <p>The diagram below demonstrates a typical user experience of using an application with GeoEnrichment widgets:</p>
+      <img src="images/geoenrichment.png">
+      <ol>
+      <li>Click a location on the map <b>(1)</b> to determine your study area and initiate a GeoEnrichment task.</li>
+      <li>After GeoEnrichment, the geometry of your study area <b>(2A)</b> and the infographic <b>(2B)</b> are returned.</li>
+      </ol>
+      
+      <br><br>
+      <h3><b>Features: Infographic and InfographicsCarousel</b></h3>
+      <p><b>Infographic</b> provides a graphic layout with the information about your study area. Four types of infographic are available: <b>One Variable</b>, <b>Related Variables</b>, <b>Age Pyramid</b> and <b>Tapestry</b>.</p>
+      <ol>
+        <li><p><b>One variable</b> displays the value of one single variable</p></li>
+        <img src="images/infographic-one-var.png">
+        <li><p><b>Related variables</b> displays values of multiple variables</p></li>
+        <img src="images/infographic-related-variables.png">
+        <li><p><b>Age pyramid</b> displays an age pyramid based on demographic data</p></li>
+        <img src="images/infographic-age-pyramid.png">
+        <li><p><b>Tapestry</b> displays the <a href="http://www.esri.com/data/esri_data/tapestry" target="_blank">Lifestyles-Esri Tapestry Segmentation</a> data.</p></li>
+        <img src="images/infographic-tapestry.png">
+      </ol>
+      <p><b>InfographicsCarousel</b> display a collection of multiple Infographics. Its <b>next</b> and <b>previous</b> buttons allow users to switch between various infographics.</p>
+      <img src="images/infographics-carousel.png">
+      
+      <br><br>
+      <h3><b>How to Build a GeoEnrichment Application with Infographic</b></h3>
+        <p>In this section, we provide a step-by-step instruction on building and using GeoEnrichment in your app. Before following this instruction, you need a <a href="../jssamples/map_simple.html">simple map app</a> ready.</p>
+      <ol>
+        <li><p>Link your app to a required CSS stylesheet. Add the following link tag to your HTML file. Replace <code>//js.arcgis.com/3.7</code> with other CDN locations if needed.</p></li>
+        <pre class="prettyprint">&lt;link rel="stylesheet" href="//js.arcgis.com/3.7/js/esri/dijit/geoenrichment/themes/common/main.css"&gt;</pre>
+        <li>
+          <p>Acquire related modules and construct an <a href="../jsapi/infographic-amd.html">Infographic</a>. Add the following module paths to the <code>require</code> function.</p>
+          <pre class="prettyprint">["esri/dijit/geoenrichment/Infographic", "esri/tasks/geoenrichment/GeometryStudyArea"]</pre></li>
+          <li><p>Start constructing a new infographic. <b>type</b>, <b>variables</b> and <b>studyArea</b> are three required parameters in the constructor. Refer to <a href="../jsapi/infographic-amd.html">API reference</a> for all the parameters you may specify. The second argument in the constructor specifies the DOM node where the infographic will be placed.</p>
+          <p>In this particular app, we want <b>studyArea</b> to be determined when users click on the map, thus it is not specified in the constructor. <b>returnGeometry</b> determines whether the geometry of your study area will be retured. Since we would like to show the study area with the results on map, set it to true.</p>
+        </li>        
+<pre class="prettyprint">var infographics = new Infographic({
+  type: "AgePyramid",
+  variables: ["Age.*"],
+  returnGeometry: true
+}, "infographics");</pre>
+        <li><p>Listen to <b>map.on("click")</b> to trigger a GeoEnrichment task. We use the clicked location on map to construct a <a href="../jsapi/geometrystudyarea-amd.html">GeometryStudyArea</a> and set it as the study area of the infographic. Finalize building the infographic with the <b>.startup()</b> method.</p>
+<pre class="prettyprint">map.on("click", function(evt){
+  infographics.set("studyArea", new GeometryStudyArea({ geometry: evt.mapPoint }));
+  infographics.startup();
+});</pre>
+<p>You may add a graphic to visualize this clicked location on the map - be sure <code>"esri/graphic"</code> and <code>"esri/symbols/SimpleMarkerSymbol"</code> are added to the <code>require</code> function.</p>
+<pre class="prettyprint">map.graphics.add(new Graphic(evt.mapPoint, new SimpleMarkerSymbol()));</pre>
+        </li>
+        <li><p>Listen to <b>infographics.on("data-ready")</b> to add the returned geometry to the map. When the GeoEnrichment results are ready, the infographic will automatically fetch the results and update the content. However, since we would like to see the geometry of our study area on the map, we use the <b>provider</b> property in the returned object to get the geometry. Then we create a new <a href="../jsapi/graphic-amd.html">Graphic</a> and add it to the map.</p>
+        <p>In this example, be sure you added <code>["esri/graphic", "esri/symbols/SimpleFillSymbol"]</code> to the <code>require</code> function.</p></li>
+<pre class="prettyprint">infographics.on("data-ready", function(evt){
+  map.graphics.add(new Graphic(evt.provider.geometry, new SimpleFillSymbol()));
+});</pre>
+        <li><p>In the HTML <code>&lt;body&gt;</code>, add a DOM node where the inforgraphic will be placed. The DOM ID must match the ID you specified in step 3.</p>
+        <pre class="prettyprint">&lt;div id="infographics"&gt;&lt;/div&gt;</pre>
+        </li>
+        <li><p>Try running this app. Since GeoEnrichment requires ArcGIS.com credits, you will be asked to enter your log in credentials when the GeoEnrichment is initiated. View <a href="../jssamples/geoenrichment_infographic.html">this sample</a> to see the complete code of the app this instrcution is based on.
+        
+      </ol>
+      
+      <br><br>
+      <h3><b>Using InfographicsCarousel</b></h3>
+      <p>The workflow of building an app with <a href="../jsapi/infographicscarousel-amd.html">InfographicsCarousel</a> is similar to the instruction above. With the app made according the instruction above, you may follow the instruction below to introduce InfographicsCarousel to your app.</p>
+      <ol>
+        <li><p>Replace the <b>Infographic</b> constructor with <b>InfographicsCarousel</b>. There is no <b>type</b> or <b>variables</b> parameter in InfographicsCarousel. Only keep <b>returnGeometry</b>. Be sure the module require path <code>"esri/dijit/geoenrichment/InfographicsCarousel"</code> is included in the <code>require</code> function.</p>
+<pre class="prettyprint">var infographics = new InfographicsCarousel({
+  returnGeometry: true
+}, "infographics");</pre>
+      <p>Now try to run the app. You will see several default infographics in the carousel.</p></li>
+      
+      <li><p>Since we would like to add more customized infographics to the carousel, we acquire another module <a href="../jsapi/infographicsoptions-amd.html">InfographicsOptions</a> to specify options for InfographicsCarousel. Be sure you have added <code>"esri/dijit/geoenrichment/InfographicsOptions"</code> to the <code>require</code> function.</p>
+<pre class="prettyprint">var options = new InfographicsOptions();</pre></li>
+      <li><p>InfographicsOptions has an method <b>getItems(countryID)</b>, which returns a <code>dojo.Deferred</code> object with an array of items (i.e. infographics) currently in the carousel.</p>
+<pre class="prettyprint">options.getItems("US").then(function(items){
+  ...
+});</pre>
+      <p>In the callback function, we first want to make all existing infographics invisible.</p>
+<pre class="prettyprint">for (var i = 0; i &lt; items.length; i++) {
+  items[i].isVisible = false;
+};</pre>
+<p>Then create two new items and push them into the <code>items</code> array. Two arguments in the <a href="../jsapi/infographicsoptionsitem-amd.html">InfographicsOptions.Item</a> constructor are the equivalent of <b>type</b> and <b>variables</b> in Infographic.</p>
+<pre class="prettyprint">var item1 = new InfographicsOptions.Item("OneVar", ["Wealth.PCI_CY"]);
+var item2 = new InfographicsOptions.Item("AgePyramid", ["Age.*"]);
+items.push(item1, item2);</pre>
+<p>Finally, set the <code>options</code> object we created earlier as the <b>options</b> property of the InfographicsCarousel. The complete callback function will be like:</p>
+<pre class="prettyprint">options.getItems("US").then(function(items){
+  for (var i = 0; i &lt; items.length; i++) {
+    items[i].isVisible = false;
+  };
+  var item1 = new InfographicsOptions.Item("OneVar", ["Wealth.PCI_CY"]);
+  var item2 = new InfographicsOptions.Item("AgePyramid", ["Age.*"]);
+  items.push(item1, item2);
+  infographics.set("options", options);
+});</pre>
+        </li>
+        <li><p>Try running this app. View <a href="../jssamples/geoenrichment_carousel.html">this sample</a> to see the complete code of the app this instrcution is based on.</p></li>
+      </ol>
+      
+      <br><br>
+      <h3><b>Strategies to Customize and Optimize Your Applications</b></h3>
+      
+      <ul>
+        <li><p><b>Study Area Options</b><br>By default, the geometry you pass into <b>studyArea</b> determines your study area, but you may opt to customize your study area with <b>studyAreaOptions</b>. You can pass this parameter into <code>Infographic</code> or <code>InfographicsOptions</code> (for <code>InfographicsCarousel</code>).</p>
+          <ul>
+            <li><a href="../jsapi/ringbuffer-amd.html">RingBuffer:</a> A buffer area based on physical distance.
+            <pre class="prettyprint">infographics.studyAreaOptions = new RingBuffer({radii: [ 2 ], units: "esriMiles"});</pre>
+            <img src="images/geoenrichment-ring-buffer.png">
+            <li><a href="../jsapi/drivebuffer-amd.html">DriveBuffer:</a> A buffer area based on driving distance or driving time.
+            <pre class="prettyprint">infographics.studyAreaOptions = new DriveBuffer({radii: [ 2 ], units: "esriMiles"});</pre>
+            <img src="images/geoenrichment-drive-buffer.png">
+            <li><a href="../jsapi/intersectinggeographies-amd.html">IntersectingGeographies:</a> The polygon feature at a specific geography level (such as states, counties, etc) that intersects with your input geometry. This class needs to be used with <a href="../jsapi/geographylevel-amd.html">GeographyLevel</a></li>
+            <pre class="prettyprint">infographics.studyAreaOptions = new IntersectingGeographies({ levels: [new GeographyLevel({ layerID: "US.Counties" })] });</pre>
+            <img src="images/geoenrichment-intersecting-geographies.png">
+          </ul>
+          <p>When <b>studyAreaOptions</b> is not specified, a <b>RingBuffer</b> with one-mile radius will be used as your study area.</p>
+        </li>
+        <li>
+          <p><b>Variables</b><br> Numerous variables are available for GeoEnrichment tasks. The availability of each variable varies from place to place. You may use <a href="geoenrichment/variables.html">this application</a> to find variables available in your study area.</p>
+        </li>
+        <li>
+          <p><b>Country ID and Dataset ID</b><br> By default, a GeoEnrichment service automatically determines the country and dataset within which your study area will be enriched. Specifying the country ID and/or dataset ID can eliminate computational cost and potentially improve the performance of your application. The <b>countryID</b> and <b>datasetID</b> parameters can be specified for <code>Infographic</code> and <code>GeographyLevel</code>.</p>
+        </li>
+        <li>
+          <p><b>Themes</b><br> Currently two themes are available for <code>InfographicsCarousel</code>: <b>common</b> and <b>light</b>.</p>
+        </li>
+      </ul>
+      
+      <br><br>
+      <h3><b>Structure of GeoEnrichment in ArcGIS JavaScript API</b></h3>
+      <p>GeoEnrichment classes are placed under the <b>esri.dijit.geoenrichment</b> and <b>esri.tasks.geoenrichment</b> folders. <b>Infographic</b> and <b>InfographicsCarousel</b> provide basic user experience as demonstrated above, while other classes are used to support the constructor options of these two classes. The diagram below illustrates the relationships between the GeoEnrichment classes.</p>
+      <p><img src="images/geoenrichment-structure.png"></p>
+      
+		</div>
+<div id="wh_footer" class="footnote" align="center">
+  Please <a href="mailto:js_feedback@esri.com?subject=Feedback on jshelp/intro_geoenrichment.html">contact the team</a> to comment or give suggestions.
+  <br>
+  Copyright &copy; Environmental Systems Research Institute, Inc.
+</div></div> <!-- sub 4:  main content for a page and feedback markup -->
+  </div>
+</div> <!-- end main content -->
+
+<!-- TOC script -->
+<script src="../scripts/tree.js"></script>
+
+<script src="../prettify/prettify.js"></script>
+<script>
+  var dojoConfig = {
+    packages: [{
+      "name": "js",
+      "location": location.pathname.replace(/\/[^/]+$/, "/") + "../scripts"
+    }]
+  };
+</script>
+<script src="//js.arcgis.com/3.8compact/"></script> <!-- add API version -->
+<script src="../scripts/esri-main-concepts.js"></script>
+
+<!-- google analytics -->
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-215788-63']);
+  _gaq.push(['_setDomainName', 'arcgis.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+ <!-- sub 5:  add script to redirect old hash based URLs to static pages and google analytics -->
+</body>
+</html>

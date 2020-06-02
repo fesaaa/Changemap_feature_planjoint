@@ -1,0 +1,90 @@
+/* Windows 8 tablet */
+@media screen and (min-width: 768px) and (orientation:landscape) {
+	#contentPanel {
+		display: block !important;
+	}
+}
+
+@media screen and (max-width: 767px), screen and (orientation:portrait) { 
+/* TODO orientation:portrait is causing resize to mobile problem (screen is taller than wider)*/
+	#headerDesktop {
+		display: none;
+	}
+	
+	#header {
+		height: 41px !important;
+		background-color: #c2c2c2;
+	}
+	
+	#mapPanel {
+		width: 100% !important;
+	}
+	
+	#headerMobile {
+		display: block;
+	}
+	
+	#loadingOverlay {
+		top: 0px;
+	}
+	
+	.modal, .modal-backdrop {
+		display: none !important;
+	}
+	
+	#mainMap0_zoom_slider {
+		left: 20px !important;
+	}
+	
+	#mainMap1_zoom_slider {
+		left: 20px !important;
+	}
+	
+	#mainMap_zoom_location {
+		left: 20px !important;
+	}
+	
+	#lensTool.twoLayers{
+		background: url('../../../../resources/icons/sprite-icons.png') 0 -1399px;
+	}
+	
+	#lensTool.twoMaps{
+		background: url('../../../../resources/icons/sprite-icons.png') 0 -1649px;
+	}
+	
+	#lensTool.safariFix {
+		background: url('../../../../resources/icons/sprite-icons.png') 0 -1399px;
+	}
+	
+	#lensMapNode.safariFix #lensMapNode_container {
+		clip: rect(8px 193px 193px 8px) !important;
+	}
+
+	#lensTool {
+		width: 200px;
+		height: 200px;
+	}
+	
+	#lensWin {
+		height: 200px;
+		width: 200px;
+	}	
+	
+	#legendTitle {
+		display: none;
+	}
+	
+	.claro.mobile-view {
+		background-color: transparent;
+	}
+	
+	#locationSearch {
+		display: none;
+	}
+	
+}
+
+#lensWin .map {
+	width: 400px !important;
+	height: 400px !important;
+}

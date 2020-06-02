@@ -1,0 +1,269 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+    <title></title>
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/dojo/dijit/themes/Nihilo/Nihilo.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/esri/css/esri.css">
+    <style>
+      html, body { 
+        height: 100%; width: 100%;
+        margin: 0; padding: 0;
+      } 
+      body{
+        background-color: #fff; overflow:hidden; 
+        font-family: sans-serif;
+      } 
+      #header {
+        padding-top: 4px;
+        padding-right: 15px;
+        background-color:#444; 
+        color:#fff; 
+        font-size:16pt; text-align:right;font-weight:bold;
+        height:55px;
+      }
+      #subheader {
+        font-size:small;
+        color: #cfcfcf;
+        text-align:right;
+        padding-right:20px;
+      }
+
+      #subheader a, #subheader a:visited, #subheader a:active, #subheader a:hover {
+        color: #cfcfcf;
+      }
+
+      #leftPane{
+        margin: 0;
+        padding: 20px;
+        width: 250px;
+        color: #3C1700;
+        background-color: #fff;
+      }
+
+      #attribution {
+        bottom: 5px;
+        font-size: 10px;
+        font-family: arial;
+        left: 5px;
+        position: absolute;
+        z-index: 30;
+      }
+
+      .ds { background: #000; overflow: hidden; position: absolute; z-index: 2; }
+      #ds-h div { width: 100%; }
+      #ds-l div { height: 100%; }
+      #ds .o1 { filter: alpha(opacity=10); opacity: .1; }
+      #ds .o2 { filter: alpha(opacity=8); opacity: .08; }
+      #ds .o3 { filter: alpha(opacity=6); opacity: .06; }
+      #ds .o4 { filter: alpha(opacity=4); opacity: .04; }
+      #ds .o5 { filter: alpha(opacity=2); opacity: .02; }
+      #ds .h1 { height: 1px; }
+      #ds .h2 { height: 2px; }
+      #ds .h3 { height: 3px; }
+      #ds .h4 { height: 4px; }
+      #ds .h5 { height: 5px; }
+      #ds .v1 { width: 1px; }
+      #ds .v2 { width: 2px; }
+      #ds .v3 { width: 3px; }
+      #ds .v4 { width: 4px; }
+      #ds .v5 { width: 5px; }
+    </style>
+
+    <script>var dojoConfig = { parseOnLoad: true };</script>
+    <script src="http://js.arcgis.com/3.8/"></script>
+    <script>
+      dojo.require("dijit.layout.BorderContainer");
+      dojo.require("dijit.layout.ContentPane");
+      dojo.require("esri.map");
+      
+      var map;
+      function init() {
+        map = new esri.Map("map", {
+          center: [-118.483, 34.025],
+          zoom: 13
+        });
+        
+        // various tile server names
+        var mq = ["mtile01", "mtile02", "mtile03", "mtile04"];
+        var abc = ["a", "b", "c"];
+
+        // info used to create web tile layers
+        
+        var layers = [{
+          "options": { 
+            "id": "MapQuest", "visible": true, "tileServers": mq,
+            "attribution": "�2012&nbsp;MapQuest&nbsp;&nbsp;-&nbsp;&nbsp;Portions&nbsp;�2012&nbsp;NAVTEQ,&nbsp;Intermap"
+          },
+          "url": "http://${0}.mqcdn.com/tiles/1.0.0/vx/map/${1}/${2}/${3}.jpg"
+        }, {
+          "options": { 
+            "id": "OpenCycleMap", "visible": false, "tileServers": abc,
+            "attribution": "<a href=\"http://www.opencyclemap.org/\">Map tiles from OpenCycleMap</a>"},
+          "url": "http://${0}.tile.opencyclemap.org/cycle/${1}/${2}/${3}.png"
+        }, {
+          "options": { 
+            "id": "Trulia Crime Heat Map", "visible": false,  
+            "attribution": "Heat map tiles from <a href=\"http://www.trulia.com/local/#crimes/los-angeles-ca\">Trulia</a>"},
+          "url": "http://tiles.trulia.com/tiles/crime_heatmap/${0}/${1}/${2}.png"
+        }];
+        
+        // clear out the side bar
+        dojo.byId("leftPane").innerHTML = "";
+        // create and add the layers
+        var layerDiv = dojo.create("div");
+        dojo.forEach(layers, function(l) {
+          var lyr = new esri.layers.WebTileLayer(l.url, l.options);
+          map.addLayer(lyr);
+          // add a radio button for the layer
+          dojo.create("input", {
+            "type": "radio",
+            "checked": l.options.visible,
+            "name": "tiledLayers",
+            "id": l.options.id,
+            "value": l.options.id
+          }, layerDiv);
+          // then a label
+          dojo.create("label", { 
+            "for": l.options.id,
+            "innerHTML": l.options.id + "<br />"
+          }, layerDiv);
+        });
+        // add the radio buttons to the page
+        dojo.place(layerDiv, dojo.byId("leftPane"));
+
+        // event delegation to toggle layers
+        dojo.connect(dojo.byId("leftPane"), "onclick", toggleLayer);
+      }
+
+      function toggleLayer(e) {
+        console.log("clicked: ", e, dojo.byId(e.target.id));
+        if ( ! dojo.byId(e.target.id) ) { 
+          // return if we cannot find the DOM node for a layer
+          return;
+        }
+        // hide other layers
+        dojo.forEach(map.layerIds, function(id) {
+          map.getLayer(id).hide();
+        });
+        // show the layer with the clicked radio button
+        var layer = map.getLayer(e.target.id);
+        layer.show();
+
+        // update the attribution
+        console.log("layer copyright: ", layer.copyright);
+        if ( layer.copyright ) {
+          dojo.byId("attribution").innerHTML = layer.copyright;
+        }
+      }
+
+      // define the WebTileLayer class
+      dojo.ready(function() {
+        dojo.declare("esri.layers.WebTileLayer", [esri.layers.TiledMapServiceLayer], {
+          constructor: function(urlTemplate, options) {
+            var ext = new esri.geometry.Extent({"xmin":-22041259,"ymin":-33265069,"xmax":22041259,"ymax":33265069,"spatialReference":{"wkid":102100}});
+            var lods = [
+              {"level" : 0, "resolution" : 156543.033928, "scale" : 591657527.591555}, 
+              {"level" : 1, "resolution" : 78271.5169639999, "scale" : 295828763.795777}, 
+              {"level" : 2, "resolution" : 39135.7584820001, "scale" : 147914381.897889}, 
+              {"level" : 3, "resolution" : 19567.8792409999, "scale" : 73957190.948944}, 
+              {"level" : 4, "resolution" : 9783.93962049996, "scale" : 36978595.474472}, 
+              {"level" : 5, "resolution" : 4891.96981024998, "scale" : 18489297.737236}, 
+              {"level" : 6, "resolution" : 2445.98490512499, "scale" : 9244648.868618}, 
+              {"level" : 7, "resolution" : 1222.99245256249, "scale" : 4622324.434309}, 
+              {"level" : 8, "resolution" : 611.49622628138, "scale" : 2311162.217155}, 
+              {"level" : 9, "resolution" : 305.748113140558, "scale" : 1155581.108577}, 
+              {"level" : 10, "resolution" : 152.874056570411, "scale" : 577790.554289}, 
+              {"level" : 11, "resolution" : 76.4370282850732, "scale" : 288895.277144}, 
+              {"level" : 12, "resolution" : 38.2185141425366, "scale" : 144447.638572}, 
+              {"level" : 13, "resolution" : 19.1092570712683, "scale" : 72223.819286}, 
+              {"level" : 14, "resolution" : 9.55462853563415, "scale" : 36111.909643}, 
+              {"level" : 15, "resolution" : 4.77731426794937, "scale" : 18055.954822}, 
+              {"level" : 16, "resolution" : 2.38865713397468, "scale" : 9027.977411}, 
+              {"level" : 17, "resolution" : 1.19432856685505, "scale" : 4513.988705}, 
+              {"level" : 18, "resolution" : 0.597164283559817, "scale" : 2256.994353}, 
+              {"level" : 19, "resolution" : 0.298582141647617, "scale" : 1128.497176}
+            ];
+            this.spatialReference = new esri.SpatialReference({ wkid: 102100 });
+            this.initialExtent = this.fullExtent = ext;
+
+            this.tileInfo = new esri.layers.TileInfo({
+              "rows" : 256, // can also be height
+              "cols" : 256, // can also be width
+              "origin" : { "x" : -20037508.342787, "y" : 20037508.342787 },
+              "spatialReference" : { "wkid" : 102100 },
+              "lods" : lods
+            });
+
+            this.copyright = options.attribution || "";
+            this.urlTemplate = urlTemplate;
+            this.tileServers = options.tileServers || [];
+
+            this.loaded = true;
+            this.onLoad(this);
+          },
+
+          getTileUrl: function(level, row, col) {
+            var tileServer = this.tileServers[parseInt(Math.random()*this.tileServers.length)];
+            // console.log("tile server is: ", tileServer);
+            var tileUrl;
+            if ( tileServer ) {
+              tileUrl = dojo.string.substitute(this.urlTemplate, [tileServer, level, col, row]);
+            } else {
+              tileUrl = dojo.string.substitute(this.urlTemplate, [level, col, row]);
+            }
+            // console.log("tile url: ", tileUrl);
+            return tileUrl;
+          }
+        });
+      });
+      //show map on load 
+      dojo.ready(init);
+    </script>
+  </head>
+  <body class="nihilo">
+    <div id="mainWindow" 
+         data-dojo-type="dijit.layout.BorderContainer" 
+         data-dojo-props="design:'headline',gutters:false"
+         style="width: 100%; height: 100%; margin: 0;">
+      <div id="header" 
+           data-dojo-type="dijit.layout.ContentPane"
+           data-dojo-props="region:'top'">
+        Web Tile Layers 
+        <div id="subheader">...now with <a href="http://help.arcgis.com/en/webapi/javascript/arcgis/help/jshelp/intro_navigation.htm" target="_blank">Superpan</a></div>
+      </div>
+      <div id="leftPane"
+           data-dojo-type="dijit.layout.ContentPane" 
+           data-dojo-props="region:'left'">
+        left side
+      </div>
+      <div id="map" class="shadow" 
+           data-dojo-type="dijit.layout.ContentPane"
+           data-dojo-props="region:'center'">
+
+        <!-- drop shadow divs -->
+        <div id="ds">
+          <div id="ds-h">
+            <div class="ds h1 o1"></div>
+            <div class="ds h2 o2"></div>
+            <div class="ds h3 o3"></div>
+            <div class="ds h4 o4"></div>
+            <div class="ds h5 o5"></div>
+          </div>
+          <div id="ds-l">
+            <div class="ds v1 o1"></div>
+            <div class="ds v2 o2"></div>
+            <div class="ds v3 o3"></div>
+            <div class="ds v4 o4"></div>
+            <div class="ds v5 o5"></div>
+          </div>
+        </div> <!-- end drop shadow divs -->
+
+        <div id="attribution"></div>
+            
+      </div>
+    </div>
+  </body>
+</html>
+

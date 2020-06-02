@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <!--The viewport meta tag is used to improve the presentation and behavior of the samples 
+      on iOS devices-->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+    <title>Image Service - Mosaic Rule</title>
+
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/dojo/dijit/themes/claro/claro.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/esri/css/esri.css">
+    <style>
+      html, body {
+        height: 100%; width: 100%; margin: 0; padding: 0; } /*rounded
+      corners and opacity not supported in all browsers*/ .shadow { padding:8px;
+      -moz-border-radius: 6px; -webkit-border-radius: 6px; -moz-box-shadow: 0px
+      6px 3px -3px #888; -webkit-box-shadow: 0px 6px 3px -3px #888; box-shadow:
+      0px 6px 3px -3px #888; background-color:white; border: solid 1px silver;
+      } .floatingWindow { -moz-border-radius:6px; border: solid 3px #FF9900; -webkit-border-radius: 6px; background:url("images/orange.png")
+      repeat scroll left top transparent;position:absolute;right:35px;top:5px;z-Index:998;width:250px; padding:10px; } #details{ font-family:
+      "Tahoma"; color: black; text-align:center; font-size:10pt; padding:10px;
+      }
+    </style>
+    <script>var dojoConfig = { parseOnLoad: true };</script>
+    <script src="http://js.arcgis.com/3.8/"></script>
+    <script>
+      dojo.require("dijit.layout.BorderContainer");
+      dojo.require("dijit.layout.ContentPane");
+      dojo.require("esri.map");
+      
+      var map, imageServiceLayer;
+
+      function init() {
+        map = new esri.Map("map", {
+          basemap: "topo",
+          center: [172.672, -43.46],
+          zoom: 11
+        });
+        
+        imageServiceLayer = new esri.layers.ArcGISImageServiceLayer("http://serverapi.arcgisonline.com/arcgis/rest/services/NewZealand/ChristChurchAerial/ImageServer");
+        map.addLayer(imageServiceLayer);
+
+        dojo.connect(map,"onClick",function(evt){
+          console.log(evt.mapPoint.x + " " + evt.mapPoint.y);
+          var mosaicRule = new esri.layers.MosaicRule();
+          mosaicRule.method = esri.layers.MosaicRule.METHOD_VIEWPOINT;
+          mosaicRule.viewpoint = evt.mapPoint;
+          mosaicRule.ascending = false;
+          imageServiceLayer.setMosaicRule(mosaicRule);
+        });
+      }
+      dojo.ready(init);
+    </script>
+  </head>
+  
+  <body class="claro">
+    <div dojotype="dijit.layout.BorderContainer" design="headline" gutters="false"
+    style="width: 100%; height: 100%; margin: 0;">
+      <div id="map" dojotype="dijit.layout.ContentPane" region="center" style="overflow:hidden;position:relative;">
+        <div class="floatingWindow" >
+          <div class="shadow">
+            <div id="details">
+              Click on the map to change the view point of the raster tiles in the image service. Notice that the order 
+              of overlapping tiles will change as the view point changes. 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+</html>

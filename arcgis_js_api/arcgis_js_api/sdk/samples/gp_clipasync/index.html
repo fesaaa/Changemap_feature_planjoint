@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <!--The viewport meta tag is used to improve the presentation and behavior of the samples 
+      on iOS devices-->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+    <title>Extract Data</title>
+
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/dojo/dijit/themes/claro/claro.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/dojo/dojox/layout/resources/FloatingPane.css">	
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/esri/css/esri.css">
+    <style>
+      html, body { 
+        height: 100%; width: 100%; margin: 0; padding: 0;   
+      }
+      body{
+        overflow:hidden; 
+      }
+      #floater {
+        -moz-border-radius:6px;
+        -webkit-border-radius: 6px; 
+         position:absolute;
+         top:25px;left:550px;
+         width:200px !important;
+         height:300px !important;
+         z-index:99;
+      } 
+      .dojoxFloatingPaneContent{
+        font-family: Arial, Helvetica, sans-serif;
+        font-size:8pt;
+        font-weight:bold;
+      }
+      .dojoxFloatingPaneTitle{
+        color: #485C5A;
+        background-color: #B3DAFC;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size:12pt;
+        font-weight:bold;
+      }
+
+      #dock{
+        -moz-border-radius:4px;
+        -webkit-border-radius: 4px; 
+        position:absolute;
+        border-style:none;
+        z-index:99;
+        top:10px;
+        right:20px;
+      }
+      .claro .dojoxDockNode {
+       -moz-border-radius:4px;
+        -webkit-border-radius:4px; 
+        background:#B3DAFC ;
+        color:#485C5A;
+        font-family: Arial, Helvetica, sans-serif;   
+      }
+      .claro .dojoxDockRestoreButton {
+        background:url(http://serverapi.arcgisonline.com/jsapi/arcgis/3.3js/dojo/dijit/themes/tundra/images/spriteArrows.png) no-repeat -21px center;
+        width:7.2px;
+        height:14px;
+        overflow:hidden;
+        float:left;
+      }
+      .claro .dojoxDockTitleNode{
+        padding-left:4px;
+        padding-right:4px;
+      }
+      .freehandIcon { background-image:url(./images/i_draw_freepoly.png); width:20px; height:20px; }
+      .polyIcon { background-image:url(./images/i_draw_poly.png); width:20px; height:20px;}
+      
+    </style>
+
+    <script>var dojoConfig = { parseOnLoad: true };</script>
+    <script src="http://js.arcgis.com/3.8/"></script>
+    <script>
+      dojo.require("dijit.layout.BorderContainer");
+      dojo.require("dojox.layout.FloatingPane");
+      dojo.require("dijit.layout.ContentPane");
+      dojo.require("dijit.form.CheckBox");
+      dojo.require("dijit.form.ComboBox");
+      dojo.require("esri.map");
+
+      var gp, map;
+      var loading;
+      var selectionToolbar;
+
+      function init() {
+        esri.config.defaults.io.proxyUrl = "/proxy";
+        loading = dojo.byId("loadingImg");
+
+        map = new esri.Map("map", {
+          basemap: "streets",
+          center: [-77.026, 38.905],
+          zoom: 14
+        });
+
+        dojo.connect(map, 'onLoad', function(map) {
+          initSelectionToolbar();
+        });
+        
+        var homelandSecurity = new esri.layers.ArcGISDynamicMapServiceLayer("http://sampleserver4.arcgisonline.com/ArcGIS/rest/services/HomelandSecurity/Incident_Data_Extraction/MapServer");
+        map.addLayer(homelandSecurity);
+        
+        gp = new esri.tasks.Geoprocessor("http://sampleserver4.arcgisonline.com/ArcGIS/rest/services/HomelandSecurity/Incident_Data_Extraction/GPServer/Extract%20Data%20Task");
+        gp.setOutSpatialReference({wkid:102100});
+      }
+      
+      function initSelectionToolbar(myMap){
+        selectionToolbar = new esri.toolbars.Draw(map);
+        dojo.connect(selectionToolbar, "onDrawEnd", function(geometry) {
+          selectionToolbar.deactivate();
+          var symbol = new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID, new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_DASHDOT, new dojo.Color([255,0,0]), 2), new dojo.Color([255,255,0,0.25]));
+          var graphic = new esri.Graphic(geometry, symbol);
+          map.graphics.add(graphic);
+
+        });
+      }
+
+      function activateTool(type){
+        selectionToolbar.activate();
+      }
+      
+      function extractData(){
+        //get clip layers
+        var clipLayers = [];
+        if(dijit.byId('layer1').checked){clipLayers.push('Incident Points');}
+        if(dijit.byId('layer2').checked){clipLayers.push('Incident Lines');}
+        if(dijit.byId('layer3').checked){clipLayers.push('Incident Areas');}
+        if(clipLayers.length === 0 || map.graphics.graphics.length === 0){
+          alert('Select layers to extract and area of interest');
+          return;
+        }
+        var features =[];
+        features.push(map.graphics.graphics[0]);
+        var featureSet = new esri.tasks.FeatureSet();
+        featureSet.features = features;
+
+        var params = {"Layers_to_Clip":clipLayers,
+          "Area_of_Interest": featureSet,
+          "Feature_Format": dijit.byId('formatBox').value
+        }
+        esri.show(loading);
+        gp.submitJob(params, completeCallback , statusCallback,function(error){
+          alert(error);
+          esri.hide(loading);
+        });
+      }
+      function completeCallback(jobInfo){
+        if(jobInfo.jobStatus !== "esriJobFailed"){
+          gp.getResultData(jobInfo.jobId,"Output_Zip_File", downloadFile);
+        }
+      }
+      function statusCallback(jobInfo) {
+        var status = jobInfo.jobStatus;
+        if(status === "esriJobFailed"){
+          alert(status);
+          esri.hide(loading);
+        }
+        else if (status === "esriJobSucceeded"){
+          esri.hide(loading);
+        }
+      }
+      function downloadFile(outputFile){
+        map.graphics.clear();
+        var theurl = outputFile.value.url;  
+        window.location = theurl;
+      }
+
+      //show map on load 
+      dojo.ready(init);
+    </script>
+  </head>
+  <body class="claro">
+    <div data-dojo-type="dijit.layout.BorderContainer" 
+         data-dojo-prps="design:'headline', gutters:false" 
+         style="width: 100%; height: 100%;margin:0;">
+
+      <div id="map" 
+           data-dojo-type="dijit.layout.ContentPane" 
+           data-dojo-props="region:'center'">
+           
+        <div data-dojo-type="dojox.layout.Dock" id="dock"></div>
+        
+        <div data-dojo-type="dojox.layout.FloatingPane"  title="Extract Data" dockTo="dock" id="floater" style="visibility:hidden;" closable="false" resizable="true"  dockable="true" >
+        1.Select area of interest<br />
+          <button data-dojo-type="dijit.form.Button" iconClass="polyIcon" showLabel="false" onClick="map.graphics.clear();selectionToolbar.activate(esri.toolbars.Draw.POLYGON);">Polygon</button>
+          <button data-dojo-type="dijit.form.Button" iconClass="freehandIcon" showLabel="false" onClick="map.graphics.clear();selectionToolbar.activate(esri.toolbars.Draw.FREEHAND_POLYGON);">Freehand</button><br />
+        2.Select Layers to extract data from<br />
+            <input id="layer1" data-dojo-type="dijit.form.CheckBox" checked="checked" type="checkbox"/>
+            <label for="layer1">Incident Points</label><br />
+            <input id="layer2" data-dojo-type="dijit.form.CheckBox" checked="checked" type="checkbox"/>
+            <label for="layer2">Incident Lines</label><br />
+            <input id="layer3" data-dojo-type="dijit.form.CheckBox" checked="checked" type="checkbox"/>
+            <label for="layer3">Incident Area</label><br />
+        3.Specify download format<br />
+            <select data-dojo-type="dijit.form.ComboBox" id="formatBox">
+              <option>Shapefile - SHP - .shp</option>
+              <option>File Geodatabase - GDB - .gdb</option>
+              <option>Autodesk AutoCAD - DXF_R2007 - .dxf</option>
+              <option>Autodesk AutoCAD - DWG_R2007 - .dwg</option>
+              <option>Bentley Microstation Design (V8) - DGN_V8 - .dgn</option>            
+            </select>
+       <button data-dojo-type="dijit.form.Button"  onClick="extractData();">Extract Data</button>
+       <img id="loadingImg" src="./images/loading.gif" style="position:absolute; left:100px; bottom:8px; z-index:100;display:none;" />
+      </div>  
+      </div>
+   
+     </div>
+  </body>
+
+</html>

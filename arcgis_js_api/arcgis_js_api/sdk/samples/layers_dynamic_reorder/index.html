@@ -1,0 +1,231 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+    <title></title>
+
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/dojo/dijit/themes/tundra/tundra.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/esri/css/esri.css">
+    <style>
+      html, body { height: 100%; width: 100%; margin: 0; padding: 0; }
+      h3 { margin: 0 0 5px 0; border-bottom: 1px solid #444; }
+      .shadow {
+        -moz-box-shadow: 0 0 5px #888;
+        -webkit-box-shadow: 0 0 5px #888;
+        box-shadow: 0 0 5px #888;
+      }
+      #map{ margin: 0; padding: 0; }
+      #feedback {
+        background: #fff;
+        color: #444;
+        position: absolute;
+        font-family: arial;
+        height: 300px;
+        left: 30px;
+        margin: 5px;
+        padding: 10px;
+        top: 30px;
+        width: 300px;
+        z-index: 40;
+      }
+      #note, #hint { font-size: 80%; }
+      #note { font-weight: 700; padding: 0 0 10px 0; }
+      #layerList {
+        width: 200px;
+      }
+      .dojoDndItemOver {
+        background: #ccc;
+      }
+    </style>
+
+    <script>var dojoConfig = { parseOnLoad: true };</script>
+    <script src="http://js.arcgis.com/3.8/"></script>
+    <script>
+      dojo.require("dojo.dnd.Source");
+      dojo.require("dijit.layout.BorderContainer");
+      dojo.require("dijit.layout.ContentPane");
+      dojo.require("dijit.form.Button");
+      dojo.require("esri.map");
+
+      // one global for persistent app variables
+      var app = {};
+
+      function init() {
+        app.map = new esri.Map("map", { 
+          center: [-93.636, 46.882],
+          zoom: 7,
+          slider: false
+        });
+        var basemap = new esri.layers.ArcGISTiledMapServiceLayer("http://services.arcgisonline.com/ArcGIS/rest/services/World_Terrain_Base/MapServer");
+        app.map.addLayer(basemap);
+        var ref = new esri.layers.ArcGISTiledMapServiceLayer("http://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Reference_Overlay/MapServer");
+        app.map.addLayer(ref);
+
+        urlDyn = "http://sampleserver6.arcgisonline.com/arcgis/rest/services/USA/MapServer";
+        usaLayer = new esri.layers.ArcGISDynamicMapServiceLayer(urlDyn, { "id": "usa" });
+        app.map.addLayer(usaLayer);
+
+        // build the layer list
+        if ( usaLayer.loaded ) {
+          buildList(usaLayer);
+        } else {
+          dojo.connect(usaLayer, "onLoad", buildList);
+        }
+
+        // hide the loading icon when the counties layer finishes updating
+        dojo.connect(usaLayer, "onUpdateEnd", function() {
+          dojo.style(dojo.byId("loading"), "display", "none");
+          // rebuild the layer list
+          buildList(app.map.getLayer("usa"));
+        });
+
+        // add the lakes layer to the existing map service
+        dojo.connect(dijit.byId("lakes"), "onClick", addLakes);
+      }
+
+      function buildList(lyr) {
+        var lyrInfos, lyrs;
+
+        // remove the existing layer list
+        if ( app.hasOwnProperty("dndSource") ) {
+          app.dndSource.destroy();
+          dojo.empty(dojo.byId("layerList"));
+        }
+
+        app.layerLookup = {};
+        // use dynamicLayerInfos if present
+        // fallback to layerInfos to build the layer list
+        lyrInfos = lyr.hasOwnProperty("dynamicLayerInfos") ?
+          lyr.dynamicLayerInfos : lyr.layerInfos;
+
+        lyrs = dojo.map(lyrInfos, function(li, idx) {
+          var lyrName = li.name.split(".")[li.name.split(".").length-1];
+          app.layerLookup[lyrName] = idx;
+          // only want the layer's name, don't need the db name and owner name
+          return lyrName;
+        });
+        app.dndSource = new dojo.dnd.Source("layerList");
+        app.dndSource.insertNodes(false, lyrs);
+
+        dojo.connect(app.dndSource, "onDndDrop", reorderLayers);
+      }
+
+      function reorderLayers(source, nodes, copy, target) {
+        // show loading icon
+        dojo.style(dojo.byId("loading"), "display", "inline-block");
+
+        // get layer name nodes
+        var lyrs = dojo.query("#layerList .dojoDndItem");
+        var layerOrder = dojo.map(lyrs, function(l) {
+          return app.layerLookup[l.innerHTML];
+        });
+
+        if ( ! app.hasOwnProperty("dynLyrInfos") ) {
+          app.dynLyrInfos = app.map.getLayer("usa").createDynamicLayerInfosFromLayerInfos();
+        }
+        var newOrder = dojo.map(layerOrder, function(idx) {
+          return app.dynLyrInfos[idx];
+        });
+        app.dynLyrInfos = newOrder;
+        app.map.getLayer("usa").setDynamicLayerInfos(app.dynLyrInfos);
+      }
+
+      function addLakes() {
+        var layerName, dataSource, layerSource, options, drawingOptions;
+
+        // disable the "Add Lakes" button
+        dijit.byId("lakes").set("disabled", true);
+
+        // show a loading icon
+        dojo.style(dojo.byId("loading"), "visibility", "visible");
+
+        // layer name in the workspace
+        layerName = "ss6.gdb.Lakes";
+        // get existing layer info
+        // lakes info will be appeneded to this object so it shows up in the map service image
+        //
+        // only use createDynamicLayerInfosFromLayerInfos
+        // if layers haven't been re-ordered yet
+        if ( ! app.hasOwnProperty("dynLyrInfos") ) {
+          app.dynLyrInfos = app.map.getLayer("usa").createDynamicLayerInfosFromLayerInfos();
+        } 
+
+        // create a new dynamic layer info object for the lakes layer
+        dynamicLayerInfo = new esri.layers.DynamicLayerInfo();
+        dynamicLayerInfo.id = app.dynLyrInfos.length;
+        dynamicLayerInfo.name = layerName;
+        // can also set things like min/max scale to specify scale
+        // dependency on the new dynamic layer
+
+        // create a table data source to access the lakes layer
+        dataSource = new esri.layers.TableDataSource();
+        dataSource.workspaceId = "MyDatabaseWorkspaceIDSSR2"; // not exposed via REST, sad face :(
+        dataSource.dataSourceName = layerName;
+        // and now a layer source
+        layerSource = new esri.layers.LayerDataSource();
+        layerSource.dataSource = dataSource;
+        dynamicLayerInfo.source = layerSource;
+        app.dynLyrInfos.push(dynamicLayerInfo);
+        // set new infos, but don't refresh
+        // map will be updated when the drawing options are set
+        app.map.getLayer("usa").setDynamicLayerInfos(app.dynLyrInfos, true);
+
+        options = [];
+        drawingOptions = new esri.layers.LayerDrawingOptions();
+        drawingOptions.renderer = new esri.renderer.SimpleRenderer(
+          new esri.symbol.SimpleFillSymbol(
+            "solid",
+            null,
+            new dojo.Color([255, 0, 255, 0.75]) // fuschia lakes!
+          )
+        );
+        options[4] = drawingOptions;
+
+        app.map.getLayer("usa").setLayerDrawingOptions(options);
+      }
+
+      function errorHandler(err) {
+        console.log("Error: ", err);
+      }
+
+      dojo.ready(init);
+    </script>
+  </head>
+
+  <body class="tundra">
+    <div data-dojo-type="dijit.layout.BorderContainer"
+         data-dojo-props="design:'headline',gutters:false"
+         style="width: 100%; height: 100%; margin: 0;">
+      <div id="map"
+           data-dojo-type="dijit.layout.ContentPane"
+           data-dojo-props="region:'center'">
+
+        <div id="feedback" class="shadow">
+          <h3>Add and Re-order Layers</h3>
+          <div id="info">
+            <div id="note">
+              Note:  This sample requires an ArcGIS Server version 10.1 map service to generate a renderer.
+            </div>
+            
+            <div id="hint">
+              Click and drag a map layer name below to re-order layers. The first layer in the list will be drawn on top.
+            </div>
+
+            <strong>Map Layers</strong>
+            <img id="loading" src="http://dl.dropbox.com/u/2654618/loading_black.gif" />
+            <br />
+            <div id="layerList"></div>
+
+            <button id="lakes"
+                    data-dojo-type="dijit.form.Button">
+              Add Lakes
+            </button>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html> 
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <!--The viewport meta tag is used to improve the presentation and behavior of the samples 
+      on iOS devices-->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+    <title>Editable FeatureLayer in Selection Only Mode with Attribute Inspector</title>
+
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/dojo/dijit/themes/claro/claro.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/esri/css/esri.css" />
+    <style>
+      html, body { 
+        height: 100%; width: 100%; 
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+      #mapDiv{
+        margin: 0;
+        padding:0;
+      }
+      #detailPane{
+        height:20px;
+        color:#570026;
+        font-size:12pt;
+        font-weight:600;
+        overflow:hidden;
+      }
+      .dj_ie .infowindow .window .top .right .user .content { position: relative; }
+      .dj_ie .simpleInfoWindow .content {position: relative;}
+
+      .esriAttributeInspector {height:100px;}
+      .esriAttributeInspector .atiLayerName {display:none;}
+      .saveButton {
+        padding-left:45px;
+         margin:0px;width:16px; height:16px;
+       }
+    </style>
+    
+    <script src="http://js.arcgis.com/3.8/"></script>
+    <script>
+      var map;
+      var updateFeature;
+      
+      require([
+        "esri/map",
+        "esri/layers/FeatureLayer",
+        "esri/dijit/AttributeInspector",
+
+        "esri/symbols/SimpleLineSymbol",
+        "esri/symbols/SimpleFillSymbol",
+        "dojo/_base/Color",
+
+        "esri/layers/ArcGISDynamicMapServiceLayer",
+        "esri/config",
+
+        "esri/tasks/query",
+
+        "dojo/parser", 
+        "dojo/dom-construct",
+        "dijit/form/Button",
+
+        "dijit/layout/BorderContainer", "dijit/layout/ContentPane", "dojo/domReady!"
+      ], function(
+        Map, FeatureLayer, AttributeInspector,
+        SimpleLineSymbol, SimpleFillSymbol, Color,
+        ArcGISDynamicMapServiceLayer, esriConfig,
+        Query,
+        parser, domConstruct, Button
+      ) {
+        parser.parse();
+
+        // refer to "Using the Proxy Page" for more information:  https://developers.arcgis.com/en/javascript/jshelp/ags_proxy.html
+        esriConfig.defaults.io.proxyUrl = "/proxy";
+
+        map = new Map("mapDiv", {
+          basemap: "streets",
+          center: [-97.395, 37.537],
+          zoom: 11
+        });
+        
+        map.on("layers-add-result", initSelectToolbar);
+
+        var petroFieldsMSL = new ArcGISDynamicMapServiceLayer("http://sampleserver3.arcgisonline.com/ArcGIS/rest/services/Petroleum/KSFields/MapServer");
+        petroFieldsMSL.setDisableClientCaching(true);
+        map.addLayer(petroFieldsMSL);
+
+        var petroFieldsFL = new FeatureLayer("http://sampleserver3.arcgisonline.com/ArcGIS/rest/services/Petroleum/KSFields/FeatureServer/0", {
+          mode: FeatureLayer.MODE_SELECTION,
+          outFields: ["approxacre","objectid","field_name","activeprod","cumm_oil","cumm_gas","avgdepth"]
+        });
+        var selectionSymbol = new SimpleFillSymbol(
+          SimpleFillSymbol.STYLE_NULL, 
+          new SimpleLineSymbol(
+            "solid", 
+            new Color("yellow"), 
+            2
+          ),
+          null
+        );
+        petroFieldsFL.setSelectionSymbol(selectionSymbol);
+
+        petroFieldsFL.on("edits-complete", function() {
+          petroFieldsMSL.refresh();
+        });
+
+        map.addLayers([petroFieldsFL]);
+
+        function initSelectToolbar(evt) {
+          var petroFieldsFL = evt.layers[0].layer;
+          var selectQuery = new Query();
+
+          map.on("click", function(evt) {
+            selectQuery.geometry = evt.mapPoint;
+            petroFieldsFL.selectFeatures(selectQuery, FeatureLayer.SELECTION_NEW, function(features) {
+              if (features.length > 0) {
+               //store the current feature
+                updateFeature = features[0];
+                map.infoWindow.setTitle(features[0].getLayer().name);
+                map.infoWindow.show(evt.screenPoint,map.getInfoWindowAnchor(evt.screenPoint));
+              } else {
+                map.infoWindow.hide();
+              }
+            });
+          });
+
+          map.infoWindow.on("hide", function() {
+            petroFieldsFL.clearSelection();
+          });
+
+          var layerInfos = [{
+            'featureLayer': petroFieldsFL,
+            'showAttachments': false,
+            'isEditable': true,
+            'fieldInfos': [
+              {'fieldName': 'activeprod', 'isEditable':true, 'tooltip': 'Current Status', 'label':'Status:'},
+              {'fieldName': 'field_name', 'isEditable':true, 'tooltip': 'The name of this oil field', 'label':'Field Name:'},
+              {'fieldName': 'approxacre', 'isEditable':false,'label':'Acreage:'},
+              {'fieldName': 'avgdepth', 'isEditable':false, 'label':'Average Depth:'},
+              {'fieldName': 'cumm_oil', 'isEditable':false, 'label':'Cummulative Oil:'},
+              {'fieldName': 'cumm_gas', 'isEditable':false, 'label':'Cummulative Gas:'}
+            ]
+          }];
+
+          var attInspector = new AttributeInspector({
+            layerInfos:layerInfos
+          }, domConstruct.create("div"));
+          
+          //add a save button next to the delete button
+          var saveButton = new Button({ label: "Save", "class": "saveButton"});
+          domConstruct.place(saveButton.domNode, attInspector.deleteBtn.domNode, "after");
+         
+          saveButton.on("click", function(){
+            updateFeature.getLayer().applyEdits(null, [updateFeature], null);         
+          });
+          
+          attInspector.on("attribute-change", function(evt) {
+            //store the updates to apply when the save button is clicked 
+            updateFeature.attributes[evt.fieldName] = evt.fieldValue;
+          });
+          
+          attInspector.on("next", function(evt) {
+            updateFeature = evt.feature;
+            console.log("Next " + updateFeature.attributes.objectid);
+          });
+          
+          attInspector.on("delete", function(evt){
+            evt.feature.getLayer().applyEdits(null,null,[feature]);
+            map.infoWindow.hide();
+          });
+
+          map.infoWindow.setContent(attInspector.domNode);
+          map.infoWindow.resize(350, 240);
+        }
+      });
+    </script>
+  </head>
+  
+  <body class="claro">
+    <div data-dojo-type="dijit/layout/BorderContainer" data-dojo-props="design:'headline', gutters:false" style="width:100%;height:100%;">
+      <div id="detailPane" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'top'">
+        Click a field to display the attribute inspector with customized fields.
+      </div>
+      <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'center'" id="mapDiv"></div>
+    </div>
+  </body>
+</html>

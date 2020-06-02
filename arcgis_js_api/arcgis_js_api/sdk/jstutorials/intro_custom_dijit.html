@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="ie lt-ie9 lt-ie8 lt-ie7 ie6"> <![endif]-->
+<!--[if IE 7]>         <html class="ie lt-ie9 lt-ie8 ie7"> <![endif]-->
+<!--[if IE 8]>         <html class="ie lt-ie9 ie8"> <![endif]-->
+<!--[if gt IE 8]><!--> <html> <!--<![endif]-->
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+  <meta name="content-language" content="en">
+  <meta name="product" content="js-api-arcgis">
+  <meta name="subject" content="DEVELOPER,WEB,WEB APPLICATIONS,MOBILE">
+  <meta name="sub_category" content="JavaScript API">
+  <meta name="search-collection" content="help">
+  <meta name="search-category" content="help-api">
+  <meta name="version" content="arcgis-3.8"> <!-- API version -->
+  <meta name="content_type" content="Tutorial"> <!-- options: Help Topic, API Reference or Tutorial -->
+  <meta name="last-modified" content="2013-12-19"> <!-- put in date docs were generated -->
+
+  <link rel="stylesheet" href="../styles/screen.css">
+  <link rel="stylesheet" href="../styles/jsdoc.css">
+  <link rel="stylesheet" href="../styles/homepage.css">
+  <link rel="stylesheet" href="../styles/grid.css">
+  <link rel="stylesheet" href="../styles/tree.css">
+  <link rel="stylesheet" href="../prettify/prettify.css">
+  <style>
+    html {
+      overflow-y: auto;
+    }
+    .navigation-bar, .section-bar {
+      margin-bottom: 0;
+    }
+    .navigation-bar header h1, .section-bar header h1 {
+      margin-top: .35294em;
+    }
+    .navigation-bar, .section-bar {
+      background: url('../graphics/banner.jpg') no-repeat center center #762783;
+      min-height: 48px;
+      color: white;
+    }
+    #esri-logo {
+      background: url('../graphics/logo-esri.png') no-repeat center center ;
+      width: 100px;
+    }
+    @font-face {
+    font-family:'icomoon';src:url('../fonts/icons.eot');src:url('../fonts/icons.eot?#iefix') format("embedded-opentype"),url('../fonts/icons.woff') format("woff"),url('../fonts/icons.ttf') format("truetype"),url('../fonts/icons.svg#icomoon') format("svg");font-weight:400;font-style:normal
+    }[data-icon]:before {
+      font-family: 'icomoon';
+      content: attr(data-icon);
+      speak: none;
+      font-weight: 400;
+      line-height: 1;
+      -webkit-font-smoothing: antialiased
+    }[class*="icon-"]:before {
+      font-family: 'icomoon';
+      speak: none;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 1;
+      -webkit-font-smoothing: antialiased;
+      text-transform: none
+    }
+    pre {
+      font-size: 1.1em;
+      line-height: normal;
+      margin: 0;
+    }
+    #header nav li a {
+      font-size: .875em;
+    }
+    #esri-logo {
+      margin-left: 0;
+    }
+  </style>
+  <!--[if lt IE 9]>
+    <script src="../scripts/libs/html5shiv.js"></script>
+    <script src="../scripts/libs/selectivizr-min.js"></script>
+    <style>
+      #wrapper {
+        min-width: 960px;
+      }
+    </style>
+  <![endif]-->
+  <title>
+    Tutorials | ArcGIS API for JavaScript 
+  </title>
+</head>
+  
+<body>
+<div id="nav">
+<header id="header">
+  <div class="container relative-container">
+    <div class="header-inner ">
+      <div class="logo-wrap"><a href="../" id="site-logo">Arc<span>GIS</span> API for JavaScript</a><!--span class="down-arrow" id="down-arrow"></span--></div>
+      <nav id="site-nav" class="">
+        <a href="/en/" class="selected">
+          <h4 class="developers">Arc<span>GIS</span> API for JavaScript</h4>
+          <p>Build location-aware applications with ArcGIS</p>
+        </a>
+
+        <a href="https://www.arcgis.com/about/">
+          <h4 class="organizations">Arc<span>GIS</span> for Organizations</h4>
+          <p>Learn more about ArcGIS</p>
+        </a>
+      </nav>
+
+      <a id="esri-logo" href="http://esri.com">Esri</a>
+      <div id="logged-out-navigation" class="dropdown-navigation hide">
+  <a id="login-link" class="btn small light" href="/en/log-in/">Log In</a>
+</div>
+<div id="logged-in-navigation" class="dropdown-navigation dropdown-wrapper hide">
+  <a href="/en/usage-summary" class="dropdown btn small light">
+    <!-- <img src="http://d3w50ib5d2uy0g.cloudfront.net/cdn/2464//js/esri/arcgisonline/css/images/no-user-thumb.jpg" width="16" height="16" alt=""> --><span id="username"></span>
+  </a>
+  <div class="dropdown-content">
+    <ul>
+      <li><a href="/en/usage-summary/">Usage Summary</a></li>
+      <li><a href="/en/applications/">Applications</a></li>
+      <li></li>
+      <li><a href="/en/tools/">GIS Tools</a></li>
+    </ul>
+    <hr>
+    <ul>
+      <li><a href="/en/account/profile/">Account Settings</a></li>
+      <li><a href="/en/feedback/">Feedback</a></li>
+    </ul>
+    <hr>
+    <ul>
+      <li><a id="log-out-link" href="#">Log Out</a></li>
+    </ul>
+  </div>
+</div>
+
+      <div id="mobile-navigation" class="dropdown-navigation dropdown-wrapper">
+        <a href="#" class="dropdown btn small light icon icon-list-2">Select <span>a Section</span></a>
+        <div class="dropdown-content">
+          <ul>
+            <li><a href="../jshelp/">Concepts</a></li>
+            <li><a href="../jsapi/">API Reference</a></li>
+            <li><a href="../jssamples/">Samples</a></li>
+            <li><a href="http://forums.arcgis.com/forums/15">Forum</a></li>
+            <li><a href="../../">All Developer Resources</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="navigation-bar">
+  <div class="container">
+    <nav>
+      <div id="section-label"><a href=".">Tutorials</a></div>
+      <ul>
+        <!--li class="current"><a href="/en/javascript/">Home</a></li-->
+        <li class="current"><a href=".">Tutorials</a></li>
+        <li><a href="../jshelp/">Concepts</a></li>
+        <li><a href="../jsapi/">API Reference</a></li>
+        <li><a href="../jssamples/">Samples</a></li>
+        <li><a href="http://forums.arcgis.com/forums/15">Forum</a></li>
+        <li><a href="../../">All Developer Resources</a></li>
+      </ul>
+    </nav>
+  </div>
+</div> 
+</div><!-- end nav bar --> <!-- sub 2: header and navigation -->
+
+<div class="container_12">
+  <div class="grid_3 contentWrapper">
+    <div id="toggleToc">
+      <img src="../graphics/tochide.gif"> Hide Table of Contents
+    </div>
+    <div id="apiToc"><div class="treeDiv" id="tree" style="top: 35px; left: 0px;">
+  <div id="treeRoot">
+    <div class="treeNode">
+      <a class="treeUnselected" href="intro_firstmap_amd.html" onclick="clickAnchor(this)">Build your first application</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="intro_agstemplate_amd.html" onclick="clickAnchor(this)">Use an ArcGIS.com webmap</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="mobile_dev.html" onclick="clickAnchor(this)">Mobile-specific application</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="intro_directions.html" onclick="clickAnchor(this)">Directions widget</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="tutorial_geocoder.html" onclick="clickAnchor(this)">Geocoder widget</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="tutorial_label_layer.html" onclick="clickAnchor(this)">Labeling features client-side</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="intro_javascript_classes.html" onclick="clickAnchor(this)">Write a class</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="intro_custom_dijit.html" onclick="clickAnchor(this)">Create a re-usable widget</a>
+    </div>
+  </div>
+</div>
+<!-- pretty printed via http://prettydiff.com/?m=beautify&html --></div> <!-- Conceptual help TOC -->
+  </div>
+  <div class="grid_9 contentWrapper">
+    <div id="topicPane"><div id="pageBanner">Create a Re-usable Widget</div>
+
+<div id="nstext">
+
+<!--***START TEXT - DO NOT WRITE ABOVE THIS LINE***-->
+<p class="tutorial-outline">This tutorial covers the following:</p>
+<ol class="tutorial-outline">
+  <li><a href="#step1">Introduction and existing resources</a></li>
+  <li><a href="#step2">Modules, classes and widgets</a></li>
+  <li><a href="#step3">Create the HomeButton module</a></li>
+  <li><a href="#step4">Declare the HomeButton class</a></li>
+  <li><a href="#step5">Implement HomeButton functionality</a></li>
+  <li><a href="#step6">Create the HomeButton template</a></li>
+  <li><a href="#step7">Use the HomeButton widget</a></li>
+</ol>
+
+<ol class="tutorial-content">
+  <li id="step1"><h3>Introduction and existing resources</h3>
+    <p>Because the JS API uses <a href="http://dojotoolkit.org">Dojo</a>, the recommended way to create re-usable user-interface components is to use <a href="http://dojotoolkit.org/reference-guide/1.9/dijit/">Dijit</a>. Dijit is the user interface library of the Dojo Toolkit that provides an <a href="http://demos.dojotoolkit.org/demos/themePreviewer/demo.html">extensive collection of pre-built and tested widgets</a> as well as system for building your own custom widgets. This tutorial will walk through creating a custom widget using Dijit and show how to use a custom dijit in an ArcGIS API for JavaScript application.</p>
+
+    <p>There are several resources available for getting to know Dijit. To gain a general understanding of how Dijit works, it is recommended to read through the material listed below. For instance, it is beneficial to know the difference between declarative and programmatic widget creation, the difference between dojo/dom.byId and dijit/registry.byId and the purpose of dijit/registry.byId (hint:  all answers are in the first link in the list).</p>
+    <ul>
+      <li><a href="http://dojotoolkit.org/reference-guide/1.9/dijit/info.html#dijit-info" target="_blank">Dijit Introduction:  The Basics</a>
+      <li><a href="http://dojotoolkit.org/reference-guide/1.9/dijit/index.html" target="_blank">Dijit Overview:  List of all Classes in the Dijit Namespace</a>
+      <li><a href="http://dojotoolkit.org/documentation/tutorials/1.9/understanding_widgetbase/" target="_blank">Dojo Tutorial:  Understanding _WidgetBase</a>
+      <li><a href="http://dojotoolkit.org/documentation/tutorials/1.9/templated/" target="_blank">Dojo Tutorial:  Creating Template-based Widgets</a></a>
+      <li><a href="http://dojotoolkit.org/documentation/tutorials/1.9/recipes/custom_widget/" target="_blank">Dojo Tutorial:  Creating a Custom Widget</a>
+    </ul>
+
+    <p>The links above do a great job of describing why Dijit exists and many of the Dijit's benefits. To re-cap, below is a list of why buidling custom dijits is a good idea when developing web applications:  </p>
+    <ul>
+      <li>Provides a widget lifecycle (via dijit/_WidgetBase) to manage creation, interaction with and teardown of widgets
+      <li>Built-in HTML templating system (using dijit/_TemplatedMixin) that includes template loading, variable substitution, a convenient way to attach DOM nodes to widget properties and a convenient way to set up event listeners
+      <li>Standard file structure to organize your widget's resources
+    </ul>
+  </li>
+
+  <li id="step2"><h3>Modules, classes and widgets</h3>
+    <p>A widget is a class defined in a module that creates a UI component. This tutorial builds on the ideas introduced in the <a href="intro_javascript_classes.html">Write a Class</a> tutorial, which covers creating a module and class. Because a widget is a class, common practice is to create one widget per module, and and that's what this tutorial will show.</p>
+  </li>
+
+  <li id="step3"><h3>Create the HomeButton module</h3>
+    <p>The widget created in this tutorial is the <a href="../jsapi/homebutton-amd.html">HomeButton</a> widget introduced at version 3.7 of the JS API. The widget records a map's extent (AKA bounding box) when a page loads and provides a button to let users return to that view at any time. The <a href="https://github.com/driskull/arcgis-dijit-home-button-js">full source for the widget is available on github</a>. </p>
+
+    <p>To create a widget, use <a href="http://dojotoolkit.org/reference-guide/1.9/loader/amd.html#the-amd-api" target="_blank">define()</a> to load the base class for the widget (dijit/_WidgetBase), mixins (such as dijit/_TemplatedMixin) and any modules used internally by the class. Below is the dependency list for the widget and the callback function with arguments that alias all loaded modules and is the beginning of HomeButton.js.</p>
+
+    <div class="detailSample">
+    <pre class="prettyprint" style="border:none;">
+define([
+  "dijit/_WidgetBase",
+  "dijit/_OnDijitClickMixin",
+  "dijit/_TemplatedMixin",
+
+  "dojo/Evented",
+  "dojo/_base/declare",
+  "dojo/_base/lang",
+
+  "dojo/on",
+
+  // load template    
+  "dojo/text!zesri/dijit/templates/HomeButton.html",
+
+  "dojo/dom-class",
+  "dojo/dom-style"
+], function (
+  Evented, declare, lang,
+  _WidgetBase, _OnDijitClickMixin, _TemplatedMixin,
+  on,
+  dijitTemplate, 
+  domClass, domStyle
+) { ... });
+</pre>
+    </div>
+
+    <p>As mentioned previously, dijit/_WidgetBase will be used as the base class for this widget. dijit/_TemplatedMixin as well as dijit/_OnDijitClikMixin will be used as mixins when declaring the class for the widget. Other modules loaded are used to implement various widget functionality:</p>
+    <ul>
+      <li>dojo/Evented:  allows the widget emit events</li>
+      <li>dojo/_base/declare:  used to create the widget class</li>
+      <li>dojo/_base/lang:  <a href="http://dojotoolkit.org/reference-guide/1.9/dojo/_base/lang.html#hitch" target="_blank">lang.hitch</a> is used to provide proper context for various methods</li>
+      <li>dojo/on:  listen to map events (could omit this module and use map.on())</li>
+      <li>dojo/text:  load the widgets html template (more on this later)</li>
+      <li>dojo/dom-class:  manipulate classes on elements</li>
+      <li>dojo/dom-style:  manipulate styles on elements</li>
+    </ul>
+  </li>
+
+  <li id="step4"><h3>Declare the HomeButton class</h3>
+    <p>When using dojo/_base/declare to create a class and inheriting from multiple classes, the first class in the list of classes to inherit from acts as the parent class and additional classes are mixed in to the resulting class.<p>
+<div class="detailSample">
+<pre class="prettyprint" style="border:none;">
+var Widget = declare(
+  [_WidgetBase, _OnDijitClickMixin, _TemplatedMixin, Evented], 
+  { ... }
+);
+</pre>
+    </div>
+    <p>dijit/_WidgetBase implements the <a href="http://dojotoolkit.org/reference-guide/1.9/dijit/_WidgetBase.html#lifecycle">Dijit lifecycle</a> and using it as the base class allows the HomeButton to use the lifecycle as well.</p>
+  </li>
+
+  <li id="step5"><h3>Implement HomeButton functionality</h3>
+    <p>The implementation of the HomeButton widget is made up of a single object passsed to dojo/_base/declare. Certain properties (constructor, startup and destroy, correspond to Dijit lifecycle method names.</p>
+
+<div class="detailSample">
+<pre class="prettyprint" style="border:none;">
+var Widget = declare([_WidgetBase, _OnDijitClickMixin, _TemplatedMixin, Evented], {
+  declaredClass: "esri.dijit.HomeButton",
+  templateString: dijitTemplate,
+  options: {
+    theme: "HomeButton",
+    map: null,
+    extent: null,
+    visible: true
+  },
+  constructor: function (options, srcRefNode) {
+    // mix in settings and defaults
+    declare.safeMixin(this.options, options);
+    // widget node
+    this.domNode = srcRefNode;
+    this._i18n = i18n;
+    // properties
+    this.set("map", this.options.map);
+    this.set("theme", this.options.theme);
+    this.set("visible", this.options.visible);
+    this.set("extent", this.options.extent);
+    // listeners
+    this.watch("theme", this._updateThemeWatch);
+    this.watch("visible", this._visible);
+    // classes
+    this._css = {
+      container: "homeContainer",
+      home: "home",
+      loading: "loading"
+    };
+  },
+  startup: function () {
+    // map not defined
+    if (!this.map) {
+      this.destroy();
+      console.log('HomeButton::map required');
+    }
+    // when map is loaded
+    if (this.map.loaded) {
+      this._init();
+    } else {
+      on(this.map, "load", lang.hitch(this, function () {
+        this._init();
+      }));
+    }
+  },
+  // connections/subscriptions will be cleaned up during the destroy() lifecycle phase
+  destroy: function () {
+    this.inherited(arguments);
+  },
+  /* ---------------- */
+  /* Public Events */
+  /* ---------------- */
+  // home
+  // load
+  /* ---------------- */
+  /* Public Functions */
+  /* ---------------- */
+  home: function () {
+    var defaultExtent = this.get("extent");
+    this._showLoading();
+    if (defaultExtent) {
+      return this.map.setExtent(defaultExtent)
+        .then(lang.hitch(this, function () {
+          this._hideLoading();
+          this.emit("home", {
+            extent: defaultExtent
+          });
+        }));
+    } else {
+      this._hideLoading();
+      console.log('HomeButton::no home extent');
+    }
+  },
+  show: function () {
+    this.set("visible", true);
+  },
+  hide: function () {
+    this.set("visible", false);
+  },
+  /* ---------------- */
+  /* Private Functions */
+  /* ---------------- */
+  _init: function () {
+    this._visible();
+    if (!this.get("extent")) {
+      this.set("extent", this.map.extent);
+    }
+    this.set("loaded", true);
+    this.emit("load", {});
+  },
+  _showLoading: function () {
+    domClass.add(this._homeNode, this._css.loading);
+  },
+  _hideLoading: function () {
+    domClass.remove(this._homeNode, this._css.loading);
+  },
+  _updateThemeWatch: function (attr, oldVal, newVal) {
+    domClass.remove(this.domNode, oldVal);
+    domClass.add(this.domNode, newVal);
+  },
+  _visible: function () {
+    if (this.get("visible")) {
+      domStyle.set(this.domNode, 'display', 'block');
+    } else {
+      domStyle.set(this.domNode, 'display', 'none');
+    }
+  }
+});    
+</pre>
+    </div>
+
+    <p>The options object defines default properties for the widget. Values provided when creating an instance of the widget overwrite these defaults. This happens in the constructor method which fires when the widget is instantiated via the new keyword. The startup method checks that a map was provided and that it's loaded before saving the extent. Destroy relies on Dijit by calling <a href="http://dojotoolkit.org/reference-guide/1.9/dojo/_base/declare.html#id8">this.inherited()</a>. Additional methods are defined, including those that manipulate the widget's DOM and emit events.</p>
+  </li>
+
+  <li id="step6"><h3>Create the HomeButton template</h3>
+    <p>Part of creating a widget is creating a template for the widget. A widget's template is created using a combination of html and custom data-* attributes to do things like attaching event handlers and applying css classes. This is the template for the HomeButton widget:</p>
+<div class="detailSample">
+<pre class="prettyprint" style="border:none;">
+&lt;div class="${theme}" role="presentation"&gt;
+  &lt;div class="${_css.container}"&gt;
+    &lt;div data-dojo-attach-point="_homeNode" title="${_i18n.widgets.homeButton.home.title}" role="button" data-dojo-attach-event="ondijitclick:home" class="${_css.home}"&gt;&lt;span&gt;${_i18n.widgets.homeButton.home.button}&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt; 
+</pre>
+    </div>
+
+    <p>Attributes with ${...} are replaced with the widget property with the same name. In the markup above, the root div has <code>class=${theme}</code>. In this case, <code>${theme}</code> will be replaced with the value from the widget's theme property. This applies to more complex property lookups such as _i18n.widgets.homeButton.home.title as well.</p>
+
+    <p>Custom data attributes such as data-dojo-attach-event provide a way to attach event handlers via markup. This is convenient when an event on an element needs to trigger a widget method. In this case, clicking a HomeButton div will trigger the home method.</p>
+  </li>
+
+  <li id="step7"><h3>Use the HomeButton widget</h3>
+    <p>Once the HomeButton widget is complete it can be used in a page that uses the JS API. Check out the <a href="http://driskull.github.io/arcgis-dijit-home-button-js/">HomeButton page on github</a> as an example. Clone that repo and play around with it locally to get a better feel for how everything works. If anything is unclear, please post questions on the <a href="http://forums.arcgis.com/forums/15-arcgis-api-for-javascript">JS API forum</a>.</p>
+  </li>
+
+<!--***END TEXT - DO NOT WRITE BELOW THIS LINE***-->
+</div>
+<div id="wh_footer" class="footnote" align="center">
+  Please <a href="mailto:js_feedback@esri.com?subject=Feedback on jstutorials/intro_custom_dijit.html">contact the team</a> to comment or give suggestions.
+  <br>
+  Copyright &copy; Environmental Systems Research Institute, Inc.
+</div></div> <!-- main content for a page and feedback markup-->
+  </div>
+</div> <!-- end main content -->
+
+<!-- TOC script -->
+<script src="../scripts/tree.js"></script>
+
+<script src="../prettify/prettify.js"></script>
+<script>
+  var dojoConfig = {
+    packages: [{
+      "name": "js",
+      "location": location.pathname.replace(/\/[^/]+$/, "/") + "../scripts"
+    }]
+  };
+</script>
+<script src="//js.arcgis.com/3.8compact/"></script> <!-- add API version -->
+<script src="../scripts/esri-main-tutorials.js"></script>
+
+<!-- google analytics -->
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-215788-63']);
+  _gaq.push(['_setDomainName', 'arcgis.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+ <!-- sub 5:  add script to redirect old hash based URLs to static pages and google analytics-->
+
+</body>
+</html>

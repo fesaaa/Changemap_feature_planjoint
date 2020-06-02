@@ -1,0 +1,1778 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="ie lt-ie9 lt-ie8 lt-ie7 ie6"> <![endif]-->
+<!--[if IE 7]>         <html class="ie lt-ie9 lt-ie8 ie7"> <![endif]-->
+<!--[if IE 8]>         <html class="ie lt-ie9 ie8"> <![endif]-->
+<!--[if gt IE 8]><!--> <html> <!--<![endif]-->
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+  <meta name="content-language" content="en">
+  <meta name="product" content="js-api-arcgis">
+  <meta name="subject" content="DEVELOPER,WEB,WEB APPLICATIONS,MOBILE">
+  <meta name="sub_category" content="JavaScript API">
+  <meta name="search-collection" content="help">
+  <meta name="search-category" content="help-api">
+  <meta name="version" content="arcgis-3.8"> <!-- API version -->
+  <meta name="content_type" content="API Reference"> <!-- options: Help Topic, API Reference, Sample OR Tutorial -->
+  <meta name="last-modified" content="2013-12-19"> <!-- put in date docs were generated -->
+
+  <link rel="stylesheet" href="../styles/screen.css">
+  <link rel="stylesheet" href="../styles/jsdoc.css">
+  <link rel="stylesheet" href="../styles/homepage.css">
+  <link rel="stylesheet" href="../styles/grid.css">
+  <link rel="stylesheet" href="../styles/tree.css">
+  <link rel="stylesheet" href="../prettify/prettify.css">
+  <style>
+    html {
+      overflow-y: auto;
+    }
+    .hidden{
+      display: none;
+    }
+    .eventDiv > .dtH4{
+      display: none;
+    }
+    .switch{
+      font-weight: bold;
+    }
+    .eventSwitch:not(.enabled){
+      color: #00629b;
+      cursor: pointer;
+      font-weight: normal;
+    }
+    .navigation-bar, .section-bar {
+      margin-bottom: 0;
+    }
+    .navigation-bar header h1, .section-bar header h1 {
+      margin-top: .35294em;
+    }
+    .navigation-bar, .section-bar {
+      background: url('../graphics/banner.jpg') no-repeat center center #762783;
+      color: white;
+      min-height: 48px;
+    }
+    .navigation-bar {
+      position: relative;
+      z-index: 10;
+    }
+    #esri-logo {
+      background: url('../graphics/logo-esri.png') no-repeat center center ;
+      width: 100px;
+    }
+    @font-face {
+    font-family:'icomoon';src:url('../fonts/icons.eot');src:url('../fonts/icons.eot?#iefix') format("embedded-opentype"),url('../fonts/icons.woff') format("woff"),url('../fonts/icons.ttf') format("truetype"),url('../fonts/icons.svg#icomoon') format("svg");font-weight:400;font-style:normal
+    }[data-icon]:before {
+      font-family: 'icomoon';
+      content: attr(data-icon);
+      speak: none;
+      font-weight: 400;
+      line-height: 1;
+      -webkit-font-smoothing: antialiased
+    }[class*="icon-"]:before {
+      font-family: 'icomoon';
+      speak: none;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 1;
+      -webkit-font-smoothing: antialiased;
+      text-transform: none
+    }
+    pre {
+      font-size: 1em;
+      line-height: normal;
+      margin: 0;
+      margin-top: 1em;
+    }
+    .navigation-bar input {
+      margin-top: 0;
+      opacity: 1;
+    }
+    #header nav li a {
+      font-size: .875em;
+    }
+    #esri-logo {
+      margin-left: 0;
+    }
+  </style>
+  <!--[if lt IE 9]>
+    <script src="../scripts/libs/html5shiv.js"></script>
+    <script src="../scripts/libs/selectivizr-min.js"></script>
+    <style>
+      #wrapper {
+        min-width: 960px;
+      }
+    </style>
+  <![endif]-->
+  <title>
+    KMLLayer-amd | API Reference | ArcGIS API for JavaScript
+  </title> <!-- class name -->
+</head>
+  
+<body>
+<div id="nav">
+<header id="header">
+  <div class="container relative-container">
+    <div class="header-inner ">
+      <div class="logo-wrap"><a href="../" id="site-logo">Arc<span>GIS</span> API for JavaScript</a><!--span class="down-arrow" id="down-arrow"></span--></div>
+      <nav id="site-nav" class="">
+        <a href="/en/" class="selected">
+          <h4 class="developers">Arc<span>GIS</span> API for JavaScript</h4>
+          <p>Build location-aware applications with ArcGIS</p>
+        </a>
+
+        <a href="https://www.arcgis.com/about/">
+          <h4 class="organizations">Arc<span>GIS</span> for Organizations</h4>
+          <p>Learn more about ArcGIS</p>
+        </a>
+      </nav>
+
+      <a id="esri-logo" href="http://esri.com">Esri</a>
+      <div id="logged-out-navigation" class="dropdown-navigation hide">
+  <a id="login-link" class="btn small light" href="/en/log-in/">Log In</a>
+</div>
+<div id="logged-in-navigation" class="dropdown-navigation dropdown-wrapper hide">
+  <a href="/en/usage-summary" class="dropdown btn small light">
+    <!-- <img src="http://d3w50ib5d2uy0g.cloudfront.net/cdn/2464//js/esri/arcgisonline/css/images/no-user-thumb.jpg" width="16" height="16" alt=""> --><span id="username"></span>
+  </a>
+  <div class="dropdown-content">
+    <ul>
+      <li><a href="/en/usage-summary/">Usage Summary</a></li>
+      <li><a href="/en/applications/">Applications</a></li>
+      <li></li>
+      <li><a href="/en/tools/">GIS Tools</a></li>
+    </ul>
+    <hr>
+    <ul>
+      <li><a href="/en/account/profile/">Account Settings</a></li>
+      <li><a href="/en/feedback/">Feedback</a></li>
+    </ul>
+    <hr>
+    <ul>
+      <li><a id="log-out-link" href="#">Log Out</a></li>
+    </ul>
+  </div>
+</div>
+
+      <div id="mobile-navigation" class="dropdown-navigation dropdown-wrapper">
+        <a href="#" class="dropdown btn small light icon icon-list-2">Select <span>a Section</span></a>
+        <div class="dropdown-content">
+          <ul>
+            <li><a href="../jstutorials/">Tutorials</a></li>
+            <li><a href="../jshelp/">Concepts</a></li>
+            <li><a href="../jssamples/">Samples</a></li>
+            <li><a href="http://forums.arcgis.com/forums/15">Forum</a></li>
+            <li><a href="../../">All Developer Resources</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="navigation-bar">
+  <div class="container">
+    <nav>
+
+      <div id="section-label"><a href=".">API Reference</a></div>
+      
+      <div id="search">
+        <form id="searchForm">
+          <input type="text" id="searchKeyWord" name="searchKeyWord" placeholder="Find a Class" autocomplete="off" disabled="disabled">
+          <!-- <input type="submit" id="searchButton" name="searchButton" value=""> -->
+        </form>
+      </div>
+      <ul>
+        <!--li class="current"><a href="/en/javascript/">Home</a></li-->
+        <li><a href="../jstutorials/">Tutorials</a></li>
+        <li><a href="../jshelp/">Concepts</a></li>
+        <li class="current"><a href=".">API Reference</a></li>
+        <li><a href="../jssamples/">Samples</a></li>
+        <li><a href="http://forums.arcgis.com/forums/15">Forum</a></li>
+        <li><a href="../../">All Developer Resources</a></li>
+      </ul>
+    </nav>
+  </div>
+</div> 
+</div><!-- end nav bar --> <!-- header -->
+
+<div class="container_12">
+  <div class="grid_3 contentWrapper">
+    <div id="toggleToc">
+      <img src="../graphics/tochide.gif"> Hide Table of Contents
+    </div>
+    <div id="apiToc"> <div class="treeDiv" id="tree" style="top: 35px; left: 0px;">
+  <div id="treeRoot" ondragstart="return false" onselectstart="return false">
+    <div class="treeNode">
+      <a class="treeUnselected" href="." onclick="clickAnchor(this)">API Reference Overview</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="api_codeassist.html" onclick="clickAnchor(this)">Code Assist Plugins</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="argument_aliases.html" onclick="clickAnchor(this)">Preferred Argument Aliases</a>
+    </div>
+    <!-- <div class="treeNode">
+      <a class="treeUnselected" href="../tree/" onclick="clickAnchor(this)">Tree Diagram of API Components</a>
+    </div> -->
+    <div class="treeNode">
+      <img class="treeLinkImage" onClick="expandCollapse(this.parentNode)" src="../graphics/treenodeminus.gif"/>
+      <span onClick="expandCollapse(this.parentNode)" style="cursor: pointer;">esri</span>
+      <div class="treeNode">
+        <a class="treeUnselected" href="esri.config-amd.html" onClick="clickAnchor(this)">config</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="credential-amd.html" onClick="clickAnchor(this)">Credential</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="esri.domutils-amd.html" onClick="clickAnchor(this)">domUtils</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="graphic-amd.html" onClick="clickAnchor(this)">Graphic</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="esri.graphicsutils-amd.html" onClick="clickAnchor(this)">graphicsUtils</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="identitymanager-amd.html" onClick="clickAnchor(this)">IdentityManager</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="identitymanagerbase-amd.html" onClick="clickAnchor(this)">IdentityManagerBase</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="infotemplate-amd.html" onClick="clickAnchor(this)">InfoTemplate</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="infowindowbase-amd.html" onClick="clickAnchor(this)">InfoWindowBase</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="esri.kernel-amd.html" onClick="clickAnchor(this)">kernel</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="esri.lang-amd.html" onClick="clickAnchor(this)">lang</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="map-amd.html" onClick="clickAnchor(this)">Map</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="operationbase-amd.html" onClick="clickAnchor(this)">OperationBase</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="esri.request-amd.html" onClick="clickAnchor(this)">request</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="serverinfo-amd.html" onClick="clickAnchor(this)">ServerInfo</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="snappingmanager-amd.html" onClick="clickAnchor(this)">SnappingManager</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="spatialreference-amd.html" onClick="clickAnchor(this)">SpatialReference</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="timeextent-amd.html" onClick="clickAnchor(this)">TimeExtent</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="undomanager-amd.html" onClick="clickAnchor(this)">UndoManager</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="units-amd.html" onClick="clickAnchor(this)">units</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="esri.urlutils-amd.html" onClick="clickAnchor(this)">urlUtils</a>
+      </div>
+      <div class="treeNode">
+        <img class="treeLinkImage" onClick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+        <span onClick="expandCollapse(this.parentNode)" style="cursor: pointer;">arcgis</span>
+        <div class="treeSubnodesHidden">
+          <div class="treeNode">
+            <a class="treeUnselected" href="portal-amd.html" onClick="clickAnchor(this)">Portal</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="portalcomment-amd.html" onClick="clickAnchor(this)">PortalComment</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="portalfolder-amd.html" onClick="clickAnchor(this)">PortalFolder</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="portalgroup-amd.html" onClick="clickAnchor(this)">PortalGroup</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="portalgroupmembers-amd.html" onClick="clickAnchor(this)">PortalGroupMembers</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="portalitem-amd.html" onClick="clickAnchor(this)">PortalItem</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="portalqueryparams-amd.html" onClick="clickAnchor(this)">PortalQueryParams</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="portalqueryresult-amd.html" onClick="clickAnchor(this)">PortalQueryResult</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="portalrating-amd.html" onClick="clickAnchor(this)">PortalRating</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="portaluser-amd.html" onClick="clickAnchor(this)">PortalUser</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="esri.arcgis.utils-amd.html" onClick="clickAnchor(this)">utils</a>
+          </div>
+        </div>
+      </div>
+      <div class="treeNode">
+        <img class="treeLinkImage" onClick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+        <span onClick="expandCollapse(this.parentNode)" style="cursor: pointer;">dijit</span>
+        <div class="treeSubnodesHidden">
+          <div class="treeNode">
+            <a class="treeUnselected" href="attachmenteditor-amd.html" onClick="clickAnchor(this)">AttachmentEditor</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="attributeinspector-amd.html" onClick="clickAnchor(this)">AttributeInspector</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="attribution-amd.html" onClick="clickAnchor(this)">Attribution</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="basemap-amd.html" onClick="clickAnchor(this)">Basemap</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="basemapgallery-amd.html" onClick="clickAnchor(this)">BasemapGallery</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="basemaplayer-amd.html" onClick="clickAnchor(this)">BasemapLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="basemaptoggle-amd.html" onClick="clickAnchor(this)">BasemapToggle</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="bookmarkitem-amd.html" onClick="clickAnchor(this)">BookmarkItem</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="bookmarks-amd.html" onClick="clickAnchor(this)">Bookmarks</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="directions-amd.html" onClick="clickAnchor(this)">Directions</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="editor-amd.html" onClick="clickAnchor(this)">Editor</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="gallery-amd.html" onClick="clickAnchor(this)">Gallery</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="gauge-amd.html" onClick="clickAnchor(this)">Gauge</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="geocoder-amd.html" onClick="clickAnchor(this)">Geocoder</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="histogramtimeslider-amd.html" onClick="clickAnchor(this)">HistogramTimeSlider</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="homebutton-amd.html" onClick="clickAnchor(this)">HomeButton</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="infowindow-amd.html" onClick="clickAnchor(this)">InfoWindow</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="infowindowlite-amd.html" onClick="clickAnchor(this)">InfoWindowLite</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="layerswipe-amd.html" onClick="clickAnchor(this)">LayerSwipe</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="legend-amd.html" onClick="clickAnchor(this)">Legend</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="locatebutton-amd.html" onClick="clickAnchor(this)">LocateButton</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="measurement-amd.html" onClick="clickAnchor(this)">Measurement</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="overviewmap-amd.html" onClick="clickAnchor(this)">OverviewMap</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="popup-amd.html" onClick="clickAnchor(this)">Popup</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="popupmobile-amd.html" onClick="clickAnchor(this)">PopupMobile</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="popuptemplate-amd.html" onClick="clickAnchor(this)">PopupTemplate</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="print-amd.html" onClick="clickAnchor(this)">Print</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="scalebar-amd.html" onClick="clickAnchor(this)">Scalebar</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="templatepicker-amd.html" onClick="clickAnchor(this)">TemplatePicker</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="timeslider-amd.html" onClick="clickAnchor(this)">TimeSlider</a>
+          </div>
+          <div class="treeNode">
+            <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif">
+            <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">
+              Analysis
+            </span>
+            <div class="treeSubnodesHidden">
+              <div class="treeNode">
+                <a class="treeUnselected" href="analysisbase-amd.html" onClick="clickAnchor(this)">AnalysisBase</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="aggregatepoints-amd.html" onClick="clickAnchor(this)">AggregatePoints</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="createbuffers-amd.html" onClick="clickAnchor(this)">CreateBuffers</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="createdrivetimeareas-amd.html" onClick="clickAnchor(this)">CreateDriveTimeAreas</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="dissolveboundaries-amd.html" onClick="clickAnchor(this)">DissolveBoundaries</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="enrichlayer-amd.html" onClick="clickAnchor(this)">EnrichLayer</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="extractdata-amd.html" onClick="clickAnchor(this)">ExtractData</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="findhotspots-amd.html" onClick="clickAnchor(this)">FindHotSpots</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="findnearest-amd.html" onClick="clickAnchor(this)">FindNearest</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="mergelayers-amd.html" onClick="clickAnchor(this)">MergeLayers</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="overlaylayers-amd.html" onClick="clickAnchor(this)">OverlayLayers</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="summarizenearby-amd.html" onClick="clickAnchor(this)">SummarizeNearby</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="summarizewithin-amd.html" onClick="clickAnchor(this)">SummarizeWithin</a>
+              </div>
+            </div>
+          </div>
+          <div class="treeNode">
+            <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif">
+            <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">
+              Geoenrichment
+            </span>
+            <div class="treeSubnodesHidden">
+              <div class="treeNode">
+                <a class="treeUnselected" href="infographic-amd.html" onClick="clickAnchor(this)">Infographic</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="infographicscarousel-amd.html" onClick="clickAnchor(this)">InfographicsCarousel</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="infographicsoptions-amd.html" onClick="clickAnchor(this)">InfographicsOptions</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="infographicsoptions.item-amd.html" onClick="clickAnchor(this)">InfographicsOptions.Item</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="treeNode">
+        <img class="treeLinkImage" onClick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+        <span onClick="expandCollapse(this.parentNode)" style="cursor: pointer;">geometry</span>
+        <div class="treeSubnodesHidden">
+          <div class="treeNode">
+            <a class="treeUnselected" href="circle-amd.html" onClick="clickAnchor(this)">Circle</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="extent-amd.html" onClick="clickAnchor(this)">Extent</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="esri.geometry.geodesicutils-amd.html" onClick="clickAnchor(this)">geodesicUtils</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="geometry-amd.html" onClick="clickAnchor(this)">Geometry</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="esri.geometry.jsonutils-amd.html" onClick="clickAnchor(this)">jsonUtils</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="esri.geometry.mathutils-amd.html" onClick="clickAnchor(this)">mathUtils</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="multipoint-amd.html" onClick="clickAnchor(this)">Multipoint</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="esri.geometry.normalizeutils-amd.html" onClick="clickAnchor(this)">normalizeUtils</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="point-amd.html" onClick="clickAnchor(this)">Point</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="polygon-amd.html" onClick="clickAnchor(this)">Polygon</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="polyline-amd.html" onClick="clickAnchor(this)">Polyline</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="esri.geometry.scaleutils-amd.html" onClick="clickAnchor(this)">scaleUtils</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="screenpoint-amd.html" onClick="clickAnchor(this)">ScreenPoint</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="esri.geometry.screenutils-amd.html" onClick="clickAnchor(this)">screenUtils</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="esri.geometry.webmercatorutils-amd.html" onClick="clickAnchor(this)">webMercatorUtils</a>
+          </div>
+        </div>
+      </div>
+      <div class="treeNode">
+        <img class="treeLinkImage" onClick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+        <span onClick="expandCollapse(this.parentNode)" style="cursor: pointer;">layers</span>
+        <div class="treeSubnodesHidden">
+          <div class="treeNode">
+            <a class="treeUnselected" href="arcgisdynamicmapservicelayer-amd.html" onClick="clickAnchor(this)">ArcGISDynamicMapServiceLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="arcgisimageservicelayer-amd.html" onClick="clickAnchor(this)">ArcGISImageServiceLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="arcgistiledmapservicelayer-amd.html" onClick="clickAnchor(this)">ArcGISTiledMapServiceLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="codedvaluedomain-amd.html" onClick="clickAnchor(this)">CodedValueDomain</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="domain-amd.html" onClick="clickAnchor(this)">Domain</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="dynamiclayerinfo-amd.html" onClick="clickAnchor(this)">DynamicLayerInfo</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="dynamicmapservicelayer-amd.html" onClick="clickAnchor(this)">DynamicMapServiceLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="featureeditresult-amd.html" onClick="clickAnchor(this)">FeatureEditResult</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="featurelayer-amd.html" onClick="clickAnchor(this)">FeatureLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="featuretemplate-amd.html" onClick="clickAnchor(this)">FeatureTemplate</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="featuretype-amd.html" onClick="clickAnchor(this)">FeatureType</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="field-amd.html" onClick="clickAnchor(this)">Field</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="georsslayer-amd.html" onClick="clickAnchor(this)">GeoRSSLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="graphicslayer-amd.html" onClick="clickAnchor(this)">GraphicsLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="imageparameters-amd.html" onClick="clickAnchor(this)">ImageParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="imageserviceparameters-amd.html" onClick="clickAnchor(this)">ImageServiceParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="inheriteddomain-amd.html" onClick="clickAnchor(this)">InheritedDomain</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="joindatasource-amd.html" onClick="clickAnchor(this)">JoinDataSource</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="kmlfolder-amd.html" onClick="clickAnchor(this)">KMLFolder</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="kmlgroundoverlay-amd.html" onClick="clickAnchor(this)">KMLGroundOverlay</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="kmllayer-amd.html" onClick="clickAnchor(this)">KMLLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="labelclass-amd.html" onClick="clickAnchor(this)">LabelClass</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="labellayer-amd.html" onClick="clickAnchor(this)">LabelLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="layer-amd.html" onClick="clickAnchor(this)">Layer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="layerdatasource-amd.html" onClick="clickAnchor(this)">LayerDataSource</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="layerdrawingoptions-amd.html" onClick="clickAnchor(this)">LayerDrawingOptions</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="layerinfo-amd.html" onClick="clickAnchor(this)">LayerInfo</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="layermapsource-amd.html" onClick="clickAnchor(this)">LayerMapSource</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="layertimeoptions-amd.html" onClick="clickAnchor(this)">LayerTimeOptions</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="lod-amd.html" onClick="clickAnchor(this)">LOD</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="mapimage-amd.html" onClick="clickAnchor(this)">MapImage</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="mapimagelayer-amd.html" onClick="clickAnchor(this)">MapImageLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="mosaicrule-amd.html" onClick="clickAnchor(this)">MosaicRule</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="openstreetmaplayer-amd.html" onClick="clickAnchor(this)">OpenStreetMapLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="querydatasource-amd.html" onClick="clickAnchor(this)">QueryDataSource</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="rangedomain-amd.html" onClick="clickAnchor(this)">RangeDomain</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="rasterdatasource-amd.html" onClick="clickAnchor(this)">RasterDataSource</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="rasterfunction-amd.html" onClick="clickAnchor(this)">RasterFunction</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="streamlayer-amd.html" onClick="clickAnchor(this)">StreamLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="tabledatasource-amd.html" onClick="clickAnchor(this)">TableDataSource</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="tileinfo-amd.html" onClick="clickAnchor(this)">TileInfo</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="tiledmapservicelayer-amd.html" onClick="clickAnchor(this)">TiledMapServiceLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="timeinfo-amd.html" onClick="clickAnchor(this)">TimeInfo</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="timereference-amd.html" onClick="clickAnchor(this)">TimeReference</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="wmslayer-amd.html" onClick="clickAnchor(this)">WMSLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="wmslayerinfo-amd.html" onClick="clickAnchor(this)">WMSLayerInfo</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="wmtslayer-amd.html" onClick="clickAnchor(this)">WMTSLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="wmtslayerinfo-amd.html" onClick="clickAnchor(this)">WMTSLayerInfo</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="webtiledlayer-amd.html" onClick="clickAnchor(this)">WebTiledLayer</a>
+          </div>
+        </div>
+      </div>
+      <div class="treeNode">
+        <img class="treeLinkImage" onClick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+        <span onClick="expandCollapse(this.parentNode)" style="cursor: pointer;">renderer</span>
+        <div class="treeSubnodesHidden">
+          <div class="treeNode">
+            <a class="treeUnselected" href="classbreaksrenderer-amd.html" onClick="clickAnchor(this)">ClassBreaksRenderer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="dotdensityrenderer-amd.html" onClick="clickAnchor(this)">DotDensityRenderer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="esri.renderers.jsonutils-amd.html" onClick="clickAnchor(this)">jsonUtils</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="renderer-amd.html" onClick="clickAnchor(this)">Renderer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="scaledependentrenderer-amd.html" onClick="clickAnchor(this)">ScaleDependentRenderer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="simplerenderer-amd.html" onClick="clickAnchor(this)">SimpleRenderer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="symbolager-amd.html" onClick="clickAnchor(this)">SymbolAger</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="temporalrenderer-amd.html" onClick="clickAnchor(this)">TemporalRenderer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="timeclassbreaksager-amd.html" onClick="clickAnchor(this)">TimeClassBreaksAger</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="timerampager-amd.html" onClick="clickAnchor(this)">TimeRampAger</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="uniquevaluerenderer-amd.html" onClick="clickAnchor(this)">UniqueValueRenderer</a>
+          </div>
+        </div>
+      </div>
+      <div class="treeNode">
+        <img class="treeLinkImage" onClick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+        <span onClick="expandCollapse(this.parentNode)" style="cursor: pointer;">symbols</span>
+        <div class="treeSubnodesHidden">
+          <div class="treeNode">
+            <a class="treeUnselected" href="cartographiclinesymbol-amd.html" onClick="clickAnchor(this)">CartographicLineSymbol</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="fillsymbol-amd.html" onClick="clickAnchor(this)">FillSymbol</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="font-amd.html" onClick="clickAnchor(this)">Font</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="esri.symbols.jsonutils-amd.html" onClick="clickAnchor(this)">jsonUtils</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="linesymbol-amd.html" onClick="clickAnchor(this)">LineSymbol</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="markersymbol-amd.html" onClick="clickAnchor(this)">MarkerSymbol</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="picturefillsymbol-amd.html" onClick="clickAnchor(this)">PictureFillSymbol</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="picturemarkersymbol-amd.html" onClick="clickAnchor(this)">PictureMarkerSymbol</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="simplefillsymbol-amd.html" onClick="clickAnchor(this)">SimpleFillSymbol</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="simplelinesymbol-amd.html" onClick="clickAnchor(this)">SimpleLineSymbol</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="simplemarkersymbol-amd.html" onClick="clickAnchor(this)">SimpleMarkerSymbol</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="symbol-amd.html" onClick="clickAnchor(this)">Symbol</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="textsymbol-amd.html" onClick="clickAnchor(this)">TextSymbol</a>
+          </div>
+        </div>
+      </div>
+      <div class="treeNode">
+        <img class="treeLinkImage" onClick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+        <span onClick="expandCollapse(this.parentNode)" style="cursor: pointer;">tasks</span>
+        <div class="treeSubnodesHidden">
+          <div class="treeNode">
+            <a class="treeUnselected" href="addresscandidate-amd.html" onClick="clickAnchor(this)">AddressCandidate</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="algorithmiccolorramp-amd.html" onClick="clickAnchor(this)">AlgorithmicColorRamp</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="areasandlengthsparameters-amd.html" onClick="clickAnchor(this)">AreasAndLengthsParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="bufferparameters-amd.html" onClick="clickAnchor(this)">BufferParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="classbreaksdefinition-amd.html" onClick="clickAnchor(this)">ClassBreaksDefinition</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="classificationdefinition-amd.html" onClick="clickAnchor(this)">ClassificationDefinition</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="closestfacilityparameters-amd.html" onClick="clickAnchor(this)">ClosestFacilityParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="closestfacilitysolveresult-amd.html" onClick="clickAnchor(this)">ClosestFacilitySolveResult</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="closestfacilitytask-amd.html" onClick="clickAnchor(this)">ClosestFacilityTask</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="datafile-amd.html" onClick="clickAnchor(this)">DataFile</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="datalayer-amd.html" onClick="clickAnchor(this)">DataLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="date-amd.html" onClick="clickAnchor(this)">Date</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="directionsfeatureset-amd.html" onClick="clickAnchor(this)">DirectionsFeatureSet</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="distanceparameters-amd.html" onClick="clickAnchor(this)">DistanceParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="featureset-amd.html" onClick="clickAnchor(this)">FeatureSet</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="findparameters-amd.html" onClick="clickAnchor(this)">FindParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="findresult-amd.html" onClick="clickAnchor(this)">FindResult</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="findtask-amd.html" onClick="clickAnchor(this)">FindTask</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="gpmessage-amd.html" onClick="clickAnchor(this)">GPMessage</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="generalizeparameters-amd.html" onClick="clickAnchor(this)">GeneralizeParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="generaterendererparameters-amd.html" onClick="clickAnchor(this)">GenerateRendererParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="generaterenderertask-amd.html" onClick="clickAnchor(this)">GenerateRendererTask</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="geometryservice-amd.html" onClick="clickAnchor(this)">GeometryService</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="geoprocessor-amd.html" onClick="clickAnchor(this)">Geoprocessor</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="identifyparameters-amd.html" onClick="clickAnchor(this)">IdentifyParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="identifyresult-amd.html" onClick="clickAnchor(this)">IdentifyResult</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="identifytask-amd.html" onClick="clickAnchor(this)">IdentifyTask</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="imageserviceidentifyparameters-amd.html" onClick="clickAnchor(this)">ImageServiceIdentifyParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="imageserviceidentifyresult-amd.html" onClick="clickAnchor(this)">ImageServiceIdentifyResult</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="imageserviceidentifytask-amd.html" onClick="clickAnchor(this)">ImageServiceIdentifyTask</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="jobinfo-amd.html" onClick="clickAnchor(this)">JobInfo</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="legendlayer-amd.html" onClick="clickAnchor(this)">LegendLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="lengthsparameters-amd.html" onClick="clickAnchor(this)">LengthsParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="linearunit-amd.html" onClick="clickAnchor(this)">LinearUnit</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="locator-amd.html" onClick="clickAnchor(this)">Locator</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="multipartcolorramp-amd.html" onClick="clickAnchor(this)">MultipartColorRamp</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="namessage-amd.html" onClick="clickAnchor(this)">NAMessage</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="naoutputline-amd.html" onClick="clickAnchor(this)">NAOutputLine</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="naoutputpolygon-amd.html" onClick="clickAnchor(this)">NAOutputPolygon</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="natraveldirection-amd.html" onClick="clickAnchor(this)">NATravelDirection</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="nauturn-amd.html" onClick="clickAnchor(this)">NAUTurn</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="offsetparameters-amd.html" onClick="clickAnchor(this)">OffsetParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="parametervalue-amd.html" onClick="clickAnchor(this)">ParameterValue</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="printparameters-amd.html" onClick="clickAnchor(this)">PrintParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="printtask-amd.html" onClick="clickAnchor(this)">PrintTask</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="printtemplate-amd.html" onClick="clickAnchor(this)">PrintTemplate</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="projectparameters-amd.html" onClick="clickAnchor(this)">ProjectParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="query-amd.html" onClick="clickAnchor(this)">Query</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="querytask-amd.html" onClick="clickAnchor(this)">QueryTask</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="rasterdata-amd.html" onClick="clickAnchor(this)">RasterData</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="relationparameters-amd.html" onClick="clickAnchor(this)">RelationParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="relationshipquery-amd.html" onClick="clickAnchor(this)">RelationshipQuery</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="routeparameters-amd.html" onClick="clickAnchor(this)">RouteParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="routeresult-amd.html" onClick="clickAnchor(this)">RouteResult</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="routetask-amd.html" onClick="clickAnchor(this)">RouteTask</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="serviceareaparameters-amd.html" onClick="clickAnchor(this)">ServiceAreaParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="serviceareasolveresult-amd.html" onClick="clickAnchor(this)">ServiceAreaSolveResult</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="serviceareatask-amd.html" onClick="clickAnchor(this)">ServiceAreaTask</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="statisticdefinition-amd.html" onClick="clickAnchor(this)">StatisticDefinition</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="trimextendparameters-amd.html" onClick="clickAnchor(this)">TrimExtendParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="uniquevaluedefinition-amd.html" onClick="clickAnchor(this)">UniqueValueDefinition</a>
+          </div>
+          <div class="treeNode">
+            <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif">
+            <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">
+              Geoenrichment
+            </span>
+            <div class="treeSubnodesHidden">
+              <div class="treeNode">
+                <a class="treeUnselected" href="drivebuffer-amd.html" onClick="clickAnchor(this)">DriveBuffer</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="driveunits-amd.html" onClick="clickAnchor(this)">DriveUnits</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="geographylevel-amd.html" onClick="clickAnchor(this)">GeographyLevel</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="geometrystudyarea-amd.html" onClick="clickAnchor(this)">GeometryStudyArea</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="intersectinggeographies-amd.html" onClick="clickAnchor(this)">IntersectingGeographies</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="ringbuffer-amd.html" onClick="clickAnchor(this)">RingBuffer</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="treeNode">
+        <img class="treeLinkImage" onClick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+        <span onClick="expandCollapse(this.parentNode)" style="cursor: pointer;">toolbars</span>
+        <div class="treeSubnodesHidden">
+          <div class="treeNode">
+            <a class="treeUnselected" href="draw-amd.html" onClick="clickAnchor(this)">Draw</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="edit-amd.html" onClick="clickAnchor(this)">Edit</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="navigation-amd.html" onClick="clickAnchor(this)">Navigation</a>
+          </div>
+        </div>
+      </div>
+      <div class="treeNode">
+        <img class="treeLinkImage" onClick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+        <span onClick="expandCollapse(this.parentNode)" style="cursor: pointer;">virtualearth</span>
+        <div class="treeSubnodesHidden">
+          <div class="treeNode">
+            <a class="treeUnselected" href="veaddress-amd.html" onClick="clickAnchor(this)">VEAddress</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="vegeocoderesult-amd.html" onClick="clickAnchor(this)">VEGeocodeResult</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="vegeocoder-amd.html" onClick="clickAnchor(this)">VEGeocoder</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="vetiledlayer-amd.html" onClick="clickAnchor(this)">VETiledLayer</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></div> <!-- sub 4:  API ref TOC -->
+  </div>
+  <div class="grid_9 contentWrapper">
+    <div id="topicPane">    <div id="pageBanner">Class: KMLLayer</div>
+    <div style="font-size:12px">[ <b>AMD Module Require</b> | <a href="kmllayer.html">Legacy Module Require</a> ]</div>
+    <div id="nstext">
+      <p><pre class="prettyprint">require(["esri/layers/KMLLayer"], function(KMLLayer) { /* code goes here */ });</pre></p>
+      <h4 class="dtH4">Description</h4>
+      <div class="detaildesc"><div><i>Class added at v2.4</i></div>The KMLLayer class is used to create a layer based on a KML file (.kml,.kmz). KML is an XML-based file format used to represent geographic features. To add a KML file(.kml or .kmz) to a map, the KML must be available via a publicly accessible URL. Locally hosted or KML files inside a firewall are not supported.
+<b>Accessing features from a KML file</b>
+<p>Features from the KML file are accessible via the api so you can query features and use them as input to geometry or geoprocessing services. You can access and manipulate a KML layer's features like any other layer. Because of the wide range of feature types that can be stored in a KML file, a KML layer added to a map is internally made up of several layers. An ArcGIS API for JavaScript KML layer can be thought of as more of a group layer rather than a single layer. </p>
+<p>Geometries from a KML file are stored as feature layers: one each for points, lines and polygons. Feature layers for a particular geometry type are only created if there are features of that geometry type in the KML file. The getLayers() method returns the layers that make up a KML file. The following code snippet shows how to get a KML layer's layers, checks that a layer has graphics, unions the layer extents and then zooms to the new extent:
+<pre>
+  var kmlExtent, layers = kml.getLayers();
+  dojo.forEach(layers, function(lyr) {
+    if ( lyr.graphics && lyr.graphics.length > 0 ) {
+      var lyrExtent = esri.geometry.geographicToWebMercator(
+        esri.graphicsExtent(lyr.graphics)
+      );
+      if ( globals.kmlExtent ) {
+        kmlExtent = kmlExtent.union(lyrExtent);
+      } else {
+        kmlExtent = lyrExtent;
+      }
+  });
+  map.setExtent(kmlExtent);
+</pre>
+
+</p>
+
+<b>Supported Features</b>
+<p>The following KML features are supported at version 2.4:
+	<ul>
+		<li>Placemarks</li>
+		<li>Network links <i>without</i> refresh parameters</li>
+		<li>Ground overlays</li>
+		<li>Folders</li>
+		<li>Point, polyline, and polygon symbology, including icons</li>
+		<li>HTML in feature descriptions</li>
+	</ul>
+	Support for the following was added at version 2.5:
+	<ul>
+		<li>Network links with refresh parameters</li>
+		<li>ExtendedData feature attributes</li>
+		<li>Time</li>
+	</ul>
+	The following features are not supported:
+	<ul>
+		<li>Screen overlays</li>
+		<li>Regionated KML</li>
+		<li>Regions inside network links</li>
+	</ul>
+</p></div>
+      <H4 class="dtH4">Samples</H4>
+      Search for <a target="_top" href="../jssamples/#search/KMLLayer">samples</a> that use this class.
+      <H4 class="dtH4">Class hierarchy</H4>
+      <pre class="inherits"><a href="layer-amd.html">esri/layers/Layer</a>
+|_esri/layers/KMLLayer</pre>
+      
+      <h4 class="dtH4">Constructors</h4>
+      <table class="syntaxTABLE" cellspacing="0">
+        <tr><th class="tableheader">Name</th><th class="tableheader">Summary</th></tr>
+        <tr><td class="syntaxTABLE"><a href="#kmllayer1">new KMLLayer(id,url,options?)</a></td><td class="syntaxTABLE">Creates a new KMLLayer object</td></tr>
+      </table>
+      
+      
+      
+      <h4 class="dtH4">Properties</h4>
+      <table class="syntaxTABLE" cellspacing="0">
+        <tr><th class="tableheader">Name</th><th class="tableheader">Type</th><th class="tableheader">Summary</th></tr>
+        <tr><td class="syntaxTABLE"><a href="#attributiondataurl">attributionDataUrl</a></td><td class="syntaxTABLE">String</td><td class="syntaxTABLE">The URL, when available, where the layer's attribution data is stored.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#classname">className</a></td><td class="syntaxTABLE">String</td><td class="syntaxTABLE"><a href="https://developer.mozilla.org/en-US/docs/Web/API/element.className" target="_blank">class</a> attribute of the layer's node.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#credential">credential</a></td><td class="syntaxTABLE"><a href="credential-amd.html">Credential</a></td><td class="syntaxTABLE">Provides credential information for the layer such as userid and token if the layer represents a resource that is secured with token-based authentication.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#featureinfos">featureInfos</a></td><td class="syntaxTABLE">Object[]</td><td class="syntaxTABLE"><p>An array of objects that describe top-level KML features ids and their types.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#folders">folders</a></td><td class="syntaxTABLE"><a href="kmlfolder-amd.html">KMLFolder[]</a></td><td class="syntaxTABLE">An array of KMLFolder objects that describe the folders and nested folders defined in the KML file.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#hasattributiondata">hasAttributionData</a></td><td class="syntaxTABLE">Boolean</td><td class="syntaxTABLE">When true the layer has attribution data.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#id">id</a></td><td class="syntaxTABLE">String</td><td class="syntaxTABLE">ID assigned to the layer.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#linkinfo">linkInfo</a></td><td class="syntaxTABLE">Object</td><td class="syntaxTABLE">A link info object with properties that describe the network link.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#loaded">loaded</a></td><td class="syntaxTABLE">Boolean</td><td class="syntaxTABLE">When the layer is loaded, the value becomes "true", and layer properties can be accessed.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#maxscale">maxScale</a></td><td class="syntaxTABLE">Number</td><td class="syntaxTABLE">Maximum visible scale for the layer.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#minscale">minScale</a></td><td class="syntaxTABLE">Number</td><td class="syntaxTABLE">Minimum visible scale for the layer.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#opacity">opacity</a></td><td class="syntaxTABLE">Number</td><td class="syntaxTABLE">Opacity or transparency of layer.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#refreshinterval">refreshInterval</a></td><td class="syntaxTABLE">Number</td><td class="syntaxTABLE">Refresh interval of the layer in minutes.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#showattribution">showAttribution</a></td><td class="syntaxTABLE">Boolean</td><td class="syntaxTABLE">When true the layer's attribution is displayed on the map.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#suspended">suspended</a></td><td class="syntaxTABLE">Boolean</td><td class="syntaxTABLE">When true the layer is suspended.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#url">url</a></td><td class="syntaxTABLE">String</td><td class="syntaxTABLE">URL to the ArcGIS Server REST resource that represents a map service.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#visible">visible</a></td><td class="syntaxTABLE">Boolean</td><td class="syntaxTABLE">Visibility of the layer</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#visibleatmapscale">visibleAtMapScale</a></td><td class="syntaxTABLE">Boolean</td><td class="syntaxTABLE">When true, the layer is visible at the current map scale.</td></tr>
+      </table>
+      <h4 class="dtH4">Methods</h4>
+      <table class="syntaxTABLE" cellspacing="0">
+        <tr><th class="tableheader">Name</th><th class="tableheader">Type</th><th class="tableheader">Summary</th></tr>
+        <tr><td class="syntaxTABLE"><a href="#attr">attr(name,value)</a></td><td class="syntaxTABLE"><a href="layer-amd.html">Layer</a></td><td class="syntaxTABLE">Adds a new attribute or changes the value of an existing attribute on the layer's node.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#getattributiondata">getAttributionData()</a></td><td class="syntaxTABLE"><a href="http://dojotoolkit.org/reference-guide/1.8/dojo/Deferred.html" target="_blank">dojo.Deferred</a></td><td class="syntaxTABLE">Asynchrously returns custom data for the layer when available.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#getfeature">getFeature(featureInfo)</a></td><td class="syntaxTABLE">Object</td><td class="syntaxTABLE"><p>Get the KML feature identified by the input feature info.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#getlayers">getLayers()</a></td><td class="syntaxTABLE"><a href="layer-amd.html">Layer[]</a></td><td class="syntaxTABLE">Get an array of map layers that were created to draw placemarks, ground and screen overlays.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#getmap">getMap()</a></td><td class="syntaxTABLE"><a href="map-amd.html">Map</a></td><td class="syntaxTABLE">Returns reference to the map control the layer is added to.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#getnode">getNode()</a></td><td class="syntaxTABLE">HTMLElement</td><td class="syntaxTABLE">Returns the layer's DOM node.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#hide">hide()</a></td><td class="syntaxTABLE">None</td><td class="syntaxTABLE">Sets the visibility of the layer to "false".</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#isvisibleatscale">isVisibleAtScale(scale)</a></td><td class="syntaxTABLE">Boolean</td><td class="syntaxTABLE">Returns true if the layer is visible at the given scale.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#resume">resume()</a></td><td class="syntaxTABLE">None</td><td class="syntaxTABLE">Resumes layer drawing.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#setfoldervisibility">setFolderVisibility(folder,true)</a></td><td class="syntaxTABLE">None</td><td class="syntaxTABLE">Set the visibility for the specified folder</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#setmaxscale">setMaxScale(scale)</a></td><td class="syntaxTABLE">None</td><td class="syntaxTABLE">Set the maximum scale for the layer.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#setminscale">setMinScale(scale)</a></td><td class="syntaxTABLE">None</td><td class="syntaxTABLE">Set the minimum scale for the layer.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#setopacity">setOpacity()</a></td><td class="syntaxTABLE">None</td><td class="syntaxTABLE">Sets the opacity of the layer.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#setrefreshinterval">setRefreshInterval(interval)</a></td><td class="syntaxTABLE"><a href="layer-amd.html">Layer</a></td><td class="syntaxTABLE">Changes the layer's refresh interval to the given value (in minutes).</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#setscalerange">setScaleRange(minScale,maxScale)</a></td><td class="syntaxTABLE">None</td><td class="syntaxTABLE">Set the scale range for the layer.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#setvisibility">setVisibility(isVisible)</a></td><td class="syntaxTABLE">None</td><td class="syntaxTABLE">Sets the visibility of the layer.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#show">show()</a></td><td class="syntaxTABLE">None</td><td class="syntaxTABLE">Sets the visibility of the layer to "true"</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#suspend">suspend()</a></td><td class="syntaxTABLE">None</td><td class="syntaxTABLE">Suspends layer drawing.</td></tr>
+      </table>
+      <h4 class="dtH4">Events</h4><div class="switch">[ <span class="eventSwitch enabled">On Style Events</span> | <span class="eventSwitch">Connect Style Event</span> ]</div><div>All On Style event listeners receive a single event object. The event properties listed below are accessed from this event object. Additionally, the event object also contains a 'target' property whose value is the object which fired the event.</div><div class="eventDiv"><h4 class="dtH4">Events</h4>
+      <table class="syntaxTABLE" cellspacing="0">
+        <tr><th class="tableheader">Name</th><th class="tableheader">Returned Properties</th><th class="tableheader">Summary</th></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-error">error</a></td><td class="syntaxTABLE"><div>&lt;Error&gt; error</div></td><td class="syntaxTABLE">Fires when there is a problem retrieving a layer.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-load">load</a></td><td class="syntaxTABLE"><div>&lt;<a href="layer-amd.html">Layer</a>&gt; layer</div></td><td class="syntaxTABLE">Fires after layer properties for the layer are successfully populated.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-opacity-change">opacity-change</a></td><td class="syntaxTABLE"><div>&lt;Number&gt; opacity</div></td><td class="syntaxTABLE">Fires when the layer opacity has been changed, and returns an object with the opacity value.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-refresh">refresh</a></td><td class="syntaxTABLE"></td><td class="syntaxTABLE">Fired after the layer is refreshed.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-refresh-interval-change">refresh-interval-change</a></td><td class="syntaxTABLE"></td><td class="syntaxTABLE">This event is fired when the layer's <code>refreshInterval</code> is modified.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-resume">resume</a></td><td class="syntaxTABLE"></td><td class="syntaxTABLE">Fires when a layer resumes drawing.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-scale-range-change">scale-range-change</a></td><td class="syntaxTABLE"></td><td class="syntaxTABLE">Fires when a layer's minScale and/or maxScale is changed.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-scale-visibility-change">scale-visibility-change</a></td><td class="syntaxTABLE"></td><td class="syntaxTABLE">Fires when a layer's scale visibility changes.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-suspend">suspend</a></td><td class="syntaxTABLE"></td><td class="syntaxTABLE">Fires when a layer suspends drawing.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-update">update</a></td><td class="syntaxTABLE"></td><td class="syntaxTABLE">Fires any time a layer has finished loading or updating itself.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-update-end">update-end</a></td><td class="syntaxTABLE"><div>&lt;Error&gt; error</div></td><td class="syntaxTABLE">Fires when a layer has finished updating its content.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-update-start">update-start</a></td><td class="syntaxTABLE"></td><td class="syntaxTABLE">Fires when a layer begins to update its content.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-visibility-change">visibility-change</a></td><td class="syntaxTABLE"><div>&lt;Boolean&gt; visible</div></td><td class="syntaxTABLE">Fires when the layer visibility has been changed, and returns an object with a Boolean visible property containing the new visibility value of the layer.</td></tr>
+      </table></div><div class="eventDiv hidden"><h4 class="dtH4">Old Events</h4>
+      <table class="syntaxTABLE" cellspacing="0">
+        <tr><th class="tableheader">Name</th><th class="tableheader">Summary</th></tr>
+        <tr><td class="syntaxTABLE"><a href="#onerror">onError(error)</a></td><td class="syntaxTABLE">Fires when there is a problem retrieving a layer.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#onload">onLoad(layer)</a></td><td class="syntaxTABLE">Fires after layer properties for the layer are successfully populated.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#onopacitychange">onOpacityChange(opacity)</a></td><td class="syntaxTABLE">Fires when the layer opacity has been changed, and returns the opacity value</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#onrefresh">onRefresh()</a></td><td class="syntaxTABLE">Fired after the layer is refreshed.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#onrefreshintervalchange">onRefreshIntervalChange()</a></td><td class="syntaxTABLE">This event is fired when the layer's <code>refreshInterval</code> is modified.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#onresume">onResume()</a></td><td class="syntaxTABLE">Fires when a layer resumes drawing.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#onscalerangechange">onScaleRangeChange()</a></td><td class="syntaxTABLE">Fires when a layer's minScale and/or maxScale is changed.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#onscalevisibilitychange">onScaleVisibilityChange()</a></td><td class="syntaxTABLE">Fires when a layer's scale visibility changes.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#onsuspend">onSuspend()</a></td><td class="syntaxTABLE">Fires when a layer suspends drawing.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#onupdate">onUpdate()</a></td><td class="syntaxTABLE">Fires any time a layer has finished loading or updating itself.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#onupdateend">onUpdateEnd(error)</a></td><td class="syntaxTABLE">Fires when a layer has finished updating its content.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#onupdatestart">onUpdateStart()</a></td><td class="syntaxTABLE">Fires when a layer begins to update its content.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#onvisibilitychange">onVisibilityChange(visbility)</a></td><td class="syntaxTABLE">Fires when the layer visibility has been changed, and returns the new visibility</td></tr>
+      </table></div>
+      <div class="sectionDivider">Constructor Details</div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="kmllayer1"></a>new KMLLayer(id,url,options?)</h4></div>
+        <div class="detaildesc">Creates a new KMLLayer object.</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;String&gt; id</td>
+        <td class="detailTABLE">Required</td>
+        <td class="detailTABLE">Id to assign to the layer. This id is used for the layer and as the base for all sub layers that are created.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;String&gt; url</td>
+        <td class="detailTABLE">Required</td>
+        <td class="detailTABLE">The url for a .kml or .kmz file.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; options</td>
+        <td class="detailTABLE">Optional</td>
+        <td class="detailTABLE">Optional parameters.  See options list. View the  <a href="layer-amd.html">Layer</a> object for additional options.</td>
+      </tr>
+</table></div>        <div class="detaildesc"><b>Options:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;String&gt; className</td>
+
+        <td class="detailTABLE"><a href="https://developer.mozilla.org/en-US/docs/Web/API/element.className" target="_blank">Class</a> attribute to set for the layer's node.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;<a href="spatialreference-amd.html">SpatialReference</a>&gt; outSR</td>
+
+        <td class="detailTABLE">The output spatial reference for the KMLLayer.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Number&gt; refreshInterval</td>
+
+        <td class="detailTABLE">Refresh interval of the layer in minutes. Non-zero value sets up automatic layer refresh at the specified interval.</td>
+      </tr>
+</table></div>        <div class="detaildesc"><b>Sample:</b> <pre class='prettyprint'>
+require([
+  "esri/layers/KMLLayer", ... 
+], function(KMLLayer, ... ) {
+  var kmlUrl = 'http://www.ci.redding.ca.us/KML/SacRiverTrail.kml';
+  kml = new KMLLayer(kmlUrl);
+  ...
+});
+</pre></div>
+      </div><div class="sectionDivider">Property Details</div>
+
+            <div class="detaildiv">
+        <div class="detailname"><h4><a id="attributiondataurl"></a>&lt;String&gt; attributionDataUrl</h4></div>
+        <div class="detaildesc">The URL, when available, where the layer's attribution data is stored. <i>(Added at v3.1)</i></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="classname"></a>&lt;String&gt; className</h4></div>
+        <div class="detaildesc"><a href="https://developer.mozilla.org/en-US/docs/Web/API/element.className" target="_blank">class</a> attribute of the layer's node. <i>(Added at v3.7)</i></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="credential"></a>&lt;<a href="credential-amd.html">Credential</a>&gt; credential</h4></div>
+        <div class="detaildesc">Provides credential information for the layer such as userid and token if the layer represents a resource that is secured with token-based authentication. This value is available after the layer has been loaded i.e. <code>layer.loaded</code> is true. <i>(Added at v2.5)</i></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="featureinfos"></a>&lt;Object[]&gt; featureInfos</h4></div>
+        <div class="detaildesc"><p>An array of objects that describe top-level KML features ids and their types.  Objects in the array have the following properties:
+<pre class='prettyprint'>
+  {
+    "type":&lt;Number&gt;,
+    "id": &lt;Number&gt;
+  }
+</pre>
+</p>
+<p>The type can be one of the following:Folder, GroundOverlay, Line, NetworkLink,Point, Polygon, ScreenOverlay.
+</p></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="folders"></a>&lt;<a href="kmlfolder-amd.html">KMLFolder[]</a>&gt; folders</h4></div>
+        <div class="detaildesc">An array of KMLFolder objects that describe the folders and nested folders defined in the KML file. Use the parentFolderId and subFolderIds to identify the hierarchical relationship between folders.</div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="hasattributiondata"></a>&lt;Boolean&gt; hasAttributionData</h4></div>
+        <div class="detaildesc">When true the layer has attribution data. The default value is false.  Use the Layer.getAttributionData method to retrieve this data as JSON. <i>(Added at v3.1)</i></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="id"></a>&lt;String&gt; id</h4></div>
+        <div class="detaildesc">ID assigned to the layer. If not assigned, esri.Map assigns value. By default, the ID of the layer is "layer" followed by a number. The ID can be user defined only in the layer constructor.</div>        <div class="detaildesc"><b>Sample:</b> <ul>
+<li>Setting the layer ID in the layer constructor.
+<pre class='prettyprint'>
+population = new esri.layers.ArcGISDynamicMapServiceLayer("http://myserver/arcgis/rest/population/MapServer/Layers", {id:"population"});
+</pre>
+</li>
+<li>Setting the layer ID after a layer is initialized.
+<pre class='prettyprint'>population.id = "population";</pre></li>
+
+<li>Retrieving the layer ID.
+<pre class='prettyprint'>
+function getMapLayers() {
+  for (var j=0, jl=myMap.layerIds.length; j&lt;jl; j++) {
+    var currentLayer = myMap.getLayer(myMap.layerIds[j]);
+    alert("id: " + currentLayer.id);
+  }
+}
+</pre></li>
+</ul></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="linkinfo"></a>&lt;Object&gt; linkInfo</h4></div>
+        <div class="detaildesc">A link info object with properties that describe the network link. The object has the following properties:
+<pre class='prettyprint'>
+{
+  "id": &lt;Number>,
+  "name": &lt;String>,
+  "description": &lt;String>,
+  "snippet": &lt;String>,
+  "visibility": &lt;Number>
+  "refreshMode": &lt;String>,
+  "refreshInterval": &lt;Number>,
+  "viewRefreshMode": &lt;String>,
+  "viewRefreshTime": &lt;Number>,
+  "viewBoundScale": &lt;Number>,
+  "viewFormat": &lt;String>,
+  "httpQuery": &lt;String>
+}
+</pre> <i>(Added at v2.5)</i></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="loaded"></a>&lt;Boolean&gt; loaded</h4></div>
+        <div class="detaildesc">When the layer is loaded, the value becomes "true", and layer properties can be accessed.  The <a href="#onLoad">onLoad</a> event is also fired.</div>        <div class="detaildesc"><b>Known values:</b> true | false</div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="maxscale"></a>&lt;Number&gt; maxScale</h4></div>
+        <div class="detaildesc">Maximum visible scale for the layer. If the map is zoomed in beyond this scale, the layer will not be visible. A value of 0 means the layer does not have a maximum scale. The default value is 0. <i>(Added at v3.1)</i></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="minscale"></a>&lt;Number&gt; minScale</h4></div>
+        <div class="detaildesc">Minimum visible scale for the layer. If the map is zoomed out beyond this scale, the layer will not be visible. A value of 0 means the layer does not have a visible scale. The default value is 0. <i>(Added at v3.1)</i></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="opacity"></a>&lt;Number&gt; opacity</h4></div>
+        <div class="detaildesc">Opacity or transparency of layer.  Values range from 0.0 to 1.0, where 0.0 is 100% transparent and 1.0 has no transparency.</div>        <div class="detaildesc"><b>Known values:</b> 0.0 - 1.0</div>        <div class="detaildesc"><b>Default value:</b> 1.0</div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="refreshinterval"></a>&lt;Number&gt; refreshInterval</h4></div>
+        <div class="detaildesc">Refresh interval of the layer in minutes. Non-zero value indicates automatic layer refresh at the specified interval. Value of 0 indicates auto refresh is not enabled. <i>(Added at v3.7)</i></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="showattribution"></a>&lt;Boolean&gt; showAttribution</h4></div>
+        <div class="detaildesc">When true the layer's attribution is displayed on the map. The default value is true. <i>(Added at v3.1)</i></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="suspended"></a>&lt;Boolean&gt; suspended</h4></div>
+        <div class="detaildesc">When true the layer is suspended. A layer is considered to be suspended when one of the following is true:
+<ul>
+<li>The layer is hidden.</li>
+<li>The layer is not visible at the current map scale.</li>
+<li>The layer is explicitly suspended by calling the <code>Layer.suspend</code> method.</li>
+</ul> <i>(Added at v3.1)</i></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="url"></a>&lt;String&gt; url</h4></div>
+        <div class="detaildesc">URL to the ArcGIS Server REST resource that represents a map service.  To obtain the URL, use <a href="../jshelp/ags_rest.html">Services Directory</a>.  An example URL for the Street Map service on ArcGIS Online is: <br /> <a href="http://server.arcgisonline.com/ArcGIS/rest/services/ESRI_StreetMap_World_2D/MapServer" target="_blank"> http://server.arcgisonline.com/ArcGIS/rest/services/ESRI_StreetMap_World_2D/MapServer</a>. <i>(Added at v1.2)</i></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="visible"></a>&lt;Boolean&gt; visible</h4></div>
+        <div class="detaildesc">Visibility of the layer.</div>        <div class="detaildesc"><b>Known values:</b> true | false</div>        <div class="detaildesc"><b>Default value:</b> true</div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="visibleatmapscale"></a>&lt;Boolean&gt; visibleAtMapScale</h4></div>
+        <div class="detaildesc">When true, the layer is visible at the current map scale. <i>(Added at v3.1)</i></div>
+      </div>
+      <div class="sectionDivider">Method Details</div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="attr"></a>attr(name,value)</h4></div>
+        <div class="detaildesc">Adds a new attribute or changes the value of an existing attribute on the layer's node. Removes the attribute if the value is <code>null</code> or <code>undefined</code>. <i>(Added at v3.7)</i></div>        <div class="detaildesc"><b>Return value:</b> <a href="layer-amd.html">Layer</a></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;String&gt; name</td>
+        <td class="detailTABLE">Required</td>
+        <td class="detailTABLE">The name of the attribute.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;The attribute's value type&gt; value</td>
+        <td class="detailTABLE">Required</td>
+        <td class="detailTABLE">The value of the attribute. Set this value as <code>null</code> to remove the attribute.</td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="getattributiondata"></a>getAttributionData()</h4></div>
+        <div class="detaildesc">Asynchrously returns custom data for the layer when available. <i>(Added at v3.1)</i></div>        <div class="detaildesc"><b>Return value:</b> <a href="http://dojotoolkit.org/reference-guide/1.8/dojo/Deferred.html" target="_blank">dojo.Deferred</a></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="getfeature"></a>getFeature(featureInfo)</h4></div>
+        <div class="detaildesc"><p>Get the KML feature identified by the input feature info. The table below lists the type of objects returned for the KML feature types.</p>
+<table class="syntaxTable"  cellspacing=0>
+<tr><td class="detailTable">KML &lt;Feature&gt;</th><th class="detailTable">Class name of returned object</th></tr>
+<tr><td class="detailTable">Placemark</td><td class="detailTable">Graphic</td></tr>
+<tr><td class="detailTable">GroundOverlay</td class="detailTable"><td>KMLGroundOverlay</td></tr>
+<tr><td class="detailTable">ScreenOverlay</td class="detailTable"><td>KMLScreenOverlay (Not Implemented)</td></tr>
+<tr><td class="detailTable">NetworkLink</td class="detailTable"><td>KMLLayer</td></tr>
+<tr><td class="detailTable">Folder</td><td class="detailTable">KMLFolder</td></tr>
+</table></div>        <div class="detaildesc"><b>Return value:</b> Object</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; featureInfo</td>
+        <td class="detailTABLE">Required</td>
+        <td class="detailTABLE">Feature info for the kml feature.</td>
+      </tr>
+</table></div>        <div class="detaildesc"><b>Sample:</b> <pre class='prettyprint'>
+require([
+  "esri/layers/KMLLayer", "dojo/_base/array", ... 
+], function(KMLLayer, array, ... ) {
+  var kmlLayer = new KMLLayer( ... );
+  var featureInfos = kmlLayer.folders[0].featureInfos;
+  array.forEach(featureInfos,function(info){
+    var feature = kmlLayer.getFeature(info);
+    //do something with the feature here...
+  });
+  ...
+});
+</pre></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="getlayers"></a>getLayers()</h4></div>
+        <div class="detaildesc">Get an array of map layers that were created to draw placemarks, ground and screen overlays. The returned array can have instances of the following layer types: FeatureLayer, MapImageLayer or KMLLayer . This method can be used to override the renderer for feature layers.</div>        <div class="detaildesc"><b>Return value:</b> <a href="layer-amd.html">Layer[]</a></div>        <div class="detaildesc"><b>Sample:</b> <pre class='prettyprint'>
+require([
+  "esri/layers/KMLLayer", "dojo/_base/array", ... 
+], function(KMLLayer, array, ... ) {
+  var kmlLayer = new KMLLayer( ... );
+  var layers = kmlLayer.getLayers();
+  array.forEach(layers, function(layer){
+    if (layer.declaredClass === "esri.layers.FeatureLayer") {
+    }
+    else if (layer.declaredClass === "esri.layers.MapImageLayer") {
+    }
+  });
+  ...
+});
+</pre></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="getmap"></a>getMap()</h4></div>
+        <div class="detaildesc">Returns reference to the map control the layer is added to. Returns <code>null</code> or <code>undefined</code> if it is not added to a map. <i>(Added at v3.7)</i></div>        <div class="detaildesc"><b>Return value:</b> <a href="map-amd.html">Map</a></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="getnode"></a>getNode()</h4></div>
+        <div class="detaildesc">Returns the layer's DOM node. <i>(Added at v3.7)</i></div>        <div class="detaildesc"><b>Return value:</b> HTMLElement</div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="hide"></a>hide()</h4></div>
+        <div class="detaildesc">Sets the visibility of the layer to "false".  The layer is not removed, but it is hidden from view.</div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="isvisibleatscale"></a>isVisibleAtScale(scale)</h4></div>
+        <div class="detaildesc">Returns true if the layer is visible at the given scale. <i>(Added at v3.1)</i></div>        <div class="detaildesc"><b>Return value:</b> Boolean</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;Number&gt; scale</td>
+        <td class="detailTABLE">Required</td>
+        <td class="detailTABLE">The scale at which to check if the layer is visible.</td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="resume"></a>resume()</h4></div>
+        <div class="detaildesc">Resumes layer drawing. <i>(Added at v3.1)</i></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="setfoldervisibility"></a>setFolderVisibility(folder,true)</h4></div>
+        <div class="detaildesc">Set the visibility for the specified folder.</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="kmlfolder-amd.html">KMLFolder</a>&gt; folder</td>
+        <td class="detailTABLE">Required</td>
+        <td class="detailTABLE">A KML folder.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Boolean&gt; true</td>
+        <td class="detailTABLE">Required</td>
+        <td class="detailTABLE">The visibility of the folder and all kml features within the folder.</td>
+      </tr>
+</table></div>        <div class="detaildesc"><b>Sample:</b> <pre class='prettyprint'>
+require([
+  "esri/layers/KMLLayer", "dojo/_base/array", ... 
+], function(KMLLayer, array, ... ) {
+  var kmlLayer = new KMLLayer( ... );
+  var folders = kmlLayer.folders;
+  array.forEach(folders,function(folder){
+    kmlLayer.setFolderVisibility(folder,true);
+  });
+  ...
+});
+</pre></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="setmaxscale"></a>setMaxScale(scale)</h4></div>
+        <div class="detaildesc">Set the maximum scale for the layer. <i>(Added at v3.1)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;Number&gt; scale</td>
+        <td class="detailTABLE">Required</td>
+        <td class="detailTABLE">The maximum scale at which the layer is visible.</td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="setminscale"></a>setMinScale(scale)</h4></div>
+        <div class="detaildesc">Set the minimum scale for the layer. <i>(Added at v3.1)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;Number&gt; scale</td>
+        <td class="detailTABLE">Required</td>
+        <td class="detailTABLE">The minimum scale at which the layer is visible.</td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="setopacity"></a>setOpacity()</h4></div>
+        <div class="detaildesc">Sets the opacity of the layer.  Values range from 0.0 to 1.0, where 0.0 is 100% transparent and 1.0 has no transparency.</div>        <div class="detaildesc"><b>Sample:</b> <pre class='prettyprint'>
+layer.setOpacity(0.5);
+</pre></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="setrefreshinterval"></a>setRefreshInterval(interval)</h4></div>
+        <div class="detaildesc">Changes the layer's refresh interval to the given value (in minutes). Non-zero value sets up automatic layer refresh at the specified interval. Value of 0 stops auto refresh. <i>(Added at v3.7)</i></div>        <div class="detaildesc"><b>Return value:</b> <a href="layer-amd.html">Layer</a></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;Number&gt; interval</td>
+        <td class="detailTABLE">Required</td>
+        <td class="detailTABLE">Refresh interval of the layer in minutes. Non-zero value indicates automatic layer refresh at the specified interval. Value of <code>0</code> indicates auto refresh is not enabled.</td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="setscalerange"></a>setScaleRange(minScale,maxScale)</h4></div>
+        <div class="detaildesc">Set the scale range for the layer. If <code>minScale</code> and <code>maxScale</code> are set to 0 then the layer will be visible at all scales. <i>(Added at v3.1)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;Number&gt; minScale</td>
+        <td class="detailTABLE">Required</td>
+        <td class="detailTABLE">The minimum scale at which the layer is visible.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Number&gt; maxScale</td>
+        <td class="detailTABLE">Required</td>
+        <td class="detailTABLE">The maximum scale at which the layer is visible.</td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="setvisibility"></a>setVisibility(isVisible)</h4></div>
+        <div class="detaildesc">Sets the visibility of the layer. When true, the layer is visible.</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;Boolean&gt; isVisible</td>
+        <td class="detailTABLE">Required</td>
+        <td class="detailTABLE">Set the visibility of the layer.</td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="show"></a>show()</h4></div>
+        <div class="detaildesc">Sets the visibility of the layer to "true".</div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="suspend"></a>suspend()</h4></div>
+        <div class="detaildesc">Suspends layer drawing. <i>(Added at v3.1)</i></div>
+      </div>
+      <div class="sectionDivider">Event Details</div>
+<div class="switch">[ <span class="eventSwitch enabled">On Style Events</span> | <span class="eventSwitch">Connect Style Event</span> ]</div><div class="eventDiv">      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-error"></a>error</h4></div>
+        <div class="detaildesc">Fires when there is a problem retrieving a layer. Should be used in favor of onError <i>(Added at v3.5)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;Error&gt; error</td>
+
+        <td class="detailTABLE">ArcGIS Server error message returned in a <a href="http://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Global_Objects/Error" target="_blank">JavaScript error object</a>.</td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-load"></a>load</h4></div>
+        <div class="detaildesc">Fires after layer properties for the layer are successfully populated. This event must be successful before the layer can be added to the map. Should be used in favor of onLoad <i>(Added at v3.5)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="layer-amd.html">Layer</a>&gt; layer</td>
+
+        <td class="detailTABLE">The loaded layer.</td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-opacity-change"></a>opacity-change</h4></div>
+        <div class="detaildesc">Fires when the layer opacity has been changed, and returns an object with the opacity value. Should be used in favor of onOpacityChange <i>(Added at v3.5)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;Number&gt; opacity</td>
+
+        <td class="detailTABLE">Opacity or transparency of layer.  Values range from 0.0 to 1.0, where 0.0 is 100% transparent and 1.0 has no transparency.</td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-refresh"></a>refresh</h4></div>
+        <div class="detaildesc">Fired after the layer is refreshed.  If the layer represents a network link it is automatically refreshed based on the network link parameters defined in the <code>linkInfo</code> property. Layers can be explicitly refreshed by calling the <code>refresh</code> method. <i>(Added at v3.6)</i></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-refresh-interval-change"></a>refresh-interval-change</h4></div>
+        <div class="detaildesc">This event is fired when the layer's <code>refreshInterval</code> is modified. <i>(Added at v3.7)</i></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-resume"></a>resume</h4></div>
+        <div class="detaildesc">Fires when a layer resumes drawing. Should be used in favor of onResume <i>(Added at v3.5)</i></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-scale-range-change"></a>scale-range-change</h4></div>
+        <div class="detaildesc">Fires when a layer's minScale and/or maxScale is changed. Should be used in favor of onScaleRangeChange <i>(Added at v3.5)</i></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-scale-visibility-change"></a>scale-visibility-change</h4></div>
+        <div class="detaildesc">Fires when a layer's scale visibility changes. The scale visibility changes when a layer is initially visible and becomes invisible because the map scale does not intersect the layer's scale range or vice versa. Should be used in favor of onScaleVisibilityChange <i>(Added at v3.5)</i></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-suspend"></a>suspend</h4></div>
+        <div class="detaildesc">Fires when a layer suspends drawing. Should be used in favor of onSuspend <i>(Added at v3.5)</i></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-update"></a>update</h4></div>
+        <div class="detaildesc">Fires any time a layer has finished loading or updating itself.  
+For an <a href="#arcgistiledmapservicelayer">ArcGISTiledMapServiceLayer</a>, 
+the event fires when all required tiles have been retrieved and displayed.  For an
+<a href="#arcgisdynamicmapservicelayer">ArcGISDynamicMapServiceLayer</a> or 
+<a href="#arcgisimageservicelayer">ArcGISImageServiceLayer</a>, the event fires 
+when the map image has been retrieved and displayed.  For a <a href="#graphicslayer">GraphicsLayer</a>, 
+the event fires when all graphics have been redrawn after a pan or zoom.
+<b>Deprecated at v2.0.  Use <a href="#onUpdateStart">onUpdateStart</a> and <a href="#onUpdateEnd">onUpdateEnd</a> instead.</b> <i>(Added at v3.6)</i></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-update-end"></a>update-end</h4></div>
+        <div class="detaildesc">Fires when a layer has finished updating its content. It is the responsibility of the subclass to determine when this event is fired. Should be used in favor of onUpdateEnd <i>(Added at v3.5)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;Error&gt; error</td>
+
+        <td class="detailTABLE">Optional argument. The error object is available when an error occurs during the update.</td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-update-start"></a>update-start</h4></div>
+        <div class="detaildesc">Fires when a layer begins to update its content. It is the responsibility of the subclass to determine when this event is fired. Should be used in favor of onUpdateStart <i>(Added at v3.5)</i></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-visibility-change"></a>visibility-change</h4></div>
+        <div class="detaildesc">Fires when the layer visibility has been changed, and returns an object with a Boolean visible property containing the new visibility value of the layer. Should be used in favor of onVisibilityChange <i>(Added at v3.5)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;Boolean&gt; visible</td>
+
+        <td class="detailTABLE">Fires when the layer visibility has been changed, and returns the new visibility.</td>
+      </tr>
+</table></div>
+      </div></div><div class="eventDiv hidden">      <div class="detaildiv">
+        <div class="detailname"><h4><a id="onerror"></a>onError(error)</h4></div>
+        <div class="detaildesc">Fires when there is a problem retrieving a layer. <i>(Added at v1.3)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;Error&gt; error</td>
+
+        <td class="detailTABLE">ArcGIS Server error message returned in a <a href="http://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Global_Objects/Error" target="_blank">JavaScript error object</a>.</td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="onload"></a>onLoad(layer)</h4></div>
+        <div class="detaildesc">Fires after layer properties for the layer are successfully populated.  This event must be successful before the layer can be added to the map. <p>In Internet Explorer, due to resource caching, the onLoad event is fired as soon as the layer is constructed. Consequently you should check whether the layer's loaded property is true before registering a listener for the onLoad event:</p></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="layer-amd.html">Layer</a>&gt; layer</td>
+
+        <td class="detailTABLE">The loaded layer.</td>
+      </tr>
+</table></div>        <div class="detaildesc"><b>Sample:</b> <pre class='prettyprint'>function init() {
+  //setting initial extent in constructor
+  var map = new esri.Map("mapDiv", { extent: new esri.geometry.Extent(...) });
+
+  //or use set extent method
+  var map = new esri.Map("mapDiv");
+  map.setExtent(new esri.geometry.Extent(...));
+
+  //add first layer
+  map.addLayer(...);
+}
+</pre></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="onopacitychange"></a>onOpacityChange(opacity)</h4></div>
+        <div class="detaildesc">Fires when the layer opacity has been changed, and returns the opacity value.</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;Number&gt; opacity</td>
+
+        <td class="detailTABLE">Opacity or transparency of layer.  Values range from 0.0 to 1.0, where 0.0 is 100% transparent and 1.0 has no transparency.</td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="onrefresh"></a>onRefresh()</h4></div>
+        <div class="detaildesc">Fired after the layer is refreshed.  If the layer represents a network link it is automatically refreshed based on the network link parameters defined in the <code>linkInfo</code> property. Layers can be explicitly refreshed by calling the <code>refresh</code> method.</div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="onrefreshintervalchange"></a>onRefreshIntervalChange()</h4></div>
+        <div class="detaildesc">This event is fired when the layer's <code>refreshInterval</code> is modified. <i>(Added at v3.7)</i></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="onresume"></a>onResume()</h4></div>
+        <div class="detaildesc">Fires when a layer resumes drawing. <i>(Added at v3.1)</i></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="onscalerangechange"></a>onScaleRangeChange()</h4></div>
+        <div class="detaildesc">Fires when a layer's minScale and/or maxScale is changed. <i>(Added at v3.1)</i></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="onscalevisibilitychange"></a>onScaleVisibilityChange()</h4></div>
+        <div class="detaildesc">Fires when a layer's scale visibility changes. The scale visibility changes when a layer is initially visible and becomes invisible because the map scale does not intersect the layer's scale range or vice versa. <i>(Added at v3.1)</i></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="onsuspend"></a>onSuspend()</h4></div>
+        <div class="detaildesc">Fires when a layer suspends drawing. <i>(Added at v3.1)</i></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="onupdate"></a>onUpdate()</h4></div>
+        <div class="detaildesc">Fires any time a layer has finished loading or updating itself.  
+For an <a href="#arcgistiledmapservicelayer">ArcGISTiledMapServiceLayer</a>, 
+the event fires when all required tiles have been retrieved and displayed.  For an
+<a href="#arcgisdynamicmapservicelayer">ArcGISDynamicMapServiceLayer</a> or 
+<a href="#arcgisimageservicelayer">ArcGISImageServiceLayer</a>, the event fires 
+when the map image has been retrieved and displayed.  For a <a href="#graphicslayer">GraphicsLayer</a>, 
+the event fires when all graphics have been redrawn after a pan or zoom.
+<b>Deprecated at v2.0.  Use <a href="#onUpdateStart">onUpdateStart</a> and <a href="#onUpdateEnd">onUpdateEnd</a> instead.</b> <i>(Added at v1.2)</i></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="onupdateend"></a>onUpdateEnd(error)</h4></div>
+        <div class="detaildesc">Fires when a layer has finished updating its content. It is the responsibility of the subclass to determine when this event is fired.</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;Error&gt; error</td>
+
+        <td class="detailTABLE">Optional argument. The error object is available when an error occurs during the update.</td>
+      </tr>
+</table></div>        <div class="detaildesc"><b>Sample:</b> <pre class='prettyprint'>
+dojo.connect(layer, "onUpdateEnd", layerUpdateCompleted);
+
+function layerUpdateCompleted(error) {
+  if (error) {
+    console.log("Update completed with error: ", error);
+  }
+  else {
+    console.log("Update completed");
+  }
+}
+</pre></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="onupdatestart"></a>onUpdateStart()</h4></div>
+        <div class="detaildesc">Fires when a layer begins to update its content. It is the responsibility of the subclass to determine when this event is fired.</div>        <div class="detaildesc"><b>Sample:</b> <pre class='prettyprint'>
+dojo.connect(layer, "onUpdateStart", layerUpdateStarted);
+
+function layerUpdateStarted() {
+  console.log("Update started...");
+} 
+</pre></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="onvisibilitychange"></a>onVisibilityChange(visbility)</h4></div>
+        <div class="detaildesc">Fires when the layer visibility has been changed, and returns the new visibility.</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;Boolean&gt; visbility</td>
+
+        <td class="detailTABLE">Determines whether the layer is visible on the map.</td>
+      </tr>
+</table></div>
+      </div></div>
+    </div>
+<div id="wh_footer" class="footnote" align="center">
+  Please <a href="mailto:js_feedback@esri.com?subject=Feedback on API Ref:  KMLLayer-amd.html">contact the team</a> to comment or give suggestions.
+  <br>
+  Copyright &copy; Environmental Systems Research Institute, Inc.
+</div></div> <!-- sub 5 and 6:  main content for a page and feedback link -->
+  </div>
+</div> <!-- end main content -->
+
+<!-- TOC script -->
+<script src="../scripts/tree.js"></script>
+
+<script src="../prettify/prettify.js"></script>
+<script>
+  var dojoConfig = {
+    packages: [{
+      "name": "js",
+      "location": location.pathname.replace(/\/[^/]+$/, "/") + "../scripts"
+    }]
+  };
+</script>
+<script src="//js.arcgis.com/3.8compact/"></script> <!-- add API version -->
+<script src="../scripts/esri-main-apiref.js"></script>
+<script>
+require(["dojo/on", "dojo/query"], function(on, query) {
+  on(query(".eventSwitch"), "click", function(evt){
+    if (evt.target.classList[1] !== "enabled") {
+      query(".eventDiv").toggleClass("hidden");
+      query(".eventSwitch").toggleClass("enabled");
+    };
+  });
+});
+</script>
+<script src="../scripts/classList.js"></script>
+
+<!-- google analytics -->
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-215788-63']);
+  _gaq.push(['_setDomainName', 'arcgis.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+ <!-- google analytics, crazy egg and script to redirect old hash based URLs to static pages -->
+</body>
+</html>

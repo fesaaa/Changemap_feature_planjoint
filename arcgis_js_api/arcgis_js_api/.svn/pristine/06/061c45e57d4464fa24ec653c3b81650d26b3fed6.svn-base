@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="ie lt-ie9 lt-ie8 lt-ie7 ie6"> <![endif]-->
+<!--[if IE 7]>         <html class="ie lt-ie9 lt-ie8 ie7"> <![endif]-->
+<!--[if IE 8]>         <html class="ie lt-ie9 ie8"> <![endif]-->
+<!--[if gt IE 8]><!--> <html> <!--<![endif]-->
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+  <meta name="content-language" content="en">
+  <meta name="product" content="js-api-arcgis">
+  <meta name="subject" content="DEVELOPER,WEB,WEB APPLICATIONS,MOBILE">
+  <meta name="sub_category" content="JavaScript API">
+  <meta name="search-collection" content="help">
+  <meta name="search-category" content="help-api">
+  <meta name="version" content="arcgis-3.8"> <!-- API version -->
+  <meta name="content_type" content="Tutorial"> <!-- options: Help Topic, API Reference or Tutorial -->
+  <meta name="last-modified" content="2013-12-19"> <!-- put in date docs were generated -->
+
+  <link rel="stylesheet" href="../styles/screen.css">
+  <link rel="stylesheet" href="../styles/jsdoc.css">
+  <link rel="stylesheet" href="../styles/homepage.css">
+  <link rel="stylesheet" href="../styles/grid.css">
+  <link rel="stylesheet" href="../styles/tree.css">
+  <link rel="stylesheet" href="../prettify/prettify.css">
+  <style>
+    html {
+      overflow-y: auto;
+    }
+    .navigation-bar, .section-bar {
+      margin-bottom: 0;
+    }
+    .navigation-bar header h1, .section-bar header h1 {
+      margin-top: .35294em;
+    }
+    .navigation-bar, .section-bar {
+      background: url('../graphics/banner.jpg') no-repeat center center #762783;
+      min-height: 48px;
+      color: white;
+    }
+    #esri-logo {
+      background: url('../graphics/logo-esri.png') no-repeat center center ;
+      width: 100px;
+    }
+    @font-face {
+    font-family:'icomoon';src:url('../fonts/icons.eot');src:url('../fonts/icons.eot?#iefix') format("embedded-opentype"),url('../fonts/icons.woff') format("woff"),url('../fonts/icons.ttf') format("truetype"),url('../fonts/icons.svg#icomoon') format("svg");font-weight:400;font-style:normal
+    }[data-icon]:before {
+      font-family: 'icomoon';
+      content: attr(data-icon);
+      speak: none;
+      font-weight: 400;
+      line-height: 1;
+      -webkit-font-smoothing: antialiased
+    }[class*="icon-"]:before {
+      font-family: 'icomoon';
+      speak: none;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 1;
+      -webkit-font-smoothing: antialiased;
+      text-transform: none
+    }
+    pre {
+      font-size: 1.1em;
+      line-height: normal;
+      margin: 0;
+    }
+    #header nav li a {
+      font-size: .875em;
+    }
+    #esri-logo {
+      margin-left: 0;
+    }
+  </style>
+  <!--[if lt IE 9]>
+    <script src="../scripts/libs/html5shiv.js"></script>
+    <script src="../scripts/libs/selectivizr-min.js"></script>
+    <style>
+      #wrapper {
+        min-width: 960px;
+      }
+    </style>
+  <![endif]-->
+  <title>
+    Tutorials | ArcGIS API for JavaScript 
+  </title>
+</head>
+  
+<body>
+<div id="nav">
+<header id="header">
+  <div class="container relative-container">
+    <div class="header-inner ">
+      <div class="logo-wrap"><a href="../" id="site-logo">Arc<span>GIS</span> API for JavaScript</a><!--span class="down-arrow" id="down-arrow"></span--></div>
+      <nav id="site-nav" class="">
+        <a href="/en/" class="selected">
+          <h4 class="developers">Arc<span>GIS</span> API for JavaScript</h4>
+          <p>Build location-aware applications with ArcGIS</p>
+        </a>
+
+        <a href="https://www.arcgis.com/about/">
+          <h4 class="organizations">Arc<span>GIS</span> for Organizations</h4>
+          <p>Learn more about ArcGIS</p>
+        </a>
+      </nav>
+
+      <a id="esri-logo" href="http://esri.com">Esri</a>
+      <div id="logged-out-navigation" class="dropdown-navigation hide">
+  <a id="login-link" class="btn small light" href="/en/log-in/">Log In</a>
+</div>
+<div id="logged-in-navigation" class="dropdown-navigation dropdown-wrapper hide">
+  <a href="/en/usage-summary" class="dropdown btn small light">
+    <!-- <img src="http://d3w50ib5d2uy0g.cloudfront.net/cdn/2464//js/esri/arcgisonline/css/images/no-user-thumb.jpg" width="16" height="16" alt=""> --><span id="username"></span>
+  </a>
+  <div class="dropdown-content">
+    <ul>
+      <li><a href="/en/usage-summary/">Usage Summary</a></li>
+      <li><a href="/en/applications/">Applications</a></li>
+      <li></li>
+      <li><a href="/en/tools/">GIS Tools</a></li>
+    </ul>
+    <hr>
+    <ul>
+      <li><a href="/en/account/profile/">Account Settings</a></li>
+      <li><a href="/en/feedback/">Feedback</a></li>
+    </ul>
+    <hr>
+    <ul>
+      <li><a id="log-out-link" href="#">Log Out</a></li>
+    </ul>
+  </div>
+</div>
+
+      <div id="mobile-navigation" class="dropdown-navigation dropdown-wrapper">
+        <a href="#" class="dropdown btn small light icon icon-list-2">Select <span>a Section</span></a>
+        <div class="dropdown-content">
+          <ul>
+            <li><a href="../jshelp/">Concepts</a></li>
+            <li><a href="../jsapi/">API Reference</a></li>
+            <li><a href="../jssamples/">Samples</a></li>
+            <li><a href="http://forums.arcgis.com/forums/15">Forum</a></li>
+            <li><a href="../../">All Developer Resources</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="navigation-bar">
+  <div class="container">
+    <nav>
+      <div id="section-label"><a href=".">Tutorials</a></div>
+      <ul>
+        <!--li class="current"><a href="/en/javascript/">Home</a></li-->
+        <li class="current"><a href=".">Tutorials</a></li>
+        <li><a href="../jshelp/">Concepts</a></li>
+        <li><a href="../jsapi/">API Reference</a></li>
+        <li><a href="../jssamples/">Samples</a></li>
+        <li><a href="http://forums.arcgis.com/forums/15">Forum</a></li>
+        <li><a href="../../">All Developer Resources</a></li>
+      </ul>
+    </nav>
+  </div>
+</div> 
+</div><!-- end nav bar --> <!-- sub 2: header and navigation -->
+
+<div class="container_12">
+  <div class="grid_3 contentWrapper">
+    <div id="toggleToc">
+      <img src="../graphics/tochide.gif"> Hide Table of Contents
+    </div>
+    <div id="apiToc"><div class="treeDiv" id="tree" style="top: 35px; left: 0px;">
+  <div id="treeRoot">
+    <div class="treeNode">
+      <a class="treeUnselected" href="intro_firstmap_amd.html" onclick="clickAnchor(this)">Build your first application</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="intro_agstemplate_amd.html" onclick="clickAnchor(this)">Use an ArcGIS.com webmap</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="mobile_dev.html" onclick="clickAnchor(this)">Mobile-specific application</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="intro_directions.html" onclick="clickAnchor(this)">Directions widget</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="tutorial_geocoder.html" onclick="clickAnchor(this)">Geocoder widget</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="tutorial_label_layer.html" onclick="clickAnchor(this)">Labeling features client-side</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="intro_javascript_classes.html" onclick="clickAnchor(this)">Write a class</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="intro_custom_dijit.html" onclick="clickAnchor(this)">Create a re-usable widget</a>
+    </div>
+  </div>
+</div>
+<!-- pretty printed via http://prettydiff.com/?m=beautify&html --></div> <!-- Conceptual help TOC -->
+  </div>
+  <div class="grid_9 contentWrapper">
+    <div id="topicPane"><div id="pageBanner">Labeling features client-side</div>
+
+<div id="nstext">
+
+<!--***START TEXT - DO NOT WRITE ABOVE THIS LINE***-->
+<p class="tutorial-outline">This tutorial covers the following:</p>
+<ol class="tutorial-outline">
+  <li><a href="#step1">Introduction</a></li>
+  <li><a href="#step2">Implementation</a></li>
+  <li><a href="#step3">Boilerplate</a></li>
+  <li><a href="#step4">Load the label layer module</a></li>
+  <li><a href="#step5">Label a feature layer</a></li>
+  <li><a href="#step6">Add a cities feature layer</a></li>
+  <li><a href="#step7">Label cities</a></li>
+  <li><a href="#step8">Larger labels for larger cities</a></li>
+  <li><a href="#step9">Scale dependent rendering of city labels</a></li>
+</ol>
+
+<ol class="tutorial-content">
+  <li id="step1"><h3>Introduction</h3>
+    <p>Version 3.7 of the ArcGIS API for JavaScript introduced the <code>esri/layers/LabelLayer</code> module. This module provides client-side labeling functionality for vector (usually SVG) features.</p>
+
+    <p>While fully functional, at version 3.7, the LabelLayer should be considered beta and is subject to change at future releases. This tutorial will walk through the code used in the <a href="../jssamples/layers_label.html" target="_blank">LabelLayer sample</a>. To provide feedback on the label layer please use the "contact the team" link at the bottom of this page.</p> 
+  </li>
+
+  <li id="step2"><h3>Implementation</h3>
+    <p>The LabelLayer class inherits from GraphicsLayer and is added to a JS API map like any other layer. For most applications, one label layer is enough because a single label layer can be used to label multiple feature or graphics layers. It is possible to use multiple layer layers if a map is required to show overlapping labels.</p>
+
+    <p>Label placement is calculated client-side. The layer attempts to show the maximum number of labels with minimal overlap. Label positions are re-calculated when the map pans or zooms which can result in labels moving around as the map's view changes.</p>
+  </li>
+
+  <li id="step3"><h3>Boilerplate</h3>
+    <p>We'll start with a page that has a map with a single feature layer. The code below also overrides the default symbology for the states layer by creating a SimpleRenderer:</p>
+    <div class="detailSample">
+    <pre class="prettyprint" style="border:none;">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8"&gt;
+    &lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
+    &lt;meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no"&gt;
+    &lt;title&gt;&lt;/title&gt;
+    &lt;link rel="stylesheet" href="//js.arcgis.com/3.7/js/esri/css/esri.css"&gt;
+    &lt;style&gt;
+      html, body, #map {
+        height: 100%; width: 100%; margin: 0; padding: 0; 
+      }
+    &lt;/style&gt;
+
+    &lt;script src="//js.arcgis.com/3.7/"&gt;&lt;/script&gt;
+    &lt;script&gt;
+      var map;
+    
+      require([
+        "esri/map", 
+        "esri/geometry/Extent",
+        "esri/layers/FeatureLayer",
+
+        "esri/symbols/SimpleLineSymbol",
+        "esri/symbols/SimpleFillSymbol",
+        "esri/symbols/TextSymbol",
+        "esri/renderers/SimpleRenderer",
+
+        "dojo/_base/Color",
+        "dojo/domReady!"
+      ], function(
+        Map, Extent, FeatureLayer,
+        SimpleLineSymbol, SimpleFillSymbol, TextSymbol, SimpleRenderer,
+        Color
+      ) {
+        // load the map centered on the United States
+        var bbox = new Extent({"xmin":-1940058,"ymin":-814715,"xmax":1683105,"ymax":1446096,"spatialReference":{"wkid":102003}});
+        map = new Map("map", {
+          extent: bbox
+        });
+
+        var labelField = "STATE_NAME";
+
+        // create a renderer for the states layer to override default symbology
+        var statesColor = new Color("#666");
+        var statesLine = new SimpleLineSymbol("solid", statesColor, 1.5);
+        var statesSymbol = new SimpleFillSymbol("solid", statesLine, null);
+        var statesRenderer = new SimpleRenderer(statesSymbol);
+        // create a feature layer to show country boundaries
+        var statesUrl = "http://sampleserver6.arcgisonline.com/arcgis/rest/services/Census/MapServer/3";
+        var states = new FeatureLayer(statesUrl, {
+          id: "states",
+          outFields: [labelField] 
+        });
+        states.setRenderer(statesRenderer);
+        map.addLayer(states);
+      });
+    &lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div id="map"&gt;&lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+</div>
+  <p></p>
+  </li>
+
+  <li id="step4"><h3>Load the label layer module</h3>
+    <p>The module identifier for the label layer is <code>esri/layers/LabelLayer</code> and the preferred argument alias is <code>LabelLayer</code>. Add the module ID to the dependency list and the argument alias to the require callback. Here's what the entire <code>require()</code> looks like:</p>
+    <div class="detailSample">
+    <pre class="prettyprint" style="border:none;">
+      require([
+        "esri/map", 
+        "esri/geometry/Extent",
+        "esri/layers/FeatureLayer",
+
+        "esri/symbols/SimpleLineSymbol",
+        "esri/symbols/SimpleFillSymbol",
+        "esri/symbols/TextSymbol",
+        "esri/renderers/SimpleRenderer",
+
+        "esri/layers/LabelLayer",
+
+        "dojo/_base/Color",
+        "dojo/domReady!"
+      ], function(
+        Map, Extent, FeatureLayer,
+        SimpleLineSymbol, SimpleFillSymbol, TextSymbol, SimpleRenderer,
+        LabelLayer,
+        Color
+      ) {
+</pre>
+</div>
+  <p></p>
+  </li>
+
+  <li id="step5"><h3>Label a feature layer</h3>
+    <p>After the code that creates a map and adds the states feature layer, add the code below to create a text symbol to be used for state labels, use the text symbol as the basis for a simple renderer, tell the label layer about the states layer and that it should use the STATE_NAME field as the source for labels.</p>
+    <div class="detailSample">
+    <pre class="prettyprint" style="border:none;">
+        // create a text symbol to define the style of labels
+        var statesLabel = new TextSymbol().setColor(statesColor);
+        statesLabel.font.setSize("14pt");
+        statesLabel.font.setFamily("arial");
+        statesLabelRenderer = new SimpleRenderer(statesLabel);
+        var labels = new LabelLayer({ id: "labels" });
+        // tell the label layer to label the countries feature layer 
+        // using the field named "admin"
+        labels.addFeatureLayer(states, statesLabelRenderer, "${" + labelField + "}");
+        // add the label layer to the map
+        map.addLayer(labels);
+</pre>
+    </div>
+  <p>The key line above is the call to the LabelLayer's addFeatureLayer method. The simplest way to use this method is to provide a reference to a feature layer, a renderer that describes how to draw labels and a text expression which tells the label layer which attribute field or fields to use for labels. The format for the text expression is the same used by <code>esri/InfoTemplate</code>.</p>
+
+  <p>The <a href="../jssamples/layers_label.html">label layer sample</a> shows what we've built up to this point. The next couple of steps will build on that code to show how to label two feature layers, how to use a class-breaks renderer to renderer differing features in the same layer and how to use a scale-dependent renderer with a label layer.</p>
+  </li>
+
+  <li id="step6"><h3>Add a cities feature layer</h3>
+    <p>Add a second feature layer for cities. Note that a definition expression is used to show only large cities and the code below also uses a <code>SimpleMarkerSymbol</code> so be sure to add that module ID and argument alias to the call to <code>require()</code>.</p>
+
+    <div class="detailSample">
+    <pre class="prettyprint" style="border:none;">
+        var citiesColor = new Color("#444");
+        var whiteLine = new SimpleLineSymbol("solid", new Color("#fff"), 2);
+        var citiesUrl = "http://sampleserver6.arcgisonline.com/arcgis/rest/services/WorldTimeZones/MapServer/0";
+        var cities = new FeatureLayer(citiesUrl, { mode: FeatureLayer.MODE_ONDEMAND, outFields: ["CITY_NAME"] });
+        cities.setDefinitionExpression("POP_RANK &lt; 3");
+        var citiesRenderer = new SimpleRenderer(new SimpleMarkerSymbol("solid", 10, whiteLine, citiesColor));
+        cities.setRenderer(citiesRenderer);
+        map.addLayer(cities);
+</pre>
+    </div>
+    <p></p>
+  </li>
+
+  <li id="step7"><h3>Label cities</h3>
+    <p>Now that cities are  on the map, tell the label layer to label them:</p>
+
+    <div class="detailSample">
+    <pre class="prettyprint" style="border:none;">
+        var citiesSymbol = new TextSymbol().setColor(citiesColor);
+        citiesSymbol.font.setSize("18pt");
+        citiesSymbol.font.setFamily("arial");
+        citiesSymbol.yoffset = 4;
+        var citiesOptions = { pointPriorities: "AboveCenter" };
+        labels.addFeatureLayer(cities, new SimpleRenderer(citiesSymbol), "${CITY_NAME}", citiesOptions);
+</pre>
+    </div>
+    <p>The code above uses a fourth argument to <code>addFeatureLayer</code> to tell the label layer to center city labels above city points as opposed to the default of above and to the right. Refer to the <a href="../jsapi/labellayer-amd.html">LabelLayer API reference page</a> for more information on label placement options.</p>
+  </li>
+
+  <li id="step8"><h3>Larger labels for larger cities</h3>
+    <p>While one label size and style works well in most cases, there are cases where features in the same layer would benefit from varying label styles and/or sizes. In those cases, use a class-breaks renderer to specify how labels should be drawn for differing features.</p>
+
+    <p>Working with our cities feature layer, the code below modifies the cities feature layer to include the <code>POP_RANK</code> attribute and uses it to drive a class-breaks renderer which gives larger cities larger labels. Any label property could be changed, but this example will change size. Other options would be to use different fonts or colors for features with different attributes. Be sure to load the <code>ClassBreaksRenderer</code> module at the top of the script.</p>
+    
+    <div class="detailSample">
+    <pre class="prettyprint" style="border:none;">
+        // include the POP_RANK field when creating the cities feature layer
+        var cities = new FeatureLayer(citiesUrl, { id: "cities", outFields: ["CITY_NAME", "POP_RANK"] });
+        ...
+        // small city label
+        var citiesSymbolSmall = new TextSymbol().setColor(citiesColor);
+        citiesSymbolSmall.font.setSize("10pt");
+        citiesSymbolSmall.font.setFamily("arial");
+        citiesSymbolSmall.yoffset = 4;
+
+        // large city label
+        var citiesSymbolLarge = new TextSymbol().setColor(citiesColor);
+        citiesSymbolLarge.font.setSize("14pt");
+        citiesSymbolLarge.font.setFamily("arial");
+        citiesSymbolLarge.yoffset = 4;
+
+        // class breaks renderer for city labels
+        var citiesRenderer = new ClassBreaksRenderer(null, "POP_RANK");
+        citiesRenderer.addBreak({ 
+          minValue: 1,
+          maxValue: 2,
+          symbol: citiesSymbolLarge
+        });
+        citiesRenderer.addBreak({ 
+          minValue: 2,
+          maxValue: 3,
+          symbol: citiesSymbolSmall
+        });
+        var citiesOptions = { pointPriorities: "AboveCenter" };
+        labels.addFeatureLayer(cities, citiesRenderer, "${CITY_NAME}", citiesOptions);
+</pre>
+    </div>
+    <p></p>
+  </li>
+
+  <li id="step9"><h3>Scale dependent rendering of city labels</h3>
+    <p>Another feature introduced at the 3.7 release is a scale-dependent renderer. Depending on the scale the map, a scale-dependent decides how to render features, in this case, labels.</p> 
+
+    <p>Load the scale-dependent renderer module (module ID <code>esri/renderers/ScaleDependentRenderer</code>) and alias it as <code>ScaleDependentRenderer</code>. Then use the code below to create smaller city labels at small scales and larger city labels at larger scales.</p>
+
+    <div class="detailSample">
+    <pre class="prettyprint" style="border:none;">
+        // small scale city label renderer
+        var citiesSymbolSmall = new TextSymbol().setColor(citiesColor);
+        citiesSymbolSmall.font.setSize("12pt");
+        citiesSymbolSmall.font.setFamily("arial");
+        citiesSymbolSmall.yoffset = 4;
+        var citiesSmallRenderer = new SimpleRenderer(citiesSymbolSmall);
+
+        // large scale city label renderer
+        var citiesSymbolLarge = new TextSymbol().setColor(citiesColor);
+        citiesSymbolLarge.font.setSize("18pt");
+        citiesSymbolLarge.font.setFamily("arial");
+        citiesSymbolLarge.yoffset = 4;
+
+        // scale dependent renderer for city labels
+        var citiesLargeRenderer = new SimpleRenderer(citiesSymbolLarge);
+        var citiesScaleDependent = new ScaleDependentRenderer({
+          rendererInfos: [{
+            renderer: citiesSmallRenderer,
+            minScale: 25000000,
+            maxScale: 10000000
+          }, {
+            renderer: citiesLargeRenderer,
+            minScale: 10000000,
+            maxScale: 1
+          }]
+        })
+        var citiesOptions = { pointPriorities: "AboveCenter" };
+        labels.addFeatureLayer(cities, citiesScaleDependent, "${CITY_NAME}", citiesOptions);
+</pre>
+    </div>
+  <p>The scale dependent renderer tells the label layer to use 18pt labels when the map is zoomed in closer than 1:10M and 12pt labels when the map's scale is between 1:10M and 1:25M. If the map is zoomed out past 1:25M no city labels are shown. This particular scale-dependnet renderer example uses map scale because the map does not have traditional zoom levels. If a map does have zoom levels, minZoom and maxZoom can be used in place of minScale and maxScale to specify how to renderer labels (or features) according to the map's zoom level.</p>
+  </li>
+<!--***END TEXT - DO NOT WRITE BELOW THIS LINE***-->
+</div>
+<div id="wh_footer" class="footnote" align="center">
+  Please <a href="mailto:js_feedback@esri.com?subject=Feedback on jstutorials/tutorial_label_layer.html">contact the team</a> to comment or give suggestions.
+  <br>
+  Copyright &copy; Environmental Systems Research Institute, Inc.
+</div></div> <!-- main content for a page and feedback markup-->
+  </div>
+</div> <!-- end main content -->
+
+<!-- TOC script -->
+<script src="../scripts/tree.js"></script>
+
+<script src="../prettify/prettify.js"></script>
+<script>
+  var dojoConfig = {
+    packages: [{
+      "name": "js",
+      "location": location.pathname.replace(/\/[^/]+$/, "/") + "../scripts"
+    }]
+  };
+</script>
+<script src="//js.arcgis.com/3.8compact/"></script> <!-- add API version -->
+<script src="../scripts/esri-main-tutorials.js"></script>
+
+<!-- google analytics -->
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-215788-63']);
+  _gaq.push(['_setDomainName', 'arcgis.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+ <!-- sub 5:  add script to redirect old hash based URLs to static pages and google analytics-->
+
+</body>
+</html>

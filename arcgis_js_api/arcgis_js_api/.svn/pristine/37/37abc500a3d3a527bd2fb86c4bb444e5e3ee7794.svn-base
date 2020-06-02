@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>ArcGIS API for JavaScript | Geocoder Widget with Suffix</title>
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/esri/css/esri.css">
+    <style>
+      html, body, #map {
+        height:100%;
+        width:100%;
+        margin:0;
+        padding:0;
+      }
+      #search {
+        display: block;
+        position: absolute;
+        z-index: 2;
+        top: 20px;
+        left: 20px;
+      }
+    </style>
+    <script src="http://js.arcgis.com/3.8compact/"></script>
+    <script>
+      dojo.require("esri.map");
+      dojo.require("esri.dijit.Geocoder");
+
+      var map, geocoder;
+
+      dojo.ready(function() {
+
+        //get device location to use as prefix on location search. 
+        if(navigator.geolocation){
+          navigator.geolocation.getCurrentPosition(
+          function(position){
+            //reverse geocode the location
+        
+            var locator = new esri.tasks.Locator("http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer");
+            locator.locationToAddress( new esri.geometry.Point(position.coords)).then(function(candidate){
+                var suffix = "";
+                if(candidate.address && candidate.address.City){
+                 suffix = " in " + candidate.address.City;  //this value will be appended to the input search term. 
+                }
+                // create the map
+                map = new esri.Map("map",{
+                  basemap: "streets",
+                  center: [position.coords.longitude ,position.coords.latitude], // long, lat
+                  zoom: 12,
+                  sliderPosition: "bottom-left"
+                });
+
+                // add a graphics layer for geocoding results
+                map.addLayer(new esri.layers.GraphicsLayer({
+                  id: "results"
+                }));               
+                // create the geocoder
+                geocoder = new esri.dijit.Geocoder({ 
+                  autoNavigate: false, // do not zoom to best result
+                  map: map,
+                  arcgisGeocoder: {
+                    url: "http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer",
+                    name: "Esri World Geocoder",
+                    placeholder: "Enter coffee shop name",
+                    suffix: suffix // always append this to search term
+                    // it is also possible to prepend using the "prefix" parameter
+                  }
+                }, "search");
+                geocoder.startup();
+                geocoder.focus();
+
+                var symbol = new esri.symbol.PictureMarkerSymbol({
+                  "angle":0,
+                  "xoffset":0,
+                  "yoffset":10,
+                  "type":"esriPMS",
+                  "url":"http://static.arcgis.com/images/Symbols/Shapes/YellowPin1LargeB.png",
+                  "contentType":"image/png",
+                  "width":24,
+                  "height":24
+                });
+                var template = new esri.InfoTemplate("${name}, ${*}");
+
+                dojo.connect(geocoder, "onFindResults", function(response) {
+                  var l = map.getLayer("results");
+                  l.clear();
+                  map.infoWindow.hide();
+                  dojo.forEach(response.results, function(r) {
+                    r.feature.attributes.name = r.name;
+                    r.feature.setSymbol(symbol);
+                    r.feature.setInfoTemplate(template);
+                    l.add(r.feature);
+                  });
+                });
+
+                               
+            });
+          
+          },
+          function(error){
+            switch(error.code){
+                case error.TIMEOUT:
+                    alert("Timeout");
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    alert("Position currently unavailable");
+                    break;
+                case error.PERMISSION_DENIED:
+                    alert("Position denied");
+                    break;
+                case error.UNKNOWN_ERROR:
+                    alert("Unknown error");
+                    break;
+            }
+          }
+          );
+            
+            
+            
+        }
+        else{
+            alert("Application requires device with geolocation capabilities.");
+        }
+      
+      });
+    </script>
+  </head>
+  <body class="claro">
+    <div id="search"></div>
+    <div id="map"></div>
+  </body>
+</html>

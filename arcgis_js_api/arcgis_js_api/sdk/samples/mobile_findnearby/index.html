@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- Sets whether a web application runs in full-screen mode. -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<!-- Sets the style of the status bar for a web application. -->
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<title>Find Nearby</title>
+
+<link type="text/css" rel="stylesheet" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.4/js/dojo/dojox/mobile/themes/iPhone/iPhone.css"/>
+<link rel="stylesheet" type="text/css" href="http://js.arcgis.com/3.8/js/esri/css/esri.css"/>
+
+<style type="text/css">
+  html, body {
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+  }
+</style>
+<script type="text/javascript">
+  var djConfig = {
+    parseOnLoad:true
+  };
+</script>
+
+<script type="text/javascript" src="http://js.arcgis.com/3.8compact/"></script>
+
+<script language="JavaScript" type="text/javascript">
+dojo.require("esri.tasks.locator");
+dojo.require("esri.tasks.route");
+dojo.require("dojox.mobile.parser");
+dojo.require("dojox.mobile");
+dojo.require("dojox.mobile.Button");
+dojo.requireIf(!dojo.isWebKit, "dojox.mobile.compat");
+
+var locator, map, currentGraphic;
+var searchLocation, currentLocation;
+var resultLocationsLayer, routeGraphicLayer, segmentGraphicsLayer;
+var routeTask, params, directionFeatures;
+var watchProcess;
+var progressIndicator;
+
+function init() {
+  //onorientationchange doesn't always fire in a timely manner in Android so check for both orientationchange and resize
+  var supportsOrientationChange = "onorientationchange" in window, orientationEvent = supportsOrientationChange ? "orientationchange" : "resize";
+
+  window.addEventListener(orientationEvent, function () {
+    orientationChanged();
+  }, false);
+
+  //Use the Geolocation API to get current location and track it as you move
+  if (navigator.geolocation) {
+    createProgress('loc');
+    var options = {
+      timeout:10000
+    };
+    watchProcess = navigator.geolocation.watchPosition(showLocation, locationError, options);
+  } else {
+    alert("Geolocation not supported on this device");
+    return;
+  }
+  esri.config.defaults.io.proxyUrl = "/proxy";
+
+  // coffee shops
+  /*dojo.connect(dojo.byId('coffeeItem'), 'onclick', function (evt) {
+   queryYahoo('coffee');
+   });*/
+  // bars
+  /*dojo.connect(dojo.byId('barItem'), 'onclick', function () {
+   queryYahoo('bar');
+   });*/
+  // ATM machines
+  dojo.connect(dojo.byId('atmItem'), 'onclick', function () {
+    queryYahoo('atm');
+  });
+  // Bike shops
+  dojo.connect(dojo.byId('bikeItem'), 'onclick', function () {
+    queryYahoo('bike');
+  });
+
+  map = new esri.Map('map');
+  dojo.connect(map, 'onLoad', function (map) {
+    //Add graphics layers to display locations and routes
+    resultLocationsLayer = new esri.layers.GraphicsLayer();
+    map.addLayer(resultLocationsLayer);
+    var routePolylineSymbol = new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new dojo.Color([115, 44, 123, 0.6]), 4.5);
+    var routeRenderer = new esri.renderer.SimpleRenderer(routePolylineSymbol);
+    routeGraphicLayer = new esri.layers.GraphicsLayer();
+    routeGraphicLayer.setRenderer(routeRenderer);
+    map.addLayer(routeGraphicLayer);
+
+    var segmentSymbol = new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new dojo.Color([102, 255, 255, 0.5]), 10);
+    var segmentRenderer = new esri.renderer.SimpleRenderer(segmentSymbol);
+    segmentGraphicsLayer = new esri.layers.GraphicsLayer();
+    segmentGraphicsLayer.setRenderer(segmentRenderer);
+    map.addLayer(segmentGraphicsLayer);
+  });
+  var baseMapLayer = new esri.layers.ArcGISTiledMapServiceLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer');
+  map.addLayer(baseMapLayer);
+
+  //Setup GIS tasks (Route Task and Reverse Geocoding)
+  routeTask = new esri.tasks.RouteTask('http://servicesbeta.esri.com/arcgis/rest/services/Network/USA/NAServer/Route');
+  locator = new esri.tasks.Locator('http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Locators/ESRI_Geocode_USA/GeocodeServer');
+  params = new esri.tasks.RouteParameters();
+  params.stops = new esri.tasks.FeatureSet();
+  params.returnRoutes = true;
+  params.returnDirections = true;
+
+}
+
+function showLocation(location) {
+  var pt = new esri.geometry.Point(location.coords.longitude, location.coords.latitude, new esri.SpatialReference({
+    wkid:4326
+  }));
+  /*
+   Geolocation api returns an address but iPhone returns null so use reverse geocoding to get address
+   */
+  locator.locationToAddress(pt, 200, function (candidate) {
+    if (candidate.address) {
+      var address = candidate.address.Address + '<br/> ' + candidate.address.City + ', ' + candidate.address.State + ' ' + candidate.address.Zip;
+      dojo.byId('loc').innerHTML = address;
+      var pt = esri.geometry.geographicToWebMercator(candidate.location);
+      dojo.byId('acc').innerHTML = 'Location accurate within ' + location.coords.accuracy + ' meters <br /> Last Updated: ' + new Date(location.timestamp).toLocaleString();
+      currentLocation = candidate.location;
+      //update the current location icon
+      if (!currentGraphic) {
+        var symbol = new esri.symbol.PictureMarkerSymbol('images/bluedot.png', 20, 20);
+        currentGraphic = new esri.Graphic(pt, symbol);
+        map.graphics.add(currentGraphic);
+        map.centerAndZoom(pt, 16);
+      } else {
+        currentGraphic.setGeometry(pt);
+      }
+      clearProgress();
+    }
+  }, function (error) {
+    dojo.byId('loc').innerHTML = 'Unable to determine address';
+    clearProgress();
+  });
+}
+
+function createProgress(nodeId) {
+  //start the progress indicator
+  var container = dojo.byId(nodeId);
+  container.innerHTML = '';
+  progressIndicator = dojox.mobile.ProgressIndicator.getInstance();
+  container.appendChild(progressIndicator.domNode);
+  progressIndicator.start();
+}
+
+function clearProgress() {
+  progressIndicator.stop();
+}
+
+function locationError(error) {
+  switch (error.code) {
+    case error.PERMISSION_DENIED:
+      alert('Geolocation access denied or disabled. To enable geolocation on your iPhone, go to Settings > General > Location Services');
+      //clear the watch if an error occurs
+      if (watchProcess != null) {
+        navigator.geolocation.clearWatch(watchProcess);
+        watchProcess = null;
+      }
+      break;
+
+    case error.POSITION_UNAVAILABLE:
+      alert('Current location not available');
+      break;
+
+    case error.TIMEOUT:
+      alert('Timeout');
+      break;
+
+    default:
+      alert('unknown error');
+      break;
+  }
+}
+
+function queryYahoo(queryVal) {
+  // console.log('querying');
+  // console.log(queryVal);
+  createProgress('searchResults');
+  var dist = dojo.byId('distVal').innerText.split(' ');
+  //Find the closest items of interest using Yahoo Search
+  searchLocation = currentLocation;
+  var sql = "select * from local.search where latitude='${0}' and longitude='${1}' and radius='${2}' and query='${3}'";
+  var vals = [searchLocation.y, searchLocation.x, dist[0], queryVal];
+  sql = dojo.string.substitute(sql, vals);
+  var queryParams = {
+    q:sql,
+    format:"json"
+  };
+  console.log("query params", queryParams);
+
+  esri.request({
+    url:'http://query.yahooapis.com/v1/public/yql',
+    content:queryParams,
+    handleAs:'json',
+    callbackParamName:'callback',
+    load:buildYahooLocalLocations,
+    error:esri.config.defaults.io.errorHandler
+  });
+}
+
+function buildYahooLocalLocations(response) {
+  console.dir(response);
+  var itemList = dijit.byId('searchResults');
+  //Remove any existing items from the result window
+  while (itemList.domNode.hasChildNodes()) {
+    itemList.domNode.removeChild(itemList.domNode.lastChild);
+  }
+  //If no results are found users should increase search distance
+  if (response.query.count == 0) {
+    var noResults = new dojox.mobile.ListItem({
+      label:'No Results'
+    });
+    noResults.set('class', 'mblVariableHeight');
+    noResults.domNode.innerHTML = 'No results found within search radius. Use the settings option to increase the search distance.';
+    itemList.addChild(noResults);
+    return;
+  }
+  var results = response.query.results.Result;
+  // if (response.query.count == 1) {
+  //   results.push(response.ResultSet.Result);
+  // } else {
+  //   results = response.ResultSet.Result;
+  // }
+  dojo.forEach(results, function (result) {
+    var point = esri.geometry.geographicToWebMercator(new esri.geometry.Point(result.Longitude, result.Latitude));
+    //generate the list of results for the result view
+    var resultItem = new dojox.mobile.ListItem({
+      label:result.Title
+    });
+    resultItem.set('class', 'mblVariableHeight');
+    var content = [];
+    if (result.BusinessClickUrl) {
+      content.push("<a target='_blank' href='" + result.BusinessClickUrl + "'>" + result.Title + "</a><br />");
+    } else {
+      content.push(result.Title + '<br />');
+    }
+    content.push(result.Address + '<br />');
+    content.push("<a href='tel:" + result.Phone + "'>" + result.Phone + "</a><br />");
+    if (!isNaN(result.Rating.AverageRating)) {
+      content.push('<b>Average Rating</b>: ' + result.Rating.AverageRating + '<br />');
+    } else {
+      content.push('<b>Average Rating</b>: No Reviews <br/>');
+    }
+    content.push(result.Distance + ' miles<br/>');
+    var content = content.join('');
+
+    resultItem.domNode.innerHTML = content;
+    var button = new dojox.mobile.Button({
+      label:'Route',
+      moveTo:'mapView'
+    }).placeAt(resultItem.domNode);
+    var info = {};
+    info.lat = result.Latitude;
+    info.lon = result.Longitude;
+    info.title = result.Title;
+    var locationDetails = function (info) {
+      return function (results) {
+        mapResults(results, info);
+      }
+    }
+    dojo.connect(button, 'onClick', locationDetails(info));
+    clearProgress();
+    itemList.addChild(resultItem);
+  });
+}
+
+function mapResults(results, info) {
+  //move to the map view to display the route
+  var widget = dijit.byId('resultsView');
+  widget.performTransition('mapView', 1, 'slide', info, function () {
+    map.resize();
+    resultLocationsLayer.clear();
+    routeGraphicLayer.clear();
+    segmentGraphicsLayer.clear();
+
+    //Define the route input parameters
+    params.directionsLengthUnits = esri.Units.MILES;
+    params.outSpatialReference = map.spatialReference;
+    params.stops.features = [];
+
+    //Add the starting location to the map
+    var fromSymbol = new esri.symbol.SimpleMarkerSymbol().setColor(new dojo.Color([105, 153, 0]));
+    var startLoc = new esri.Graphic(esri.geometry.geographicToWebMercator(new esri.geometry.Point(searchLocation, new esri.SpatialReference({
+      wkid:4326
+    }))), fromSymbol, {
+      Name:dojo.byId('loc').textContent,
+      RouteName:info.title
+    });
+    resultLocationsLayer.add(startLoc);
+    params.stops.features[0] = startLoc;
+
+    //Add the ending location to the map
+    var toSymbol = new esri.symbol.SimpleMarkerSymbol().setColor(new dojo.Color([204, 0, 0]));
+    var endLoc = new esri.Graphic(esri.geometry.geographicToWebMercator(new esri.geometry.Point(info.lon, info.lat, new esri.SpatialReference({
+      wkid:4326
+    }))), toSymbol, {
+      Name:info.title,
+      RouteName:info.title
+    });
+    resultLocationsLayer.add(endLoc);
+    params.stops.features[1] = endLoc;
+
+    //Get the Route and display it and the directions on the MapView
+    routeTask.solve(params, function (solveResult) {
+      var directions = solveResult.routeResults[0].directions;
+      directionFeatures = directions.features;
+      var content = [];
+      content.push('<ol>');
+      routeGraphicLayer.add(new esri.Graphic(directions.mergedGeometry));
+      dojo.forEach(directions.features, function (feature, index) {
+        if (index === 0 || index === directions.features.length - 1) {
+          content.push('<li>' + feature.attributes.text + '</li>');
+        } else {
+          content.push("<li onclick='zoomToSegment(" + index + "); return false;' class=\"segment\"><a href=\"#\">" + feature.attributes.text + "</a></li>");
+        }
+      });
+      content.push("</ol>");
+      dojo.byId("directions").innerHTML = content.join("");
+      map.setExtent(directions.extent, true);
+    }, function (error) {
+      dojo.byId("directions").innerHTML = "<b>Error:</b> ";
+    });
+  });
+}
+
+function orientationChanged() {
+  if (map) {
+    map.reposition();
+    map.resize();
+  }
+}
+
+function updateDist(e) {
+  console.log('item checked');
+  var ul = dojo.byId("searchDistList");
+  dojo.forEach(ul.childNodes, function (node) {
+    if (!(node.nodeType != 1 || node.tagName != "LI")) {
+      var w = dijit.byNode(node);
+      if (node === e) {
+        dojo.removeClass(w.btnNode, "mblCheckOffButton");
+        dojo.addClass(w.btnNode, "mblCheckOnButton");
+        dijit.byId("distVal").srcNodeRef.children[0].children[1].textContent = e.children[0].children[0].textContent;
+      } else {
+        dojo.removeClass(w.btnNode, "mblCheckOnButton");
+        dojo.addClass(w.btnNode, "mblCheckOffButton");
+      }
+    }
+  });
+}
+
+//Zoom to the appropriate segment afer clicking a hyperlink in the directions list
+function zoomToSegment(index) {
+  var segment = directionFeatures[index];
+  segmentGraphicsLayer.clear();
+  var segmentGraphic = new esri.Graphic(segment.geometry);
+  segmentGraphicsLayer.add(segmentGraphic);
+
+  map.setExtent(segment.geometry.getExtent(), true);
+  //move to the map view
+  var widget = dijit.byId('directionsView');
+  widget.performTransition('mapView', -1, "fade", null);
+}
+
+function getDirections() {
+  //switch to the directions view
+  var widget = dijit.byId('mapView');
+  widget.performTransition('directionsView', 1, "fade", null);
+}
+
+dojo.addOnLoad(init);
+</script>
+</head>
+
+<body>
+<!-- home view -->
+<div id="homeView" data-dojo-type="dojox.mobile.View" selected="true">
+  <h1 data-dojo-type="dojox.mobile.Heading">What's Nearby</h1>
+  <ul data-dojo-type="dojox.mobile.EdgeToEdgeList" iconBase="images/icons-iphone.png">
+    <li data-dojo-type="dojox.mobile.ListItem" id="coffeeItem" onClick="queryYahoo('coffee');" moveTo="resultsView" iconPos="0,0,32,32" rightText="">
+      Coffee Shops
+    </li>
+    <li data-dojo-type="dojox.mobile.ListItem" id="barItem" onClick="queryYahoo('bar');" moveTo="resultsView" iconPos="0,42,32,32" rightText="">
+      Bars
+    </li>
+    <li data-dojo-type="dojox.mobile.ListItem" id="atmItem" moveTo="resultsView" iconPos="0,82,32,32" rightText="">
+      ATM
+    </li>
+    <li data-dojo-type="dojox.mobile.ListItem" id="bikeItem" moveTo="resultsView" iconPos="0,124,32,32" rightText="">
+      Bike Shops
+    </li>
+    <li data-dojo-type="dojox.mobile.ListItem" id="settingsItem" moveTo="settingsView" iconPos="0,166,32,32">
+      Settings
+    </li>
+  </ul>
+  <h2 data-dojo-type="dojox.mobile.RoundRectCategory">Current Location</h2>
+  <div data-dojo-type="dojox.mobile.RoundRect" id="loc"></div>
+  <div data-dojo-type="dojox.mobile.RoundRect" id="acc"></div>
+</div>
+
+<!-- map view -->
+<div id="mapView" data-dojo-type="dojox.mobile.View" style="width:100%;height:100%;">
+  <h1 data-dojo-type="dojox.mobile.Heading" back="Results" moveTo="resultsView">Map View</h1>
+  <button id="btnDirections" style="position:absolute;right:5px;top:48px;z-index:99;" data-dojo-type="dojox.mobile.Button" onClick="getDirections();">
+    Directions
+  </button>
+  <div style="width:95%;height:95%;" id="map"></div>
+</div>
+
+<!-- directions view -->
+<div id="directionsView" data-dojo-type="dojox.mobile.View">
+  <h1 data-dojo-type="dojox.mobile.Heading" back="Map" moveTo="mapView">Directions</h1>
+  <div id="directions" data-dojo-type="dojox.mobile.RoundRect" shadow="true"></div>
+</div>
+
+<!-- results view -->
+<div id="resultsView" data-dojo-type="dojox.mobile.View">
+  <h1 data-dojo-type="dojox.mobile.Heading" back="Main" moveTo="homeView">Results</h1>
+  <ul id="searchResults" data-dojo-type="dojox.mobile.RoundRectList"></ul>
+</div>
+
+<!-- settings view -->
+<div id="settingsView" data-dojo-type="dojox.mobile.View">
+  <h1 data-dojo-type="dojox.mobile.Heading" back="Main" moveTo="homeView">Settings</h1>
+  <ul data-dojo-type="dojox.mobile.RoundRectList">
+    <li id="distVal" data-dojo-type="dojox.mobile.ListItem" moveTo="distView" rightText="2 miles">
+      Search Distance
+    </li>
+  </ul>
+</div>
+
+<!-- distance view -->
+<div id="distView" data-dojo-type="dojox.mobile.View">
+  <h1 data-dojo-type="dojox.mobile.Heading" back="Settings" moveTo="settingsView">Search Distance</h1>
+  <ul data-dojo-type="dojox.mobile.RoundRectList" select="single">
+    <li data-dojo-type="dojox.mobile.ListItem" onClick="updateDist(this);" data-dojo-props='checked:true'>2 miles</li>
+    <li data-dojo-type="dojox.mobile.ListItem" onClick="updateDist(this);">5 miles</li>
+    <li data-dojo-type="dojox.mobile.ListItem" onClick="updateDist(this);">10 miles</li>
+  </ul>
+</div>
+</body>
+
+</html>

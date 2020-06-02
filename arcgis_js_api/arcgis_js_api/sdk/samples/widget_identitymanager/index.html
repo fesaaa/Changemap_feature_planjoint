@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+  <title>Accessing secure ArcGIS Server services</title>
+  <link rel="stylesheet" href="//js.arcgis.com/3.8/js/dojo/dijit/themes/claro/claro.css">
+  <link rel="stylesheet" href="//js.arcgis.com/3.8/js/esri/css/esri.css">
+  <style>
+    html, body {
+      height: 98%; width: 99%;
+      margin:0;
+      padding-top:4px;
+      padding-left:4px;
+    }
+
+    #rightPanel{
+      width:140px;
+      border:2px solid #617798;
+      -webkit-border-top-right-radius: 4px;
+      -webkit-border-bottom-right-radius: 4px;
+      -moz-border-radius-topright: 4px;
+      -moz-border-radius-bottomright: 4px;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+    }
+
+    #mapCanvas{
+      border-top:2px solid #617798;
+      border-bottom:2px solid #617798;
+      border-left:2px solid #617798;
+      -webkit-border-top-left-radius: 4px;
+      -webkit-border-bottom-left-radius: 4px;
+      -moz-border-radius-topleft: 4px;
+      -moz-border-radius-bottomleft: 4px;
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+      padding:0px;
+    }
+
+    .templatePicker{
+      height:80%;
+    }
+  </style>
+
+  <script>var dojoConfig = { parseOnLoad: true };</script>
+  <script src="//js.arcgis.com/3.8/"></script>
+  <script>
+    dojo.require("dijit.layout.BorderContainer");
+    dojo.require("dijit.layout.ContentPane");
+    dojo.require("esri.dijit.editing.Editor-all");
+    dojo.require("esri.map");
+    dojo.require("esri.layers.FeatureLayer");
+    dojo.require("esri.IdentityManager");
+    dojo.require("esri.SnappingManager");
+
+    dojo.ready(initialize);
+
+    // Global variables
+    var map;
+
+    function initialize() {
+      esri.config.defaults.io.proxyUrl = "/proxy";
+
+      // Create map
+      map = new esri.Map("mapCanvas", {
+        basemap: "topo",
+        center: [-107.394, 37.837],
+        zoom: 9,
+        slider: false
+      });
+
+      //add editor when conditions layer is added
+      dojo.connect(map, "onLayersAddResult", initEditing);
+
+      //add the map service to the map - this layer doesn't require a token
+      var trailsService = new esri.layers.ArcGISDynamicMapServiceLayer("https://servicesbeta.esri.com/ArcGIS/rest/services/SanJuan/Trails/MapServer");
+      map.addLayer(trailsService);
+
+      //add the secure service - token is required
+      var conditions = new esri.layers.FeatureLayer("https://servicesbeta.esri.com/ArcGIS/rest/services/SanJuan/TrailConditions/FeatureServer/0",{
+        mode:esri.layers.FeatureLayer.MODE_ONDEMAND,
+        outFields:["*"]
+      });
+      map.addLayers([conditions]);
+
+      //resize the info window
+      map.infoWindow.resize(200,200);
+    }
+    function initEditing(results){
+      var featureLayerInfos = dojo.map(results,function(result){
+        return {
+          "featureLayer":result.layer
+        }
+      });
+      var layers = dojo.map(results, function(result) {
+         return result.layer;
+      });
+
+      var templatePicker = new esri.dijit.editing.TemplatePicker({
+          featureLayers: layers,
+          rows: 'auto',
+          columns: 1
+        }, "templatePickerDiv");
+
+      templatePicker.startup();
+
+      //setup the editor widget
+      var settings={
+        map:map,
+        templatePicker:templatePicker,
+        layerInfos:featureLayerInfos
+      };
+      var params ={
+        settings:settings
+      };
+
+      var editorWidget = new esri.dijit.editing.Editor(params);
+      map.enableSnapping();
+      editorWidget.startup();
+    }
+  </script>
+</head>
+
+<body class="claro">
+  <div data-dojo-type="dijit.layout.BorderContainer" data-dojo-props="design:'headline',gutters:false" style="position:relative;width:100%;height:100%;">
+   <div id="mapCanvas" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="region:'center'" >
+   </div>
+   <!--right content panel-->
+   <div id="rightPanel" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="region:'right'">
+     <p>This sample shows how to view a secure map service using token-based authentication. Use the following credentials
+     to test the application:</br> User Name: <b>rick</b></br>Password: <b>rick@esri</b></p>
+      <div id="content" style="height:100%;" >
+        <div id="templatePickerDiv"></div>
+      </div>
+   </div>
+  </div>
+
+</body>
+</html>

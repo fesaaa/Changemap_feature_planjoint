@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <!--The viewport meta tag is used to improve the presentation and behavior of the samples 
+      on iOS devices-->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+    <title>Navigation toolbar</title>
+    
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/esri/css/esri.css">
+    <style>
+      @import "http://js.arcgis.com/3.8/js/dojo/dijit/themes/claro/claro.css";
+      .zoominIcon { background-image:url(images/nav_zoomin.png); width:16px; height:16px; }
+      .zoomoutIcon { background-image:url(images/nav_zoomout.png); width:16px; height:16px; }
+      .zoomfullextIcon { background-image:url(images/nav_fullextent.png); width:16px; height:16px; }
+      .zoomprevIcon { background-image:url(images/nav_previous.png); width:16px; height:16px; }
+      .zoomnextIcon { background-image:url(images/nav_next.png); width:16px; height:16px; }
+      .panIcon { background-image:url(images/nav_pan.png); width:16px; height:16px; }
+      .deactivateIcon { background-image:url(images/nav_decline.png); width:16px; height:16px; }
+    </style>
+    
+    <script>var dojoConfig = { parseOnLoad:true };</script>
+    <script src="http://js.arcgis.com/3.8/"></script>
+    <script>
+      dojo.require("esri.map");
+      dojo.require("esri.toolbars.navigation");
+      dojo.require("dijit.form.Button");
+      dojo.require("dijit.Toolbar");
+
+      var map, navToolbar;
+      
+      function init() {
+        map = new esri.Map("map", {
+          basemap: "satellite",
+          center: [-56.953, 57.472],
+          zoom: 3
+        });
+
+        navToolbar = new esri.toolbars.Navigation(map);
+        dojo.connect(navToolbar, "onExtentHistoryChange", extentHistoryChangeHandler);
+      }
+
+      function extentHistoryChangeHandler() {
+        dijit.byId("zoomprev").disabled = navToolbar.isFirstExtent();
+        dijit.byId("zoomnext").disabled = navToolbar.isLastExtent();
+      }
+
+      dojo.ready(init);
+    </script>
+  </head>
+  <body class="claro">
+    <div id="navToolbar" data-dojo-type="dijit.Toolbar">
+      <div data-dojo-type="dijit.form.Button" id="zoomin"  data-dojo-props="iconClass:'zoominIcon', onClick:function(){navToolbar.activate(esri.toolbars.Navigation.ZOOM_IN);}">Zoom In</div>
+      <div data-dojo-type="dijit.form.Button" id="zoomout" data-dojo-props="iconClass:'zoomoutIcon', onClick:function(){navToolbar.activate(esri.toolbars.Navigation.ZOOM_OUT);}">Zoom Out</div>
+      <div data-dojo-type="dijit.form.Button" id="zoomfullext" data-dojo-props="iconClass:'zoomfullextIcon', onClick:function(){navToolbar.zoomToFullExtent();}">Full Extent</div>
+      <div data-dojo-type="dijit.form.Button" id="zoomprev" data-dojo-props="iconClass:'zoomprevIcon', onClick:function(){navToolbar.zoomToPrevExtent();}">Prev Extent</div>
+      <div data-dojo-type="dijit.form.Button" id="zoomnext" data-dojo-props="iconClass:'zoomnextIcon', onClick:function(){navToolbar.zoomToNextExtent();}">Next Extent</div>
+      <div data-dojo-type="dijit.form.Button" id="pan" data-dojo-props="iconClass:'panIcon', onClick:function(){navToolbar.activate(esri.toolbars.Navigation.PAN);}">Pan</div>
+      <div data-dojo-type="dijit.form.Button" id="deactivate" data-dojo-props="iconClass:'deactivateIcon' ,onClick:function(){navToolbar.deactivate();}">Deactivate</div>
+    </div>
+    <div id="map" style="width:100%; height:512px;"></div>
+  </body>
+</html>

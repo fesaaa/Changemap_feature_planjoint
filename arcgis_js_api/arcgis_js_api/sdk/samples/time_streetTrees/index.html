@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <!--The viewport meta tag is used to improve the presentation and behavior
+    of the samples on iOS devices-->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+    <title></title>
+
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/dojo/dijit/themes/claro/claro.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/esri/css/esri.css">
+    
+    <style>
+      html,body { height:100%; width:100%; margin:0; padding:0; } 
+      body { 
+        background:#dfe5d7;
+        font-family:"Georgia,Verdana";
+      }
+      span{ font-weight:bold; color:#808080; text-align:left; }
+      .inset{ 
+        color: #d7decf;
+        text-shadow: 0px 2px 2px #808080;
+        font-weight:bold;
+      } 
+      #header, #map, #footer {
+        background: #fcfff4; /* old browsers */
+        background: -moz-linear-gradient(left, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%); /* firefox */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfff4', endColorstr='#b3bead',GradientType=1 ); /* ie */
+        border:solid 1px #398235; 
+        height:80px; 
+      } 
+      .claro .dijitContentPane {
+        padding: 0;
+      }
+      .maptitle{
+        padding-left:15px; 
+        font-size:32px;
+      }
+      .subtitle { 
+        font-size:14px; 
+        padding-left:40px;
+        color:#462D44; 
+      }
+      #footer { 
+        border:none;
+        background:none;
+        color:#462D44; 
+        font-size:10pt;
+        height:100px; 
+        padding: 10px;
+        text-align:center;
+      }
+    </style>
+
+    <script>var dojoConfig = { parseOnLoad: true };</script>
+    <script src="http://js.arcgis.com/3.8/"></script>
+    <script>
+      dojo.require("dijit.layout.BorderContainer");
+      dojo.require("dijit.layout.ContentPane");
+      dojo.require("esri.map");
+      dojo.require("esri.dijit.TimeSlider");
+      dojo.require("esri.layers.FeatureLayer");
+      dojo.require("dijit.form.ComboBox");
+      dojo.require("dojo.data.ItemFileReadStore");
+      dojo.require("dojo.date.locale");
+
+      var map, featureLayer;
+
+      function init() {
+        map = new esri.Map("map", {
+          basemap: "streets",
+          center: [-122.436, 37.75],
+          zoom: 11
+        });
+        
+        //populate dropdown list with unique tree species
+        var treeList = new esri.layers.FeatureLayer("http://servicesbeta.esri.com/ArcGIS/rest/services/SanFrancisco/SFStreetTreesRendered/MapServer/1", {
+          mode: esri.layers.FeatureLayer.MODE_SELECTION,
+          outFields: ["*"]
+
+        });
+        
+        var query = new esri.tasks.Query();
+        query.where = "count between 200 and 2000";
+
+        treeList.queryFeatures(query, function(featureSet) {
+        //Populate dropdown list with unique tree species
+          var values = dojo.map(featureSet.features, function(feature) {
+            return {
+              name: feature.attributes.NAME,
+              treeCount: feature.attributes.COUNT,
+              minDate: feature.attributes.MIN_DATE,
+              maxDate: feature.attributes.MAX_DATE
+            };
+          });
+
+          var dataItems = {
+            identifier: 'name',
+            label: 'name',
+            items: values
+          };
+
+          var store = new dojo.data.ItemFileReadStore({
+            data: dataItems
+          });
+
+          dijit.byId("mySelect").set("store", store);
+        });
+
+        var template = new esri.InfoTemplate();
+        template.setTitle(getTitle);
+        template.setContent(getTextContent);
+        
+        featureLayer = new esri.layers.FeatureLayer("http://servicesbeta.esri.com/ArcGIS/rest/services/SanFrancisco/SFStreetTreesRendered/MapServer/0", {
+          mode: esri.layers.FeatureLayer.MODE_SNAPSHOT,
+          infoTemplate:template,
+          outFields: ["*"]
+
+        });
+
+        featureLayer.setDefinitionExpression("1=0");
+        map.addLayers([featureLayer]);
+      }
+      
+      function getTitle(graphic){
+        var attr = graphic.attributes.qSpecies.replace('"', "").split("::");
+        return  dojo.string.trim((attr[1] === "") ? attr[0] : attr[1]);        
+      }
+      
+      function getTextContent(graphic) {
+        var attr = graphic.attributes.qSpecies.replace('"', "").split("::");
+        var commonName = dojo.string.trim((attr[1] === "") ? attr[0] : attr[1]);
+        var scientificName = dojo.string.substitute("${0}_${1}", attr[0].split(" "));
+        var plantDate = dojo.date.locale.format(new Date(graphic.attributes.PlantDate), {
+          selector: 'date',
+          datePattern: 'MMMM d, y'
+        })
+        return "<a target='_blank' href=http://en.wikipedia.org/wiki/" + scientificName + "><i>" + dojo.string.substitute("${0} ${1}", attr[0].split(" ")) + "</i></a><br/>Maintained By: " + graphic.attributes.qCaretaker + "<br />Planted: " + plantDate;
+      }
+
+      function selectTree(item) {
+        //initialize the time slider for the date range of the newly selected tree species.
+        var flUpdateEndConnectHandle = dojo.connect(featureLayer, "onUpdateEnd", function() {
+          dojo.disconnect(flUpdateEndConnectHandle);
+          var timeExtent = new esri.TimeExtent();
+          timeExtent.startTime = new Date(item.item.minDate[0]);
+          timeExtent.endTime = new Date(item.item.maxDate[0]);
+          initSlider(timeExtent);
+        });
+        
+        //apply a definition expression to the layer to only display trees of the selected species
+        var query = "CommonName='${name}'";
+        featureLayer.setDefinitionExpression(esri.substitute({
+          name: dojo.trim(item.value)
+        }, query));
+      }
+
+      function initSlider(timeExtent) {
+        if (dijit.byId('timeSlider')) {
+          dijit.byId('timeSlider').destroy();
+        }
+        var tsDiv = dojo.create("div", null, dojo.byId('timeSliderDiv'));
+        var timeSlider = new esri.dijit.TimeSlider({
+          style: "width: 800px;",
+          id: 'timeSlider'
+        }, tsDiv);
+
+        timeSlider.setThumbCount(2);
+        timeSlider.createTimeStopsByTimeInterval(timeExtent, 1, 'esriTimeUnitsYears');
+        timeSlider.setThumbIndexes([0, 1]);
+        timeSlider.setThumbMovingRate(2000);
+        
+        
+        var labels = dojo.map(timeSlider.timeStops, function(timeStop, i) {
+          if (i === 0) {
+            return timeStop.getUTCFullYear();
+          } else if (i === timeSlider.timeStops.length - 1) {
+            return timeStop.getUTCFullYear();
+          } else {
+            return "";
+          }
+        });
+        
+        timeSlider.setLabels(labels);
+        timeSlider.startup();
+        map.setTimeSlider(timeSlider);
+        dojo.connect(timeSlider, "onTimeExtentChange", updateTimeText);
+        updateTimeText(map.timeExtent);
+      }
+
+      function updateTimeText(timeExtent) {
+        var query = new esri.tasks.Query();
+        query.timeExtent = timeExtent;
+        
+        featureLayer.queryFeatures(query, function(featureSet) {
+          var count = featureSet.features.length;
+          var startValString = timeExtent.startTime.getUTCFullYear();
+          var endValString = timeExtent.endTime.getUTCFullYear();
+          dojo.byId("daterange").innerHTML = "<i>" + count + " trees planted between " + startValString + " and " + endValString + "<\/i>";
+        });
+      }
+      dojo.ready(init);
+    </script>
+  </head>
+  
+  <body class="claro">
+    <div id="mainWindow" 
+         data-dojo-type="dijit.layout.BorderContainer" 
+         data-dojo-props="design:'headline', gutters:true" 
+         style="width:100%; height:100%">
+
+      <div id="header" 
+           data-dojo-type="dijit.layout.ContentPane" 
+           data-dojo-props="region:'top'">
+
+        <span class="inset maptitle">San Francisco Trees</span>
+        <br>
+        <span class="subtitle">See when and where trees of the specified genus were planted.</span>
+
+      </div>
+
+      <div id="map"
+           data-dojo-type="dijit.layout.ContentPane"
+           data-dojo-props="region:'center'">
+      </div>
+
+      <div id="footer" 
+           data-dojo-type="dijit.layout.ContentPane" 
+           data-dojo-props="region:'bottom'">
+
+        <div style="height:24px;padding-bottom 4px;text-align:center;">
+          <div id="daterange" ></div>
+          <select id="mySelect" data-dojo-type="dijit.form.ComboBox" style="width:200px;font-size:16px;"
+          value="Select a genus" onchange="selectTree(this)" fetchProperties="{sort:[{attribute:'name', descending:false}]}">
+          </select>
+        </div>
+        <br>
+        <center>
+          <div id="timeSliderDiv"></div>
+        </center>
+
+      </div>
+
+    </div>
+  </body>
+</html>

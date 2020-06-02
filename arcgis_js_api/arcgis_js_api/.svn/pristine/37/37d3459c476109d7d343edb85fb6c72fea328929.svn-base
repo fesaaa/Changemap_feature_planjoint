@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="ie lt-ie9 lt-ie8 lt-ie7 ie6"> <![endif]-->
+<!--[if IE 7]>         <html class="ie lt-ie9 lt-ie8 ie7"> <![endif]-->
+<!--[if IE 8]>         <html class="ie lt-ie9 ie8"> <![endif]-->
+<!--[if gt IE 8]><!--> <html> <!--<![endif]-->
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+  <meta name="content-language" content="en">
+  <meta name="product" content="js-api-arcgis">
+  <meta name="subject" content="DEVELOPER,WEB,WEB APPLICATIONS,MOBILE">
+  <meta name="sub_category" content="JavaScript API">
+  <meta name="search-collection" content="help">
+  <meta name="search-category" content="help-api">
+  <meta name="version" content="arcgis-3.8"> <!-- API version -->
+  <meta name="content_type" content="Help Topic"> <!-- options: Help Topic, API Reference, Sample OR Tutorial -->
+  <meta name="last-modified" content="2013-12-19"> <!-- sub 1:  put in date docs were generated -->
+
+  <link rel="stylesheet" href="../styles/screen.css">
+  <link rel="stylesheet" href="../styles/jsdoc.css">
+  <link rel="stylesheet" href="../styles/homepage.css">
+  <link rel="stylesheet" href="../styles/grid.css">
+  <link rel="stylesheet" href="../styles/tree.css">
+  <link rel="stylesheet" href="../prettify/prettify.css">
+  <style>
+    html {
+      overflow-y: auto;
+    }
+    .navigation-bar, .section-bar {
+      margin-bottom: 0;
+    }
+    .navigation-bar header h1, .section-bar header h1 {
+      margin-top: .35294em;
+    }
+    .navigation-bar, .section-bar {
+      background: url('../graphics/banner.jpg') no-repeat center center #762783;
+      min-height: 48px;
+      color: white;
+    }
+    #esri-logo {
+      background: url('../graphics/logo-esri.png') no-repeat center center ;
+      width: 100px;
+    }
+    @font-face {
+    font-family:'icomoon';src:url('../fonts/icons.eot');src:url('../fonts/icons.eot?#iefix') format("embedded-opentype"),url('../fonts/icons.woff') format("woff"),url('../fonts/icons.ttf') format("truetype"),url('../fonts/icons.svg#icomoon') format("svg");font-weight:400;font-style:normal
+    }[data-icon]:before {
+      font-family: 'icomoon';
+      content: attr(data-icon);
+      speak: none;
+      font-weight: 400;
+      line-height: 1;
+      -webkit-font-smoothing: antialiased
+    }[class*="icon-"]:before {
+      font-family: 'icomoon';
+      speak: none;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 1;
+      -webkit-font-smoothing: antialiased;
+      text-transform: none
+    }
+    pre {
+      font-size: 1.1em;
+      line-height: normal;
+      margin: 0;
+    }
+    #header nav li a {
+      font-size: .875em;
+    }
+    #esri-logo {
+      margin-left: 0;
+    }
+  </style>
+  <!--[if lt IE 9]>
+    <script src="../scripts/libs/html5shiv.js"></script>
+    <script src="../scripts/libs/selectivizr-min.js"></script>
+    <style>
+      #wrapper {
+        min-width: 960px;
+      }
+    </style>
+  <![endif]-->
+  <title>
+    Guide | ArcGIS API for JavaScript 
+  </title>
+</head>
+  
+<body>
+<div id="nav">
+<header id="header">
+  <div class="container relative-container">
+    <div class="header-inner ">
+      <div class="logo-wrap"><a href="../" id="site-logo">Arc<span>GIS</span> API for JavaScript</a><!--span class="down-arrow" id="down-arrow"></span--></div>
+      <nav id="site-nav" class="">
+        <a href="/en/" class="selected">
+          <h4 class="developers">Arc<span>GIS</span> API for JavaScript</h4>
+          <p>Build location-aware applications with ArcGIS</p>
+        </a>
+
+        <a href="https://www.arcgis.com/about/">
+          <h4 class="organizations">Arc<span>GIS</span> for Organizations</h4>
+          <p>Learn more about ArcGIS</p>
+        </a>
+      </nav>
+
+      <a id="esri-logo" href="http://esri.com">Esri</a>
+      <div id="logged-out-navigation" class="dropdown-navigation hide">
+  <a id="login-link" class="btn small light" href="/en/log-in/">Log In</a>
+</div>
+<div id="logged-in-navigation" class="dropdown-navigation dropdown-wrapper hide">
+  <a href="/en/usage-summary" class="dropdown btn small light">
+    <!-- <img src="http://d3w50ib5d2uy0g.cloudfront.net/cdn/2464//js/esri/arcgisonline/css/images/no-user-thumb.jpg" width="16" height="16" alt=""> --><span id="username"></span>
+  </a>
+  <div class="dropdown-content">
+    <ul>
+      <li><a href="/en/usage-summary/">Usage Summary</a></li>
+      <li><a href="/en/applications/">Applications</a></li>
+      <li></li>
+      <li><a href="/en/tools/">GIS Tools</a></li>
+    </ul>
+    <hr>
+    <ul>
+      <li><a href="/en/account/profile/">Account Settings</a></li>
+      <li><a href="/en/feedback/">Feedback</a></li>
+    </ul>
+    <hr>
+    <ul>
+      <li><a id="log-out-link" href="#">Log Out</a></li>
+    </ul>
+  </div>
+</div>
+
+      <div id="mobile-navigation" class="dropdown-navigation dropdown-wrapper">
+        <a href="#" class="dropdown btn small light icon icon-list-2">Select <span>a Section</span></a>
+        <div class="dropdown-content">
+          <ul>
+            <li><a href="../jstutorials/">Tutorials</a></li>
+            <li><a href="../jsapi/">API Reference</a></li>
+            <li><a href="../jssamples/">Samples</a></li>
+            <li><a href="http://forums.arcgis.com/forums/15">Forum</a></li>
+            <li><a href="../../">All Developer Resources</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="navigation-bar">
+  <div class="container">
+    <nav>
+      <div id="section-label"><a href=".">Concepts</a></div>
+      <ul>
+        <!--li class="current"><a href="/en/javascript/">Home</a></li-->
+        <li><a href="../jstutorials/">Tutorials</a></li>
+        <li class="current"><a href=".">Concepts</a></li>
+        <li><a href="../jsapi/">API Reference</a></li>
+        <li><a href="../jssamples/">Samples</a></li>
+        <li><a href="http://forums.arcgis.com/forums/15">Forum</a></li>
+        <li><a href="../../">All Developer Resources</a></li>
+      </ul>
+    </nav>
+  </div>
+</div> 
+</div><!-- end nav bar --> <!-- sub 2: header and navigation -->
+
+<div class="container_12">
+  <div class="grid_3 contentWrapper">
+    <div id="toggleToc">
+      <img src="../graphics/tochide.gif"> Hide Table of Contents
+    </div>
+    <div id="apiToc"><div class="treeDiv" id="tree" style="top: 35px; left: 0px;">
+  <div id="treeRoot" ondragstart="return false" onselectstart="return false">
+    <div class="treeNode">
+      <a class="treeUnselected" href="." onclick="clickAnchor(this)">ArcGIS JavaScript API Overview</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="whats_new.html" onclick="clickAnchor(this)">What's New in Version 3.8</a>
+    </div>
+    <!-- About the API-->
+    <div class="treeNode">
+      <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+      <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">About the API</span>
+      <div class="treeSubnodesHidden">
+        <div class="treeNode">
+          <a class="treeUnselected" href="intro_accessapi.html" onclick="clickAnchor(this)">Get the API</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="inside_compactbuild.html" onclick="clickAnchor(this)">Compact build</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="localization.html" onclick="clickAnchor(this)">Localization</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="css.html" onclick="clickAnchor(this)">Required CSS</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="supported_browsers.html" onclick="clickAnchor(this)">Supported Browsers</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="community.html" onclick="clickAnchor(this)">Community</a>
+        </div>
+        <!--Working with Dojo-->
+        <div class="treeNode">
+          <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif">
+          <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">
+            Dojo
+          </span>
+          <div class="treeSubnodesHidden">
+            <div class="treeNode">
+              <a class="treeUnselected" href="inside_dojo.html" onclick="clickAnchor(this)">Working with Dojo</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="inside_dojoversion.html" onclick="clickAnchor(this)">Get Dojo</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="inside_dojodijits.html" onclick="clickAnchor(this)">Dojo dijits</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="inside_dojo_amd.html" onclick="clickAnchor(this)">Dojo and AMD</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="inside_dojohelp.html" onclick="clickAnchor(this)">Additional resources</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="why_dojo.html" onclick="clickAnchor(this)">Why Dojo?</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--End About the API-->
+    <!--Getting Started-->
+    <div class="treeNode">
+      <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif">
+      <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">
+        Getting Started
+      </span>
+      <div class="treeSubnodesHidden">
+        <div class="treeNode">
+          <a class="treeUnselected" href="intro_gettingstarted.html" onclick="clickAnchor(this)">Overview</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="intro_devenv.html" onclick="clickAnchor(this)">Setting up a development environment</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="../jstutorials/intro_firstmap.html" onclick="clickAnchor(this)">Build your first application</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="../jstutorials/intro_agstemplate.html" onclick="clickAnchor(this)">Build a web map based application
+          </a>
+        </div>
+      </div>
+    </div>
+    <!--Inside the API-->
+    <div class="treeNode">
+      <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif">
+      <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">
+        Working with the API
+      </span>
+      <div class="treeSubnodesHidden">
+        <div class="treeNode">
+          <a class="treeUnselected" href="inside_defaults.html" onclick="clickAnchor(this)">Default API configurations</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="inside_bundle.html" onclick="clickAnchor(this)">Default API strings</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="inside_esri_request.html" onclick="clickAnchor(this)">Retrieve data from a web server</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="intro_navigation.html" onclick="clickAnchor(this)">Map navigation</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="inside_events.html" onclick="clickAnchor(this)">Events</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="intro_extents.html" onclick="clickAnchor(this)">Setting Extents</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="inside_editing.html" onclick="clickAnchor(this)">Editing</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="inside_temporal.html" onclick="clickAnchor(this)">Time aware data</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="intro_firsttask.html" onclick="clickAnchor(this)">Adding a task</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="intro_querytask.html" onclick="clickAnchor(this)">Using QueryTask</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="inside_custom_layers.html" onclick="clickAnchor(this)">Creating custom layer types</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="../jstutorials/intro_javascript_classes.html" onclick="clickAnchor(this)">Writing a class</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="../jstutorials/intro_custom_dijit.html" onclick="clickAnchor(this)">Writing a custom widget</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="intro_webmap.html" onclick="clickAnchor(this)">Web maps</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="intro_analysiswidgets.html" onclick="clickAnchor(this)">Working with Analysis Widgets</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="intro_geoenrichment.html" onclick="clickAnchor(this)">Working with GeoEnrichment Widgets</a>
+        </div>
+        <!-- graphics -->
+        <div class="treeNode">
+          <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+          <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">Graphics and feature layers</span>
+          <div class="treeSubnodesHidden">
+            <div class="treeNode">
+              <a class="treeUnselected" href="inside_graphics.html" onclick="clickAnchor(this)">Graphics overview</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="inside_feature_layers.html" onclick="clickAnchor(this)">Feature layer overview</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="inside_renderers.html" onclick="clickAnchor(this)">Symbols and renderers</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="intro_bettermaps.html" onclick="clickAnchor(this)">Better vector mapping</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="inside_styling_svg.html" onclick="clickAnchor(this)">Styling features with CSS</a>
+            </div>
+          </div>
+        </div>
+        <!--info window-->
+        <div class="treeNode">
+          <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif">
+          <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">
+            Popups and Info Windows
+          </span>
+          <div class="treeSubnodesHidden">
+            <div class="treeNode">
+              <a class="treeUnselected" href="intro_infowindow.html" onclick="clickAnchor(this)">Info window overview</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="intro_formatinfowindow.html" onclick="clickAnchor(this)">Format info window content</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="intro_customize.html" onclick="clickAnchor(this)">Customize info windows</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="intro_agspopup.html" onclick="clickAnchor(this)">Popup overview</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="intro_popuptemplate.html" onclick="clickAnchor(this)">Format popup content</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="intro_customizepopup.html" onclick="clickAnchor(this)">Customize popup</a>
+            </div>
+          </div>
+        </div>
+        <!--routing book-->
+        <div class="treeNode">
+          <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif">
+          <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">
+            Using the RouteTask
+          </span>
+          <div class="treeSubnodesHidden">
+            <div class="treeNode">
+              <a class="treeUnselected" href="intro_route_overview.html" onclick="clickAnchor(this)">Routing overview</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="intro_route_routetask.html" onclick="clickAnchor(this)">Working with the route task</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="intro_route_stop_seq.html" onclick="clickAnchor(this)">Optimize the route</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="intro_route_directions.html" onclick="clickAnchor(this)">Driving directions</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="intro_route_time_windows.html" onclick="clickAnchor(this)">Routing with time windows</a>
+            </div>
+          </div>
+        </div>
+        <!--end routing book-->
+        <!--geoprocessing book-->
+        <div class="treeNode">
+          <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif">
+          <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">
+            Using the Geoprocessor
+          </span>
+          <div class="treeSubnodesHidden">
+            <div class="treeNode">
+              <a class="treeUnselected" href="intro_gp_overview.html" onclick="clickAnchor(this)">Geoprocessing overview</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="intro_gp_creating.html" onclick="clickAnchor(this)">Creating the geoprocessor</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="intro_gp_parameters.html" onclick="clickAnchor(this)">Geoprocessor parameters</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="intro_gp_running.html" onclick="clickAnchor(this)">Geoprocessing results</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--end book-->
+    <!-- Mobile -->
+    <div class="treeNode">
+      <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif">
+      <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">Mobile</span>
+      <div class="treeSubnodesHidden">
+        <div class="treeNode">
+          <a class="treeUnselected" href="../jstutorials/mobile_dev.html" onclick="clickAnchor(this)">Getting Started Mobile Tutorial</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="mobile_viewport.html" onclick="clickAnchor(this)">Viewport Settings</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="mobile_hardware.html" onclick="clickAnchor(this)">Feature Detection and Browser Sniffing</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="mobile_orientation.html" onclick="clickAnchor(this)">Device Orientation</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="mobile_geolocation.html" onclick="clickAnchor(this)">Geolocation</a>
+        </div>
+        <!-- <div class="treeNode"> <img src="../graphics/treenodeplus.gif" class="treeLinkImage" onclick="expandCollapse(this.parentNode)"/> <span style="cursor: pointer;" onclick="expandCollapse(this.parentNode)">HTML5</span> <div class="treeSubnodesHidden"> <div class="treeNode"> <img src="../graphics/treenodedot.gif" class="treeNoLinkImage"> <a href="jshelp/mobile_touch.htm" class="treeUnselected" onclick="clickAnchor(this)">Touch Events</a> </div> <div class="treeNode"> <img src="../graphics/treenodedot.gif" class="treeNoLinkImage"> <a href="jshelp/mobile_geolocation.htm" class="treeUnselected" onclick="clickAnchor(this)">Geolocation</a> </div> <div class="treeNode"> <img src="../graphics/treenodedot.gif" class="treeNoLinkImage"> <a href="jshelp/mobile_offline.htm" class="treeUnselected" onclick="clickAnchor(this)">Offline</a> </div> <div class="treeNode"> <img src="../graphics/treenodedot.gif" class="treeNoLinkImage"> <a href="jshelp/mobile_storage.htm" class="treeUnselected" onclick="clickAnchor(this)">Web Storage</a> </div> </div> </div> -->
+        <!-- <div class="treeNode"> <img src="../graphics/treenodedot.gif" class="treeNoLinkImage"> <a href="jshelp/mobile_hybrid.htm" class="treeUnselected" onclick="clickAnchor(this)">Hybrid Applications</a> </div> -->
+        <div class="treeNode">
+          <a class="treeUnselected" href="mobile_frameworks.html" onclick="clickAnchor(this)">Frameworks</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="mobile_references.html" onclick="clickAnchor(this)">References</a>
+        </div>
+      </div>
+    </div>
+    <!-- end book -->
+    <!--Recommendations-->
+    <div class="treeNode">
+      <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif">
+      <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">
+        Recommendations
+      </span>
+      <div class="treeSubnodesHidden">
+        <div class="treeNode">
+          <a class="treeUnselected" href="limits_for_graphics.html" onclick="clickAnchor(this)">Determining limits for map graphics</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="best_practices_feature_layers.html" onclick="clickAnchor(this)">Feature layer best practices</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="inside_guidelines.html" onclick="clickAnchor(this)">Coding guidelines</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="inside_faq.html" onclick="clickAnchor(this)">Frequently asked questions</a>
+        </div>
+      </div>
+    </div>
+    <!--end book-->
+    <!-- Layout book -->
+    <div class="treeNode">
+      <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif">
+      <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">
+        Application Layouts
+      </span>
+      <div class="treeSubnodesHidden">
+        <div class="treeNode">
+          <a class="treeUnselected" href="inside_dojoLayouts.html" onclick="clickAnchor(this)">Dojo layouts</a>
+        </div>
+      </div>
+    </div>
+    <!--End layout book -->
+    <!--Working with ArcGIS Server Services-->
+    <div class="treeNode">
+      <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif">
+      <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">
+        ArcGIS Server Services
+      </span>
+      <div class="treeSubnodesHidden">
+        <div class="treeNode">
+          <a class="treeUnselected" href="ags_overview.html" onclick="clickAnchor(this)">Overview</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="ags_rest.html" onclick="clickAnchor(this)">Services directory and the REST API</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="ags_secureservices.html" onclick="clickAnchor(this)">Working with secure resources</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="ags_proxy.html" onclick="clickAnchor(this)">Using the proxy page</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="ref_coordsystems.html" onclick="clickAnchor(this)">Coordinate system IDs</a>
+        </div>
+      </div>
+    </div>
+    <!--end book-->
+    <!--What's new -->
+    <div class="treeNode">
+      <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif">
+      <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">
+        What's New archive
+      </span>
+      <div class="treeSubnodesHidden">
+        <div class="treeNode">
+          <a class="treeUnselected" href="migration_30.html" onclick="clickAnchor(this)">Migrating to 3.0</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="migration_20.html" onclick="clickAnchor(this)">Migrating to 2.0</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v37.html" onclick="clickAnchor(this)">What's New in Version 3.7</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v36.html" onclick="clickAnchor(this)">What's New in Version 3.6</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v35.html" onclick="clickAnchor(this)">What's New in Version 3.5</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v34.html" onclick="clickAnchor(this)">What's New in Version 3.4</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v33.html" onclick="clickAnchor(this)">What's New in Version 3.3</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v32.html" onclick="clickAnchor(this)">What's New in Version 3.2</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v31.html" onclick="clickAnchor(this)">What's New in Version 3.1</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v30.html" onclick="clickAnchor(this)">What's New in Version 3.0</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v28.html" onclick="clickAnchor(this)">What's New in Version 2.8</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v27.html" onclick="clickAnchor(this)">What's New in Version 2.7</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v26.html" onclick="clickAnchor(this)">What's New in Version 2.6</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v25.html" onclick="clickAnchor(this)">What's New in Version 2.5</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v24.html" onclick="clickAnchor(this)">What's New in Version 2.4</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v23.html" onclick="clickAnchor(this)">What's New in Version 2.3</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v22.html" onclick="clickAnchor(this)">What's New in Version 2.2</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v21.html" onclick="clickAnchor(this)">What's New in Version 2.1</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v20.html" onclick="clickAnchor(this)">What's New in Version 2.0</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v16.html" onclick="clickAnchor(this)">What's New in Version 1.6</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v15.html" onclick="clickAnchor(this)">What's New in Version 1.5</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v14.html" onclick="clickAnchor(this)">What's New in Version 1.4</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v13.html" onclick="clickAnchor(this)">What's New in Version 1.3</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v12.html" onclick="clickAnchor(this)">What's New in Version 1.2</a>
+        </div>
+      </div>
+    </div>
+    <!--end book-->
+    <!-- Book template <div class="treeNode"> <img src="../graphics/treenodeplus.gif" class="treeLinkImage" onclick="expandCollapse(this.parentNode)"/> <span style="cursor: pointer;" onclick="expandCollapse(this.parentNode)">Layers</span> <div class="treeSubnodesHidden"> <div class="treeNode"><img src="../graphics/treenodedot.gif" class="treeNoLinkImage"/><a href="http://skrzat/axlguide/jsdoc/class_style.cfm?theClass=ArcGISTiledMapServiceLayer" class="treeUnselected" onclick="clickAnchor(this)">ArcGISTiledMapServiceLayer</a></div> </div> </div>-->
+    <!--end book-->
+  </div>
+</div>
+<!-- pretty printed via http://prettydiff.com/?m=beautify&html --></div> <!-- sub 3:  Conceptual help TOC -->
+  </div>
+  <div class="grid_9 contentWrapper">
+    <div id="topicPane">		<div id="pageBanner">Better Vector Mapping</div>
+    
+		<div id="nstext">
+    
+    <p>Feature Layers are client side layers that access data and draw the features as vector graphics in the browser.  Feature Layers can be used to create interactive visualizations.  These visualizations are enhanced by some new renderers and new capabilities to existing renderers.</p>
+    
+	  <!--***START TEXT - DO NOT WRITE ABOVE THIS LINE***-->
+      <br><br>
+      <h3><b>Rotation</b></h3>
+      <p>The <code>rotationInfo</code> property of a renderer defines how marker symbols are rotated. You can use rotation to depict wind direction, vehicle heading, etc. Only applied to marker symbols (based on point data).</p>
+      
+      <table style="width: auto; font-size: 14px;">
+        <tr>
+          <td style="vertical-align: top"><img src="images/bettermaps-rotation.png"></td>
+          <td style="vertical-align: top"><pre class="prettyprint">layer.renderer.setRotationInfo({
+  field: "heading",
+  type: "geographic"
+});</pre></td>
+        </tr>
+      </table>
+      <p>
+        The property <code>type</code> defines how the angle of rotation was measured. There are two ways you can define the angle:
+        <ul>
+          <li><code>"geographic"</code> - rotates the symbol from north in clockwise direction.</li>
+          <li><code>"arithmetic"</code> - rotates the symbol from east in counter-clockwise direction.</li>
+        </ul>
+      </p>
+      <p>Note that this is different from a MarkerSymbol's <code>angle</code> property, which defines rotation that is applied <b>before</b> the symbol is offset (using xoffset and yoffset). <code>rotationInfo</code> defines rotation that is applied <b>after</b> the symbol is offset (with the geographic point as the origin of rotation).</p>
+      
+      <p>View Samples: <a href="../jssamples/renderer_proportional_with_rotation.html">Renderer with proportional symbols and rotation</a> | <a href="../jssamples/renderer_class_breaks_proportional_rotation.html">Class breaks with rotation and proportional symbols</a></p>
+
+      <br><br>
+      <h3><b>Symbol Scaling</b></h3>
+      
+      <p>Symbol size can be scaled in the following ways:</p>
+      
+      <ul style="font-size: 14px">
+        <li>
+          <p>Based on data that represents <b>distance</b> quantity. For example: the radius of tree canopy, the width of water mains, etc. Specify <code>field</code> and <code>valueUnit</code> in <code>setProportionalSymbolInfo</code>. Features will be mapped according to their sizes in the real world.</p>
+          <table style="width: auto; font-size: 14px;">
+            <tr>
+              <td style="vertical-align: top"><img src="images/bettermaps-proportional-tree-canopy.png"></td>
+              <td style="vertical-align: top"><pre class="prettyprint">layer.renderer.setProportionalSymbolInfo({
+  field: "GroundArea",
+  valueUnit: "feet",
+  valueRepresentation: "area"
+});</pre></td>
+            </tr>
+          </table>
+          <p>View Sample: <a href="../jssamples/renderer_proportional_points.html">Proportional symbols for points</a>
+        </li>
+        <li>
+          <p>Based on data that represents <b>non-distance</b> quantity. For example: the traffic count of highways, the population of states, etc. Depending on how you want to visualize your data, there are four approach you may use to scale the symbols:</p>
+          <p><img src="images/bettermaps-graduated-in-polygon.png"></p>
+          <table style="font-size: 14px" class="syntaxTABLE">
+            <tr>
+              <td style="vertical-align: top">
+                <b>1. No Limits Proportional</b>
+                <div>Applied when only <code>minDataValue</code> and <code>minSize</code> are specified. Any other symbol gets its size proportionally based on its quantity relative to <code>minDataValue</code>. This is the only case where the symbol sizes are truely proportional to the data.</div>
+              </td>
+              <td style="vertical-align: top">
+                <img src="images/bettermaps-symbol-scaling-1.png">
+                <div style="font-size: 12px"><i>* Symbol size proportionally increases from 1 to 100.</i></div>
+              </td>
+              <td style="vertical-align: top">
+                <pre class="prettyprint">layer.renderer.setProportionalSymbolInfo({
+  field: "value",
+  minDataValue: 1,
+  minSize: 1
+});
+</pre>
+              </td>
+            </tr>
+            <tr>
+              <td style="vertical-align: top">
+                <b>2. Proportional with Size Limits</b>
+                <div>Applied when <code>minDataValue</code>, <code>minSize</code>, <code>maxDataValue</code> and <code>maxSize</code> are all specified. Symbol size is mapped proportionally between the range of data values across the range of symbol sizes. It gives you control over the range of symbol sizes, but the symbol sizes are not truely proportional to the data.</div>
+                <div>View Samples: <a href="../jssamples/renderer_proportional_lines.html">Proportional symbols for lines</a> | <a href="../jssamples/renderer_proportional_scale_dependent.html">Scale dependent renderer</a></div>
+              </td>
+              <td style="vertical-align: top">
+                <img src="images/bettermaps-symbol-scaling-2.png">
+                <div style="font-size: 12px"><i>* Symbol size increases from 1 to 100, but not truely proportional.</i></div>
+              </td>
+              <td style="vertical-align: top">
+                <pre class="prettyprint">layer.setProportionalSymbolInfo({
+  field: "value",
+  minDataValue: 1
+  minSize: 2
+  maxDataValue: 100
+  maxSize: 8
+});
+</pre>
+              </td>
+            </tr>
+            <tr>
+              <td style="vertical-align: top">
+                <b>3. Outlier-friendly Proportional</b>
+                <div>Similar to <b>2.</b>, but the <code>minDataValue</code> and <code>maxDataValue</code> are not the actual min value and max value of your data. You can use this approach to set cut-off points beyond which all values will be mapped at the same size. It is useful when you would like to exclude outliers.</div>
+              </td>
+              <td style="vertical-align: top">
+                <img src="images/bettermaps-symbol-scaling-3.png">
+                <div style="font-size: 12px"><i>* Symbol size increases from 10 to 75.</i></div>
+              </td>
+              <td style="vertical-align: top">
+                <pre class="prettyprint">layer.setProportionalSymbolInfo({
+  field: "value",
+  minDataValue: 10
+  minSize: 2
+  maxDataValue: 75
+  maxSize: 8
+});
+</pre>
+              </td>
+            </tr>
+            <tr>
+              <td style="vertical-align: top">
+                <b>4. Graduated</b>
+                <div>Symbol size is defined with discrete class breaks. You can use <code>ClassBreaksRenderer</code> to divide your data values into several classes and map each of them with the same marker symbol. If applied to a polygon layer, the symbols will be placed inside polygons, and you can use the <code>backgroundFillSymbol</code> property to determine how the polygons will be colored.</div>
+                <div>View Sample: <a href="../jssamples/renderer_graduated_polygon.html">Renderer with graduated symbols for polygons</a></div>
+              </td>
+              <td style="vertical-align: top">
+                <img src="images/bettermaps-symbol-scaling-4.png">
+              </td>
+              <td style="vertical-align: top">
+                <pre class="prettyprint">var renderer = new ClassBreaksRenderer(null, "value");
+renderer.addBreak(0, 20, new SimpleMarkerSymbol().setSize(2));
+renderer.addBreak(20, 60, new SimpleMarkerSymbol().setSize(4));
+renderer.addBreak(60, 100, new SimpleMarkerSymbol ().setSize(8));
+renderer.backgroundFillSymbol = new SimpleFillSymbol();
+layer.setRenderer(renderer);
+</pre>
+              </td>
+            </tr>
+          </table>
+        </li>
+      </ul>
+      <p>Depending on the geometry type of the layer, symbol scaling affects your map differently:</p>
+      <table style="font-size: 14px" class="syntaxTABLE">
+        <tr>
+          <th>Point</th><th>Line</th><th>Polygon</th>
+        </tr>
+        <tr>
+          <td style="text-align: center"><img src="images/bettermaps-proportional-point.png"><div>The size of marker symbol is scaled.</div></td>
+          <td style="text-align: center"><img src="images/bettermaps-proportional-line.png"><div>The width of line symbol is scaled.</div></td>
+          <td style="text-align: center"><img src="images/bettermaps-proportional-polygon.png"><div>The size of the marker symbol placed in polygon is scaled.</div></td>
+        </tr>
+      </table>
+      
+      <br><br>
+      <h3><b>Dot Density</b></h3>
+      <p>The <code>DotDensityRenderer</code> visualizes a quantity in polygon with numerous randomly placed dots. The relative sparseness of the dots indicates the distribution of a discrete spatial phenomenon, such as population distribution map, crop production map, etc.</p>
+      <table style="width: auto; font-size: 14px;">
+        <tr>
+          <td style="vertical-align: top"><img src="images/bettermaps-dot-density.png"></td>
+          <td style="vertical-align: top"><pre class="prettyprint">var renderer = new DotDensityRenderer({
+  fields: [{
+    name: "Total_Emp",
+    color: new Color([52, 114, 53])
+  }],
+  dotValue: 4000,
+  dotSize: 2
+});
+layer.setRenderer(renderer);</pre></td>
+        </tr>
+      </table>
+      <p>
+        Things to consider when making dot density maps:
+        <ul style="font-size: 14px">
+          <li>The <code>fields</code> property allows you to specify multiple fields. You may utilize this property to visualize multiple variables on one map with different colors. For example, use different colors to show the distribution of various ethnic groups.</li>
+          <li><code>dotValue</code> and <code>dotSize</code> drive the visual effects on your map. A good practice is to set the size and value of the dot so that the feature with the highest value in the layer is ~80% covered in dots.</li>
+          <li>The density on map always changes as the user zooms in or zooms out. Use the <code>ScaleDependentRenderer</code> to set a unique dot density renderer for each scale or zoom range, so the <code>dotValue</code> and <code>dotSize</code> can vary across multiple scale ranges.</li>
+          <li>Dot density maps tend to break down at larger scales. Users start seeing patterns in the random distribution of the dots that do not exist in reality. For example, dot density visualizations on county datasets should only be viewed at the state or regional level.</li>
+          <li>Dot density maps should always use equal area projections to ensure the density is based on the same area measurement everywhere on maps, although WebMercator could be acceptable at larger scales, as the exaggeration of area becomes negligible.</li>
+          <li>Use popups to clearly communicate the actual value of the feature, so the user can explore the map visually and interactively.</li>
+        </ul>
+      </p>
+      <p>View Samples: <a href="../jssamples/renderer_dot_density.html">Dot density renderer</a> | <a href="../jssamples/renderer_dot_density_multiple_classes.html">Dot density with multiple classes</a></p>
+          
+      
+      <br><br>
+      <h3><b>Scale Dependent Renderer</b></h3>
+      <p>The <code>ScaleDependentRenderer</code> defines multiple renderers for a layer, where each renderer is only applied to the layer at a specific scale range or zoom range. While other renderer types allow you to define graphics styling based solely on their attribute values, a scale dependent renderer allows you to define styling based on map scale as well.</p>
+      <table style="width: auto; font-size: 14px;">
+        <tr>
+          <td style="vertical-align: top"><img src="images/bettermaps-scale-dependent.png"></td>
+          <td style="vertical-align: top"><pre class="prettyprint">var scaleDependentRenderer = new ScaleDependentRenderer({
+  rendererInfos: [{
+    renderer: renderer1,
+    maxScale: 10000000,
+    minScale: 20000000
+  }, {
+    renderer: renderer2,
+    maxScale: 5000000,
+    minScale: 10000000
+  }]
+});
+
+layer.setRenderer(scaleDependentRenderer);</pre></td>
+        </tr>
+      </table>
+      <p>For each <code>renderInfo</code> object in <code>rendererInfos</code>, <code>minScale</code> and <code>maxScale</code> can be replaced with <code>minZoom</code> and <code>maxZoom</code> respectively, if your map has defined LODs (Levels of Detail).</p>
+      <p>View Samples: <a href="../jssamples/renderer_proportional_scale_dependent.html">Scale dependent renderer</a> | <a href="../jssamples/renderer_dot_density.html">Dot density renderer</a> | <a href="../jssamples/renderer_dot_density_multiple_classes.html">Dot density with multiple classes</a> | <a href="../jssamples/renderer_graduated_polygon.html">Renderer with graduated symbols for polygons</a></p>
+      
+      <br><br>
+      <h3><b>Compatibility</b></h3>
+      <table class="detailTABLE">
+        <tr>
+          <th></th><th>FeatureLayer</th><th>Dynamic Layers</th><th>Legend</th><th>Print</th><th>IE7, IE8</th>
+        </tr>
+        <tr>
+          <td>Rotation</td><td>Yes</td><td>Yes</td><td>N/A</td><td>Yes</td><td>Yes</td>
+        </tr>
+        <tr>
+          <td>Proportional</td><td>Yes</td><td>No</td><td>No</td><td>No</td><td>Yes</td>
+        </tr>
+        <tr>
+          <td>Graduated Symbols in Polygons</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td>
+        </tr>
+        <tr>
+          <td>Dot Density Renderer</td><td>Yes</td><td>No</td><td>No</td><td>No</td><td>No</td>
+        </tr>
+        <tr>
+          <td>Scale Dependent Renderer</td><td>Yes</td><td>No</td><td>Yes</td><td>No</td><td>Yes</td>
+        </tr>
+      </table>
+
+    <!--***END TEXT - DO NOT WRITE BELOW THIS LINE***-->
+		</div><div id="wh_footer" class="footnote" align="center">
+  Please <a href="mailto:js_feedback@esri.com?subject=Feedback on jshelp/intro_bettermaps.html">contact the team</a> to comment or give suggestions.
+  <br>
+  Copyright &copy; Environmental Systems Research Institute, Inc.
+</div></div> <!-- sub 4:  main content for a page and feedback markup -->
+  </div>
+</div> <!-- end main content -->
+
+<!-- TOC script -->
+<script src="../scripts/tree.js"></script>
+
+<script src="../prettify/prettify.js"></script>
+<script>
+  var dojoConfig = {
+    packages: [{
+      "name": "js",
+      "location": location.pathname.replace(/\/[^/]+$/, "/") + "../scripts"
+    }]
+  };
+</script>
+<script src="//js.arcgis.com/3.8compact/"></script> <!-- add API version -->
+<script src="../scripts/esri-main-concepts.js"></script>
+
+<!-- google analytics -->
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-215788-63']);
+  _gaq.push(['_setDomainName', 'arcgis.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+ <!-- sub 5:  add script to redirect old hash based URLs to static pages and google analytics -->
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+    <title>ArcGIS API for JavaScript | Web Tiled Layers</title>
+
+    <link rel="stylesheet" media="all" href="css/wtl-styles.css" />
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/esri/css/esri.css">
+
+    <script>
+      var dojoConfig = {
+        packages: [{
+          "name": "extras",
+          "location": location.pathname.replace(/\/[^/]+$/, '') + "/extras"
+        }]
+      }
+    </script>
+    <script src="http://js.arcgis.com/3.8compact/"></script>
+    <script src="map-layers.js"></script><!-- defines the mapLayers variable -->
+    <script>
+      dojo.require("esri.map");
+      dojo.require("esri.dijit.Attribution");
+      dojo.require("esri.layers.WebTiledLayer");
+      dojo.require("extras.LayerListToggle");
+      
+      var map;
+      function init() {
+        if ( dojo.isIE < 9 ) {
+          dojo.query("body")[0].innerHTML = "";
+          alert("Sorry, this sample requires Internet Explorer 9 or later, Chrome, Firefox or Safari.");
+          return;
+        }
+        map = new esri.Map("map", {
+          slider: false,
+          resizeDelay: 100, // 300ms(default) seemed a little slow in this case
+          center: [-89.985, 29.579],
+          zoom: 8
+        });
+
+        // alias for WebTiledLayer constructor
+        var wtl = esri.layers.WebTiledLayer;
+        // references to dom nodes
+        var lc = dojo.byId("mapLayerContainer");
+        var ll = dojo.byId("mapLayerList");
+        var mapNode = dojo.byId("map");
+        // clear out the side bar
+        ll.innerHTML = "";
+        // create and add the layers
+        // show a radio button for each
+        dojo.forEach(mapLayers.info, function(l) {
+          var lyr = new wtl(l.url, l.options);
+          map.addLayer(lyr);
+          // add a radio for the layer
+          dojo.create("input", {
+            "type": "radio",
+            "checked": l.options.visible,
+            "name": "tiledLayers",
+            "id": l.options.id,
+            "value": l.options.id
+          }, ll, "last");
+          dojo.create("label", { 
+            "for": l.options.id,
+            "innerHTML": l.options.id
+          }, ll, "last");
+          dojo.create("br", null, ll, "last");
+        });
+        
+        // event delegation to toggle layers
+        dojo.connect(ll, "onclick", function(e) {
+          // console.log("clicked: ", e.target.id, dojo.byId(e.target.id));
+          if ( e.target === this || !dojo.byId(e.target.id) ) { 
+            // return if the actual pane was clicked or 
+            // if unable to find the DOM node for a layer
+            return;
+          }
+          // hide other layers
+          dojo.forEach(map.layerIds, function(id) {
+            map.getLayer(id).hide();
+          });
+          // show the layer with the clicked radio button
+          var layer = map.getLayer(e.target.id);
+          layer.show();
+        });
+
+        // create an instance of extras.LayerListToggle to 
+        // position the layer list as necessary on smaller screens
+        // see extras/LayerListToggle.js for info on arguments and methods
+        var llt = new extras.LayerListToggle({
+          "list": ll, "listContainer": lc, "mapNode": mapNode
+        });
+
+        // toggle the visibility of the mapLayerList div
+        // when the layers button is clicked
+        // layers button is only visible when screen width is < 800px
+        dojo.connect(dojo.byId("toggleLayerList"), "onclick", dojo.hitch(llt, llt.toggle));
+
+        // matchMedia fires an event when a specific media query matches
+        // in this case, when the page width changes to >= 800px the layer
+        // list dom node is moved to the side bar 
+        //
+        // matchMedia is supported in IE10, Chrome, FF, Safari and Opera
+        // as well as Safari on iOS 5.x and Android 3+
+        // http://caniuse.com/#search=matchMedia
+        var mql = window.matchMedia("(min-width: 800px)");
+        // add a listener to respond to media query events        
+        mql.addListener(function(mediaQueryList) {
+          // console.log("modifyLayout", mediaQueryList, llt);
+          if (mediaQueryList.matches) {
+            llt.moveToSidebar();
+          }
+        });
+      }
+
+      dojo.ready(init);
+    </script>
+  </head>
+
+<body>
+<div class="page">
+  <div class="row">
+    <div class="top col">
+      <span id="toggleLayerList">Toggle Layer List</span>
+      <div id="header">Web Tiled Layers</div>
+      <div id="subheader">any tileset in the ArcGIS API for JS</div>
+    </div>
+  </div>
+  <div class="row">
+    <div id="mapLayerContainer" class="col"> Map Layers:
+      <div id="mapLayerList"></div>
+    </div>
+    <div class="mapContainer col">
+      <div id="map"> 
+        <div id="ds"> <!-- drop shadow divs -->
+          <div id="ds-l">
+            <div class="ds v1 o1"></div>
+            <div class="ds v2 o2"></div>
+            <div class="ds v3 o3"></div>
+            <div class="ds v4 o4"></div>
+            <div class="ds v5 o5"></div>
+          </div>
+        </div> <!-- end drop shadow divs -->
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

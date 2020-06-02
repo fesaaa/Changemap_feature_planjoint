@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="ie lt-ie9 lt-ie8 lt-ie7 ie6"> <![endif]-->
+<!--[if IE 7]>         <html class="ie lt-ie9 lt-ie8 ie7"> <![endif]-->
+<!--[if IE 8]>         <html class="ie lt-ie9 ie8"> <![endif]-->
+<!--[if gt IE 8]><!--> <html> <!--<![endif]-->
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+  <meta name="content-language" content="en">
+  <meta name="product" content="js-api-arcgis">
+  <meta name="subject" content="DEVELOPER,WEB,WEB APPLICATIONS,MOBILE">
+  <meta name="sub_category" content="JavaScript API">
+  <meta name="search-collection" content="help">
+  <meta name="search-category" content="help-api">
+  <meta name="version" content="arcgis-3.8"> <!-- API version -->
+  <meta name="content_type" content="Tutorial"> <!-- options: Help Topic, API Reference or Tutorial -->
+  <meta name="last-modified" content="2013-12-19"> <!-- put in date docs were generated -->
+
+  <link rel="stylesheet" href="../styles/screen.css">
+  <link rel="stylesheet" href="../styles/jsdoc.css">
+  <link rel="stylesheet" href="../styles/homepage.css">
+  <link rel="stylesheet" href="../styles/grid.css">
+  <link rel="stylesheet" href="../styles/tree.css">
+  <link rel="stylesheet" href="../prettify/prettify.css">
+  <style>
+    html {
+      overflow-y: auto;
+    }
+    .navigation-bar, .section-bar {
+      margin-bottom: 0;
+    }
+    .navigation-bar header h1, .section-bar header h1 {
+      margin-top: .35294em;
+    }
+    .navigation-bar, .section-bar {
+      background: url('../graphics/banner.jpg') no-repeat center center #762783;
+      min-height: 48px;
+      color: white;
+    }
+    #esri-logo {
+      background: url('../graphics/logo-esri.png') no-repeat center center ;
+      width: 100px;
+    }
+    @font-face {
+    font-family:'icomoon';src:url('../fonts/icons.eot');src:url('../fonts/icons.eot?#iefix') format("embedded-opentype"),url('../fonts/icons.woff') format("woff"),url('../fonts/icons.ttf') format("truetype"),url('../fonts/icons.svg#icomoon') format("svg");font-weight:400;font-style:normal
+    }[data-icon]:before {
+      font-family: 'icomoon';
+      content: attr(data-icon);
+      speak: none;
+      font-weight: 400;
+      line-height: 1;
+      -webkit-font-smoothing: antialiased
+    }[class*="icon-"]:before {
+      font-family: 'icomoon';
+      speak: none;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 1;
+      -webkit-font-smoothing: antialiased;
+      text-transform: none
+    }
+    pre {
+      font-size: 1.1em;
+      line-height: normal;
+      margin: 0;
+    }
+    #header nav li a {
+      font-size: .875em;
+    }
+    #esri-logo {
+      margin-left: 0;
+    }
+  </style>
+  <!--[if lt IE 9]>
+    <script src="../scripts/libs/html5shiv.js"></script>
+    <script src="../scripts/libs/selectivizr-min.js"></script>
+    <style>
+      #wrapper {
+        min-width: 960px;
+      }
+    </style>
+  <![endif]-->
+  <title>
+    Tutorials | ArcGIS API for JavaScript 
+  </title>
+</head>
+  
+<body>
+<div id="nav">
+<header id="header">
+  <div class="container relative-container">
+    <div class="header-inner ">
+      <div class="logo-wrap"><a href="../" id="site-logo">Arc<span>GIS</span> API for JavaScript</a><!--span class="down-arrow" id="down-arrow"></span--></div>
+      <nav id="site-nav" class="">
+        <a href="/en/" class="selected">
+          <h4 class="developers">Arc<span>GIS</span> API for JavaScript</h4>
+          <p>Build location-aware applications with ArcGIS</p>
+        </a>
+
+        <a href="https://www.arcgis.com/about/">
+          <h4 class="organizations">Arc<span>GIS</span> for Organizations</h4>
+          <p>Learn more about ArcGIS</p>
+        </a>
+      </nav>
+
+      <a id="esri-logo" href="http://esri.com">Esri</a>
+      <div id="logged-out-navigation" class="dropdown-navigation hide">
+  <a id="login-link" class="btn small light" href="/en/log-in/">Log In</a>
+</div>
+<div id="logged-in-navigation" class="dropdown-navigation dropdown-wrapper hide">
+  <a href="/en/usage-summary" class="dropdown btn small light">
+    <!-- <img src="http://d3w50ib5d2uy0g.cloudfront.net/cdn/2464//js/esri/arcgisonline/css/images/no-user-thumb.jpg" width="16" height="16" alt=""> --><span id="username"></span>
+  </a>
+  <div class="dropdown-content">
+    <ul>
+      <li><a href="/en/usage-summary/">Usage Summary</a></li>
+      <li><a href="/en/applications/">Applications</a></li>
+      <li></li>
+      <li><a href="/en/tools/">GIS Tools</a></li>
+    </ul>
+    <hr>
+    <ul>
+      <li><a href="/en/account/profile/">Account Settings</a></li>
+      <li><a href="/en/feedback/">Feedback</a></li>
+    </ul>
+    <hr>
+    <ul>
+      <li><a id="log-out-link" href="#">Log Out</a></li>
+    </ul>
+  </div>
+</div>
+
+      <div id="mobile-navigation" class="dropdown-navigation dropdown-wrapper">
+        <a href="#" class="dropdown btn small light icon icon-list-2">Select <span>a Section</span></a>
+        <div class="dropdown-content">
+          <ul>
+            <li><a href="../jshelp/">Concepts</a></li>
+            <li><a href="../jsapi/">API Reference</a></li>
+            <li><a href="../jssamples/">Samples</a></li>
+            <li><a href="http://forums.arcgis.com/forums/15">Forum</a></li>
+            <li><a href="../../">All Developer Resources</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="navigation-bar">
+  <div class="container">
+    <nav>
+      <div id="section-label"><a href=".">Tutorials</a></div>
+      <ul>
+        <!--li class="current"><a href="/en/javascript/">Home</a></li-->
+        <li class="current"><a href=".">Tutorials</a></li>
+        <li><a href="../jshelp/">Concepts</a></li>
+        <li><a href="../jsapi/">API Reference</a></li>
+        <li><a href="../jssamples/">Samples</a></li>
+        <li><a href="http://forums.arcgis.com/forums/15">Forum</a></li>
+        <li><a href="../../">All Developer Resources</a></li>
+      </ul>
+    </nav>
+  </div>
+</div> 
+</div><!-- end nav bar --> <!-- sub 2: header and navigation -->
+
+<div class="container_12">
+  <div class="grid_3 contentWrapper">
+    <div id="toggleToc">
+      <img src="../graphics/tochide.gif"> Hide Table of Contents
+    </div>
+    <div id="apiToc"><div class="treeDiv" id="tree" style="top: 35px; left: 0px;">
+  <div id="treeRoot">
+    <div class="treeNode">
+      <a class="treeUnselected" href="intro_firstmap_amd.html" onclick="clickAnchor(this)">Build your first application</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="intro_agstemplate_amd.html" onclick="clickAnchor(this)">Use an ArcGIS.com webmap</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="mobile_dev.html" onclick="clickAnchor(this)">Mobile-specific application</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="intro_directions.html" onclick="clickAnchor(this)">Directions widget</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="tutorial_geocoder.html" onclick="clickAnchor(this)">Geocoder widget</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="tutorial_label_layer.html" onclick="clickAnchor(this)">Labeling features client-side</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="intro_javascript_classes.html" onclick="clickAnchor(this)">Write a class</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="intro_custom_dijit.html" onclick="clickAnchor(this)">Create a re-usable widget</a>
+    </div>
+  </div>
+</div>
+<!-- pretty printed via http://prettydiff.com/?m=beautify&html --></div> <!-- Conceptual help TOC -->
+  </div>
+  <div class="grid_9 contentWrapper">
+    <div id="topicPane">  <div id="pageBanner">Build a web map using ArcGIS.com</div>
+
+  <div id="nstext">
+
+  <!--***START TEXT - DO NOT WRITE ABOVE THIS LINE***-->
+  <p>The <a href="http://www.arcgis.com" target="_blank">ArcGIS.com Map Viewer</a> allows you to quickly and easily create and share web maps that tell interesting stories about your data. They may explain where people are buying homes, where sea surface temperature is changing, or where elephants migrate in the summer. These maps share information not just data. </p>
+  
+<p>In this tutorial, you'll build a sample application that uses the ArcGIS API for JavaScript to build an application that displays a web map from <a href="http://www.arcgis.com" target="_blank">ArcGIS.com</a>.</p>
+
+
+<h3>Build a web map</h3>
+  <p>Web maps typically display a map service with operational data (such as available stands of timber) on top of a map service with reference information (such as imagery or a shaded relief map). Sometimes a reference map service that contains boundaries or labels is placed on top of the other layers to create a "map sandwich": two reference layers with the "meat", or operational data, in between. To build a web map visit the <a target='_blank' href='http://resources.arcgis.com/en/help/tutorials/01z300000018000000.htm'>Create a map</a> tutorial.</p> 
+  <p>After creating the web map copy the web map id for use in the rest of this tutorial. To find the id, view your web map in ArcGIS.com and notice that the URL includes the unique map identifier. 
+  </p>
+ <img src="../jshelp/images/webmapid.jpg"/>
+
+<h3>View the code</h3>
+  <p>View a live version of this sample in the <a href="../sandbox/sandbox.html?sample=map_webmap" target="_blank">ArcGIS API for JavaScript Sandbox</a>.The sandbox is a live code editor that allows you to modify the sample's source and view the changes live. Try switching out the web map id in the sandbox for the id of your web map then hit <b>Run</b> to view your map. </p>
+
+<h3>Getting Started</h3>
+  <ol>
+    <li> Open the tutorial <a href="../sandbox/sandbox.html?sample=map_webmap" target="_blank">sample</a> in the sandbox and replace the code in the source section with the code below:
+
+  <pre class='prettyprint'>
+  <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+  &lt;html>
+  &lt;head>
+  &lt;title>Create a Map&lt;/title>
+  &lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  &lt;meta http-equiv="X-UA-Compatible" content="IE=7,IE=9" />
+  &lt;link rel="stylesheet" type="text/css" href="http://js.arcgis.com/3.7/js/esri/css/esri.css">
+
+  &lt;script type="text/javascript">djConfig = { parseOnLoad:true };&lt;/script>
+
+  &lt;script type="text/javascript" src="http://js.arcgis.com/3.7compact/">&lt;/script>
+  &lt;style>
+  html,body,#mapDiv,.map.container{
+    padding:0;
+    margin:0;
+    height:100%;
+  }
+  &lt;/style>
+  &lt;script type="text/javascript">
+    dojo.require("esri.map");
+
+    function init(){
+    
+    }
+
+    dojo.addOnLoad(init);
+  &lt;/script>
+
+  &lt;/head>
+  &lt;body>
+  &lt;div id="mapDiv">&lt;/div>
+  &lt;/body>
+  &lt;/html>
+
+</pre>
+  <p><b>Note:</b>If this code is new to you visit the <a href='../jstutorials/intro_firstmap.html'>Create your First Application</a> help topic for details.</p>
+</li>
+
+<li>Next we'll load the <code>esri.arcgis.utils</code> module to provide access to the <code>esri.arcgis.utils.createMap</code> method. To do so add the following code to the sandbox application. 
+
+<pre class="prettyprint">
+  <span style="color:gray">dojo.require("esri.map");</span>
+  dojo.require("esri.arcgis.utils");
+</pre>
+ Now you are ready to use the <code>createMap</code> method. This method takes a web map id and optional map parameters and creates a map based on the web map content. Any symbology, popups, layer visibliity etc that you defined in your web map will be honored by the map. 
+
+</li>
+<li> Add code to the init function to create a map based on the web map id. If you haven't created a web map yet you can use <code>1a40fa5cc1ab4569b79f45444d728067</code> for testing. 
+
+<pre class='prettyprint'>
+   <span style="color:gray"> function init(){</span>
+     var webmapid = 'Enter your web map id  here';
+     esri.arcgis.utils.createMap(webmapid,'mapDiv');
+    <span style="color:gray">}</span>
+</pre>
+</li>
+<li>
+Run the application and note that the web map from ArcGIS.com is displayed. The map displays with the symbology and popup information you defined in ArcGIS.com.
+</li>
+</ul>
+
+<h3>Add a legend</h3>
+<p>Starting at version 3.4, you can quickly add a legend to the application using the <code>esri.arcgis.utils.getLegendLayers</code> method. This method accepts the response from <code>esri.argis.utils.createMap</code> and builds an array of <code>layerInfos</code> that can be passed into the Legend constructor. The method takes into account the visibility settings for the layers and the output array will not contain the basemap. Try adding a legend to the test application. 
+<ol>
+<li>Add a div to the <code>html</code> section of the application below the existing map div. 
+  <pre class="prettyprint">
+  <span style="color:gray">
+&lt;div id="mapDiv">&lt;/div&gt;</span>
+&lt;div id="legendDiv">&lt;/div&gt;
+  </pre>
+</li>
+<li>Add css to position the legend in the upper right corner of the map. 
+  <pre class="prettyprint">
+  <span style="color:gray;">html,body,#mapDiv,.map.container{
+    padding:0;
+    margin:0;
+    height:100%;
+  }</span>
+  #legendDiv{
+    background-color: #fff;
+    position: absolute !important;
+    z-index: 99;
+    top:10px;
+    right:20px;
+  }
+  </pre>
+</li>
+<li>Now add the code that gets the legend layers. First load the Legend widget.
+  <pre class="prettyprint">
+    <span style="color:gray">  
+    dojo.require("esri.map");
+    dojo.require("esri.arcgis.utils"); 
+    </span>
+    dojo.require("esri.dijit.Legend");
+  </pre>
+</li>
+<li>Use the <code>getLegendLayers</code> method to build an array of legend layers.
+  <pre class="prettyprint">
+    
+    <span style="color:gray;">esri.arcgis.utils.createMap(webmapid, "mapDiv").then(function(response){
+    map = response.map;
+    </span>
+    var legend = new esri.dijit.Legend({
+      map:map,
+      layerInfos:(esri.arcgis.utils.getLegendLayers(response))
+    },"legendDiv");
+    legend.startup(); 
+
+   <span style="color:gray;">     
+   });
+   </span>
+  </pre>
+</li>
+<li>Run the application and the legend should display in the upper right corner of the map.</li>
+</ol>
+
+
+</p>
+
+<p>
+ For more details on working with web maps from the ArcGIS API for JavaScript or working with the web application templates view the <a href='../jshelp/intro_webmap.html'>ArcGIS.com web maps</a> help topic for details. 
+</p>
+
+  <!--***END TEXT - DO NOT WRITE BELOW THIS LINE***-->
+  </div>
+
+<div id="wh_footer" class="footnote" align="center">
+  Please <a href="mailto:js_feedback@esri.com?subject=Feedback on jstutorials/intro_agstemplate.html">contact the team</a> to comment or give suggestions.
+  <br>
+  Copyright &copy; Environmental Systems Research Institute, Inc.
+</div></div> <!-- main content for a page and feedback markup-->
+  </div>
+</div> <!-- end main content -->
+
+<!-- TOC script -->
+<script src="../scripts/tree.js"></script>
+
+<script src="../prettify/prettify.js"></script>
+<script>
+  var dojoConfig = {
+    packages: [{
+      "name": "js",
+      "location": location.pathname.replace(/\/[^/]+$/, "/") + "../scripts"
+    }]
+  };
+</script>
+<script src="//js.arcgis.com/3.8compact/"></script> <!-- add API version -->
+<script src="../scripts/esri-main-tutorials.js"></script>
+
+<!-- google analytics -->
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-215788-63']);
+  _gaq.push(['_setDomainName', 'arcgis.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+ <!-- sub 5:  add script to redirect old hash based URLs to static pages and google analytics-->
+
+</body>
+</html>

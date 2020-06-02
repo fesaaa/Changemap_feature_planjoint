@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <!--The viewport meta tag is used to improve the presentation and behavior of the samples 
+      on iOS devices-->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+    <title>Simple Routing</title>
+
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/dojo/dijit/themes/claro/claro.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/esri/css/esri.css">
+    
+    <script src="http://js.arcgis.com/3.8/"></script>
+    <script>
+      dojo.require("esri.map");
+      dojo.require("esri.tasks.route");
+
+      var map, routeTask, routeParams;
+      var stopSymbol, routeSymbol, lastStop;
+
+      function init() {
+        map = new esri.Map("map", {
+          basemap: "streets",
+          center: [-117.195, 34.057],
+          zoom: 14
+        });
+
+        dojo.connect(map, "onClick", addStop);
+
+        routeTask = new esri.tasks.RouteTask("http://tasks.arcgisonline.com/ArcGIS/rest/services/NetworkAnalysis/ESRI_Route_NA/NAServer/Route");
+        
+        //setup the route parameters
+        routeParams = new esri.tasks.RouteParameters();
+        routeParams.stops = new esri.tasks.FeatureSet();
+        routeParams.outSpatialReference = {"wkid":102100};
+        
+        dojo.connect(routeTask, "onSolveComplete", showRoute);
+        dojo.connect(routeTask, "onError", errorHandler);
+
+        //define the symbology used to display the route
+        stopSymbol = new esri.symbol.SimpleMarkerSymbol().setStyle(esri.symbol.SimpleMarkerSymbol.STYLE_CROSS).setSize(15);
+        stopSymbol.outline.setWidth(4);
+        routeSymbol = new esri.symbol.SimpleLineSymbol().setColor(new dojo.Color([0,0,255,0.5])).setWidth(5);
+      }
+
+      //Adds a graphic when the user clicks the map. If 2 or more points exist, route is solved.
+      function addStop(evt) {
+        var stop = map.graphics.add(new esri.Graphic(evt.mapPoint, stopSymbol));
+        routeParams.stops.features.push(stop);
+
+        if (routeParams.stops.features.length >= 2) {
+          routeTask.solve(routeParams);
+          lastStop = routeParams.stops.features.splice(0, 1)[0];
+        }
+      }
+
+      //Adds the solved route to the map as a graphic
+      function showRoute(solveResult) {
+        map.graphics.add(solveResult.routeResults[0].route.setSymbol(routeSymbol));
+      }
+
+      //Displays any error returned by the Route Task
+      function errorHandler(err) {
+        alert("An error occured\n" + err.message + "\n" + err.details.join("\n"));
+
+        routeParams.stops.features.splice(0, 0, lastStop);
+        map.graphics.remove(routeParams.stops.features.splice(1, 1)[0]);
+      }
+      dojo.ready(init);
+    </script>
+
+  </head>
+  <body class="claro">
+    <div id="map" style="width:600px; height:400px; border:1px solid #000;"></div>
+     <p>Click on the map to add stops to the route. The route from the last stop to the newly added stop is calculated. If a stop is not reachable, it is removed and the last valid point is set as the starting point.</p>
+  </body>
+</html>

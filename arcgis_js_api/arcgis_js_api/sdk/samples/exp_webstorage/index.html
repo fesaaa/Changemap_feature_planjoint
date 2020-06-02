@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+    <title>Store images in localStorage</title>
+
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/dojo/dijit/themes/claro/claro.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/esri/css/esri.css">
+    <style>
+      html, body { height: 100%; width: 100%; margin: 0; padding: 0; }
+      #map{
+        padding:0;
+      }
+    </style>
+
+    <script>var dojoConfig = {parseOnLoad: true};</script>
+    <script src="http://js.arcgis.com/3.8/"></script>
+    <script>
+      dojo.require("esri.map");
+      dojo.require("dojox.encoding.digests._base");
+      dojo.require("dijit.layout.BorderContainer");
+      dojo.require("dijit.layout.ContentPane");
+
+      var map;
+
+      dojo.ready(dojo.isIE ? init : initLocalStorage);  //if IE then skip local storage, as it doesn't support it.
+
+      function init() {
+        map = new esri.Map("map", { 
+          basemap: "streets",
+          center: [2.352, 48.87],
+          zoom: 12
+        });
+      }
+
+
+      function initLocalStorage() {
+        var ioWorker = new Worker("javascript/ioWorker.js");
+        ioWorker.onmessage = function(evt) {
+          console.log("Worker to Parent: ", evt.data[0]);
+          try {
+            localStorage.setItem(evt.data[0], evt.data[1]);
+          } catch(error) {
+            console.log('Problem adding tile to local storage. Storage might be full');
+          }
+        };
+
+        ioWorker.onerror = function(error) {
+          console.log("Worker to Parent: ", error);
+        };
+
+        dojo.addOnUnload(function() {
+          //localStorage.clear();
+        });
+
+        dojo.extend(esri.layers.ArcGISTiledMapServiceLayer, {  //extend ArcGISTiledMapServiceLayer to use localStorage if available, else use worker to request tile and store in local storage.
+          getTileUrl : function(level, row, col) {
+            var url = this._url.path + "/tile/" + level + "/" + row + "/" + col;
+            if (localStorage.getItem(url) !== null) {
+              console.log("in local storage");
+              return "data:image;base64," + localStorage.getItem(url);
+            } else {
+              console.log("not in local storage, pass url and load tile", url);
+              ioWorker.postMessage([url]);
+              return url;
+            }
+        }});
+        init(); //init map
+      }
+    </script>
+  </head>
+  <body class="claro">
+    <div data-dojo-type="dijit.layout.BorderContainer" data-dojo-props="design:'headline'" 
+      style="width: 100%; height: 100%; margin: 0;">
+      <div id="map" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="region:'center'" style="overflow:hidden;">
+      </div>
+    </div>
+  </body>
+</html>

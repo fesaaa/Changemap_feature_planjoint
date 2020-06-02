@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="/arcgis_js_api/library/3.8/3.8/js/esri/css/esri.css"/>	
+    <style>
+      html, body, #map {
+        height: 100%; width: 100%; margin: 0; padding: 0; 
+      }
+    </style>
+
+    <script src="/arcgis_js_api/library/3.8/3.8/init.js"></script>
+    <script>
+      var map;
+    
+      require([
+	  "esri/map", 
+	  "esri/layers/ArcGISTiledMapServiceLayer", 
+	  "esri/dijit/Measurement",
+	  "esri/SpatialReference",
+	  "dojo/dom",
+	  "dojo/domReady!"],
+        function(
+		Map, 
+		Tiled,
+		Measurement,
+		SpatialReference,
+		dom
+		) {
+          map = new Map("map");
+          var tiled = new Tiled("http://103.51.224.18/arcgis/rest/services/ECW/South/MapServer");
+          map.addLayer(tiled);
+		  
+		  var measurement = new Measurement({map: map}, dom.byId("MeasurementDiv"));
+		  measurement.startup();
+		  measurement.on("measure-end", function(evt){
+			var type = evt.geometry.type;
+			var geometry = evt.geometry;
+			//alert($(".unitDropDown").val());
+			alert(evt.geometry.type);
+		  });
+        }
+      );
+    </script>
+  </head>
+  <body>
+	 <div id="MeasurementDiv"></div>
+    <div id="map"></div>
+  </body>
+</html>

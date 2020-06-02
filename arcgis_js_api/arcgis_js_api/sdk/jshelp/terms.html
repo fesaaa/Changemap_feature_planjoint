@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="ie lt-ie9 lt-ie8 lt-ie7 ie6"> <![endif]-->
+<!--[if IE 7]>         <html class="ie lt-ie9 lt-ie8 ie7"> <![endif]-->
+<!--[if IE 8]>         <html class="ie lt-ie9 ie8"> <![endif]-->
+<!--[if gt IE 8]><!--> <html> <!--<![endif]-->
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+  <meta name="content-language" content="en">
+  <meta name="product" content="js-api-arcgis">
+  <meta name="subject" content="DEVELOPER,WEB,WEB APPLICATIONS,MOBILE">
+  <meta name="sub_category" content="JavaScript API">
+  <meta name="search-collection" content="help">
+  <meta name="search-category" content="help-api">
+  <meta name="version" content="arcgis-3.8"> <!-- API version -->
+  <meta name="content_type" content="Help Topic"> <!-- options: Help Topic, API Reference, Sample OR Tutorial -->
+  <meta name="last-modified" content="2013-12-19"> <!-- sub 1:  put in date docs were generated -->
+
+  <link rel="stylesheet" href="../styles/screen.css">
+  <link rel="stylesheet" href="../styles/jsdoc.css">
+  <link rel="stylesheet" href="../styles/homepage.css">
+  <link rel="stylesheet" href="../styles/grid.css">
+  <link rel="stylesheet" href="../styles/tree.css">
+  <link rel="stylesheet" href="../prettify/prettify.css">
+  <style>
+    html {
+      overflow-y: auto;
+    }
+    .navigation-bar, .section-bar {
+      margin-bottom: 0;
+    }
+    .navigation-bar header h1, .section-bar header h1 {
+      margin-top: .35294em;
+    }
+    .navigation-bar, .section-bar {
+      background: url('../graphics/banner.jpg') no-repeat center center #762783;
+      min-height: 48px;
+      color: white;
+    }
+    #esri-logo {
+      background: url('../graphics/logo-esri.png') no-repeat center center ;
+      width: 100px;
+    }
+    @font-face {
+    font-family:'icomoon';src:url('../fonts/icons.eot');src:url('../fonts/icons.eot?#iefix') format("embedded-opentype"),url('../fonts/icons.woff') format("woff"),url('../fonts/icons.ttf') format("truetype"),url('../fonts/icons.svg#icomoon') format("svg");font-weight:400;font-style:normal
+    }[data-icon]:before {
+      font-family: 'icomoon';
+      content: attr(data-icon);
+      speak: none;
+      font-weight: 400;
+      line-height: 1;
+      -webkit-font-smoothing: antialiased
+    }[class*="icon-"]:before {
+      font-family: 'icomoon';
+      speak: none;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 1;
+      -webkit-font-smoothing: antialiased;
+      text-transform: none
+    }
+    pre {
+      font-size: 1.1em;
+      line-height: normal;
+      margin: 0;
+    }
+    #header nav li a {
+      font-size: .875em;
+    }
+    #esri-logo {
+      margin-left: 0;
+    }
+  </style>
+  <!--[if lt IE 9]>
+    <script src="../scripts/libs/html5shiv.js"></script>
+    <script src="../scripts/libs/selectivizr-min.js"></script>
+    <style>
+      #wrapper {
+        min-width: 960px;
+      }
+    </style>
+  <![endif]-->
+  <title>
+    Guide | ArcGIS API for JavaScript 
+  </title>
+</head>
+  
+<body>
+<div id="nav">
+<header id="header">
+  <div class="container relative-container">
+    <div class="header-inner ">
+      <div class="logo-wrap"><a href="../" id="site-logo">Arc<span>GIS</span> API for JavaScript</a><!--span class="down-arrow" id="down-arrow"></span--></div>
+      <nav id="site-nav" class="">
+        <a href="/en/" class="selected">
+          <h4 class="developers">Arc<span>GIS</span> API for JavaScript</h4>
+          <p>Build location-aware applications with ArcGIS</p>
+        </a>
+
+        <a href="https://www.arcgis.com/about/">
+          <h4 class="organizations">Arc<span>GIS</span> for Organizations</h4>
+          <p>Learn more about ArcGIS</p>
+        </a>
+      </nav>
+
+      <a id="esri-logo" href="http://esri.com">Esri</a>
+      <div id="logged-out-navigation" class="dropdown-navigation hide">
+  <a id="login-link" class="btn small light" href="/en/log-in/">Log In</a>
+</div>
+<div id="logged-in-navigation" class="dropdown-navigation dropdown-wrapper hide">
+  <a href="/en/usage-summary" class="dropdown btn small light">
+    <!-- <img src="http://d3w50ib5d2uy0g.cloudfront.net/cdn/2464//js/esri/arcgisonline/css/images/no-user-thumb.jpg" width="16" height="16" alt=""> --><span id="username"></span>
+  </a>
+  <div class="dropdown-content">
+    <ul>
+      <li><a href="/en/usage-summary/">Usage Summary</a></li>
+      <li><a href="/en/applications/">Applications</a></li>
+      <li></li>
+      <li><a href="/en/tools/">GIS Tools</a></li>
+    </ul>
+    <hr>
+    <ul>
+      <li><a href="/en/account/profile/">Account Settings</a></li>
+      <li><a href="/en/feedback/">Feedback</a></li>
+    </ul>
+    <hr>
+    <ul>
+      <li><a id="log-out-link" href="#">Log Out</a></li>
+    </ul>
+  </div>
+</div>
+
+      <div id="mobile-navigation" class="dropdown-navigation dropdown-wrapper">
+        <a href="#" class="dropdown btn small light icon icon-list-2">Select <span>a Section</span></a>
+        <div class="dropdown-content">
+          <ul>
+            <li><a href="../jstutorials/">Tutorials</a></li>
+            <li><a href="../jsapi/">API Reference</a></li>
+            <li><a href="../jssamples/">Samples</a></li>
+            <li><a href="http://forums.arcgis.com/forums/15">Forum</a></li>
+            <li><a href="../../">All Developer Resources</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="navigation-bar">
+  <div class="container">
+    <nav>
+      <div id="section-label"><a href=".">Concepts</a></div>
+      <ul>
+        <!--li class="current"><a href="/en/javascript/">Home</a></li-->
+        <li><a href="../jstutorials/">Tutorials</a></li>
+        <li class="current"><a href=".">Concepts</a></li>
+        <li><a href="../jsapi/">API Reference</a></li>
+        <li><a href="../jssamples/">Samples</a></li>
+        <li><a href="http://forums.arcgis.com/forums/15">Forum</a></li>
+        <li><a href="../../">All Developer Resources</a></li>
+      </ul>
+    </nav>
+  </div>
+</div> 
+</div><!-- end nav bar --> <!-- sub 2: header and navigation -->
+
+<div class="container_12">
+  <div class="grid_3 contentWrapper">
+    <div id="toggleToc">
+      <img src="../graphics/tochide.gif"> Hide Table of Contents
+    </div>
+    <div id="apiToc"><div class="treeDiv" id="tree" style="top: 35px; left: 0px;">
+  <div id="treeRoot" ondragstart="return false" onselectstart="return false">
+    <div class="treeNode">
+      <a class="treeUnselected" href="." onclick="clickAnchor(this)">ArcGIS JavaScript API Overview</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="whats_new.html" onclick="clickAnchor(this)">What's New in Version 3.8</a>
+    </div>
+    <!-- About the API-->
+    <div class="treeNode">
+      <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+      <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">About the API</span>
+      <div class="treeSubnodesHidden">
+        <div class="treeNode">
+          <a class="treeUnselected" href="intro_accessapi.html" onclick="clickAnchor(this)">Get the API</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="inside_compactbuild.html" onclick="clickAnchor(this)">Compact build</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="localization.html" onclick="clickAnchor(this)">Localization</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="css.html" onclick="clickAnchor(this)">Required CSS</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="supported_browsers.html" onclick="clickAnchor(this)">Supported Browsers</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="community.html" onclick="clickAnchor(this)">Community</a>
+        </div>
+        <!--Working with Dojo-->
+        <div class="treeNode">
+          <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif">
+          <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">
+            Dojo
+          </span>
+          <div class="treeSubnodesHidden">
+            <div class="treeNode">
+              <a class="treeUnselected" href="inside_dojo.html" onclick="clickAnchor(this)">Working with Dojo</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="inside_dojoversion.html" onclick="clickAnchor(this)">Get Dojo</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="inside_dojodijits.html" onclick="clickAnchor(this)">Dojo dijits</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="inside_dojo_amd.html" onclick="clickAnchor(this)">Dojo and AMD</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="inside_dojohelp.html" onclick="clickAnchor(this)">Additional resources</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="why_dojo.html" onclick="clickAnchor(this)">Why Dojo?</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--End About the API-->
+    <!--Getting Started-->
+    <div class="treeNode">
+      <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif">
+      <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">
+        Getting Started
+      </span>
+      <div class="treeSubnodesHidden">
+        <div class="treeNode">
+          <a class="treeUnselected" href="intro_gettingstarted.html" onclick="clickAnchor(this)">Overview</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="intro_devenv.html" onclick="clickAnchor(this)">Setting up a development environment</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="../jstutorials/intro_firstmap.html" onclick="clickAnchor(this)">Build your first application</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="../jstutorials/intro_agstemplate.html" onclick="clickAnchor(this)">Build a web map based application
+          </a>
+        </div>
+      </div>
+    </div>
+    <!--Inside the API-->
+    <div class="treeNode">
+      <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif">
+      <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">
+        Working with the API
+      </span>
+      <div class="treeSubnodesHidden">
+        <div class="treeNode">
+          <a class="treeUnselected" href="inside_defaults.html" onclick="clickAnchor(this)">Default API configurations</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="inside_bundle.html" onclick="clickAnchor(this)">Default API strings</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="inside_esri_request.html" onclick="clickAnchor(this)">Retrieve data from a web server</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="intro_navigation.html" onclick="clickAnchor(this)">Map navigation</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="inside_events.html" onclick="clickAnchor(this)">Events</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="intro_extents.html" onclick="clickAnchor(this)">Setting Extents</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="inside_editing.html" onclick="clickAnchor(this)">Editing</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="inside_temporal.html" onclick="clickAnchor(this)">Time aware data</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="intro_firsttask.html" onclick="clickAnchor(this)">Adding a task</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="intro_querytask.html" onclick="clickAnchor(this)">Using QueryTask</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="inside_custom_layers.html" onclick="clickAnchor(this)">Creating custom layer types</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="../jstutorials/intro_javascript_classes.html" onclick="clickAnchor(this)">Writing a class</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="../jstutorials/intro_custom_dijit.html" onclick="clickAnchor(this)">Writing a custom widget</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="intro_webmap.html" onclick="clickAnchor(this)">Web maps</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="intro_analysiswidgets.html" onclick="clickAnchor(this)">Working with Analysis Widgets</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="intro_geoenrichment.html" onclick="clickAnchor(this)">Working with GeoEnrichment Widgets</a>
+        </div>
+        <!-- graphics -->
+        <div class="treeNode">
+          <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+          <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">Graphics and feature layers</span>
+          <div class="treeSubnodesHidden">
+            <div class="treeNode">
+              <a class="treeUnselected" href="inside_graphics.html" onclick="clickAnchor(this)">Graphics overview</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="inside_feature_layers.html" onclick="clickAnchor(this)">Feature layer overview</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="inside_renderers.html" onclick="clickAnchor(this)">Symbols and renderers</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="intro_bettermaps.html" onclick="clickAnchor(this)">Better vector mapping</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="inside_styling_svg.html" onclick="clickAnchor(this)">Styling features with CSS</a>
+            </div>
+          </div>
+        </div>
+        <!--info window-->
+        <div class="treeNode">
+          <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif">
+          <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">
+            Popups and Info Windows
+          </span>
+          <div class="treeSubnodesHidden">
+            <div class="treeNode">
+              <a class="treeUnselected" href="intro_infowindow.html" onclick="clickAnchor(this)">Info window overview</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="intro_formatinfowindow.html" onclick="clickAnchor(this)">Format info window content</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="intro_customize.html" onclick="clickAnchor(this)">Customize info windows</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="intro_agspopup.html" onclick="clickAnchor(this)">Popup overview</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="intro_popuptemplate.html" onclick="clickAnchor(this)">Format popup content</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="intro_customizepopup.html" onclick="clickAnchor(this)">Customize popup</a>
+            </div>
+          </div>
+        </div>
+        <!--routing book-->
+        <div class="treeNode">
+          <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif">
+          <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">
+            Using the RouteTask
+          </span>
+          <div class="treeSubnodesHidden">
+            <div class="treeNode">
+              <a class="treeUnselected" href="intro_route_overview.html" onclick="clickAnchor(this)">Routing overview</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="intro_route_routetask.html" onclick="clickAnchor(this)">Working with the route task</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="intro_route_stop_seq.html" onclick="clickAnchor(this)">Optimize the route</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="intro_route_directions.html" onclick="clickAnchor(this)">Driving directions</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="intro_route_time_windows.html" onclick="clickAnchor(this)">Routing with time windows</a>
+            </div>
+          </div>
+        </div>
+        <!--end routing book-->
+        <!--geoprocessing book-->
+        <div class="treeNode">
+          <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif">
+          <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">
+            Using the Geoprocessor
+          </span>
+          <div class="treeSubnodesHidden">
+            <div class="treeNode">
+              <a class="treeUnselected" href="intro_gp_overview.html" onclick="clickAnchor(this)">Geoprocessing overview</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="intro_gp_creating.html" onclick="clickAnchor(this)">Creating the geoprocessor</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="intro_gp_parameters.html" onclick="clickAnchor(this)">Geoprocessor parameters</a>
+            </div>
+            <div class="treeNode">
+              <a class="treeUnselected" href="intro_gp_running.html" onclick="clickAnchor(this)">Geoprocessing results</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--end book-->
+    <!-- Mobile -->
+    <div class="treeNode">
+      <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif">
+      <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">Mobile</span>
+      <div class="treeSubnodesHidden">
+        <div class="treeNode">
+          <a class="treeUnselected" href="../jstutorials/mobile_dev.html" onclick="clickAnchor(this)">Getting Started Mobile Tutorial</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="mobile_viewport.html" onclick="clickAnchor(this)">Viewport Settings</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="mobile_hardware.html" onclick="clickAnchor(this)">Feature Detection and Browser Sniffing</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="mobile_orientation.html" onclick="clickAnchor(this)">Device Orientation</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="mobile_geolocation.html" onclick="clickAnchor(this)">Geolocation</a>
+        </div>
+        <!-- <div class="treeNode"> <img src="../graphics/treenodeplus.gif" class="treeLinkImage" onclick="expandCollapse(this.parentNode)"/> <span style="cursor: pointer;" onclick="expandCollapse(this.parentNode)">HTML5</span> <div class="treeSubnodesHidden"> <div class="treeNode"> <img src="../graphics/treenodedot.gif" class="treeNoLinkImage"> <a href="jshelp/mobile_touch.htm" class="treeUnselected" onclick="clickAnchor(this)">Touch Events</a> </div> <div class="treeNode"> <img src="../graphics/treenodedot.gif" class="treeNoLinkImage"> <a href="jshelp/mobile_geolocation.htm" class="treeUnselected" onclick="clickAnchor(this)">Geolocation</a> </div> <div class="treeNode"> <img src="../graphics/treenodedot.gif" class="treeNoLinkImage"> <a href="jshelp/mobile_offline.htm" class="treeUnselected" onclick="clickAnchor(this)">Offline</a> </div> <div class="treeNode"> <img src="../graphics/treenodedot.gif" class="treeNoLinkImage"> <a href="jshelp/mobile_storage.htm" class="treeUnselected" onclick="clickAnchor(this)">Web Storage</a> </div> </div> </div> -->
+        <!-- <div class="treeNode"> <img src="../graphics/treenodedot.gif" class="treeNoLinkImage"> <a href="jshelp/mobile_hybrid.htm" class="treeUnselected" onclick="clickAnchor(this)">Hybrid Applications</a> </div> -->
+        <div class="treeNode">
+          <a class="treeUnselected" href="mobile_frameworks.html" onclick="clickAnchor(this)">Frameworks</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="mobile_references.html" onclick="clickAnchor(this)">References</a>
+        </div>
+      </div>
+    </div>
+    <!-- end book -->
+    <!--Recommendations-->
+    <div class="treeNode">
+      <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif">
+      <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">
+        Recommendations
+      </span>
+      <div class="treeSubnodesHidden">
+        <div class="treeNode">
+          <a class="treeUnselected" href="limits_for_graphics.html" onclick="clickAnchor(this)">Determining limits for map graphics</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="best_practices_feature_layers.html" onclick="clickAnchor(this)">Feature layer best practices</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="inside_guidelines.html" onclick="clickAnchor(this)">Coding guidelines</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="inside_faq.html" onclick="clickAnchor(this)">Frequently asked questions</a>
+        </div>
+      </div>
+    </div>
+    <!--end book-->
+    <!-- Layout book -->
+    <div class="treeNode">
+      <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif">
+      <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">
+        Application Layouts
+      </span>
+      <div class="treeSubnodesHidden">
+        <div class="treeNode">
+          <a class="treeUnselected" href="inside_dojoLayouts.html" onclick="clickAnchor(this)">Dojo layouts</a>
+        </div>
+      </div>
+    </div>
+    <!--End layout book -->
+    <!--Working with ArcGIS Server Services-->
+    <div class="treeNode">
+      <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif">
+      <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">
+        ArcGIS Server Services
+      </span>
+      <div class="treeSubnodesHidden">
+        <div class="treeNode">
+          <a class="treeUnselected" href="ags_overview.html" onclick="clickAnchor(this)">Overview</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="ags_rest.html" onclick="clickAnchor(this)">Services directory and the REST API</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="ags_secureservices.html" onclick="clickAnchor(this)">Working with secure resources</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="ags_proxy.html" onclick="clickAnchor(this)">Using the proxy page</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="ref_coordsystems.html" onclick="clickAnchor(this)">Coordinate system IDs</a>
+        </div>
+      </div>
+    </div>
+    <!--end book-->
+    <!--What's new -->
+    <div class="treeNode">
+      <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif">
+      <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">
+        What's New archive
+      </span>
+      <div class="treeSubnodesHidden">
+        <div class="treeNode">
+          <a class="treeUnselected" href="migration_30.html" onclick="clickAnchor(this)">Migrating to 3.0</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="migration_20.html" onclick="clickAnchor(this)">Migrating to 2.0</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v37.html" onclick="clickAnchor(this)">What's New in Version 3.7</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v36.html" onclick="clickAnchor(this)">What's New in Version 3.6</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v35.html" onclick="clickAnchor(this)">What's New in Version 3.5</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v34.html" onclick="clickAnchor(this)">What's New in Version 3.4</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v33.html" onclick="clickAnchor(this)">What's New in Version 3.3</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v32.html" onclick="clickAnchor(this)">What's New in Version 3.2</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v31.html" onclick="clickAnchor(this)">What's New in Version 3.1</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v30.html" onclick="clickAnchor(this)">What's New in Version 3.0</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v28.html" onclick="clickAnchor(this)">What's New in Version 2.8</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v27.html" onclick="clickAnchor(this)">What's New in Version 2.7</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v26.html" onclick="clickAnchor(this)">What's New in Version 2.6</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v25.html" onclick="clickAnchor(this)">What's New in Version 2.5</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v24.html" onclick="clickAnchor(this)">What's New in Version 2.4</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v23.html" onclick="clickAnchor(this)">What's New in Version 2.3</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v22.html" onclick="clickAnchor(this)">What's New in Version 2.2</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v21.html" onclick="clickAnchor(this)">What's New in Version 2.1</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v20.html" onclick="clickAnchor(this)">What's New in Version 2.0</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v16.html" onclick="clickAnchor(this)">What's New in Version 1.6</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v15.html" onclick="clickAnchor(this)">What's New in Version 1.5</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v14.html" onclick="clickAnchor(this)">What's New in Version 1.4</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v13.html" onclick="clickAnchor(this)">What's New in Version 1.3</a>
+        </div>
+        <div class="treeNode">
+          <a class="treeUnselected" href="new_v12.html" onclick="clickAnchor(this)">What's New in Version 1.2</a>
+        </div>
+      </div>
+    </div>
+    <!--end book-->
+    <!-- Book template <div class="treeNode"> <img src="../graphics/treenodeplus.gif" class="treeLinkImage" onclick="expandCollapse(this.parentNode)"/> <span style="cursor: pointer;" onclick="expandCollapse(this.parentNode)">Layers</span> <div class="treeSubnodesHidden"> <div class="treeNode"><img src="../graphics/treenodedot.gif" class="treeNoLinkImage"/><a href="http://skrzat/axlguide/jsdoc/class_style.cfm?theClass=ArcGISTiledMapServiceLayer" class="treeUnselected" onclick="clickAnchor(this)">ArcGISTiledMapServiceLayer</a></div> </div> </div>-->
+    <!--end book-->
+  </div>
+</div>
+<!-- pretty printed via http://prettydiff.com/?m=beautify&html --></div> <!-- sub 3:  Conceptual help TOC -->
+  </div>
+  <div class="grid_9 contentWrapper">
+    <div id="topicPane">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta name="keywords" content="ArcGIS JavaScript API" />
+  <link href="jsdoc.css" rel="stylesheet" type="text/css"/>
+  <title>ArcGIS API for JavaScript License Agreement</title>
+</head>
+
+<body>
+
+<div id="pageBanner">ArcGIS API for JavaScript License Agreement</div>
+
+<div id="nstext">
+
+<!--***START TEXT - DO NOT WRITE ABOVE THIS LINE***-->
+
+<div align="center"><b><span style="font-size: 10pt">IMPORTANT&mdash;READ CAREFULLY</span></b></div>
+<div align="center">&nbsp;</div>
+<div><span style="font-size: 10pt">UNLESS SUPERSEDED BY A SIGNED LICENSE AGREEMENT BETWEEN YOU AND ESRI, ESRI IS WILLING TO LICENSE SOFTWARE, DATA, WEB SERVICES, OR DOCUMENTATION TO YOU ONLY IF YOU ACCEPT ALL TERMS AND CONDITIONS CONTAINED IN THIS LICENSE AGREEMENT. PLEASE READ THE TERMS AND CONDITIONS CAREFULLY. SOFTWARE, DATA, OR DOCUMENTATION WILL NOT BEGIN DOWNLOADING TO OR INSTALL ONTO YOUR COMPUTER SYSTEM UNTIL YOU HAVE MANIFESTED YOUR ASSENT TO THE TERMS AND CONDITIONS OF THE LICENSE AGREEMENT BY CLICKING &quot;I accept the License Agreement&quot; BELOW. IF YOU DO NOT AGREE TO THE TERMS AND CONDITIONS AS STATED, THEN ESRI IS UNWILLING TO LICENSE SOFTWARE, DATA, WEB SERVICES, OR DOCUMENTATION TO YOU, AND YOU SHOULD CLICK &quot;I do not accept the License Agreement&quot; BELOW AND RETURN THE PACKAGE TO ESRI OR ITS AUTHORIZED DISTRIBUTOR. SEE </span><a href="http://www.esri.com/legal"><span><span style="font-size: 10pt">http://www.esri.com/legal</span></span></a><span><span style="font-size: 10pt"> FOR UPDATED TERMS THAT MAY APPLY TO FUTURE VERSIONS OF SOFTWARE, DATA, WEB SERVICES, AND DOCUMENTATION.</span></span></div>
+
+<div>&nbsp;</div>
+<div align="center"><b><span style="font-size: 10pt">LICENSE AGREEMENT</span></b></div>
+<div align="center"><span style="font-size: 10pt">(E204 04/22/2010)</span></div>
+<div>&nbsp;</div>
+<div><span style="font-size: 10pt">This License Agreement is between you (&quot;Licensee&quot;) and Environmental Systems Research Institute, Inc. (&quot;ESRI&quot;), a California corporation with a place of business at 380&nbsp;New York Street, Redlands, California 92373-8100 USA.</span></div>
+<div>&nbsp;</div>
+<div style="page-break-after: avoid; text-indent: 0in; margin-left: 0in"><b><span style="font-size: 10pt">ARTICLE 1&mdash;</span></b><b><span style="font-size: 10pt">DEFINITIONS</span></b></div>
+
+<div style="page-break-after: avoid">&nbsp;</div>
+<div style="page-break-after: avoid"><b><span style="font-size: 10pt">Definitions.</span></b><span style="font-size: 10pt"> The terms used are defined as follows:</span></div>
+<div style="page-break-after: avoid">&nbsp;</div>
+<ol type="a" style="margin-top: 0in">
+<li><span style="font-size: 10pt">&quot;Beta&quot; means any alpha, beta, or prerelease Software, Data, Documentation, or Web Services.</span></li>
+<li><span style="font-size: 10pt">&quot;Data&quot; means any ESRI or third-party digital dataset(s) including, but not limited to, geographic vector data coordinates, raster, reports, or associated tabular attributes licensed under this License Agreement.</span></li>
+<li><span style="font-size: 10pt">&quot;Documentation&quot; means all printed and digital materials including, but not limited to, help files, user reference documentation, training documentation, or technical information and briefings.</span></li>
+
+<li><span style="font-size: 10pt">&quot;Samples&quot; means sample code, sample applications, add-ons, or sample extensions of Software, Data, Documentation, or Web Services.</span></li>
+<li><span style="font-size: 10pt">&quot;Software&quot; means all or any portion of ESRI's proprietary software technology accessed or downloaded from an ESRI authorized Web site or delivered on any media in any format including backups, updates, service packs, patches, hot fixes, or permitted merged copies.</span></li>
+<li><span style="font-size: 10pt">&quot;Term License&quot; means license provided for use in a limited time period or on a subscription or transaction basis.</span></li>
+<li><span style="font-size: 10pt">&quot;Web Services&quot; means software services or ESRI or third-party data provided by ESRI that perform geographic information system (GIS) functions, tasks, or data services and are accessed over the Internet.</span></li>
+</ol>
+
+<div>&nbsp;</div>
+<div style="page-break-after: avoid; text-indent: 0in; margin-left: 0in"><b><span style="font-size: 10pt">ARTICLE 2&mdash;</span></b><b><span style="font-size: 10pt">INTELLECTUAL PROPERTY RIGHTS AND RESERVATION OF OWNERSHIP</span></b></div>
+<div style="page-break-after: avoid">&nbsp;</div>
+<div><span style="font-size: 10pt">Software, Data, Web Services, and Documentation are licensed and not sold. ESRI and its licensors own Software, Data, Web Services, and Documentation and all copies, which are protected by United States and applicable international laws, treaties, and conventions regarding intellectual property and proprietary rights including trade secrets. Licensee agrees to use reasonable means to protect Software, Data, Web Services, and Documentation from unauthorized use, reproduction, distribution, or publication. ESRI and its third-party licensors reserve all rights not specifically granted in this License Agreement including the right to change and improve Web Services.</span></div>
+<div>&nbsp;</div>
+<div style="page-break-after: avoid; text-indent: 0in; margin-left: 0in"><b><span style="font-size: 10pt">ARTICLE 3&mdash;</span></b><b><span style="font-size: 10pt">GRANT OF LICENSE</span></b></div>
+<div style="page-break-after: avoid">&nbsp;</div>
+<div style="page-break-after: avoid; text-indent: 0in; margin-left: 0in"><b><span style="font-size: 10pt">3.1 </span></b><b><span style="font-size: 10pt">Grant of License</span></b><span style="font-size: 10pt">. Subject to the terms of this License Agreement, ESRI grants to Licensee a personal, nonexclusive, nontransferable license solely to</span></div>
+
+<div style="page-break-after: avoid">&nbsp;</div>
+<ol type="a" style="margin-top: 0in">
+<li><span style="font-size: 10pt">Use the type and number of copies of Software, Data, and Documentation and access Web Services (i)&nbsp;for which the applicable license fees have been paid, (ii)&nbsp;for Licensee's own internal use, and (iii)&nbsp;in accordance with Exhibit 1 and the licensed configuration on file as authorized by ESRI or its authorized distributor.</span></li>
+<li><span style="font-size: 10pt">Access and use any secure ESRI Web site resources made available to Licensee for Licensee's own internal use, provided that Licensee follows ESRI's terms of use policy specified therein. All password or controlled access information provided by ESRI or its authorized distributor shall be treated as ESRI confidential information.</span></li>
+</ol>
+<div style="text-indent: -0.25in; margin-left: 0.25in">&nbsp;</div>
+<div style="text-indent: 0in; margin-left: 0in"><b><span style="font-size: 10pt">3.2 </span></b><b><span style="font-size: 10pt">Beta License</span></b><span style="font-size: 10pt">. Licensee may be accepted into a current Beta Testing Program.</span></div>
+
+<div>&nbsp;</div>
+<ol type="a" style="margin-top: 0in">
+<li><span style="font-size: 10pt">If Licensee is accepted into the Beta Testing Program, ESRI will provide to Licensee access to Beta and will grant Licensee a personal, nonexclusive, nontransferable, royalty-free Term License to use Beta at the authorized and identified test sites solely for the purpose of testing Beta as delivered, in accordance with the Beta Testing Program guidelines and the terms of this License Agreement. This grant of license is effective from the date Licensee is accepted into the program or date of receipt of any Beta until the date of the commercial release of Software from ESRI Customer Service or the date of termination of the Beta Testing Program for the specific Beta, whichever is sooner.</span></li>
+<li><span style="font-size: 10pt">Licensee agrees to provide suggestions or comments regarding performance, usability or effectiveness, bug reports, test reports, or other feedback (collectively, &quot;Feedback&quot;) to ESRI with respect to Beta.</span></li>
+<li><span style="font-size: 10pt">Licensee grants to ESRI the right to freely use, share, disclose, reproduce, license, distribute and otherwise publicly display and perform any Feedback provided to ESRI by Licensee. Licensee will not provide Feedback that Licensee knows or reasonably should have known contains content subject to license or use restrictions.</span></li>
+<li><span style="font-size: 10pt">Beta and Feedback contain confidential information and trade secrets that are proprietary to ESRI. Licensee agrees to use commercially reasonable means (at least as great as those used by Licensee for its own confidential information) to maintain the integrity, confidentiality, and ESRI proprietary rights in Beta and Feedback. Licensee may not share or release Feedback or results of Beta testing with any third party.</span></li>
+<li><span style="font-size: 10pt">Beta is subject to change prior to its commercial release or may never be commercially released. Licensee acknowledges that Beta is not suitable or licensed for full use in any production system and accepts all responsibility for use and any results generated.</span></li>
+</ol>
+<div>&nbsp;</div>
+<div style="text-indent: 0in; margin-left: 0in"><b><span style="font-size: 10pt">3.3 </span></b><b><span style="font-size: 10pt">Evaluation License.</span></b><span style="font-size: 10pt"> ESRI may from time to time offer Term License(s) for Software, Data, Web Services, or Documentation for Licensee's evaluation only.</span></div>
+
+<div>&nbsp;</div>
+<div style="text-indent: 0in; margin-left: 0in"><b><span style="font-size: 10pt">3.4 </span></b><b><span style="font-size: 10pt">Consultant or Contractor Access.</span></b><span style="font-size: 10pt"> Subject to Section&nbsp;3.1, ESRI grants </span><span style="font-size: 10pt">Licensee the right to provide access to and use of Software, Data, Web Services, or Documentation to any consultant or contractor of Licensee exclusively for the benefit of Licensee. Licensee shall be solely responsible for compliance by consultants and contractors with this License Agreement. Access to or use of Software, Data, Web Services, and Documentation by consultants or contractors not exclusively for the benefit of Licensee is prohibited.</span></div>
+<div>&nbsp;</div>
+<div style="text-indent: 0in; margin-left: 0in"><b><span style="font-size: 10pt">3.5 </span></b><b><span style="font-size: 10pt">Educational Program License.</span></b><span style="font-size: 10pt"> If Licensee has been qualified by ESRI or its authorized distributor to participate in an educational program, the following additional terms apply:</span></div>
+<div>&nbsp;</div>
+<div style="text-indent: -0.25in; margin-left: 0.5in"><span style="font-size: 10pt">a.<span style="font: 7pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><i><span style="font-size: 10pt">Educational Use License.</span></i><span style="font-size: 10pt"> Licensee agrees to use Software, Data, Web Services, and Documentation solely for educational, research, and academic purposes that are noncommercial in nature. Licensee shall not use Software, Data, Web Services, and Documentation for any Administrative Use or profit-generating activities.</span></div>
+
+<div style="text-indent: -0.25in; margin-left: 0.5in"><span style="font-size: 10pt">b.<span style="font: 7pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><i><span style="font-size: 10pt">Administrative Use Term License</span></i><span style="font-size: 10pt">. Licensee may use the Software, Data, Web Services, and Documentation for administrative activities that are not directly related to instruction or education, such as asset mapping, facilities management, demographic analysis, routing, campus safety, and accessibility analysis (&quot;Administrative Use&quot;). Licensee shall not use the Software, Data, Web Services, or Documentation for any profit-generating activities.</span></div>
+<div>&nbsp;</div>
+<div style="text-indent: 0in; margin-left: 0in"><b><span style="font-size: 10pt">3.6 </span></b><b><span style="font-size: 10pt">Grant Program License.</span></b><span style="font-size: 10pt"> If Licensee has been qualified to participate in an ESRI grant program, Licensee may only use the type and number of copies of the Software, Data, Web Services, and Documentation permitted in the ESRI grant document and the licensed configuration on file with ESRI Customer Service, and solely for noncommercial purposes specified in the ESRI grant document. Licensee shall not use the Software, Data, Web Services, and Documentation for any profit-generating activities. </span></div>
+<div>&nbsp;</div>
+<div style="page-break-after: avoid; text-indent: 0in; margin-left: 0in"><b><span style="font-size: 10pt">ARTICLE 4&mdash;</span></b><b><span style="font-size: 10pt">SCOPE OF USE</span></b></div>
+
+<div style="page-break-after: avoid">&nbsp;</div>
+<div style="page-break-after: avoid; text-indent: 0in; margin-left: 0in"><b><span style="font-size: 10pt">4.1 </span></b><b><span style="font-size: 10pt">Permitted Uses</span></b></div>
+<div style="page-break-after: avoid; text-indent: -0.25in; margin-left: 0.25in">&nbsp;</div>
+<div style="text-indent: -0.25in; margin-left: 0.25in"><span style="font-size: 10pt">a.<span style="font: 7pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 10pt">Licensee may install and store Software, Data, and Documentation on electronic storage device(s).</span></div>
+<div style="text-indent: -0.25in; margin-left: 0.25in"><span style="font-size: 10pt">b.<span style="font: 7pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 10pt">Licensee may make one&nbsp;(1)&nbsp;copy of Software, Data, and Documentation for archival purposes. Licensee may make routine computer backups.</span></div>
+<div style="text-indent: -0.25in; margin-left: 0.25in"><span style="font-size: 10pt">c.<span style="font: 7pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 10pt">Licensee may customize Software using any (i)&nbsp;macro or scripting language, (ii)&nbsp;published application programming interface (API), or (iii)&nbsp;source or object code libraries, but only to the extent that such customization is described in Documentation.</span></div>
+
+<div style="text-indent: -0.25in; margin-left: 0.25in"><span style="font-size: 10pt">d.<span style="font: 7pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 10pt">Licensee may use, copy, or prepare derivative works of Documentation supplied in digital format and thereafter reproduce, display, and redistribute the customized documentation only for Licensee's own internal use. Portions of Documentation supplied in digital format merged with other software and printed or digital documentation are subject to this License Agreement. Licensee shall include the following copyright attribution notice acknowledging the proprietary rights of ESRI and its licensors: &quot;Portions of this document include intellectual property of ESRI and its licensors and are used herein under license. Copyright &copy; [Insert the actual copyright date(s) from the source materials] ESRI and its licensors. All rights reserved.&quot;</span></div>
+<div>&nbsp;</div>
+<div style="page-break-after: avoid; text-indent: 0in; margin-left: 0in"><b><span style="font-size: 10pt">4.2 </span></b><b><span style="font-size: 10pt">Uses Not Permitted</span></b></div>
+<div style="page-break-after: avoid">&nbsp;</div>
+<div style="text-indent: -0.25in; margin-left: 0.25in"><span style="font-size: 10pt">a.<span style="font: 7pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 10pt">Except as provided herein, Licensee shall not sell, rent, lease, sublicense, lend, assign, or time-share Software, Data, Web Services, or Documentation. Licensee shall not act as a service bureau or commercial application service provider (ASP) that allows third-party access to Software, Data, Web Services, and Documentation. Licensee shall not use Software, Data, Web Services, or Documentation for a site or service and operate the site or the service for a profit or generate revenue through direct or indirect methods (e.g., advertising or by charging for access to the site or service).</span></div>
+<div style="text-indent: -0.25in; margin-left: 0.25in"><span style="font-size: 10pt">b.<span style="font: 7pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 10pt">Except as provided herein, Licensee shall not redistribute Software, Data, or Web Services to third parties, in whole or in part, including, but not limited to, extensions, components, or DLLs.</span></div>
+
+<div style="text-indent: -0.25in; margin-left: 0.25in"><span style="font-size: 10pt">c.<span style="font: 7pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 10pt">Licensee shall not reverse engineer, decompile, or disassemble Software, Data, Web Services, or Documentation except to the extent that such activity is expressly permitted by applicable law notwithstanding this restriction.</span></div>
+<div style="text-indent: -0.25in; margin-left: 0.25in"><span style="font-size: 10pt">d.<span style="font: 7pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 10pt">Except to the extent that applicable law prohibits this restriction, Licensee shall not make any attempt to circumvent the technological measure(s) that controls access to or use of Software, Data, Web Services, and Documentation.</span></div>
+<div style="text-indent: -0.25in; margin-left: 0.25in"><span style="font-size: 10pt">e.<span style="font: 7pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 10pt">Except as provided herein, Licensee shall not redistribute Software activation number(s), registration number/license authorization file(s), developer license file(s), or Web Services access codes to third parties.</span></div>
+<div style="text-indent: -0.25in; margin-left: 0.25in"><span style="font-size: 10pt">f.<span style="font: 7pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 10pt">Licensee shall not use Software or Web Services to transfer or exchange any material where such transfer or exchange is prohibited by intellectual property laws or any other applicable laws.</span></div>
+<div style="text-indent: -0.25in; margin-left: 0.25in"><span style="font-size: 10pt">g.<span style="font: 7pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 10pt">Licensee shall not remove or obscure any ESRI or its licensors' patent, copyright, trademark, or proprietary rights notices contained in or affixed to Software, Data, Web Services, or Documentation.</span></div>
+
+<div style="text-indent: -0.25in; margin-left: 0.25in"><span style="font-size: 10pt">h.<span style="font: 7pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 10pt">Licensee shall not unbundle individual or component parts of Software or Data for independent use.</span></div>
+<div style="text-indent: -0.25in; margin-left: 0.25in"><span style="font-size: 10pt">i.<span style="font: 7pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 10pt">After a reasonable </span><span style="font-size: 10pt">transition period, Licensee shall not use an older version of the Software that Licensee has updated to a newer version. Licensee shall not use more Software licenses at any given time than the total quantity in Licensee's licensed configuration on file with ESRI.</span></div>
+<div style="text-indent: -0.25in; margin-left: 0.25in">&nbsp;</div>
+<div style="page-break-after: avoid; text-indent: 0in; margin-left: 0in"><b><span style="font-size: 10pt">ARTICLE 5&mdash;</span></b><b><span style="font-size: 10pt">TERM AND TERMINATION</span></b></div>
+<div style="page-break-after: avoid">&nbsp;</div>
+<div><span style="font-size: 10pt">This License Agreement is effective upon acceptance. This License Agreement and any licenses granted hereunder shall continue until (i)&nbsp;such time that Licensee elects in writing to discontinue use of Software, Data, Web Services, or Documentation and terminates the license; (ii)&nbsp;expiration of a Term License; or (iii)&nbsp;either party terminates the license for a material breach that is not cured within ten&nbsp;(10)&nbsp;days of written notice to the other party, except that termination is immediate for a material breach of a nature that is impossible to cure. Upon termination of a license, Licensee shall (i)&nbsp;cease access and use of Web Services and clear Web Services client-side data cache; and (ii)&nbsp;cease use, uninstall, remove, and destroy all Software, Data, and Documentation and any whole or partial copies, modifications, or merged portions in any form and execute and deliver evidence of such actions to ESRI or its authorized distributor.</span></div>
+
+<div>&nbsp;</div>
+<div style="page-break-after: avoid; text-indent: 0in; margin-left: 0in"><b><span style="font-size: 10pt">ARTICLE 6&mdash;</span></b><b><span style="font-size: 10pt">LIMITED WARRANTIES AND DISCLAIMERS</span></b></div>
+<div style="page-break-after: avoid">&nbsp;</div>
+<div style="text-indent: 0in; margin-left: 0in"><b><span style="font-size: 10pt">6.1 </span></b><b><span style="font-size: 10pt">Limited Warranties</span></b><span style="font-size: 10pt">. Except as otherwise provided in this Article&nbsp;6, ESRI warrants that (i)&nbsp;the unmodified Software will substantially conform to the published Documentation and (ii)&nbsp;media on which the Software, Data, and Documentation are provided will be free from defects in materials and workmanship under normal use and service for a period of ninety&nbsp;(90)&nbsp;days from the date of receipt.</span></div>
+<div>&nbsp;</div>
+<div style="text-indent: 0in; margin-left: 0in"><b><span style="font-size: 10pt">6.2 </span></b><b><span style="font-size: 10pt">Data and Web Services Disclaimer.</span></b><span style="font-size: 10pt"> Data and Web Services may contain some nonconformities, defects, errors, or omissions. THE DATA AND WEB SERVICES ARE PROVIDED &quot;AS IS&quot; WITHOUT WARRANTY OF ANY KIND. Without limiting the generality of the preceding sentence, ESRI and its licensors do not warrant that Data and Web Services will meet Licensee's needs or expectations, that the use of Data and Web Services will be uninterrupted, or that all nonconformities can or will be corrected. ESRI and its licensors are not inviting reliance on Data or Web Services, and Licensee should always verify actual Data or Web Services.</span></div>
+
+<div>&nbsp;</div>
+<div style="text-indent: 0in; margin-left: 0in"><b><span style="font-size: 10pt">6.3 </span></b><b><span style="font-size: 10pt">Special Disclaimer</span></b><span style="font-size: 10pt">. SAMPLES, HOT FIXES, PATCHES, EVALUATION SOFTWARE, AND BETA ARE DELIVERED &quot;AS IS&quot; WITHOUT WARRANTY OF ANY KIND. LICENSEE ASSUMES ALL RISK AS TO THE QUALITY AND PERFORMANCE OF THE SAMPLES, HOT FIXES, PATCHES, EVALUATION SOFTWARE, AND BETA.</span></div>
+<div>&nbsp;</div>
+<div style="text-indent: 0in; margin-left: 0in"><b><span style="font-size: 10pt">6.4 </span></b><b><span style="font-size: 10pt">Internet Disclaimer.</span></b><span style="font-size: 10pt"> THE PARTIES EXPRESSLY ACKNOWLEDGE AND AGREE THAT THE INTERNET IS A NETWORK OF PRIVATE AND PUBLIC NETWORKS AND THAT (i)&nbsp;THE INTERNET IS NOT A SECURE INFRASTRUCTURE, (ii)&nbsp;THE PARTIES HAVE NO CONTROL OVER THE INTERNET, AND (iii)&nbsp;NONE OF THE PARTIES SHALL BE LIABLE FOR DAMAGES UNDER ANY THEORY OF LAW RELATED TO THE DISCONTINUANCE OF OPERATION OF ANY PORTION OF THE INTERNET OR POSSIBLE REGULATION OF THE INTERNET THAT MIGHT RESTRICT OR PROHIBIT THE OPERATION OF THE&nbsp;WEB SERVICE.</span></div>
+
+<div>&nbsp;</div>
+<div style="text-indent: 0in; margin-left: 0in"><b><span style="font-size: 10pt">6.5 </span></b><b><span style="font-size: 10pt">General Disclaimer.</span></b><span style="font-size: 10pt"> EXCEPT FOR THE ABOVE EXPRESS LIMITED WARRANTIES, ESRI DISCLAIMS ALL OTHER WARRANTIES OR CONDITIONS OF ANY KIND, WHETHER EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, WARRANTIES OR CONDITIONS OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE, SYSTEM INTEGRATION, AND NONINFRINGEMENT OF INTELLECTUAL PROPERTY RIGHTS. ESRI DOES NOT WARRANT AND DISCLAIMS THAT SOFTWARE, DATA, WEB SERVICES, OR DOCUMENTATION WILL MEET LICENSEE'S NEEDS; THAT LICENSEE'S OPERATION OF THE SAME WILL BE UNINTERRUPTED, ERROR FREE, FAULT TOLERANT, OR FAIL SAFE; OR THAT ALL NONCONFORMITIES CAN OR WILL BE CORRECTED. SOFTWARE, DATA, WEB SERVICES, AND DOCUMENTATION ARE NOT DESIGNED, MANUFACTURED, OR INTENDED FOR USE IN ENVIRONMENTS OR APPLICATIONS THAT MAY LEAD TO DEATH, PERSONAL INJURY, OR PHYSICAL PROPERTY/ENVIRONMENTAL DAMAGE. ANY SUCH USE SHALL BE AT LICENSEE'S OWN RISK AND COST.</span></div>
+<div>&nbsp;</div>
+<div style="text-indent: 0in; margin-left: 0in"><b><span style="font-size: 10pt">6.6 </span></b><b><span style="font-size: 10pt">Exclusive Remedy.</span></b><span style="font-size: 10pt"> Licensee's exclusive remedy and ESRI's entire liability for breach of the limited warranties set forth in this Article&nbsp;6 shall be limited, at ESRI's sole discretion, to (i)&nbsp;replacement of any defective media; (ii)&nbsp;repair, correction, or a workaround for Software subject to the ESRI Maintenance Program found at <a href="http://www.esri.com/legal/maintenance.html">www.esri.com/legal/maintenance.html</a>; or (iii)&nbsp;return of the license fees paid by Licensee for Software or Documentation that does not meet ESRI's limited warranty, provided that Licensee uninstalls, removes, and destroys all copies of Software or Documentation and executes and delivers evidence of such actions to ESRI or its authorized distributor.</span></div>
+
+<div>&nbsp;</div>
+<div style="page-break-after: avoid; text-indent: 0in; margin-left: 0in"><b><span style="font-size: 10pt">ARTICLE 7&mdash;</span></b><b><span style="font-size: 10pt">LIMITATION OF LIABILITY</span></b></div>
+<div style="page-break-after: avoid">&nbsp;</div>
+<div style="text-indent: 0in; margin-left: 0in"><b><span style="font-size: 10pt">7.1 </span></b><b><span style="font-size: 10pt">Disclaimer of Certain Types of Liability</span></b><span style="font-size: 10pt">. ESRI AND ITS LICENSORS SHALL NOT BE LIABLE TO LICENSEE FOR COSTS OF PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOST PROFITS, LOST SALES, OR BUSINESS EXPENDITURES; INVESTMENTS; BUSINESS COMMITMENTS; LOSS OF ANY GOODWILL; OR FOR ANY INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES ARISING OUT OF OR RELATED TO THIS LICENSE AGREEMENT OR USE OF SOFTWARE, DATA, WEB SERVICES, OR DOCUMENTATION, HOWEVER CAUSED ON ANY THEORY OF LIABILITY, WHETHER OR NOT ESRI OR ITS LICENSORS HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. THESE LIMITATIONS SHALL APPLY NOTWITHSTANDING ANY FAILURE OF ESSENTIAL PURPOSE OF ANY LIMITED REMEDY.</span></div>
+<div>&nbsp;</div>
+<div style="text-indent: 0in; margin-left: 0in"><b><span style="font-size: 10pt">7.2 </span></b><b><span style="font-size: 10pt">General Limitation of Liability.</span></b><span style="font-size: 10pt"> EXCEPT AS PROVIDED IN ARTICLE&nbsp;8&mdash;INFRINGEMENT INDEMNITY, ESRI'S TOTAL CUMULATIVE LIABILITY HEREUNDER, FROM ALL CAUSES OF ACTION OF ANY KIND, INCLUDING, BUT NOT LIMITED TO, CONTRACT, TORT (INCLUDING NEGLIGENCE), STRICT LIABILITY, BREACH OF WARRANTY, MISREPRESENTATION, OR OTHERWISE, SHALL NOT EXCEED THE AMOUNTS PAID BY LICENSEE FOR SOFTWARE, DATA, WEB SERVICES, OR DOCUMENTATION PURSUANT TO THIS LICENSE AGREEMENT.</span></div>
+
+<div><u>&nbsp;</u></div>
+<div style="text-indent: 0in; margin-left: 0in"><b><span style="font-size: 10pt">7.3 </span></b><b><span style="font-size: 10pt">Applicability of Disclaimers and Limitations</span></b><span style="font-size: 10pt">. Licensee agrees that the limitations of liability and disclaimers set forth in this License Agreement will apply regardless of whether Licensee has accepted Software, Data, Web Services, or Documentation or any other product or service delivered by ESRI. The parties agree that ESRI has set its fees and entered into this License Agreement in reliance on the disclaimers and limitations set forth herein, that the same reflect an allocation of risk between the parties, and that the same form an essential basis of the bargain between the parties. THESE LIMITATIONS SHALL APPLY NOTWITHSTANDING ANY FAILURE OF ESSENTIAL PURPOSE OF ANY LIMITED REMEDY.</span></div>
+<div>&nbsp;</div>
+<div style="page-break-after: avoid; text-indent: 0in; margin-left: 0in"><b><span style="font-size: 10pt">ARTICLE 8&mdash;</span></b><b><span style="font-size: 10pt">INFRINGEMENT INDEMNITY</span></b></div>
+<div style="page-break-after: avoid">&nbsp;</div>
+<div style="page-break-after: avoid; text-indent: 0in; margin-left: 0in"><b><span style="font-size: 10pt">8.1 </span></b><span style="font-size: 10pt">ESRI shall defend, indemnify, and hold harmless Licensee from and against any loss, liability, cost, or expense, including reasonable attorneys' fees, which may be incurred by Licensee against any claims, actions, or demands by a third party alleging that Software infringes a U.S. patent, copyright, or trademark, provided</span></div>
+<div style="page-break-after: avoid">&nbsp;</div>
+<ol type="a" style="margin-top: 0in">
+<li><span style="font-size: 10pt">Licensee promptly notifies ESRI in writing of the claim;</span></li>
+
+<li><span style="font-size: 10pt">Licensee provides documents clearly describing the allegations of infringement;</span></li>
+<li><span style="font-size: 10pt">ESRI has sole control of the defense of any actions and negotiations related to the defense or settlement of any claim; and</span></li>
+<li><span style="font-size: 10pt">Licensee cooperates fully in the defense of the claim.</span></li>
+</ol>
+<div>&nbsp;</div>
+<div style="text-indent: 0in; margin-left: 0in"><b><span style="font-size: 10pt">8.2 </span></b><span style="font-size: 10pt">If Software is found to infringe a U.S. patent, copyright, or trademark, ESRI, at its own expense, may either (i)&nbsp;obtain rights for Licensee to continue using Software or (ii)&nbsp;modify the allegedly infringing elements of Software while maintaining substantially similar software functionality or data/informational content. If neither alternative is commercially reasonable, the infringing item(s) shall be returned to ESRI, the license shall terminate, and Licensee shall uninstall the infringing item(s). ESRI's entire liability shall then be to indemnify Licensee pursuant to Section&nbsp;8.1 and to refund license fees paid by Licensee for the infringing item(s), prorated on a five&nbsp;(5)-year, straight-line depreciation basis beginning from the initial date of delivery.</span></div>
+
+<div>&nbsp;</div>
+<div style="text-indent: 0in; margin-left: 0in"><b><span style="font-size: 10pt">8.3 </span></b><span style="font-size: 10pt">ESRI shall have no obligation to defend Licensee or to pay any resulting costs, damages, or attorneys' fees for any claims or demands alleging direct or contributory infringement of Software by (i)&nbsp;the combination of or integration with a product, process, or system not supplied by ESRI; (ii)&nbsp;material alteration by anyone other than ESRI or contractors acting on behalf of ESRI; (iii)&nbsp;use after Licensee has been notified of possible infringement; or (iv)&nbsp;use after modifications are provided or a return is ordered by ESRI under Section&nbsp;8.2.</span></div>
+<div>&nbsp;</div>
+<div style="text-indent: 0in; margin-left: 0in"><b><span style="font-size: 10pt">8.4 </span></b><span style="font-size: 10pt">In no event shall the indemnification set forth in this Article&nbsp;8 apply to any Samples, Beta, or evaluation software delivered hereunder.</span></div>
+<div>&nbsp;</div>
+<div><span style="font-size: 10pt">THE FOREGOING STATES THE ENTIRE OBLIGATION OF ESRI WITH RESPECT TO INFRINGEMENT OR ALLEGATION OF INFRINGEMENT OF INTELLECTUAL PROPERTY RIGHTS OF ANY THIRD PARTY.</span></div>
+
+<div>&nbsp;</div>
+<div style="page-break-after: avoid; text-indent: 0in; margin-left: 0in"><b><span style="font-size: 10pt">ARTICLE 9&mdash;</span></b><b><span style="font-size: 10pt">GENERAL PROVISIONS</span></b></div>
+<div style="page-break-after: avoid">&nbsp;</div>
+<div style="text-indent: 0in; margin-left: 0in"><b><span style="font-size: 10pt">9.1 </span></b><b><span style="font-size: 10pt">Future Updates.</span></b><span style="font-size: 10pt"> New or updated Software, Data, Web Services, and Documentation shall be governed by the then-current ESRI license terms and conditions included with the deliverable Software, Data, Web Services, or Documentation.</span></div>
+<div>&nbsp;</div>
+<div style="text-indent: 0in; margin-left: 0in"><b><span style="font-size: 10pt">9.2 </span></b><b><span style="font-size: 10pt">Export Control Regulations.</span></b><span style="font-size: 10pt"> Licensee expressly acknowledges and agrees that Licensee shall not export, reexport, transfer, or release Software, Data, Web Services, or Documentation, in whole or in part, to (i)&nbsp;any U.S. embargoed country (or to a national or resident of any U.S. embargoed country); (ii)&nbsp;any person on the U.S. Treasury Department's list of Specially Designated Nationals; (iii)&nbsp;any person or entity on the U.S. Commerce Department's Denied Persons List, Entity List, or Unverified List; or (iv)&nbsp;any person or entity where such export or reexport violates any U.S. export control laws or regulations including, but not limited to, the terms of any export license or license exemption and any amendments and supplemental additions to U.S. export laws as they may occur from time to time.</span></div>
+
+<div>&nbsp;</div>
+<div style="text-indent: 0in; margin-left: 0in"><b><span style="font-size: 10pt">9.3 </span></b><b><span style="font-size: 10pt">Taxes and Fees, Shipping Charges.</span></b><span style="font-size: 10pt"> License fees quoted to Licensee are exclusive of any and all taxes or fees, including, but not limited to, sales tax, use tax, value-added tax (VAT), customs, duties, or tariffs, and shipping and handling charges.</span></div>
+<div>&nbsp;</div>
+<div style="text-indent: 0in; margin-left: 0in"><b><span style="font-size: 10pt">9.4 </span></b><b><span style="font-size: 10pt">No Implied Waivers.</span></b><span style="font-size: 10pt"> The failure of either party to enforce any provision of this License Agreement shall not be deemed a waiver of the provisions or of the right of such party thereafter to enforce that or any other provision.</span></div>
+<div>&nbsp;</div>
+<div style="text-indent: 0in; margin-left: 0in"><b><span style="font-size: 10pt">9.5 </span></b><b><span style="font-size: 10pt">Severability.</span></b><span style="font-size: 10pt"> The parties agree that if any provision of this License Agreement is held to be unenforceable for any reason, such provision shall be reformed only to the extent necessary to make the intent of the language enforceable.</span></div>
+
+<div>&nbsp;</div>
+<div style="text-indent: 0in; margin-left: 0in"><b><span style="font-size: 10pt">9.6 </span></b><b><span style="font-size: 10pt">Successor and Assigns.</span></b><span style="font-size: 10pt"> Licensee shall not assign, sublicense, or transfer Licensee's rights or delegate its obligations under this License Agreement without ESRI's prior written consent, and any attempt to do so without consent shall be void. This License Agreement shall be binding upon the respective successors and assigns of the parties to this License Agreement. Notwithstanding, a government contractor that has acquired Software, Data, Web Services, or Documentation under contract to the government may assign this License Agreement to its government customer upon written notice to ESRI, provided the government customer assents to the terms of this License Agreement.</span></div>
+<div>&nbsp;</div>
+<div style="text-indent: 0in; margin-left: 0in"><b><span style="font-size: 10pt">9.7 </span></b><b><span style="font-size: 10pt">Survival of Terms.</span></b><span style="font-size: 10pt"> The provisions of Articles&nbsp;2, 5, 6, 7, 8, and 9 of this License Agreement shall survive the expiration or termination of this License Agreement.</span></div>
+<div>&nbsp;</div>
+<div style="text-indent: 0in; margin-left: 0in"><b><span style="font-size: 10pt">9.8 </span></b><b><span style="font-size: 10pt">Equitable Relief.</span></b><span style="font-size: 10pt"> Licensee agrees that any breach of this License Agreement by Licensee may cause irreparable damage and that, in the event of such breach, in addition to any and all remedies at law, ESRI shall have the right to seek an injunction, specific performance, or other equitable relief in any court of competent jurisdiction without the requirement of posting a bond or undertaking or proving injury as a condition for relief.</span></div>
+
+<div>&nbsp;</div>
+<div style="text-indent: 0in; margin-left: 0in"><b><span style="font-size: 10pt">9.9 </span></b><b><span style="font-size: 10pt">U.S.</span></b><b><span style="font-size: 10pt"> Government Licensee</span></b><span style="font-size: 10pt">. Software, Data, Web Services, and Documentation are commercial computer software, commercial data, commercial computer software documentation, and commercial Web Services. This License Agreement contains ESRI's commercial license terms and conditions for such items. The commercial license rights in this License Agreement strictly govern Licensee's use, reproduction, or disclosure of Software, Data, Web Services, and Documentation. No other license terms or conditions shall apply unless expressly agreed in writing by ESRI and Licensee. ESRI Software source code is unpublished, and all rights to Software, Data, Web Services, and Documentation are reserved. In the event any court, arbitrator, or board holds that the Licensee has greater rights to any portion of Software, Data, Web Services, or Documentation under applicable public procurement law, such rights shall extend only to the portions affected.</span></div>
+<div>&nbsp;</div>
+<div style="page-break-after: avoid; text-indent: 0in; margin-left: 0in"><b><span style="font-size: 10pt">9.10 </span></b><b><span style="font-size: 10pt">Governing Law, Arbitration</span></b></div>
+<div style="page-break-after: avoid">&nbsp;</div>
+<div style="text-indent: -0.25in; margin-left: 0.25in"><span style="font-size: 10pt">a.<span style="font: 7pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><i><span style="font-size: 10pt">Licensees in the United States of America, Its Territories, and Outlying Areas.</span></i><span style="font-size: 10pt"> This License Agreement shall be governed by and construed in accordance with the laws of the State of California without reference to conflict of laws principles, except that U.S. federal law shall govern in matters of intellectual property. Except as provided in Section&nbsp;9.8, any dispute arising out of or relating to this License Agreement or the breach thereof that cannot be settled through negotiation shall be finally settled by arbitration administered by the American Arbitration Association under its Commercial Arbitration Rules. Judgment on the award rendered by the arbitrator may be entered in a court of competent jurisdiction. If Licensee is a U.S. government agency, this License Agreement is subject to the Contract Disputes Act of 1978, as amended (41 U.S.C. 601&ndash;613), in lieu of the arbitration provisions of this clause. This License Agreement shall not be governed by the United Nations Convention on Contracts for the International Sale of Goods, the application of which is expressly excluded.</span></div>
+
+<div style="text-indent: -0.25in; margin-left: 0.25in"><span style="font-size: 10pt">b.<span style="font: 7pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><i><span style="font-size: 10pt">All Other Licensees</span></i><i><span style="font-size: 10pt">.</span></i><span style="font-size: 10pt"> Except as provided in Section&nbsp;9.8, any dispute arising out of or relating to this License Agreement or the breach thereof that cannot be settled through negotiation shall be finally settled under the Rules of Arbitration of the International Chamber of Commerce by one&nbsp;(1)&nbsp;arbitrator appointed in accordance with said rules. The language of the arbitration shall be English. The place of the arbitration shall be at an agreed-upon location. This License Agreement shall not be governed by the United Nations Convention on Contracts for the International Sale of Goods, the application of which is expressly excluded. Either party shall, at the request of the other, make available documents or witnesses relevant to the major aspects of the dispute.</span></div>
+<div>&nbsp;</div>
+<div style="text-indent: 0in; margin-left: 0in"><b><span style="font-size: 10pt">9.11 </span></b><b><span style="font-size: 10pt">Maintenance</span></b><span style="font-size: 10pt">. Maintenance for qualifying Software or Data consists of updates and other benefits, such as access to technical support, specified in ESRI's or its distributor's most current applicable software maintenance policy.</span></div>
+<div>&nbsp;</div>
+
+<div style="text-indent: 0in; margin-left: 0in"><b><span style="font-size: 10pt">9.12 </span></b><b><span style="font-size: 10pt">Patents.</span></b><span style="font-size: 10pt">Licensee may not seek, and may not permit any other user to seek, a patent or similar right worldwide that is based on or incorporates any ESRI technology or services. This express prohibition on patenting shall not apply to Licensee's software and technology except to the extent that ESRI technology or services, or any portion thereof, are a part of any claim or preferred embodiment in a patent application or a similar application.</span></div>
+<div>&nbsp;</div>
+<div style="text-indent: 0in; margin-left: 0in"><b><span style="font-size: 10pt">9.13 </span></b><b><span style="font-size: 10pt">Entire Agreement.</span></b><span style="font-size: 10pt"> This License Agreement, including Exhibit 1, constitutes the sole and entire agreement of the parties as to the subject matter set forth herein and supersedes any previous license agreements, understandings, and arrangements between the parties relating to such subject matter. Additional or different terms included with an order or other document shall not be binding on ESRI. Any modification(s) or amendment(s) to this License Agreement must be in writing and signed by each party.</span></div>
+<div>&nbsp;</div>
+<div align="center"><b><span style="font-size: 10pt">EXHIBIT 1</span></b></div>
+<div align="center"><b><span style="font-size: 10pt">SCOPE OF USE</span></b></div>
+<div align="center"><b><span style="font-size: 10pt">(E300 06/28/2010)</span></b></div>
+
+<div align="center">&nbsp;</div>
+<div><span style="font-size: 10pt">The scope of use for the Software, Data, Web Services, and Documentation identified below is described in the applicable footnotes identified in parentheses.</span></div>
+<div>&nbsp;</div>
+<div style="margin-left: 0.25in"><b><span style="font-size: 10pt">Software</span></b></div>
+<div style="text-indent: -13.5pt; margin-left: 31.5pt"><span style="font-size: 10pt">&sect;<span style="font: 7pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 10pt">ArcGIS API for iOS (1, 16, 25, and 33)</span></div>
+<div style="text-indent: -13.5pt; margin-left: 31.5pt"><span style="font-size: 10pt">&sect;<span style="font: 7pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 10pt">ArcGIS Web Mapping (including SharePoint, JavaScript(tm), Adobe(r) Flex(tm), Microsoft(r) Silverlight(tm)/WPF(tm), SOAP, and REST) (6, 33, 35, and 53)</span></div>
+<div style="text-indent: -13.5pt; margin-left: 31.5pt">&nbsp;</div>
+<div style="margin-left: 0.25in"><b><span style="font-size: 10pt">Web Services</span></b></div>
+<div style="text-indent: -13.5pt; margin-left: 31.5pt"><span style="font-size: 10pt">&sect;<span style="font: 7pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 10pt">ArcGIS Online Services (6, 25, 33, 34, and 35)</span></div>
+
+<div style="text-indent: -0.25in; margin-left: 0.25in">&nbsp;</div>
+<div style="text-indent: -0.25in; margin-left: 0.25in"><span style="font-size: 10pt">1.<span style="font: 7pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 10pt">&quot;Single Use License.&quot; Licensee may permit a single authorized end user to install and use the Software, Data, and Documentation on a single computer for use by that end user on the computer on which the Software is installed. Remote access is not permitted. Licensee may permit the single authorized end user to make a second copy for end user's exclusive use on a portable computer as long as only one (1) copy of the Software, Data, and Documentation is in use at any one (1) time. No other end user may use the Software, Data, or Documentation under the same license at the same time for any other purpose.</span></div>
+<div style="text-indent: -0.25in; margin-left: 0.25in"><span style="font-size: 10pt">6.&nbsp;&nbsp; &quot;Term License.&quot; License is provided for use for a limited time period or on a subscription or transaction basis.</span></div>
+<div><span style="font-size: 10pt">16.&nbsp;Licensee may deliver applications to its sublicensee(s) provided Licensee uses a written sublicense agreement that protects ESRI's rights in its Software, Data, Web Services, and Documentation to the same extent as the ESRI License Agreement including, but not limited to, the following terms:</span></div>
+<div>&nbsp;</div>
+
+<div style="text-indent: -0.25in; margin-left: 0.75in"><span style="font-size: 10pt">a.<span style="font: 7pt &quot;Times New Roman&quot;">&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;</span></span>Sublicensee may not reverse engineer, decompile, or disassemble the ESRI Software, Data, Web Services, or Documentation, except to the extent permitted by applicable law; copy for commercial use; transfer; or assign its rights under the license grant;</div>
+<div style="text-indent: -0.25in; margin-left: 0.75in">b. Sublicensee may not use any ESRI Software, Data, Web Services, or Documentation, in whole or in part, separate from Licensee's executable application; and</div>
+<div style="text-indent: -0.25in; margin-left: 0.75in"><span style="font-size: 10pt">c. Third-party dependent or required components are redistributable subject to permission from the owner or author.</span></div>
+<div style="text-indent: -0.25in; margin-left: 0.25in">&nbsp;</div>
+<div><span style="font-size: 10pt">25.&nbsp;Use of included third-party owned data shall be subject to the Use of Data Restrictions found at&nbsp;</span><a style="text-decoration: none; color: rgb(12, 97, 141); " href="http://www.esri.com/legal/">http://www.esri.com/legal/</a> for the specific Data accessed. The Use of Data Restrictions may be modified by ESRI from time to time. If a modification is unacceptable to Licensee, Licensee may cancel a subscription upon written notice to ESRI, or discontinue use of the Data or Web Services, as applicable. If Licensee continues to use the Data or Web Services, Licensee will be deemed to have accepted the modification.</div>
+
+<div><span style="font-size: 10pt">33.&nbsp;Licensee's access to and use of Cloud Bundle, ArcGIS Online Services, or Microsoft Bing Maps are conditioned upon Licensee's acceptance of the ESRI Web Site and Service Terms of Use Agreement and the terms and conditions specific to Cloud Bundle, ArcGIS Online Services, or Microsoft Bing Maps found at&nbsp;<a href="http://www.esri.com/legal/">http://www.esri.com/legal/</a>.</span></div>
+<div><span style="font-size: 10pt">34.&nbsp;</span>Licensee's organization is limited to the number of specified credits, transactions, geography, or number of users as described in the online product description.</div>
+<div>35.<span class="Apple-tab-span" style="white-space:pre"> </span>Licensed end users shall not share the client-side data cache derived from ArcGIS Online Services with other licensed end users or third parties.</div>
+<div>53.<span class="Apple-tab-span" style="white-space:pre"> </span>Deployment license options are as follows:</div>
+<div>&nbsp;</div>
+
+<div class="rteindent1">a. A license for Web applications is per the principal registered unique domain identifier. Domain is the Internet domain name registered with a domain name registrar. For example, in example.com, example.com is the registered unique domain identifier. Similarly, in &nbsp; &nbsp; example.com.xx, where xx is a registered country code, example.com.xx is the registered unique domain identifier.</div>
+<div class="rteindent1"><span style="font-size: 10pt">b.&nbsp;A license for desktop applications or SharePoint is per organization. For the purposes of this license, organization is equivalent to a principal registered unique domain identifier (as described above). For example, desktop applications can be used by any employee of the organization with the principal registered unique domain identifier. There is no limit to the number of applications that can be built and deployed within an organization.</span></div>
+
+  
+
+<!--***END TEXT - DO NOT WRITE BELOW THIS LINE***-->
+</div>
+
+</body>
+</html>
+<div id="wh_footer" class="footnote" align="center">
+  Please <a href="mailto:js_feedback@esri.com?subject=Feedback on jshelp/terms.html">contact the team</a> to comment or give suggestions.
+  <br>
+  Copyright &copy; Environmental Systems Research Institute, Inc.
+</div></div> <!-- sub 4:  main content for a page and feedback markup -->
+  </div>
+</div> <!-- end main content -->
+
+<!-- TOC script -->
+<script src="../scripts/tree.js"></script>
+
+<script src="../prettify/prettify.js"></script>
+<script>
+  var dojoConfig = {
+    packages: [{
+      "name": "js",
+      "location": location.pathname.replace(/\/[^/]+$/, "/") + "../scripts"
+    }]
+  };
+</script>
+<script src="//js.arcgis.com/3.8compact/"></script> <!-- add API version -->
+<script src="../scripts/esri-main-concepts.js"></script>
+
+<!-- google analytics -->
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-215788-63']);
+  _gaq.push(['_setDomainName', 'arcgis.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+ <!-- sub 5:  add script to redirect old hash based URLs to static pages and google analytics -->
+</body>
+</html>

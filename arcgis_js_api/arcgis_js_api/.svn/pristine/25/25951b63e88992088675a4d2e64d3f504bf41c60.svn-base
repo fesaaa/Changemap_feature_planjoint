@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+    <title>Resizable Map</title>
+    <!-- Import CSS stylehseet for "Claro" theme -->
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/dojo/dijit/themes/claro/claro.css">
+    <!-- Import CSS stylesheet required for ResizeHandle module -->
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/dojo/dojox/layout/resources/ResizeHandle.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/esri/css/esri.css">
+    
+    <style>
+      /* Adjust the position of map resize handle a little bit */
+     .dojoxResizeHandle {
+        right: 0px;
+        bottom: 0px;
+      }
+    </style>
+    
+    <script>
+      var dojoConfig = {
+        //Required if you have dojo widgets(aka.dijits) in your HTML 
+        parseOnLoad: true
+      };
+    </script>
+    <script src="http://js.arcgis.com/3.8/"></script>
+    <script>
+    //Required if you have dojo widgets (aka. dijits)in your HTML markup 
+    dojo.require("dojo.parser"); 
+
+    // Import ResizeHandle module 
+    dojo.require("dojox.layout.ResizeHandle");
+
+    dojo.ready(pageReady);
+
+    var map; 
+
+    function pageReady() {
+      map = new esri.Map("mapDiv", { 
+        basemap: "gray",
+        center: [2.352, 48.87],
+        zoom: 7
+      });
+    }
+    </script>
+  </head>
+
+  <body class="claro">
+    <!-- Map Element -->
+    <div id="mapDiv" style="position: relative; width: 400px; height: 400px; border:2px solid #575757;">
+      <!-- ResizeHandle widget: note that the parent mapDiv has "position: relative"
+      in its style attribute - this is required when you place floating elements
+      inside the mapDiv -->
+      <div data-dojo-type="dojox.layout.ResizeHandle" 
+           data-dojo-props="targetId:'mapDiv',activeResize:true,intermediateChanges:true">
+        <script type="dojo/method" event="onResize">
+          if (window.map) {
+            window.map.resize();
+          }
+        </script>
+      </div>
+    </div>
+  </body>
+</html>

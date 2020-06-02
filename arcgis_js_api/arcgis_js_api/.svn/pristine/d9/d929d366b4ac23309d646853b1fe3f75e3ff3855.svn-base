@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="ie lt-ie9 lt-ie8 lt-ie7 ie6"> <![endif]-->
+<!--[if IE 7]>         <html class="ie lt-ie9 lt-ie8 ie7"> <![endif]-->
+<!--[if IE 8]>         <html class="ie lt-ie9 ie8"> <![endif]-->
+<!--[if gt IE 8]><!--> <html> <!--<![endif]-->
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+  <meta name="content-language" content="en">
+  <meta name="product" content="js-api-arcgis">
+  <meta name="subject" content="DEVELOPER,WEB,WEB APPLICATIONS,MOBILE">
+  <meta name="sub_category" content="JavaScript API">
+  <meta name="search-collection" content="help">
+  <meta name="search-category" content="help-api">
+  <meta name="version" content="arcgis-3.8"> <!-- API version -->
+  <meta name="content_type" content="Tutorial"> <!-- options: Help Topic, API Reference or Tutorial -->
+  <meta name="last-modified" content="2013-12-19"> <!-- put in date docs were generated -->
+
+  <link rel="stylesheet" href="../styles/screen.css">
+  <link rel="stylesheet" href="../styles/jsdoc.css">
+  <link rel="stylesheet" href="../styles/homepage.css">
+  <link rel="stylesheet" href="../styles/grid.css">
+  <link rel="stylesheet" href="../styles/tree.css">
+  <link rel="stylesheet" href="../prettify/prettify.css">
+  <style>
+    html {
+      overflow-y: auto;
+    }
+    .navigation-bar, .section-bar {
+      margin-bottom: 0;
+    }
+    .navigation-bar header h1, .section-bar header h1 {
+      margin-top: .35294em;
+    }
+    .navigation-bar, .section-bar {
+      background: url('../graphics/banner.jpg') no-repeat center center #762783;
+      min-height: 48px;
+      color: white;
+    }
+    #esri-logo {
+      background: url('../graphics/logo-esri.png') no-repeat center center ;
+      width: 100px;
+    }
+    @font-face {
+    font-family:'icomoon';src:url('../fonts/icons.eot');src:url('../fonts/icons.eot?#iefix') format("embedded-opentype"),url('../fonts/icons.woff') format("woff"),url('../fonts/icons.ttf') format("truetype"),url('../fonts/icons.svg#icomoon') format("svg");font-weight:400;font-style:normal
+    }[data-icon]:before {
+      font-family: 'icomoon';
+      content: attr(data-icon);
+      speak: none;
+      font-weight: 400;
+      line-height: 1;
+      -webkit-font-smoothing: antialiased
+    }[class*="icon-"]:before {
+      font-family: 'icomoon';
+      speak: none;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 1;
+      -webkit-font-smoothing: antialiased;
+      text-transform: none
+    }
+    pre {
+      font-size: 1.1em;
+      line-height: normal;
+      margin: 0;
+    }
+    #header nav li a {
+      font-size: .875em;
+    }
+    #esri-logo {
+      margin-left: 0;
+    }
+  </style>
+  <!--[if lt IE 9]>
+    <script src="../scripts/libs/html5shiv.js"></script>
+    <script src="../scripts/libs/selectivizr-min.js"></script>
+    <style>
+      #wrapper {
+        min-width: 960px;
+      }
+    </style>
+  <![endif]-->
+  <title>
+    Tutorials | ArcGIS API for JavaScript 
+  </title>
+</head>
+  
+<body>
+<div id="nav">
+<header id="header">
+  <div class="container relative-container">
+    <div class="header-inner ">
+      <div class="logo-wrap"><a href="../" id="site-logo">Arc<span>GIS</span> API for JavaScript</a><!--span class="down-arrow" id="down-arrow"></span--></div>
+      <nav id="site-nav" class="">
+        <a href="/en/" class="selected">
+          <h4 class="developers">Arc<span>GIS</span> API for JavaScript</h4>
+          <p>Build location-aware applications with ArcGIS</p>
+        </a>
+
+        <a href="https://www.arcgis.com/about/">
+          <h4 class="organizations">Arc<span>GIS</span> for Organizations</h4>
+          <p>Learn more about ArcGIS</p>
+        </a>
+      </nav>
+
+      <a id="esri-logo" href="http://esri.com">Esri</a>
+      <div id="logged-out-navigation" class="dropdown-navigation hide">
+  <a id="login-link" class="btn small light" href="/en/log-in/">Log In</a>
+</div>
+<div id="logged-in-navigation" class="dropdown-navigation dropdown-wrapper hide">
+  <a href="/en/usage-summary" class="dropdown btn small light">
+    <!-- <img src="http://d3w50ib5d2uy0g.cloudfront.net/cdn/2464//js/esri/arcgisonline/css/images/no-user-thumb.jpg" width="16" height="16" alt=""> --><span id="username"></span>
+  </a>
+  <div class="dropdown-content">
+    <ul>
+      <li><a href="/en/usage-summary/">Usage Summary</a></li>
+      <li><a href="/en/applications/">Applications</a></li>
+      <li></li>
+      <li><a href="/en/tools/">GIS Tools</a></li>
+    </ul>
+    <hr>
+    <ul>
+      <li><a href="/en/account/profile/">Account Settings</a></li>
+      <li><a href="/en/feedback/">Feedback</a></li>
+    </ul>
+    <hr>
+    <ul>
+      <li><a id="log-out-link" href="#">Log Out</a></li>
+    </ul>
+  </div>
+</div>
+
+      <div id="mobile-navigation" class="dropdown-navigation dropdown-wrapper">
+        <a href="#" class="dropdown btn small light icon icon-list-2">Select <span>a Section</span></a>
+        <div class="dropdown-content">
+          <ul>
+            <li><a href="../jshelp/">Concepts</a></li>
+            <li><a href="../jsapi/">API Reference</a></li>
+            <li><a href="../jssamples/">Samples</a></li>
+            <li><a href="http://forums.arcgis.com/forums/15">Forum</a></li>
+            <li><a href="../../">All Developer Resources</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="navigation-bar">
+  <div class="container">
+    <nav>
+      <div id="section-label"><a href=".">Tutorials</a></div>
+      <ul>
+        <!--li class="current"><a href="/en/javascript/">Home</a></li-->
+        <li class="current"><a href=".">Tutorials</a></li>
+        <li><a href="../jshelp/">Concepts</a></li>
+        <li><a href="../jsapi/">API Reference</a></li>
+        <li><a href="../jssamples/">Samples</a></li>
+        <li><a href="http://forums.arcgis.com/forums/15">Forum</a></li>
+        <li><a href="../../">All Developer Resources</a></li>
+      </ul>
+    </nav>
+  </div>
+</div> 
+</div><!-- end nav bar --> <!-- sub 2: header and navigation -->
+
+<div class="container_12">
+  <div class="grid_3 contentWrapper">
+    <div id="toggleToc">
+      <img src="../graphics/tochide.gif"> Hide Table of Contents
+    </div>
+    <div id="apiToc"><div class="treeDiv" id="tree" style="top: 35px; left: 0px;">
+  <div id="treeRoot">
+    <div class="treeNode">
+      <a class="treeUnselected" href="intro_firstmap_amd.html" onclick="clickAnchor(this)">Build your first application</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="intro_agstemplate_amd.html" onclick="clickAnchor(this)">Use an ArcGIS.com webmap</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="mobile_dev.html" onclick="clickAnchor(this)">Mobile-specific application</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="intro_directions.html" onclick="clickAnchor(this)">Directions widget</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="tutorial_geocoder.html" onclick="clickAnchor(this)">Geocoder widget</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="tutorial_label_layer.html" onclick="clickAnchor(this)">Labeling features client-side</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="intro_javascript_classes.html" onclick="clickAnchor(this)">Write a class</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="intro_custom_dijit.html" onclick="clickAnchor(this)">Create a re-usable widget</a>
+    </div>
+  </div>
+</div>
+<!-- pretty printed via http://prettydiff.com/?m=beautify&html --></div> <!-- Conceptual help TOC -->
+  </div>
+  <div class="grid_9 contentWrapper">
+    <div id="topicPane"><div id="pageBanner">Build your first application</div>
+<div id="nstext">
+<!--***START TEXT - DO NOT WRITE ABOVE THIS LINE***-->
+
+<div class="sandbox-wrapper">
+  <a href="../sandbox/sandbox.html?sample=map_create_amd" target="_blank">
+    <img src="images/sandbox.png" alt="screenshot of the Javascript Sandbox" />
+    <div>View the completed app in the JavaScript Sandbox</div>
+  </a>
+</div>
+
+<p class="tutorial-outline">This tutorial shows you how to:</p>
+<ol class="tutorial-outline">
+  <li><a href="#step1">Create a Simple HTML Document</a></li>
+  <li><a href="#step2">Reference the ArcGIS API for JavaScript</a></li>
+  <li><a href="#step3">Load Modules</a></li>
+  <li><a href="#step4">Ensure the DOM is Available</a></li>
+  <li><a href="#step5">Create the Map</a></li>
+  <li><a href="#step6">Define the Page Content</a></li>
+  <li><a href="#step7">Style the Page</a></li>
+</ol>
+
+<div class="tutNote"><p class="padded">
+  Before you begin, if you are new to the ArcGIS API for JavaScript, please read our <a href="../jshelp/intro_devenv.html" target="_blank">Setting up a Development Environment</a> topic which covers prerequisites such as setting up a web server and using various IDEs and text editors.
+</p>
+  <p class="padded">
+  This tutorial shows how to use modules from the ArcGIS API for JavaScript using Asynchronous Module Definition(AMD). For more information on AMD, refer to the following:
+  </p>
+  <ul>
+    <li><a href="https://github.com/amdjs/amdjs-api/wiki/AMD">AMDJS wiki on Github</a></li>
+    <li><a href="http://dojotoolkit.org/documentation/tutorials/1.8/modern_dojo/">Modern Dojo</a></li>
+  </ul>
+  <p class="padded">
+  The main difference between AMD and legacy code is how modules are loaded (<code>require()</code> vs. <code>dojo.require()</code>) and how classes from modules are referenced (globals are used in legacy code while AMD style code uses local variables). For the nostalgic, the <a href="intro_firstmap.html">non-AMD version of this tutorial</a> is still available.
+  </p>
+</div>
+
+<ol class="tutorial-content">
+  <li id="step1"><h3>Create a Simple HTML Document</h3>
+    <p>
+    First, set up a basic HTML document. Here's an example:
+    </p>
+    <div class="detailSample">
+      <pre class="prettyprint" style="border:none;">
+  &lt;!DOCTYPE html&gt;
+  &lt;html&gt;
+    &lt;head&gt;
+      &lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8"&gt;
+      &lt;meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no"&gt;
+      &lt;title&gt;&lt;/title&gt;
+    &lt;/head&gt;
+    
+  &lt;/html&gt;
+      </pre>
+    </div>
+  </li>
+  <li id="step2"><h3>Reference the ArcGIS API for JavaScript</h3>
+    <p>
+    To begin working with the ArcGIS API for JavaScript, add the following script and link tags inside the <code>&lt;head&gt;</code> tag:
+    </p>
+    <div class="detailSample">
+      <pre class="prettyprint" style="border:none;">
+  &lt;link rel="stylesheet" href="http://js.arcgis.com/3.8/js/esri/css/esri.css"&gt;
+  &lt;script src="http://js.arcgis.com/3.8/">&lt;/script&gt;
+      </pre>
+    </div>
+    <p>
+    The script tag loads the ArcGIS API for JavaScript. When new versions of the JavaScript API are released, update the version number to match the newly released version of the API.
+    </p>
+    <p>
+    The esri.css style sheet contains styles specific to Esri widgets and components. For more information about this stylesheet, refer to the help topic on <a href="../jshelp/css.html">required CSS</a>.
+    </p>
+    <div class="tutNote">
+      <p class="padded">
+      Optionally, inlcude one of the style sheets for a Dojo Dijit theme. There are four themes available:  claro, tundra, soria and nihilo. The <a href="http://archive.dojotoolkit.org/nightly/dojotoolkit/dijit/themes/themeTester.html">Dijit theme tester</a> is a quick way to preview how the various Dojo Dijits are styled in with each theme. Tundra and claro are used frequently in the API's samples. Experiment with different themes and see which you prefer. Again, using a Dojo Dijit theme is optional but doing so is an easy way to get a consistent look and feel to widgets included in the API. The URLs for the various theme style sheets are as follows:
+      </p>
+      <code style="border:none;">
+      http://js.arcgis.com/3.8/js/dojo/dijit/themes/claro/claro.css
+      http://js.arcgis.com/3.8/js/dojo/dijit/themes/tundra/tundra.css
+      http://js.arcgis.com/3.8/js/dojo/dijit/themes/nihilo/nihilo.css
+      http://js.arcgis.com/3.8/js/dojo/dijit/themes/soria/soria.css
+      </code>
+    </div>
+  </li>
+  <li id="step3"><h3>Load Modules</h3>
+    <p>
+    Use a second <code>&lt;script&gt;</code> to load specific modules from the API. Instead of having this script tag reference a URL, JavaScript code will be added directly inside of it.
+    </p>
+    <div class="detailSample">
+      <pre class="prettyprint" style="border:none;">
+  &lt;script>
+    require(["esri/map"], function(Map) { ... });
+  &lt;/script&gt;
+      </pre>
+    </div>
+      <p>
+      One thing to note about the code in this step is that the argument(s) to the function inside of require() can be anything you like. For consistency, we've published a list of <a href="../jsapi/argument_aliases.html">preferred argument aliases for Esri modules</a>. We recommend following that list when naming arguments passed to the require callback function. Dojo also does the same with their list of <a href="https://docs.google.com/spreadsheet/ccc?key=0Avm8Hjje-xiXdFBVSURNdFpHSmNzOXlMcnU5V3k1Rmc#gid=0">preferred argument aliases</a>.
+      </p>
+      <p>
+      Putting JavaScript inside a script tag is useful when building simple pages or experimenting but not suitable for larger applications. When building a larger application, all JavaScript should be in separate .js files.
+      </p>
+    <div class="tutNote">
+      <p class="padded">
+      The global <code>require()</code> function (provided by <a href="http://dojotoolkit.org" target="_blank">Dojo</a>) is used to load modules. Esri's JavaScript API is built on top of Dojo and relies on Dojo for its module system and other features like vector graphics and localization as well as a way to abstract away browser differences.  For more information on the relationship between Dojo and the JavaScript API, see <a href="../jshelp/inside_dojo.html">Working with Dojo</a> and <a href="../jshelp/why_dojo.html">Why Dojo</a>.
+      </p>
+    </div>
+  </li>
+  <li id="step4"><h3>Ensure the DOM is Available</h3>
+    <p>
+    Use <code>dojo/domReady!</code> to ensure the DOM is available before executing any code. Once the DOM is available, the function passed to <code>require()</code> will run. Code in that function will create the map and add a basemap. The basemap layer is a service from <a href="http://www.arcgis.com">ArcGIS.com</a>.
+    </p>
+    <div class="detailSample">
+      <pre class="prettyprint" style="border:none;">
+  &lt;script&gt;
+    require(["esri/map", "dojo/domReady!"], function(Map) { 
+      // code to create the map and add a basemap will go here 
+    });
+  &lt;/script>
+      </pre>
+    </div>
+    <div class="tutNote">
+      <p class="padded">
+      In addition to <code><a href="http://dojotoolkit.org/reference-guide/1.8/dojo/domReady.html">dojo/domReady!</a></code> (the bang or exclamation point denotes that <code>domReady</code> is an <a href="https://dojotoolkit.org/reference-guide/1.8/loader/amd.html#plugins">AMD loader plug-in</a>), Dojo also provides <code>dojo/ready</code>. The difference between <code>domReady</code> and <code>ready</code> is that the former waits to fire the callback provided to <code>require</code> until the DOM is available while the latter waits for the DOM to be ready <em>and</em> waits for all outstanding require calls to finish. For more information, see the <a href="http://dojotoolkit.org/reference-guide/1.8/dojo/ready.html">Dojo documentation for dojo/ready</a>. In simple cases, <code>dojo/domReady!</code> should be used. If an app uses <code>parseOnLoad: true</code>, Dojo Dijits, widgets from the Esri library or custom dijits, <code>dojo/ready</code> should be used.
+      </p>
+    </div>
+  </li>
+  <li id="step5"><h3>Create the Map</h3>
+    <p>
+    A new map is created using <code>Map</code>, which is a reference to the Map class that was loaded from the <code>esri/map</code> module. The string passed to <code>Map</code>, "mapDiv", is the id of the div element that will contain the map. An object to specify other map properties, such as basemap and starting center point and zoom level, is also passed to the Map constructor.
+    </p>
+    <div class="detailSample">
+      <pre class="prettyprint" style="border:none;">
+  var map;
+  require(["esri/map", "dojo/domReady!"], function(Map) { 
+    map = new Map("mapDiv", {
+      center: [-56.049, 38.485],
+      zoom: 3,
+      basemap: "streets"
+    });
+  });
+      </pre>
+    </div>
+    <p>
+    Additional basemap options are:  <code>"satellite", "hybrid", "topo", "gray", "ocean", "osm", "national_geographic"</code>. Use alternate basemaps by modifying the basemap option in the <a href="../sandbox/sandbox.html?sample=map_create" target="_blank">sandbox</a>. View the <a href="../jsapi/map-amd.html">Map class</a> for more details on additional map options.
+    </p>
+    <div class="tutNote">
+      <p class="padded">
+      Because the map variable is declared outside of a function, it is a global variable. This is useful while testing/debugging because the browser's developer console can be used to interact with the map.
+      </p>
+    </div>
+  </li>
+  <li id="step6"><h3>Define the Page Content</h3>
+    <p>
+    Now that the JavaScript to create a map is in place, the next step is to add the associated HTML. For this example, the HTML is very simple:  a body tag, which defines what is visible in the browser, and a single div element inside the body where the map will be created.
+    </p>
+    <div class="detailSample">
+      <pre class="prettyprint" style="border:none;">
+  &lt;body class="claro"&gt;
+    &lt;div id="mapDiv">&lt;/div&gt;
+  &lt;/body&gt;
+      </pre>
+    </div>
+    <p>
+    The div has an id of "mapDiv" to match the id that is passed to the map constructor. The body tag has a class attribute of "claro". This is used to apply styles from claro style sheet included in the head tag of the page to elements (widgets) in the page. If using a different theme, like tundra, use <code>class="tundra"</code>.
+    </p>
+  </li>
+  <li id="step7"><h3>Style the Page</h3>
+    <p>
+    For this tutorial, the map fills the browser window. To achieve this, add the following css inside the page's <code>&lt;head&gt;</code> tag:
+    </p>
+    <div class="detailSample">
+      <pre class="prettyprint" style="border:none;">
+  &lt;style&gt;
+    html, body, #mapDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+    }
+  &lt;/style&gt;
+      </pre>
+    </div>
+  </li>
+</ol>
+
+<!--***END TEXT - DO NOT WRITE BELOW THIS LINE***-->
+</div>
+<div id="wh_footer" class="footnote" align="center">
+  Please <a href="mailto:js_feedback@esri.com?subject=Feedback on /jstutorials/index.html">contact the team</a> to comment or give suggestions.
+  <br>
+  Copyright &copy; Environmental Systems Research Institute, Inc.
+</div></div> <!-- main content for a page and feedback markup-->
+  </div>
+</div> <!-- end main content -->
+
+<!-- TOC script -->
+<script src="../scripts/tree.js"></script>
+
+<script src="../prettify/prettify.js"></script>
+<script>
+  var dojoConfig = {
+    packages: [{
+      "name": "js",
+      "location": location.pathname.replace(/\/[^/]+$/, "/") + "../scripts"
+    }]
+  };
+</script>
+<script src="//js.arcgis.com/3.8compact/"></script> <!-- add API version -->
+<script src="../scripts/esri-main-tutorials.js"></script>
+
+<!-- google analytics -->
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-215788-63']);
+  _gaq.push(['_setDomainName', 'arcgis.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<!-- crazy egg -->
+<script>
+  setTimeout(function(){
+    var a=document.createElement("script");
+    var b=document.getElementsByTagName("script")[0];
+    a.src=document.location.protocol+"//dnn506yrbagrg.cloudfront.net/pages/scripts/0006/8609.js?"+Math.floor(new Date().getTime()/3600000);
+    a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)
+  }, 1);
+</script>
+
+<script>
+  (function() {
+    if ( window.location.hash.length === 0 ) {
+      return;
+    }
+
+    // got a hash, redirect to new static file
+    // remove index.html if it's in the URL
+    var href = window.location.href.replace("index.html", "");
+    // split on # to figure out where to redirect
+    var urlPieces = href.split("#");
+    if ( urlPieces.length === 1 ) {
+      console.log("no where new to go...");
+      return;
+    }
+    // baseUrl is everything up to the hash but doesn't include "index.html"
+    var baseUrl = urlPieces[0];
+    // classInfo is the class name and optionally a property or method
+    var classInfo = urlPieces[1].split("/");
+    var className;
+    if ( classInfo.length > 1 ) {
+      className = classInfo[0] + ".html#" + classInfo[1];
+    } else {
+      className = classInfo[0] + ".html";
+    }
+    // go to the new URL
+    window.location = baseUrl + className;
+  })();
+</script> <!-- sub 5:  add script to redirect old hash based URLs to static pages and google analytics-->
+
+</body>
+</html>

@@ -1,0 +1,2677 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="ie lt-ie9 lt-ie8 lt-ie7 ie6"> <![endif]-->
+<!--[if IE 7]>         <html class="ie lt-ie9 lt-ie8 ie7"> <![endif]-->
+<!--[if IE 8]>         <html class="ie lt-ie9 ie8"> <![endif]-->
+<!--[if gt IE 8]><!--> <html> <!--<![endif]-->
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+  <meta name="content-language" content="en">
+  <meta name="product" content="js-api-arcgis">
+  <meta name="subject" content="DEVELOPER,WEB,WEB APPLICATIONS,MOBILE">
+  <meta name="sub_category" content="JavaScript API">
+  <meta name="search-collection" content="help">
+  <meta name="search-category" content="help-api">
+  <meta name="version" content="arcgis-3.8"> <!-- API version -->
+  <meta name="content_type" content="API Reference"> <!-- options: Help Topic, API Reference, Sample OR Tutorial -->
+  <meta name="last-modified" content="2013-12-19"> <!-- put in date docs were generated -->
+
+  <link rel="stylesheet" href="../styles/screen.css">
+  <link rel="stylesheet" href="../styles/jsdoc.css">
+  <link rel="stylesheet" href="../styles/homepage.css">
+  <link rel="stylesheet" href="../styles/grid.css">
+  <link rel="stylesheet" href="../styles/tree.css">
+  <link rel="stylesheet" href="../prettify/prettify.css">
+  <style>
+    html {
+      overflow-y: auto;
+    }
+    .hidden{
+      display: none;
+    }
+    .eventDiv > .dtH4{
+      display: none;
+    }
+    .switch{
+      font-weight: bold;
+    }
+    .eventSwitch:not(.enabled){
+      color: #00629b;
+      cursor: pointer;
+      font-weight: normal;
+    }
+    .navigation-bar, .section-bar {
+      margin-bottom: 0;
+    }
+    .navigation-bar header h1, .section-bar header h1 {
+      margin-top: .35294em;
+    }
+    .navigation-bar, .section-bar {
+      background: url('../graphics/banner.jpg') no-repeat center center #762783;
+      color: white;
+      min-height: 48px;
+    }
+    .navigation-bar {
+      position: relative;
+      z-index: 10;
+    }
+    #esri-logo {
+      background: url('../graphics/logo-esri.png') no-repeat center center ;
+      width: 100px;
+    }
+    @font-face {
+    font-family:'icomoon';src:url('../fonts/icons.eot');src:url('../fonts/icons.eot?#iefix') format("embedded-opentype"),url('../fonts/icons.woff') format("woff"),url('../fonts/icons.ttf') format("truetype"),url('../fonts/icons.svg#icomoon') format("svg");font-weight:400;font-style:normal
+    }[data-icon]:before {
+      font-family: 'icomoon';
+      content: attr(data-icon);
+      speak: none;
+      font-weight: 400;
+      line-height: 1;
+      -webkit-font-smoothing: antialiased
+    }[class*="icon-"]:before {
+      font-family: 'icomoon';
+      speak: none;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 1;
+      -webkit-font-smoothing: antialiased;
+      text-transform: none
+    }
+    pre {
+      font-size: 1em;
+      line-height: normal;
+      margin: 0;
+      margin-top: 1em;
+    }
+    .navigation-bar input {
+      margin-top: 0;
+      opacity: 1;
+    }
+    #header nav li a {
+      font-size: .875em;
+    }
+    #esri-logo {
+      margin-left: 0;
+    }
+  </style>
+  <!--[if lt IE 9]>
+    <script src="../scripts/libs/html5shiv.js"></script>
+    <script src="../scripts/libs/selectivizr-min.js"></script>
+    <style>
+      #wrapper {
+        min-width: 960px;
+      }
+    </style>
+  <![endif]-->
+  <title>
+    Edit | API Reference | ArcGIS API for JavaScript
+  </title> <!-- class name -->
+</head>
+  
+<body>
+<div id="nav">
+<header id="header">
+  <div class="container relative-container">
+    <div class="header-inner ">
+      <div class="logo-wrap"><a href="../" id="site-logo">Arc<span>GIS</span> API for JavaScript</a><!--span class="down-arrow" id="down-arrow"></span--></div>
+      <nav id="site-nav" class="">
+        <a href="/en/" class="selected">
+          <h4 class="developers">Arc<span>GIS</span> API for JavaScript</h4>
+          <p>Build location-aware applications with ArcGIS</p>
+        </a>
+
+        <a href="https://www.arcgis.com/about/">
+          <h4 class="organizations">Arc<span>GIS</span> for Organizations</h4>
+          <p>Learn more about ArcGIS</p>
+        </a>
+      </nav>
+
+      <a id="esri-logo" href="http://esri.com">Esri</a>
+      <div id="logged-out-navigation" class="dropdown-navigation hide">
+  <a id="login-link" class="btn small light" href="/en/log-in/">Log In</a>
+</div>
+<div id="logged-in-navigation" class="dropdown-navigation dropdown-wrapper hide">
+  <a href="/en/usage-summary" class="dropdown btn small light">
+    <!-- <img src="http://d3w50ib5d2uy0g.cloudfront.net/cdn/2464//js/esri/arcgisonline/css/images/no-user-thumb.jpg" width="16" height="16" alt=""> --><span id="username"></span>
+  </a>
+  <div class="dropdown-content">
+    <ul>
+      <li><a href="/en/usage-summary/">Usage Summary</a></li>
+      <li><a href="/en/applications/">Applications</a></li>
+      <li></li>
+      <li><a href="/en/tools/">GIS Tools</a></li>
+    </ul>
+    <hr>
+    <ul>
+      <li><a href="/en/account/profile/">Account Settings</a></li>
+      <li><a href="/en/feedback/">Feedback</a></li>
+    </ul>
+    <hr>
+    <ul>
+      <li><a id="log-out-link" href="#">Log Out</a></li>
+    </ul>
+  </div>
+</div>
+
+      <div id="mobile-navigation" class="dropdown-navigation dropdown-wrapper">
+        <a href="#" class="dropdown btn small light icon icon-list-2">Select <span>a Section</span></a>
+        <div class="dropdown-content">
+          <ul>
+            <li><a href="../jstutorials/">Tutorials</a></li>
+            <li><a href="../jshelp/">Concepts</a></li>
+            <li><a href="../jssamples/">Samples</a></li>
+            <li><a href="http://forums.arcgis.com/forums/15">Forum</a></li>
+            <li><a href="../../">All Developer Resources</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="navigation-bar">
+  <div class="container">
+    <nav>
+
+      <div id="section-label"><a href=".">API Reference</a></div>
+      
+      <div id="search">
+        <form id="searchForm">
+          <input type="text" id="searchKeyWord" name="searchKeyWord" placeholder="Find a Class" autocomplete="off" disabled="disabled">
+          <!-- <input type="submit" id="searchButton" name="searchButton" value=""> -->
+        </form>
+      </div>
+      <ul>
+        <!--li class="current"><a href="/en/javascript/">Home</a></li-->
+        <li><a href="../jstutorials/">Tutorials</a></li>
+        <li><a href="../jshelp/">Concepts</a></li>
+        <li class="current"><a href=".">API Reference</a></li>
+        <li><a href="../jssamples/">Samples</a></li>
+        <li><a href="http://forums.arcgis.com/forums/15">Forum</a></li>
+        <li><a href="../../">All Developer Resources</a></li>
+      </ul>
+    </nav>
+  </div>
+</div> 
+</div><!-- end nav bar --> <!-- header -->
+
+<div class="container_12">
+  <div class="grid_3 contentWrapper">
+    <div id="toggleToc">
+      <img src="../graphics/tochide.gif"> Hide Table of Contents
+    </div>
+    <div id="apiToc"> <div class="treeDiv" id="tree" style="top: 35px; left: 0px;">
+  <div id="treeRoot" ondragstart="return false" onselectstart="return false">
+    <div class="treeNode">
+      <a class="treeUnselected" href="." onclick="clickAnchor(this)">API Reference Overview</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="api_codeassist.html" onclick="clickAnchor(this)">Code Assist Plugins</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="argument_aliases.html" onclick="clickAnchor(this)">Preferred Argument Aliases</a>
+    </div>
+    <!-- <div class="treeNode">
+      <a class="treeUnselected" href="../tree/" onclick="clickAnchor(this)">Tree Diagram of API Components</a>
+    </div> -->
+    <div class="treeNode">
+      <img class="treeLinkImage" onClick="expandCollapse(this.parentNode)" src="../graphics/treenodeminus.gif"/>
+      <span onClick="expandCollapse(this.parentNode)" style="cursor: pointer;">esri</span>
+      <div class="treeNode">
+        <a class="treeUnselected" href="esri.config-amd.html" onClick="clickAnchor(this)">config</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="credential-amd.html" onClick="clickAnchor(this)">Credential</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="esri.domutils-amd.html" onClick="clickAnchor(this)">domUtils</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="graphic-amd.html" onClick="clickAnchor(this)">Graphic</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="esri.graphicsutils-amd.html" onClick="clickAnchor(this)">graphicsUtils</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="identitymanager-amd.html" onClick="clickAnchor(this)">IdentityManager</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="identitymanagerbase-amd.html" onClick="clickAnchor(this)">IdentityManagerBase</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="infotemplate-amd.html" onClick="clickAnchor(this)">InfoTemplate</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="infowindowbase-amd.html" onClick="clickAnchor(this)">InfoWindowBase</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="esri.kernel-amd.html" onClick="clickAnchor(this)">kernel</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="esri.lang-amd.html" onClick="clickAnchor(this)">lang</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="map-amd.html" onClick="clickAnchor(this)">Map</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="operationbase-amd.html" onClick="clickAnchor(this)">OperationBase</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="esri.request-amd.html" onClick="clickAnchor(this)">request</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="serverinfo-amd.html" onClick="clickAnchor(this)">ServerInfo</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="snappingmanager-amd.html" onClick="clickAnchor(this)">SnappingManager</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="spatialreference-amd.html" onClick="clickAnchor(this)">SpatialReference</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="timeextent-amd.html" onClick="clickAnchor(this)">TimeExtent</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="undomanager-amd.html" onClick="clickAnchor(this)">UndoManager</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="units-amd.html" onClick="clickAnchor(this)">units</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="esri.urlutils-amd.html" onClick="clickAnchor(this)">urlUtils</a>
+      </div>
+      <div class="treeNode">
+        <img class="treeLinkImage" onClick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+        <span onClick="expandCollapse(this.parentNode)" style="cursor: pointer;">arcgis</span>
+        <div class="treeSubnodesHidden">
+          <div class="treeNode">
+            <a class="treeUnselected" href="portal-amd.html" onClick="clickAnchor(this)">Portal</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="portalcomment-amd.html" onClick="clickAnchor(this)">PortalComment</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="portalfolder-amd.html" onClick="clickAnchor(this)">PortalFolder</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="portalgroup-amd.html" onClick="clickAnchor(this)">PortalGroup</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="portalgroupmembers-amd.html" onClick="clickAnchor(this)">PortalGroupMembers</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="portalitem-amd.html" onClick="clickAnchor(this)">PortalItem</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="portalqueryparams-amd.html" onClick="clickAnchor(this)">PortalQueryParams</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="portalqueryresult-amd.html" onClick="clickAnchor(this)">PortalQueryResult</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="portalrating-amd.html" onClick="clickAnchor(this)">PortalRating</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="portaluser-amd.html" onClick="clickAnchor(this)">PortalUser</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="esri.arcgis.utils-amd.html" onClick="clickAnchor(this)">utils</a>
+          </div>
+        </div>
+      </div>
+      <div class="treeNode">
+        <img class="treeLinkImage" onClick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+        <span onClick="expandCollapse(this.parentNode)" style="cursor: pointer;">dijit</span>
+        <div class="treeSubnodesHidden">
+          <div class="treeNode">
+            <a class="treeUnselected" href="attachmenteditor-amd.html" onClick="clickAnchor(this)">AttachmentEditor</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="attributeinspector-amd.html" onClick="clickAnchor(this)">AttributeInspector</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="attribution-amd.html" onClick="clickAnchor(this)">Attribution</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="basemap-amd.html" onClick="clickAnchor(this)">Basemap</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="basemapgallery-amd.html" onClick="clickAnchor(this)">BasemapGallery</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="basemaplayer-amd.html" onClick="clickAnchor(this)">BasemapLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="basemaptoggle-amd.html" onClick="clickAnchor(this)">BasemapToggle</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="bookmarkitem-amd.html" onClick="clickAnchor(this)">BookmarkItem</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="bookmarks-amd.html" onClick="clickAnchor(this)">Bookmarks</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="directions-amd.html" onClick="clickAnchor(this)">Directions</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="editor-amd.html" onClick="clickAnchor(this)">Editor</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="gallery-amd.html" onClick="clickAnchor(this)">Gallery</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="gauge-amd.html" onClick="clickAnchor(this)">Gauge</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="geocoder-amd.html" onClick="clickAnchor(this)">Geocoder</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="histogramtimeslider-amd.html" onClick="clickAnchor(this)">HistogramTimeSlider</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="homebutton-amd.html" onClick="clickAnchor(this)">HomeButton</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="infowindow-amd.html" onClick="clickAnchor(this)">InfoWindow</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="infowindowlite-amd.html" onClick="clickAnchor(this)">InfoWindowLite</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="layerswipe-amd.html" onClick="clickAnchor(this)">LayerSwipe</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="legend-amd.html" onClick="clickAnchor(this)">Legend</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="locatebutton-amd.html" onClick="clickAnchor(this)">LocateButton</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="measurement-amd.html" onClick="clickAnchor(this)">Measurement</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="overviewmap-amd.html" onClick="clickAnchor(this)">OverviewMap</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="popup-amd.html" onClick="clickAnchor(this)">Popup</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="popupmobile-amd.html" onClick="clickAnchor(this)">PopupMobile</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="popuptemplate-amd.html" onClick="clickAnchor(this)">PopupTemplate</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="print-amd.html" onClick="clickAnchor(this)">Print</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="scalebar-amd.html" onClick="clickAnchor(this)">Scalebar</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="templatepicker-amd.html" onClick="clickAnchor(this)">TemplatePicker</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="timeslider-amd.html" onClick="clickAnchor(this)">TimeSlider</a>
+          </div>
+          <div class="treeNode">
+            <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif">
+            <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">
+              Analysis
+            </span>
+            <div class="treeSubnodesHidden">
+              <div class="treeNode">
+                <a class="treeUnselected" href="analysisbase-amd.html" onClick="clickAnchor(this)">AnalysisBase</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="aggregatepoints-amd.html" onClick="clickAnchor(this)">AggregatePoints</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="createbuffers-amd.html" onClick="clickAnchor(this)">CreateBuffers</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="createdrivetimeareas-amd.html" onClick="clickAnchor(this)">CreateDriveTimeAreas</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="dissolveboundaries-amd.html" onClick="clickAnchor(this)">DissolveBoundaries</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="enrichlayer-amd.html" onClick="clickAnchor(this)">EnrichLayer</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="extractdata-amd.html" onClick="clickAnchor(this)">ExtractData</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="findhotspots-amd.html" onClick="clickAnchor(this)">FindHotSpots</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="findnearest-amd.html" onClick="clickAnchor(this)">FindNearest</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="mergelayers-amd.html" onClick="clickAnchor(this)">MergeLayers</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="overlaylayers-amd.html" onClick="clickAnchor(this)">OverlayLayers</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="summarizenearby-amd.html" onClick="clickAnchor(this)">SummarizeNearby</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="summarizewithin-amd.html" onClick="clickAnchor(this)">SummarizeWithin</a>
+              </div>
+            </div>
+          </div>
+          <div class="treeNode">
+            <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif">
+            <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">
+              Geoenrichment
+            </span>
+            <div class="treeSubnodesHidden">
+              <div class="treeNode">
+                <a class="treeUnselected" href="infographic-amd.html" onClick="clickAnchor(this)">Infographic</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="infographicscarousel-amd.html" onClick="clickAnchor(this)">InfographicsCarousel</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="infographicsoptions-amd.html" onClick="clickAnchor(this)">InfographicsOptions</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="infographicsoptions.item-amd.html" onClick="clickAnchor(this)">InfographicsOptions.Item</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="treeNode">
+        <img class="treeLinkImage" onClick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+        <span onClick="expandCollapse(this.parentNode)" style="cursor: pointer;">geometry</span>
+        <div class="treeSubnodesHidden">
+          <div class="treeNode">
+            <a class="treeUnselected" href="circle-amd.html" onClick="clickAnchor(this)">Circle</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="extent-amd.html" onClick="clickAnchor(this)">Extent</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="esri.geometry.geodesicutils-amd.html" onClick="clickAnchor(this)">geodesicUtils</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="geometry-amd.html" onClick="clickAnchor(this)">Geometry</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="esri.geometry.jsonutils-amd.html" onClick="clickAnchor(this)">jsonUtils</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="esri.geometry.mathutils-amd.html" onClick="clickAnchor(this)">mathUtils</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="multipoint-amd.html" onClick="clickAnchor(this)">Multipoint</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="esri.geometry.normalizeutils-amd.html" onClick="clickAnchor(this)">normalizeUtils</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="point-amd.html" onClick="clickAnchor(this)">Point</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="polygon-amd.html" onClick="clickAnchor(this)">Polygon</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="polyline-amd.html" onClick="clickAnchor(this)">Polyline</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="esri.geometry.scaleutils-amd.html" onClick="clickAnchor(this)">scaleUtils</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="screenpoint-amd.html" onClick="clickAnchor(this)">ScreenPoint</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="esri.geometry.screenutils-amd.html" onClick="clickAnchor(this)">screenUtils</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="esri.geometry.webmercatorutils-amd.html" onClick="clickAnchor(this)">webMercatorUtils</a>
+          </div>
+        </div>
+      </div>
+      <div class="treeNode">
+        <img class="treeLinkImage" onClick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+        <span onClick="expandCollapse(this.parentNode)" style="cursor: pointer;">layers</span>
+        <div class="treeSubnodesHidden">
+          <div class="treeNode">
+            <a class="treeUnselected" href="arcgisdynamicmapservicelayer-amd.html" onClick="clickAnchor(this)">ArcGISDynamicMapServiceLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="arcgisimageservicelayer-amd.html" onClick="clickAnchor(this)">ArcGISImageServiceLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="arcgistiledmapservicelayer-amd.html" onClick="clickAnchor(this)">ArcGISTiledMapServiceLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="codedvaluedomain-amd.html" onClick="clickAnchor(this)">CodedValueDomain</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="domain-amd.html" onClick="clickAnchor(this)">Domain</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="dynamiclayerinfo-amd.html" onClick="clickAnchor(this)">DynamicLayerInfo</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="dynamicmapservicelayer-amd.html" onClick="clickAnchor(this)">DynamicMapServiceLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="featureeditresult-amd.html" onClick="clickAnchor(this)">FeatureEditResult</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="featurelayer-amd.html" onClick="clickAnchor(this)">FeatureLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="featuretemplate-amd.html" onClick="clickAnchor(this)">FeatureTemplate</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="featuretype-amd.html" onClick="clickAnchor(this)">FeatureType</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="field-amd.html" onClick="clickAnchor(this)">Field</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="georsslayer-amd.html" onClick="clickAnchor(this)">GeoRSSLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="graphicslayer-amd.html" onClick="clickAnchor(this)">GraphicsLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="imageparameters-amd.html" onClick="clickAnchor(this)">ImageParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="imageserviceparameters-amd.html" onClick="clickAnchor(this)">ImageServiceParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="inheriteddomain-amd.html" onClick="clickAnchor(this)">InheritedDomain</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="joindatasource-amd.html" onClick="clickAnchor(this)">JoinDataSource</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="kmlfolder-amd.html" onClick="clickAnchor(this)">KMLFolder</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="kmlgroundoverlay-amd.html" onClick="clickAnchor(this)">KMLGroundOverlay</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="kmllayer-amd.html" onClick="clickAnchor(this)">KMLLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="labelclass-amd.html" onClick="clickAnchor(this)">LabelClass</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="labellayer-amd.html" onClick="clickAnchor(this)">LabelLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="layer-amd.html" onClick="clickAnchor(this)">Layer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="layerdatasource-amd.html" onClick="clickAnchor(this)">LayerDataSource</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="layerdrawingoptions-amd.html" onClick="clickAnchor(this)">LayerDrawingOptions</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="layerinfo-amd.html" onClick="clickAnchor(this)">LayerInfo</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="layermapsource-amd.html" onClick="clickAnchor(this)">LayerMapSource</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="layertimeoptions-amd.html" onClick="clickAnchor(this)">LayerTimeOptions</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="lod-amd.html" onClick="clickAnchor(this)">LOD</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="mapimage-amd.html" onClick="clickAnchor(this)">MapImage</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="mapimagelayer-amd.html" onClick="clickAnchor(this)">MapImageLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="mosaicrule-amd.html" onClick="clickAnchor(this)">MosaicRule</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="openstreetmaplayer-amd.html" onClick="clickAnchor(this)">OpenStreetMapLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="querydatasource-amd.html" onClick="clickAnchor(this)">QueryDataSource</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="rangedomain-amd.html" onClick="clickAnchor(this)">RangeDomain</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="rasterdatasource-amd.html" onClick="clickAnchor(this)">RasterDataSource</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="rasterfunction-amd.html" onClick="clickAnchor(this)">RasterFunction</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="streamlayer-amd.html" onClick="clickAnchor(this)">StreamLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="tabledatasource-amd.html" onClick="clickAnchor(this)">TableDataSource</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="tileinfo-amd.html" onClick="clickAnchor(this)">TileInfo</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="tiledmapservicelayer-amd.html" onClick="clickAnchor(this)">TiledMapServiceLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="timeinfo-amd.html" onClick="clickAnchor(this)">TimeInfo</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="timereference-amd.html" onClick="clickAnchor(this)">TimeReference</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="wmslayer-amd.html" onClick="clickAnchor(this)">WMSLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="wmslayerinfo-amd.html" onClick="clickAnchor(this)">WMSLayerInfo</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="wmtslayer-amd.html" onClick="clickAnchor(this)">WMTSLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="wmtslayerinfo-amd.html" onClick="clickAnchor(this)">WMTSLayerInfo</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="webtiledlayer-amd.html" onClick="clickAnchor(this)">WebTiledLayer</a>
+          </div>
+        </div>
+      </div>
+      <div class="treeNode">
+        <img class="treeLinkImage" onClick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+        <span onClick="expandCollapse(this.parentNode)" style="cursor: pointer;">renderer</span>
+        <div class="treeSubnodesHidden">
+          <div class="treeNode">
+            <a class="treeUnselected" href="classbreaksrenderer-amd.html" onClick="clickAnchor(this)">ClassBreaksRenderer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="dotdensityrenderer-amd.html" onClick="clickAnchor(this)">DotDensityRenderer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="esri.renderers.jsonutils-amd.html" onClick="clickAnchor(this)">jsonUtils</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="renderer-amd.html" onClick="clickAnchor(this)">Renderer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="scaledependentrenderer-amd.html" onClick="clickAnchor(this)">ScaleDependentRenderer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="simplerenderer-amd.html" onClick="clickAnchor(this)">SimpleRenderer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="symbolager-amd.html" onClick="clickAnchor(this)">SymbolAger</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="temporalrenderer-amd.html" onClick="clickAnchor(this)">TemporalRenderer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="timeclassbreaksager-amd.html" onClick="clickAnchor(this)">TimeClassBreaksAger</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="timerampager-amd.html" onClick="clickAnchor(this)">TimeRampAger</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="uniquevaluerenderer-amd.html" onClick="clickAnchor(this)">UniqueValueRenderer</a>
+          </div>
+        </div>
+      </div>
+      <div class="treeNode">
+        <img class="treeLinkImage" onClick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+        <span onClick="expandCollapse(this.parentNode)" style="cursor: pointer;">symbols</span>
+        <div class="treeSubnodesHidden">
+          <div class="treeNode">
+            <a class="treeUnselected" href="cartographiclinesymbol-amd.html" onClick="clickAnchor(this)">CartographicLineSymbol</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="fillsymbol-amd.html" onClick="clickAnchor(this)">FillSymbol</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="font-amd.html" onClick="clickAnchor(this)">Font</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="esri.symbols.jsonutils-amd.html" onClick="clickAnchor(this)">jsonUtils</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="linesymbol-amd.html" onClick="clickAnchor(this)">LineSymbol</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="markersymbol-amd.html" onClick="clickAnchor(this)">MarkerSymbol</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="picturefillsymbol-amd.html" onClick="clickAnchor(this)">PictureFillSymbol</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="picturemarkersymbol-amd.html" onClick="clickAnchor(this)">PictureMarkerSymbol</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="simplefillsymbol-amd.html" onClick="clickAnchor(this)">SimpleFillSymbol</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="simplelinesymbol-amd.html" onClick="clickAnchor(this)">SimpleLineSymbol</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="simplemarkersymbol-amd.html" onClick="clickAnchor(this)">SimpleMarkerSymbol</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="symbol-amd.html" onClick="clickAnchor(this)">Symbol</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="textsymbol-amd.html" onClick="clickAnchor(this)">TextSymbol</a>
+          </div>
+        </div>
+      </div>
+      <div class="treeNode">
+        <img class="treeLinkImage" onClick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+        <span onClick="expandCollapse(this.parentNode)" style="cursor: pointer;">tasks</span>
+        <div class="treeSubnodesHidden">
+          <div class="treeNode">
+            <a class="treeUnselected" href="addresscandidate-amd.html" onClick="clickAnchor(this)">AddressCandidate</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="algorithmiccolorramp-amd.html" onClick="clickAnchor(this)">AlgorithmicColorRamp</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="areasandlengthsparameters-amd.html" onClick="clickAnchor(this)">AreasAndLengthsParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="bufferparameters-amd.html" onClick="clickAnchor(this)">BufferParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="classbreaksdefinition-amd.html" onClick="clickAnchor(this)">ClassBreaksDefinition</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="classificationdefinition-amd.html" onClick="clickAnchor(this)">ClassificationDefinition</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="closestfacilityparameters-amd.html" onClick="clickAnchor(this)">ClosestFacilityParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="closestfacilitysolveresult-amd.html" onClick="clickAnchor(this)">ClosestFacilitySolveResult</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="closestfacilitytask-amd.html" onClick="clickAnchor(this)">ClosestFacilityTask</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="datafile-amd.html" onClick="clickAnchor(this)">DataFile</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="datalayer-amd.html" onClick="clickAnchor(this)">DataLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="date-amd.html" onClick="clickAnchor(this)">Date</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="directionsfeatureset-amd.html" onClick="clickAnchor(this)">DirectionsFeatureSet</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="distanceparameters-amd.html" onClick="clickAnchor(this)">DistanceParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="featureset-amd.html" onClick="clickAnchor(this)">FeatureSet</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="findparameters-amd.html" onClick="clickAnchor(this)">FindParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="findresult-amd.html" onClick="clickAnchor(this)">FindResult</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="findtask-amd.html" onClick="clickAnchor(this)">FindTask</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="gpmessage-amd.html" onClick="clickAnchor(this)">GPMessage</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="generalizeparameters-amd.html" onClick="clickAnchor(this)">GeneralizeParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="generaterendererparameters-amd.html" onClick="clickAnchor(this)">GenerateRendererParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="generaterenderertask-amd.html" onClick="clickAnchor(this)">GenerateRendererTask</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="geometryservice-amd.html" onClick="clickAnchor(this)">GeometryService</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="geoprocessor-amd.html" onClick="clickAnchor(this)">Geoprocessor</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="identifyparameters-amd.html" onClick="clickAnchor(this)">IdentifyParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="identifyresult-amd.html" onClick="clickAnchor(this)">IdentifyResult</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="identifytask-amd.html" onClick="clickAnchor(this)">IdentifyTask</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="imageserviceidentifyparameters-amd.html" onClick="clickAnchor(this)">ImageServiceIdentifyParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="imageserviceidentifyresult-amd.html" onClick="clickAnchor(this)">ImageServiceIdentifyResult</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="imageserviceidentifytask-amd.html" onClick="clickAnchor(this)">ImageServiceIdentifyTask</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="jobinfo-amd.html" onClick="clickAnchor(this)">JobInfo</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="legendlayer-amd.html" onClick="clickAnchor(this)">LegendLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="lengthsparameters-amd.html" onClick="clickAnchor(this)">LengthsParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="linearunit-amd.html" onClick="clickAnchor(this)">LinearUnit</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="locator-amd.html" onClick="clickAnchor(this)">Locator</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="multipartcolorramp-amd.html" onClick="clickAnchor(this)">MultipartColorRamp</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="namessage-amd.html" onClick="clickAnchor(this)">NAMessage</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="naoutputline-amd.html" onClick="clickAnchor(this)">NAOutputLine</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="naoutputpolygon-amd.html" onClick="clickAnchor(this)">NAOutputPolygon</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="natraveldirection-amd.html" onClick="clickAnchor(this)">NATravelDirection</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="nauturn-amd.html" onClick="clickAnchor(this)">NAUTurn</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="offsetparameters-amd.html" onClick="clickAnchor(this)">OffsetParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="parametervalue-amd.html" onClick="clickAnchor(this)">ParameterValue</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="printparameters-amd.html" onClick="clickAnchor(this)">PrintParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="printtask-amd.html" onClick="clickAnchor(this)">PrintTask</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="printtemplate-amd.html" onClick="clickAnchor(this)">PrintTemplate</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="projectparameters-amd.html" onClick="clickAnchor(this)">ProjectParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="query-amd.html" onClick="clickAnchor(this)">Query</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="querytask-amd.html" onClick="clickAnchor(this)">QueryTask</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="rasterdata-amd.html" onClick="clickAnchor(this)">RasterData</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="relationparameters-amd.html" onClick="clickAnchor(this)">RelationParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="relationshipquery-amd.html" onClick="clickAnchor(this)">RelationshipQuery</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="routeparameters-amd.html" onClick="clickAnchor(this)">RouteParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="routeresult-amd.html" onClick="clickAnchor(this)">RouteResult</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="routetask-amd.html" onClick="clickAnchor(this)">RouteTask</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="serviceareaparameters-amd.html" onClick="clickAnchor(this)">ServiceAreaParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="serviceareasolveresult-amd.html" onClick="clickAnchor(this)">ServiceAreaSolveResult</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="serviceareatask-amd.html" onClick="clickAnchor(this)">ServiceAreaTask</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="statisticdefinition-amd.html" onClick="clickAnchor(this)">StatisticDefinition</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="trimextendparameters-amd.html" onClick="clickAnchor(this)">TrimExtendParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="uniquevaluedefinition-amd.html" onClick="clickAnchor(this)">UniqueValueDefinition</a>
+          </div>
+          <div class="treeNode">
+            <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif">
+            <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">
+              Geoenrichment
+            </span>
+            <div class="treeSubnodesHidden">
+              <div class="treeNode">
+                <a class="treeUnselected" href="drivebuffer-amd.html" onClick="clickAnchor(this)">DriveBuffer</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="driveunits-amd.html" onClick="clickAnchor(this)">DriveUnits</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="geographylevel-amd.html" onClick="clickAnchor(this)">GeographyLevel</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="geometrystudyarea-amd.html" onClick="clickAnchor(this)">GeometryStudyArea</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="intersectinggeographies-amd.html" onClick="clickAnchor(this)">IntersectingGeographies</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="ringbuffer-amd.html" onClick="clickAnchor(this)">RingBuffer</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="treeNode">
+        <img class="treeLinkImage" onClick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+        <span onClick="expandCollapse(this.parentNode)" style="cursor: pointer;">toolbars</span>
+        <div class="treeSubnodesHidden">
+          <div class="treeNode">
+            <a class="treeUnselected" href="draw-amd.html" onClick="clickAnchor(this)">Draw</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="edit-amd.html" onClick="clickAnchor(this)">Edit</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="navigation-amd.html" onClick="clickAnchor(this)">Navigation</a>
+          </div>
+        </div>
+      </div>
+      <div class="treeNode">
+        <img class="treeLinkImage" onClick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+        <span onClick="expandCollapse(this.parentNode)" style="cursor: pointer;">virtualearth</span>
+        <div class="treeSubnodesHidden">
+          <div class="treeNode">
+            <a class="treeUnselected" href="veaddress-amd.html" onClick="clickAnchor(this)">VEAddress</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="vegeocoderesult-amd.html" onClick="clickAnchor(this)">VEGeocodeResult</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="vegeocoder-amd.html" onClick="clickAnchor(this)">VEGeocoder</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="vetiledlayer-amd.html" onClick="clickAnchor(this)">VETiledLayer</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></div> <!-- sub 4:  API ref TOC -->
+  </div>
+  <div class="grid_9 contentWrapper">
+    <div id="topicPane">    <div id="pageBanner">Class: Edit</div>
+    <div style="font-size:12px">[ <a href="edit-amd.html">AMD Module Require</a> | <b>Legacy Module Require</b> ]</div>
+    <div id="nstext">
+      <p><pre class="prettyprint">dojo.require("esri.toolbars.edit");</pre></p>
+      <h4 class="dtH4">Description</h4>
+      <div class="detaildesc"><div><i>Class added at v2.0</i></div><p>The Edit toolbar is a helper class that provides functionality to move graphics or modify individual vertices, i.e. edit the geometry of existing graphics. To add new graphics, use the <a href="draw-amd.html">Draw toolbar</a>. Updated at version 2.1 to include support for rotating and scaling. </p>
+
+<p>Mouse behavior when editing features:</p>
+<ul>
+<li> To move a feature, once the Edit toolbar is activated with that feature, press down on the feature, drag it, then let go at the new location.</li>
+<li>To add a vertex to a polyline or polygon, click on a "ghost" vertices and move it to the new location.</li>
+<li>To delete a vertex from a polyline or polygon, right-click the vertex and select 'Delete Vertex' from the menu. Only valid for polylines with at least three vertices and polygons with at least four vertices.</li>
+<li>To rotate or scale a geometry click the handle and move to the desired location.</li>
+</ul></div>
+      <H4 class="dtH4">Samples</H4>
+      Search for <a target="_top" href="../jssamples/#search/Edit">samples</a> that use this class.
+      <H4 class="dtH4">Class hierarchy</H4>
+      <pre class="inherits">esri/toolbars/Edit</pre>
+      
+      <h4 class="dtH4">Constructors</h4>
+      <table class="syntaxTABLE" cellspacing="0">
+        <tr><th class="tableheader">Name</th><th class="tableheader">Summary</th></tr>
+        <tr><td class="syntaxTABLE"><a href="#edit1">new esri.toolbars.Edit(map,options?)</a></td><td class="syntaxTABLE">Creates a new Edit object.</td></tr>
+      </table>
+      <h4 class="dtH4">Constants</h4>
+      <table class="syntaxTABLE" cellspacing="0">
+        <tr><th class="tableheader">Name</th><th class="tableheader">Description</th></tr>
+        <tr><td class="syntaxTABLE">EDIT_TEXT</td><td class="syntaxTABLE">When a textSymbol point is in edit mode, double-clicking leads to text editing mode, which is a text box where uses can change the text content. Pressing Enter key or clicking outside applies the change to the text symbol.</td></tr>
+        <tr><td class="syntaxTABLE">EDIT_VERTICES</td><td class="syntaxTABLE"><p>Display and edit vertices of a <a href="polyline-amd.html">Polyline</a>, <a href="polygon-amd.html">Polygon</a>, or <a href="multipoint-amd.html">Multipoint</a>. For <a href="polyline-amd.html">Polyline</a> and <a href="polygon-amd.html">Polygon</a> ghost vertices are also displayed. Ghost vertices are points in between the existing points on a path or ring that is not yet part of the graphic. The last three points in a polygon, last two points in a line, and last point in a multipoint cannot be deleted.</p> 
+ 
+
+<table class="detailTABLE" cellspacing="0" >
+<tr>
+  <td class="detailTABLE">Add</td>
+  <td class="detailTABLE">Click and drag a ghost vertice to add it to the graphic.</td>
+</tr>
+<tr>
+  <td class="detailTABLE">Delete</td>
+  <td class="detailTABLE">Right-click a vertex and select Delete.</td>
+</tr>
+<tr>
+  <td class="detailTABLE">Move</td>
+  <td class="detailTABLE">Click and drag a vertex</td>
+</tr>
+</table></td></tr>
+        <tr><td class="syntaxTABLE">MOVE</td><td class="syntaxTABLE">Move graphic to a new location on the map. Applicable to  <a href="point-amd.html">Point</a>, <a href="polyline-amd.html">Polyline</a>, or <a href="polygon-amd.html">Polygon</a>.</td></tr>
+        <tr><td class="syntaxTABLE">ROTATE</td><td class="syntaxTABLE">Rotate the graphic. <i> As of version 2.1</i>.</td></tr>
+        <tr><td class="syntaxTABLE">SCALE</td><td class="syntaxTABLE">Scale or resize a graphic.  <i>As of version 2.1</i></td></tr>
+      </table>
+      
+      
+      
+      <h4 class="dtH4">Methods</h4>
+      <table class="syntaxTABLE" cellspacing="0">
+        <tr><th class="tableheader">Name</th><th class="tableheader">Type</th><th class="tableheader">Summary</th></tr>
+        <tr><td class="syntaxTABLE"><a href="#activate">activate(tool,graphic,options?)</a></td><td class="syntaxTABLE">None</td><td class="syntaxTABLE">Activates the toolbar to edit the supplied graphic.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#deactivate">deactivate()</a></td><td class="syntaxTABLE">None</td><td class="syntaxTABLE">Deactivates the toolbar.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#getcurrentstate">getCurrentState()</a></td><td class="syntaxTABLE">Object</td><td class="syntaxTABLE">An object with the following properties that describe the current state.<table class="detailTABLE" cellspacing="0" >
+<tr>
+  <td class="detailTABLE">Value</td>
+  <td class="detailTABLE">Description</td>
+</tr>
+<tr>
+  <td class="detailTABLE">&lt;Number&gt; <b>tool</b></td>
+  <td class="detailTABLE">Indicates the current tool.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#refresh">refresh()</a></td><td class="syntaxTABLE">None</td><td class="syntaxTABLE">Refreshes the internal state of the toolbar</td></tr>
+      </table>
+      <h4 class="dtH4">Events</h4><div class="switch">[ <span class="eventSwitch enabled">On Style Events</span> | <span class="eventSwitch">Connect Style Event</span> ]</div><div>All On Style event listeners receive a single event object. The event properties listed below are accessed from this event object. Additionally, the event object also contains a 'target' property whose value is the object which fired the event.</div><div class="eventDiv"><h4 class="dtH4">Events</h4>
+      <table class="syntaxTABLE" cellspacing="0">
+        <tr><th class="tableheader">Name</th><th class="tableheader">Returned Properties</th><th class="tableheader">Summary</th></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-activate">activate</a></td><td class="syntaxTABLE"><div>&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</div><div>&lt;String&gt; tool</div></td><td class="syntaxTABLE">Activates the toolbar for editing geometries.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-deactivate">deactivate</a></td><td class="syntaxTABLE"><div>&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</div><div>&lt;Object&gt; info</div><div>&lt;String&gt; tool</div></td><td class="syntaxTABLE">Deactivates the toolbar and reactivates map navigation.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-graphic-click">graphic-click</a></td><td class="syntaxTABLE"><div>&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</div><div>&lt;Object&gt; info</div></td><td class="syntaxTABLE">Fires when a graphic is clicked.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-graphic-first-move">graphic-first-move</a></td><td class="syntaxTABLE"><div>&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</div></td><td class="syntaxTABLE">Fires when the user begins to move a graphic.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-graphic-move">graphic-move</a></td><td class="syntaxTABLE"><div>&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</div><div>&lt;Object&gt; transform</div></td><td class="syntaxTABLE">Fired continuously as the graphic moves.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-graphic-move-start">graphic-move-start</a></td><td class="syntaxTABLE"><div>&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</div></td><td class="syntaxTABLE">Fired when the mouse button is pressed down on the graphic, usually while moving a graphic.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-graphic-move-stop">graphic-move-stop</a></td><td class="syntaxTABLE"><div>&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</div><div>&lt;Object&gt; transform</div></td><td class="syntaxTABLE">Fired when the mouse button is released, usually after moving the graphic.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-rotate">rotate</a></td><td class="syntaxTABLE"><div>&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</div><div>&lt;Object&gt; info</div></td><td class="syntaxTABLE">Fires continuously as a graphic is rotated.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-rotate-first-move">rotate-first-move</a></td><td class="syntaxTABLE"><div>&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</div></td><td class="syntaxTABLE">Fires when the user begins to drag a handle to rotate the graphic.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-rotate-start">rotate-start</a></td><td class="syntaxTABLE"><div>&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</div></td><td class="syntaxTABLE">Fires when a user clicks on the handle to begin rotating a graphic.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-rotate-stop">rotate-stop</a></td><td class="syntaxTABLE"><div>&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</div><div>&lt;Object&gt; info</div></td><td class="syntaxTABLE">Fires when the mouse button is released from the rotate handle to finish rotating the graphic.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-scale">scale</a></td><td class="syntaxTABLE"><div>&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</div><div>&lt;Object&gt; info</div></td><td class="syntaxTABLE"><p>Fires continuously as the graphic is being scaled.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-scale-first-move">scale-first-move</a></td><td class="syntaxTABLE"><div>&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</div></td><td class="syntaxTABLE">Fires when the user begins to drag a handle to scale the graphic.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-scale-start">scale-start</a></td><td class="syntaxTABLE"><div>&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</div></td><td class="syntaxTABLE">Fires when a user clicks on the handle to scale or resize a graphic.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-scale-stop">scale-stop</a></td><td class="syntaxTABLE"><div>&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</div><div>&lt;Object&gt; info</div></td><td class="syntaxTABLE">Fires when the mouse button is released from the scale handle to finish scaling the graphic.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-vertex-add">vertex-add</a></td><td class="syntaxTABLE"><div>&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</div><div>&lt;Object&gt; vertexInfo</div></td><td class="syntaxTABLE">Fired after a new vertex is added to a polyline or polygon or a new point is added to a multipoint.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-vertex-click">vertex-click</a></td><td class="syntaxTABLE"><div>&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</div><div>&lt;Object&gt; vertexInfo</div></td><td class="syntaxTABLE">Fired when the mouse button is clicked on the vertex of a polyline or polygon or a point in a multipoint.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-vertex-delete">vertex-delete</a></td><td class="syntaxTABLE"><div>&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</div><div>&lt;Object&gt; vertexInfo</div></td><td class="syntaxTABLE">Fired after a vertex(polyline, polygon) or point(multipoint) is deleted.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-vertex-first-move">vertex-first-move</a></td><td class="syntaxTABLE"><div>&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</div><div>&lt;Object&gt; vertexInfo</div></td><td class="syntaxTABLE">Fired when the user begins to move the vertex of a polyline or polygon or a point of a multipoint.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-vertex-mouse-out">vertex-mouse-out</a></td><td class="syntaxTABLE"><div>&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</div><div>&lt;Object&gt; vertexInfo</div></td><td class="syntaxTABLE">Fires as the mouse exits a vertex(polyline, polygon) or a point(multipoint).</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-vertex-mouse-over">vertex-mouse-over</a></td><td class="syntaxTABLE"><div>&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</div><div>&lt;Object&gt; vertexInfo</div></td><td class="syntaxTABLE">Fired when the mouse moves over a vertex (polyline, polygon) or point (multipoint).</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-vertex-move">vertex-move</a></td><td class="syntaxTABLE"><div>&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</div><div>&lt;Object&gt; transform</div><div>&lt;Object&gt; vertexInfo</div></td><td class="syntaxTABLE">Fired continuously as the user is moving a vertex (polyline, polygon) or point (multipoint).</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-vertex-move-start">vertex-move-start</a></td><td class="syntaxTABLE"><div>&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</div><div>&lt;Object&gt; vertexInfo</div></td><td class="syntaxTABLE">Fired when the mouse button is pressed down on a vertex (polyline, polygon) or point (multipoint).</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-vertex-move-stop">vertex-move-stop</a></td><td class="syntaxTABLE"><div>&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</div><div>&lt;Object&gt; transform</div><div>&lt;Object&gt; vertexInfo</div></td><td class="syntaxTABLE">Fired when the mouse button is released from a vertex (polyline, polygon) or point(multipoint).</td></tr>
+      </table></div><div class="eventDiv hidden"><h4 class="dtH4">Old Events</h4>
+      <table class="syntaxTABLE" cellspacing="0">
+        <tr><th class="tableheader">Name</th><th class="tableheader">Summary</th></tr>
+        <tr><td class="syntaxTABLE"><a href="#onactivate">onActivate(tool,graphic)</a></td><td class="syntaxTABLE">Activates the toolbar for editing geometries.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#ondeactivate">onDeactivate(tool,graphic,info)</a></td><td class="syntaxTABLE">Deactivates the toolbar and reactivates map navigation</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#ongraphicclick">onGraphicClick(graphic,info)</a></td><td class="syntaxTABLE">Fires when a graphic is clicked.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#ongraphicfirstmove">onGraphicFirstMove(graphic)</a></td><td class="syntaxTABLE">Fires when the user begins to move a graphic.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#ongraphicmove">onGraphicMove(graphic,transform)</a></td><td class="syntaxTABLE">Fired continuously as the graphic moves.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#ongraphicmovestart">onGraphicMoveStart(graphic)</a></td><td class="syntaxTABLE">Fired when the mouse button is pressed down on the graphic, usually while moving a graphic.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#ongraphicmovestop">onGraphicMoveStop(graphic,transform)</a></td><td class="syntaxTABLE">Fired when the mouse button is released, usually after moving the graphic.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#onrotate">onRotate(graphic,info)</a></td><td class="syntaxTABLE">Fires continuously as a graphic is rotated.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#onrotatefirstmove">onRotateFirstMove(graphic)</a></td><td class="syntaxTABLE">Fires when the user begins to drag a handle to rotate the graphic.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#onrotatestart">onRotateStart(graphic)</a></td><td class="syntaxTABLE">Fires when a user clicks on the handle to begin rotating a graphic.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#onrotatestop">onRotateStop(graphic,info)</a></td><td class="syntaxTABLE">Fires when the mouse button is released from the rotate handle to finish rotating the graphic.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#onscale">onScale(graphic,info)</a></td><td class="syntaxTABLE"><p>Fires continuously as the graphic is being scaled.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#onscalefirstmove">onScaleFirstMove(graphic)</a></td><td class="syntaxTABLE">Fires when the user begins to drag a handle to scale the graphic.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#onscalestart">onScaleStart(graphic)</a></td><td class="syntaxTABLE">Fires when a user clicks on the handle to scale or resize a graphic.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#onscalestop">onScaleStop(graphic,info)</a></td><td class="syntaxTABLE">Fires when the mouse button is released from the scale handle to finish scaling the graphic.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#onvertexadd">onVertexAdd(graphic,vertexInfo)</a></td><td class="syntaxTABLE">Fired after a new vertex is added to a polyline or polygon or a new point is added to a multipoint.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#onvertexclick">onVertexClick(graphic,vertexInfo)</a></td><td class="syntaxTABLE">Fired when the mouse button is clicked on the vertex of a polyline or polygon or a point in a multipoint.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#onvertexdelete">onVertexDelete(graphic,vertexInfo)</a></td><td class="syntaxTABLE">Fired after a vertex(polyline, polygon) or point(multipoint) is deleted.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#onvertexfirstmove">onVertexFirstMove(graphic,vertexInfo)</a></td><td class="syntaxTABLE">Fired when the user begins to move the vertex of a polyline or polygon or a point of a multipoint.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#onvertexmouseout">onVertexMouseOut(graphic,vertexInfo)</a></td><td class="syntaxTABLE">Fires as the mouse exits a vertex(polyline, polygon) or a point(multipoint).</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#onvertexmouseover">onVertexMouseOver(graphic,vertexInfo)</a></td><td class="syntaxTABLE">Fired when the mouse moves over a vertex (polyline, polygon) or point (multipoint).</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#onvertexmove">onVertexMove(graphic,vertexInfo,transform)</a></td><td class="syntaxTABLE">Fired continuously as the user is moving a vertex (polyline, polygon) or point (multipoint).</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#onvertexmovestart">onVertexMoveStart(graphic,vertexInfo)</a></td><td class="syntaxTABLE">Fired when the mouse button is pressed down on a vertex (polyline, polygon) or point (multipoint).</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#onvertexmovestop">onVertexMoveStop(graphic,vertexInfo,transform)</a></td><td class="syntaxTABLE">Fired when the mouse button is released from a vertex (polyline, polygon) or point(multipoint).</td></tr>
+      </table></div>
+      <div class="sectionDivider">Constructor Details</div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="edit1"></a>new esri.toolbars.Edit(map,options?)</h4></div>
+        <div class="detaildesc">Creates a new Edit object. A map is a required parameter.</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="map-amd.html">Map</a>&gt; map</td>
+        <td class="detailTABLE">Required</td>
+        <td class="detailTABLE">Map the toolbar is associated with.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; options</td>
+        <td class="detailTABLE">Optional</td>
+        <td class="detailTABLE">Optional parameters.  See options list.</td>
+      </tr>
+</table></div>        <div class="detaildesc"><b>Options:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;Boolean&gt; allowAddVertices</td>
+
+        <td class="detailTABLE">Specifies whether users can add new vertices. Valid for polyline and polygon geometries.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Boolean&gt; allowDeletevertices</td>
+
+        <td class="detailTABLE">Specifies whether users can delete vertices. Valid for polyline, polygon and multipoint geometries.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;<a href="linesymbol-amd.html">LineSymbol</a>&gt; ghostLineSymbol</td>
+
+        <td class="detailTABLE">Line symbol used to draw the guild lines, displayed when moving vertices. Valid for polyline and polygon geometries.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;<a href="markersymbol-amd.html">MarkerSymbol</a>&gt; ghostVertexSymbol</td>
+
+        <td class="detailTABLE">Marker symbol used to display the insertable vertices. Valid for polyline and polygon geometries.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Boolean&gt; uniformScaling</td>
+
+        <td class="detailTABLE">When true, if the geometry is&nbsp;re-sized&nbsp;the aspect ration will be preserved.&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;<a href="markersymbol-amd.html">MarkerSymbol</a>&gt; vertexSymbol</td>
+
+        <td class="detailTABLE">Marker symbol used to draw the vertices. Valid for polyline and polygon geometries.</td>
+      </tr>
+</table></div>        <div class="detaildesc"><b>Sample:</b> <pre  class='prettyprint'>  editToolbar = new esri.toolbars.Edit(map);</pre></div>
+      </div>
+      
+      <div class="sectionDivider">Method Details</div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="activate"></a>activate(tool,graphic,options?)</h4></div>
+        <div class="detaildesc">Activates the toolbar to edit the supplied graphic. After activation the toolbar is ready for user interaction using the specified tool.</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;String&gt; tool</td>
+        <td class="detailTABLE">Required</td>
+        <td class="detailTABLE">Specify the active tool(s). Combine tools using the | operator. See the Constants table for a list of valid values.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+        <td class="detailTABLE">Required</td>
+        <td class="detailTABLE">The graphic to edit.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; options</td>
+        <td class="detailTABLE">Optional</td>
+        <td class="detailTABLE">The following properties are valid options: <br><br> <table class="detailTABLE" cellspacing="0"> <tbody><tr> <td class="detailTABLE">Value</td> <td class="detailTABLE">Description</td> <td class="detailTABLE">Valid geometry</td> </tr> <tr> <td class="detailTABLE">allowAddVertices</td> <td class="detailTABLE">Specifies whether users can add new vertices.</td> <td class="detailTABLE"><a href="polyline-amd.html">Polyline</a>, <a href="polygon-amd.html">Polygon</a></td> </tr> <tr> <td class="detailTABLE">allowDeleteVertices</td> <td class="detailTABLE">Specifies whether users can delete vertices.</td> <td class="detailTABLE"><a href="polyline-amd.html">Polyline</a>, <a href="polygon-amd.html">Polygon</a>, <a href="multipoint-amd.html">Multipoint</a></td> </tr> <tr> <td class="detailTABLE">ghostVertexSymbol</td> <td class="detailTABLE"><a href="markersymbol-amd.html">MarkerSymbol</a> for insertable vertices.</td> <td class="detailTABLE"><a href="polyline-amd.html">Polyline</a>, <a href="polygon-amd.html">Polygon</a></td> </tr> <tr> <td class="detailTABLE">ghostLineSymbol</td> <td class="detailTABLE"><a href="linesymbol-amd.html">LineSymbol</a> for guide lines, displayed when moving vertices.</td> <td class="detailTABLE"><a href="polyline-amd.html">Polyline</a>, <a href="polygon-amd.html">Polygon</a></td> </tr> <tr> <td class="detailTABLE">vertexSymbol</td> <td class="detailTABLE"><a href="markersymbol-amd.html">MarkerSymbol</a> for vertices.</td> <td class="detailTABLE"><a href="polyline-amd.html">Polyline</a>, <a href="polygon-amd.html">Polygon</a></td> </tr> <tr> <td class="detailTABLE">uniformScaling</td> <td class="detailTABLE">Boolean</td> <td class="detailTABLE"></td> </tr> </tbody></table></td>
+      </tr>
+</table></div>        <div class="detaildesc"><b>Sample:</b> <pre class='prettyprint'>
+//Use the edit toolbar to edit vertices 
+editToolbar.activate(esri.toolbars.Edit.EDIT_VERTICES , evt.graphic);
+</pre>
+
+<pre class='prettyprint'>
+//Combine tools 
+editToolbar.activate(esri.toolbars.Edit.MOVE | esri.toolbars.Edit.SCALE, evt.graphic);
+</pre></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="deactivate"></a>deactivate()</h4></div>
+        <div class="detaildesc">Deactivates the toolbar.  Call this method to deactivate the toolbar after editing the graphic.</div>        <div class="detaildesc"><b>Sample:</b> <pre class='prettyprint'>
+editToolbar.deactivate();
+</pre></div>        <div class="detaildesc"><b>See also:</b> <a href="#event-deactivate">.on("deactivate")</a></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="getcurrentstate"></a>getCurrentState()</h4></div>
+        <div class="detaildesc">An object with the following properties that describe the current state.<table class="detailTABLE" cellspacing="0" >
+<tr>
+  <td class="detailTABLE">Value</td>
+  <td class="detailTABLE">Description</td>
+</tr>
+<tr>
+  <td class="detailTABLE">&lt;Number&gt; <b>tool</b></td>
+  <td class="detailTABLE">Indicates the current tool. Valid values are listed in the constants table.</td>
+</tr>
+<tr>
+  <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; <b>graphic</b></td>
+  <td class="detailTABLE">The graphic that is currently being edited.</td>
+</tr>
+<tr>
+  <td class="detailTABLE">&lt;Boolean&gt; <b>isModified</b></td>
+  <td class="detailTABLE">Indicates if the graphic has been modified.</td>
+</tr>
+</table></div>        <div class="detaildesc"><b>Return value:</b> Object</div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="refresh"></a>refresh()</h4></div>
+        <div class="detaildesc">Refreshes the internal state of the toolbar.</div>
+      </div>
+      <div class="sectionDivider">Event Details</div>
+<div class="switch">[ <span class="eventSwitch enabled">On Style Events</span> | <span class="eventSwitch">Connect Style Event</span> ]</div><div class="eventDiv">      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-activate"></a>activate</h4></div>
+        <div class="detaildesc">Activates the toolbar for editing geometries. Activating the toolbar disables map navigation. <i>(Added at v3.6)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The graphic to edit  whose vertices will be edited or moved.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;String&gt; tool</td>
+
+        <td class="detailTABLE">The editing type. The Constants table lists valid editing values.</td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-deactivate"></a>deactivate</h4></div>
+        <div class="detaildesc">Deactivates the toolbar and reactivates map navigation. <i>(Added at v3.6)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The graphic the toolbar was associated with.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; info</td>
+
+        <td class="detailTABLE"><p>The info object has the following properties:</p>
+<pre>
+{
+  isModified:&lt;Boolean&gt;
+}
+</pre></td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;String&gt; tool</td>
+
+        <td class="detailTABLE">The editing type. The Constants table lists valid editing values.</td>
+      </tr>
+</table></div>        <div class="detaildesc"><b>Sample:</b> <pre class='prettyprint'>
+editToolbar.on("deactivate", function(evt) {
+  if(evt.info.isModified){
+    firePerimeterFL.applyEdits(null, [evt.graphic], null);
+  }
+});
+</pre></div>        <div class="detaildesc"><b>See also:</b> <a href="#deactivate">deactivate</a></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-graphic-click"></a>graphic-click</h4></div>
+        <div class="detaildesc">Fires when a graphic is clicked. Applicable only when the MOVE tool is active. <i>(Added at v3.6)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The clicked graphic.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; info</td>
+
+        <td class="detailTABLE">Object with the following properties:
+<table class="detailTABLE" cellspacing="0" style="font-size:125%">
+      <tr>
+      <td class="detailTABLE">
+      &lt;<a href="point-amd.html">Point</a>&gt; <b>screenPoint</b>
+      </td>
+      <td class="detailTABLE">
+        Location of mouse click in screen coordinates (pixels).
+      </td>
+      </tr>
+          <tr>
+            <td class="detailTABLE">
+            &lt;<a href="point-amd.html">Point</a>&gt; <b>mapPoint</b>
+            </td>
+            <td class="detailTABLE">
+              Location of mouse click in map coordinates. 
+            </td>
+    </table></td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-graphic-first-move"></a>graphic-first-move</h4></div>
+        <div class="detaildesc">Fires when the user begins to move a graphic. Applicable only when the MOVE tool is active. <i>(Added at v3.6)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The graphic associated with the toolbar.</td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-graphic-move"></a>graphic-move</h4></div>
+        <div class="detaildesc">Fired continuously as the graphic moves. Applicable only when the MOVE tool is active. <i>(Added at v3.6)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The graphic associated with the toolbar.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; transform</td>
+
+        <td class="detailTABLE">Represents the linear transformation applied to the graphic.</td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-graphic-move-start"></a>graphic-move-start</h4></div>
+        <div class="detaildesc">Fired when the mouse button is pressed down on the graphic, usually while moving a graphic. Applicable only when the MOVE tool is active. <i>(Added at v3.6)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The graphic associated with the toolbar.</td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-graphic-move-stop"></a>graphic-move-stop</h4></div>
+        <div class="detaildesc">Fired when the mouse button is released, usually after moving the graphic.  Applicable only when the MOVE tool is active. <i>(Added at v3.6)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The graphic associated with the toolbar.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; transform</td>
+
+        <td class="detailTABLE">Represents the linear transformation applied to the graphic.</td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-rotate"></a>rotate</h4></div>
+        <div class="detaildesc">Fires continuously as a graphic is rotated. <i>(Added at v3.6)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The rotated graphic.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; info</td>
+
+        <td class="detailTABLE"><p>The info object has the following properties:</p>
+<pre>
+{
+  transform: &lt;Object&gt;,
+  angle: &lt;Number&gt;
+  around: &lt;Object&gt;
+}
+</pre></td>
+      </tr>
+</table></div>        <div class="detaildesc"><b>Sample:</b> <pre class='prettyprint'>
+editToolbar.on('rotate',function(evt){
+  var info = evt.info;
+  var around = info.around; //x,y,scalex,scaley
+  var angle = info.angle;
+  var transform = info.transform //dx,dy,xx,xy,yx,yy
+});
+</pre></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-rotate-first-move"></a>rotate-first-move</h4></div>
+        <div class="detaildesc">Fires when the user begins to drag a handle to rotate the graphic. <i>(Added at v3.6)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The rotated graphic.</td>
+      </tr>
+</table></div>        <div class="detaildesc"><b>Sample:</b> <pre class='prettyprint'>
+editToolbar.on('rotate-first-move',function(evt){
+  console.log('Rotating');
+});
+</pre></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-rotate-start"></a>rotate-start</h4></div>
+        <div class="detaildesc">Fires when a user clicks on the handle to begin rotating a graphic. <i>(Added at v3.6)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The rotated graphic.</td>
+      </tr>
+</table></div>        <div class="detaildesc"><b>Sample:</b> <pre class='prettyprint'>
+editToolbar.on('rotate-start',function(evt){
+  console.log('Start Rotating');
+});
+</pre></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-rotate-stop"></a>rotate-stop</h4></div>
+        <div class="detaildesc">Fires when the mouse button is released from the rotate handle to finish rotating the graphic. <i>(Added at v3.6)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The rotated graphic.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; info</td>
+
+        <td class="detailTABLE"><p>The info object has the following properties:</p>
+<pre>
+{
+  transform: &lt;Object&gt;,
+  angle: &lt;Number&gt;
+  around: &lt;Object&gt;
+}
+</pre></td>
+      </tr>
+</table></div>        <div class="detaildesc"><b>Sample:</b> <pre class='prettyprint'>
+editToolbar.on('rotate-stop',function(evt){
+  var info = evt.info;
+  var around = info.around; //x,y,scalex,scaley
+  var angle = info.angle;
+  var transform = info.transform //dx,dy,xx,xy,yx,yy
+});
+</pre></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-scale"></a>scale</h4></div>
+        <div class="detaildesc"><p>Fires continuously as the graphic is being scaled. </p> <i>(Added at v3.6)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The scaled graphic.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; info</td>
+
+        <td class="detailTABLE"><p>The info object has the following properties:</p>
+<pre>
+{
+  transform: &lt;Object&gt;,
+  scaleX: &lt;Number&gt;,
+  scaleY: &lt;Number&gt;,
+  around: &lt;Object&gt;
+}
+</pre></td>
+      </tr>
+</table></div>        <div class="detaildesc"><b>Sample:</b> <pre class='prettyprint'>
+editToolbar.on('scale',function(evt){
+  var info = evt.info;
+  var around = info.around;  //height,width,x,y
+  var transform = info.transform; //dx,dy,xx,xy,yx,yy
+  var scalex = info.scaleX;
+  var scaley = info.scaleY;
+});
+</pre></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-scale-first-move"></a>scale-first-move</h4></div>
+        <div class="detaildesc">Fires when the user begins to drag a handle to scale the graphic. <i>(Added at v3.6)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The scaled graphic.</td>
+      </tr>
+</table></div>        <div class="detaildesc"><b>Sample:</b> <pre class='prettyprint'>
+editToolbar.on('scale-first-move',function(evt){
+  console.log('Begin Scaling');
+});
+</pre></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-scale-start"></a>scale-start</h4></div>
+        <div class="detaildesc">Fires when a user clicks on the handle to scale or resize a graphic. <i>(Added at v3.6)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The scaled graphic.</td>
+      </tr>
+</table></div>        <div class="detaildesc"><b>Sample:</b> <pre class='prettyprint'>
+editToolbar.on('scale-start',function(evt){
+  console.log('Scaling Started');
+});
+</pre></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-scale-stop"></a>scale-stop</h4></div>
+        <div class="detaildesc">Fires when the mouse button is released from the scale handle to finish scaling the graphic. <i>(Added at v3.6)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The scaled graphic.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; info</td>
+
+        <td class="detailTABLE"><p>The info object has the following properties:</p>
+<pre>
+{
+  transform: &lt;Object&gt;,
+  scaleX: &lt;Number&gt;,
+  scaleY: &lt;Number&gt;,
+  around: &lt;Object&gt;
+}
+</pre></td>
+      </tr>
+</table></div>        <div class="detaildesc"><b>Sample:</b> <pre class='prettyprint'>
+editToolbar.on('scale-stop',function(evt){
+  var info = evt.info;
+  var around = info.around;  //height,width,x,y
+  var transform = info.transform; //dx,dy,xx,xy,yx,yy
+  var scalex = info.scaleX;
+  var scaley = info.scaleY;
+});
+</pre></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-vertex-add"></a>vertex-add</h4></div>
+        <div class="detaildesc">Fired after a new vertex is added to a polyline or polygon or a new point is added to a multipoint. Applicable only when the EDIT_VERTICES tool is active. <i>(Added at v3.6)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The graphic associated with the toolbar.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; vertexInfo</td>
+
+        <td class="detailTABLE">The vertexInfo object has the following properties <br/><br/>
+ 
+<Table class="detailTABLE" cellspacing="0"> 
+      <tr> 
+      <td class="detailTABLE"> 
+      &lt;Number> <B>segmentIndex</B> 
+      </td> 
+      <td class="detailTABLE"> 
+        Index of the ring or path that contains the vertex. Always 0 for multipoints. 
+      </td> 
+      </tr> 
+          <tr> 
+            <td class="detailTABLE"> 
+            &lt;Number> <B>pointIndex</B> 
+            </td> 
+            <td class="detailTABLE"> 
+              Index of the vertex in the segment indicated by segmentIndex.
+            </td> 
+      </tr> 
+                <tr> 
+                  <td class="detailTABLE"> 
+                  &lt;Boolean> <B>isGhost</B> 
+                  </td> 
+                  <td class="detailTABLE"> 
+                    Specifies whether the event fired for an existing vertex or a ghost vertex. When true, pointIndex indicates the position the vertex will take when added to the graphic. 
+                  </td> 
+      </tr> 
+    </table></td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-vertex-click"></a>vertex-click</h4></div>
+        <div class="detaildesc">Fired when the mouse button is clicked on the vertex of a polyline or polygon or a point in a multipoint. Applicable only when the EDIT_VERTICES tool is active. <i>(Added at v3.6)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The graphic associated with the toolbar.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; vertexInfo</td>
+
+        <td class="detailTABLE">The vertexInfo object has the following properties:
+ 
+<table class="detailTABLE" cellspacing="0"> 
+      <tr> 
+      <td class="detailTABLE"> 
+      &lt;Number&gt; <B>segmentIndex</B> 
+      </td> 
+      <td class="detailTABLE"> 
+        Index of the ring or path that contains the vertex. Always 0 for multipoints. 
+      </td> 
+      </tr> 
+          <tr> 
+            <td class="detailTABLE"> 
+            &lt;Number&gt; <B>pointIndex</B> 
+            </td> 
+            <td class="detailTABLE"> 
+              Index of the vertex in the segment indicated by segmentIndex.
+            </td> 
+      </tr> 
+                <tr> 
+                  <td class="detailTABLE"> 
+                  &lt;Boolean&gt; <B>isGhost</B> 
+                  </td> 
+                  <td class="detailTABLE"> 
+                    Specifies whether the event fired for an existing vertex or a ghost vertex. When true, pointIndex indicates the position the vertex will take when added to the graphic. 
+                  </td> 
+      </tr> 
+    </table></td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-vertex-delete"></a>vertex-delete</h4></div>
+        <div class="detaildesc">Fired after a vertex(polyline, polygon) or point(multipoint) is deleted. Applicable only when the EDIT_VERTICES tool is active. <i>(Added at v3.6)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The graphic associated with the toolbar.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; vertexInfo</td>
+
+        <td class="detailTABLE">The vertexInfo object has the following properties: 
+<table class="detailTABLE" cellspacing="0"> 
+      <tr> 
+      <td class="detailTABLE"> 
+      &lt;Number> <B>segmentIndex</B> 
+      </td> 
+      <td class="detailTABLE"> 
+        Index of the ring or path that contains the vertex. Always 0 for multipoints. 
+      </td> 
+      </tr> 
+          <tr> 
+            <td class="detailTABLE"> 
+            &lt;Number> <B>pointIndex</B> 
+            </td> 
+            <td class="detailTABLE"> 
+              Index of the vertex in the segment indicated by segmentIndex.
+            </td> 
+      </tr> 
+                <tr> 
+                  <td class="detailTABLE"> 
+                  &lt;Boolean> <B>isGhost</B> 
+                  </td> 
+                  <td class="detailTABLE"> 
+                    Specifies whether the event fired for an existing vertex or a ghost vertex. When true, pointIndex indicates the position the vertex will take when added to the graphic. 
+                  </td> 
+      </tr> 
+    </table></td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-vertex-first-move"></a>vertex-first-move</h4></div>
+        <div class="detaildesc">Fired when the user begins to move the vertex of a polyline or polygon or a point of a multipoint. Applicable only when the EDIT_VERTICES tool is active. <i>(Added at v3.6)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The graphic associated with the toolbar.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; vertexInfo</td>
+
+        <td class="detailTABLE">The vertexInfo object has the following properties:
+ 
+<table class="detailTABLE" cellspacing="0"> 
+      <tr> 
+      <td class="detailTABLE"> 
+      &lt;Number> <B>segmentIndex</B> 
+      </td> 
+      <td class="detailTABLE"> 
+        Index of the ring or path that contains the vertex. Always 0 for multipoints. 
+      </td> 
+      </tr> 
+          <tr> 
+            <td class="detailTABLE"> 
+            &lt;Number> <B>pointIndex</B> 
+            </td> 
+            <td class="detailTABLE"> 
+              Index of the vertex in the segment indicated by segmentIndex.
+            </td> 
+      </tr> 
+                <tr> 
+                  <td class="detailTABLE"> 
+                  &lt;Boolean> <B>isGhost</B> 
+                  </td> 
+                  <td class="detailTABLE"> 
+                    Specifies whether the event fired for an existing vertex or a ghost vertex. When true, pointIndex indicates the position the vertex will take when added to the graphic. 
+                  </td> 
+      </tr> 
+    </table></td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-vertex-mouse-out"></a>vertex-mouse-out</h4></div>
+        <div class="detaildesc">Fires as the mouse exits a vertex(polyline, polygon) or a point(multipoint). Applicable only when the EDIT_VERTICES tool is active. <i>(Added at v3.6)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The graphic associated with the toolbar.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; vertexInfo</td>
+
+        <td class="detailTABLE">The vertexInfo object has the following properties:
+<table class="detailTABLE" cellspacing="0"> 
+      <tr> 
+      <td class="detailTABLE"> 
+      &lt;Number> <B>segmentIndex</B> 
+      </td> 
+      <td class="detailTABLE"> 
+        Index of the ring or path that contains the vertex. Always 0 for multipoints. 
+      </td> 
+      </tr> 
+          <tr> 
+            <td class="detailTABLE"> 
+            &lt;Number> <B>pointIndex</B> 
+            </td> 
+            <td class="detailTABLE"> 
+              Index of the vertex in the segment indicated by segmentIndex.
+            </td> 
+      </tr> 
+                <tr> 
+                  <td class="detailTABLE"> 
+                  &lt;Boolean> <B>isGhost</B> 
+                  </td> 
+                  <td class="detailTABLE"> 
+                    Specifies whether the event fired for an existing vertex or a ghost vertex. When true, pointIndex indicates the position the vertex will take when added to the graphic. 
+                  </td> 
+      </tr> 
+    </table></td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-vertex-mouse-over"></a>vertex-mouse-over</h4></div>
+        <div class="detaildesc">Fired when the mouse moves over a vertex (polyline, polygon) or point (multipoint). Applicable only when the EDIT_VERTICES tool is active. <i>(Added at v3.6)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The graphic associated with the toolbar.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; vertexInfo</td>
+
+        <td class="detailTABLE">The vertexInfo object has the following properties:
+ 
+<table class="detailTABLE" cellspacing="0"> 
+      <tr> 
+      <td class="detailTABLE"> 
+      &lt;Number> <B>segmentIndex</B> 
+      </td> 
+      <td class="detailTABLE"> 
+        Index of the ring or path that contains the vertex. Always 0 for multipoints. 
+      </td> 
+      </tr> 
+          <tr> 
+            <td class="detailTABLE"> 
+            &lt;Number> <B>pointIndex</B> 
+            </td> 
+            <td class="detailTABLE"> 
+              Index of the vertex in the segment indicated by segmentIndex.
+            </td> 
+      </tr> 
+                <tr> 
+                  <td class="detailTABLE"> 
+                  &lt;Boolean> <B>isGhost</B> 
+                  </td> 
+                  <td class="detailTABLE"> 
+                    Specifies whether the event fired for an existing vertex or a ghost vertex. When true, pointIndex indicates the position the vertex will take when added to the graphic. 
+                  </td> 
+      </tr> 
+    </table></td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-vertex-move"></a>vertex-move</h4></div>
+        <div class="detaildesc">Fired continuously as the user is moving a vertex (polyline, polygon) or point (multipoint). Applicable only when the EDIT_VERTICES tool is active. <i>(Added at v3.6)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The graphic associated with the toolbar.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; transform</td>
+
+        <td class="detailTABLE">Represents the linear transformation applied to the graphic.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; vertexInfo</td>
+
+        <td class="detailTABLE">The vertexInfo object has the following properties:
+ 
+<table class="detailTABLE" cellspacing="0"> 
+      <tr> 
+      <td class="detailTABLE"> 
+      &lt;Number> <B>segmentIndex</B> 
+      </td> 
+      <td class="detailTABLE"> 
+        Index of the ring or path that contains the vertex. Always 0 for multipoints. 
+      </td> 
+      </tr> 
+          <tr> 
+            <td class="detailTABLE"> 
+            &lt;Number> <B>pointIndex</B> 
+            </td> 
+            <td class="detailTABLE"> 
+              Index of the vertex in the segment indicated by segmentIndex.
+            </td> 
+      </tr> 
+                <tr> 
+                  <td class="detailTABLE"> 
+                  &lt;Boolean> <B>isGhost</B> 
+                  </td> 
+                  <td class="detailTABLE"> 
+                    Specifies whether the event fired for an existing vertex or a ghost vertex. When true, pointIndex indicates the position the vertex will take when added to the graphic. 
+                  </td> 
+      </tr> 
+    </table></td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-vertex-move-start"></a>vertex-move-start</h4></div>
+        <div class="detaildesc">Fired when the mouse button is pressed down on a vertex (polyline, polygon) or point (multipoint). Applicable only when the EDIT_VERTICES tool is active. <i>(Added at v3.6)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The graphic associated with the toolbar.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; vertexInfo</td>
+
+        <td class="detailTABLE">The vertexInfo object has the following properties:
+ 
+<table class="detailTABLE" cellspacing="0"> 
+      <tr> 
+      <td class="detailTABLE"> 
+      &lt;Number> <B>segmentIndex</B> 
+      </td> 
+      <td class="detailTABLE"> 
+        Index of the ring or path that contains the vertex. Always 0 for multipoints. 
+      </td> 
+      </tr> 
+          <tr> 
+            <td class="detailTABLE"> 
+            &lt;Number> <B>pointIndex</B> 
+            </td> 
+            <td class="detailTABLE"> 
+              Index of the vertex in the segment indicated by segmentIndex.
+            </td> 
+      </tr> 
+                <tr> 
+                  <td class="detailTABLE"> 
+                  &lt;Boolean> <B>isGhost</B> 
+                  </td> 
+                  <td class="detailTABLE"> 
+                    Specifies whether the event fired for an existing vertex or a ghost vertex. When true, pointIndex indicates the position the vertex will take when added to the graphic. 
+                  </td> 
+      </tr> 
+    </table></td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-vertex-move-stop"></a>vertex-move-stop</h4></div>
+        <div class="detaildesc">Fired when the mouse button is released from a vertex (polyline, polygon) or point(multipoint). Applicable only when the EDIT_VERTICES tool is active. <i>(Added at v3.6)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The graphic associated with the toolbar.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; transform</td>
+
+        <td class="detailTABLE">Represents the linear transformation applied to the graphic.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; vertexInfo</td>
+
+        <td class="detailTABLE">The vertexInfo object has the following properties:
+ 
+<table class="detailTABLE" cellspacing="0"> 
+      <tr> 
+      <td class="detailTABLE"> 
+      &lt;Number> <B>segmentIndex</B> 
+      </td> 
+      <td class="detailTABLE"> 
+        Index of the ring or path that contains the vertex. Always 0 for multipoints. 
+      </td> 
+      </tr> 
+          <tr> 
+            <td class="detailTABLE"> 
+            &lt;Number> <B>pointIndex</B> 
+            </td> 
+            <td class="detailTABLE"> 
+              Index of the vertex in the segment indicated by segmentIndex.
+            </td> 
+      </tr> 
+                <tr> 
+                  <td class="detailTABLE"> 
+                  &lt;Boolean> <B>isGhost</B> 
+                  </td> 
+                  <td class="detailTABLE"> 
+                    Specifies whether the event fired for an existing vertex or a ghost vertex. When true, pointIndex indicates the position the vertex will take when added to the graphic. 
+                  </td> 
+      </tr> 
+    </table></td>
+      </tr>
+</table></div>
+      </div></div><div class="eventDiv hidden">      <div class="detaildiv">
+        <div class="detailname"><h4><a id="onactivate"></a>onActivate(tool,graphic)</h4></div>
+        <div class="detaildesc">Activates the toolbar for editing geometries. Activating the toolbar disables map navigation.</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;String&gt; tool</td>
+
+        <td class="detailTABLE">The editing type. The Constants table lists valid editing values.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The graphic to edit  whose vertices will be edited or moved.</td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="ondeactivate"></a>onDeactivate(tool,graphic,info)</h4></div>
+        <div class="detaildesc">Deactivates the toolbar and reactivates map navigation.</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;String&gt; tool</td>
+
+        <td class="detailTABLE">The editing type. The Constants table lists valid editing values.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The graphic the toolbar was associated with.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; info</td>
+
+        <td class="detailTABLE"><p>The info object has the following properties:</p>
+<pre>
+{
+  isModified:&lt;Boolean&gt;
+}
+</pre></td>
+      </tr>
+</table></div>        <div class="detaildesc"><b>Sample:</b> <pre class='prettyprint'>
+dojo.connect(editToolbar, "onDeactivate", function(tool,graphic,info) {
+  if(info.isModified){
+    firePerimeterFL.applyEdits(null, [graphic], null);
+  }
+});
+</pre></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="ongraphicclick"></a>onGraphicClick(graphic,info)</h4></div>
+        <div class="detaildesc">Fires when a graphic is clicked. Applicable only when the MOVE tool is active.</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The clicked graphic.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; info</td>
+
+        <td class="detailTABLE">Object with the following properties:
+<table class="detailTABLE" cellspacing="0" style="font-size:125%">
+      <tr>
+      <td class="detailTABLE">
+      &lt;<a href="point-amd.html">Point</a>&gt; <b>screenPoint</b>
+      </td>
+      <td class="detailTABLE">
+        Location of mouse click in screen coordinates (pixels).
+      </td>
+      </tr>
+          <tr>
+            <td class="detailTABLE">
+            &lt;<a href="point-amd.html">Point</a>&gt; <b>mapPoint</b>
+            </td>
+            <td class="detailTABLE">
+              Location of mouse click in map coordinates. 
+            </td>
+    </table></td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="ongraphicfirstmove"></a>onGraphicFirstMove(graphic)</h4></div>
+        <div class="detaildesc">Fires when the user begins to move a graphic. Applicable only when the MOVE tool is active.</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The graphic associated with the toolbar.</td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="ongraphicmove"></a>onGraphicMove(graphic,transform)</h4></div>
+        <div class="detaildesc">Fired continuously as the graphic moves. Applicable only when the MOVE tool is active.</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The graphic associated with the toolbar.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; transform</td>
+
+        <td class="detailTABLE">Represents the linear transformation applied to the graphic.</td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="ongraphicmovestart"></a>onGraphicMoveStart(graphic)</h4></div>
+        <div class="detaildesc">Fired when the mouse button is pressed down on the graphic, usually while moving a graphic. Applicable only when the MOVE tool is active.</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The graphic associated with the toolbar.</td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="ongraphicmovestop"></a>onGraphicMoveStop(graphic,transform)</h4></div>
+        <div class="detaildesc">Fired when the mouse button is released, usually after moving the graphic.  Applicable only when the MOVE tool is active.</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The graphic associated with the toolbar.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; transform</td>
+
+        <td class="detailTABLE">Represents the linear transformation applied to the graphic.</td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="onrotate"></a>onRotate(graphic,info)</h4></div>
+        <div class="detaildesc">Fires continuously as a graphic is rotated. <i>(Added at v2.1)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The rotated graphic.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; info</td>
+
+        <td class="detailTABLE"><p>The info object has the following properties:</p>
+<pre>
+{
+  transform: &lt;Object&gt;,
+  angle: &lt;Number&gt;
+  around: &lt;Object&gt;
+}
+</pre></td>
+      </tr>
+</table></div>        <div class="detaildesc"><b>Sample:</b> <pre class='prettyprint'>
+dojo.connect(editToolbar,'onRotate',function(graphic,info){
+  var around = info.around; //x,y,scalex,scaley
+  var angle = info.angle;
+  var transform = info.transform //dx,dy,xx,xy,yx,yy
+});
+</pre></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="onrotatefirstmove"></a>onRotateFirstMove(graphic)</h4></div>
+        <div class="detaildesc">Fires when the user begins to drag a handle to rotate the graphic. <i>(Added at v2.1)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The rotated graphic.</td>
+      </tr>
+</table></div>        <div class="detaildesc"><b>Sample:</b> <pre class='prettyprint'>
+dojo.connect(editToolbar,'onRotateFirstMove',function(graphic){
+  console.log('Rotating');
+});
+</pre></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="onrotatestart"></a>onRotateStart(graphic)</h4></div>
+        <div class="detaildesc">Fires when a user clicks on the handle to begin rotating a graphic. <i>(Added at v2.1)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The rotated graphic.</td>
+      </tr>
+</table></div>        <div class="detaildesc"><b>Sample:</b> <pre class='prettyprint'>
+dojo.connect(editToolbar,'onRotateStart',function(graphic){
+  console.log('Start Rotating');
+});
+</pre></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="onrotatestop"></a>onRotateStop(graphic,info)</h4></div>
+        <div class="detaildesc">Fires when the mouse button is released from the rotate handle to finish rotating the graphic. <i>(Added at v2.1)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The rotated graphic.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; info</td>
+
+        <td class="detailTABLE"><p>The info object has the following properties:</p>
+<pre>
+{
+  transform: &lt;Object&gt;,
+  angle: &lt;Number&gt;
+  around: &lt;Object&gt;
+}
+</pre></td>
+      </tr>
+</table></div>        <div class="detaildesc"><b>Sample:</b> <pre class='prettyprint'>
+dojo.connect(editToolbar,'onRotateStop',function(graphic,info){
+  var around = info.around; //x,y,scalex,scaley
+  var angle = info.angle;
+  var transform = info.transform //dx,dy,xx,xy,yx,yy
+});
+</pre></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="onscale"></a>onScale(graphic,info)</h4></div>
+        <div class="detaildesc"><p>Fires continuously as the graphic is being scaled. </p> <i>(Added at v2.1)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The scaled graphic.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; info</td>
+
+        <td class="detailTABLE"><p>The info object has the following properties:</p>
+<pre>
+{
+  transform: &lt;Object&gt;,
+  scaleX: &lt;Number&gt;,
+  scaleY: &lt;Number&gt;,
+  around: &lt;Object&gt;
+}
+</pre></td>
+      </tr>
+</table></div>        <div class="detaildesc"><b>Sample:</b> <pre class='prettyprint'>
+dojo.connect(editToolbar,'onScale',function(graphic,info){
+  var around = info.around;  //height,width,x,y
+  var transform = info.transform; //dx,dy,xx,xy,yx,yy
+  var scalex = info.scaleX;
+  var scaley = info.scaleY;
+});
+</pre></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="onscalefirstmove"></a>onScaleFirstMove(graphic)</h4></div>
+        <div class="detaildesc">Fires when the user begins to drag a handle to scale the graphic. <i>(Added at v2.1)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The scaled graphic.</td>
+      </tr>
+</table></div>        <div class="detaildesc"><b>Sample:</b> <pre class='prettyprint'>
+dojo.connect(editToolbar,'onScaleFirstMove',function(graphic){
+  console.log('Begin Scaling');
+});
+</pre></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="onscalestart"></a>onScaleStart(graphic)</h4></div>
+        <div class="detaildesc">Fires when a user clicks on the handle to scale or resize a graphic. <i>(Added at v2.1)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The scaled graphic.</td>
+      </tr>
+</table></div>        <div class="detaildesc"><b>Sample:</b> <pre class='prettyprint'>
+dojo.connect(editToolbar,'onScaleStart',function(graphic){
+  console.log('Scaling Started');
+});
+</pre></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="onscalestop"></a>onScaleStop(graphic,info)</h4></div>
+        <div class="detaildesc">Fires when the mouse button is released from the scale handle to finish scaling the graphic. <i>(Added at v2.1)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The scaled graphic.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; info</td>
+
+        <td class="detailTABLE"><p>The info object has the following properties:</p>
+<pre>
+{
+  transform: &lt;Object&gt;,
+  scaleX: &lt;Number&gt;,
+  scaleY: &lt;Number&gt;,
+  around: &lt;Object&gt;
+}
+</pre></td>
+      </tr>
+</table></div>        <div class="detaildesc"><b>Sample:</b> <pre class='prettyprint'>
+dojo.connect(editToolbar,'onScaleStop',function(graphic,info){
+  var around = info.around;  //height,width,x,y
+  var transform = info.transform; //dx,dy,xx,xy,yx,yy
+  var scalex = info.scaleX;
+  var scaley = info.scaleY;
+});
+</pre></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="onvertexadd"></a>onVertexAdd(graphic,vertexInfo)</h4></div>
+        <div class="detaildesc">Fired after a new vertex is added to a polyline or polygon or a new point is added to a multipoint. Applicable only when the EDIT_VERTICES tool is active.</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The graphic associated with the toolbar.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; vertexInfo</td>
+
+        <td class="detailTABLE">The vertexInfo object has the following properties <br/><br/>
+ 
+<Table class="detailTABLE" cellspacing="0"> 
+      <tr> 
+      <td class="detailTABLE"> 
+      &lt;Number> <B>segmentIndex</B> 
+      </td> 
+      <td class="detailTABLE"> 
+        Index of the ring or path that contains the vertex. Always 0 for multipoints. 
+      </td> 
+      </tr> 
+          <tr> 
+            <td class="detailTABLE"> 
+            &lt;Number> <B>pointIndex</B> 
+            </td> 
+            <td class="detailTABLE"> 
+              Index of the vertex in the segment indicated by segmentIndex.
+            </td> 
+      </tr> 
+                <tr> 
+                  <td class="detailTABLE"> 
+                  &lt;Boolean> <B>isGhost</B> 
+                  </td> 
+                  <td class="detailTABLE"> 
+                    Specifies whether the event fired for an existing vertex or a ghost vertex. When true, pointIndex indicates the position the vertex will take when added to the graphic. 
+                  </td> 
+      </tr> 
+    </table></td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="onvertexclick"></a>onVertexClick(graphic,vertexInfo)</h4></div>
+        <div class="detaildesc">Fired when the mouse button is clicked on the vertex of a polyline or polygon or a point in a multipoint. Applicable only when the EDIT_VERTICES tool is active.</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The graphic associated with the toolbar.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; vertexInfo</td>
+
+        <td class="detailTABLE">The vertexInfo object has the following properties:
+<table class="detailTABLE" cellspacing="0"> 
+      <tr> 
+      <td class="detailTABLE"> 
+      &lt;Number> <B>segmentIndex</B> 
+      </td> 
+      <td class="detailTABLE"> 
+        Index of the ring or path that contains the vertex. Always 0 for multipoints. 
+      </td> 
+      </tr> 
+          <tr> 
+            <td class="detailTABLE"> 
+            &lt;Number> <B>pointIndex</B> 
+            </td> 
+            <td class="detailTABLE"> 
+              Index of the vertex in the segment indicated by segmentIndex.
+            </td> 
+      </tr> 
+                <tr> 
+                  <td class="detailTABLE"> 
+                  &lt;Boolean> <B>isGhost</B> 
+                  </td> 
+                  <td class="detailTABLE"> 
+                    Specifies whether the event fired for an existing vertex or a ghost vertex. When true, pointIndex indicates the position the vertex will take when added to the graphic. 
+                  </td> 
+      </tr> 
+    </table></td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="onvertexdelete"></a>onVertexDelete(graphic,vertexInfo)</h4></div>
+        <div class="detaildesc">Fired after a vertex(polyline, polygon) or point(multipoint) is deleted. Applicable only when the EDIT_VERTICES tool is active.</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The graphic associated with the toolbar.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; vertexInfo</td>
+
+        <td class="detailTABLE">The vertexInfo object has the following properties: 
+<table class="detailTABLE" cellspacing="0"> 
+      <tr> 
+      <td class="detailTABLE"> 
+      &lt;Number> <B>segmentIndex</B> 
+      </td> 
+      <td class="detailTABLE"> 
+        Index of the ring or path that contains the vertex. Always 0 for multipoints. 
+      </td> 
+      </tr> 
+          <tr> 
+            <td class="detailTABLE"> 
+            &lt;Number> <B>pointIndex</B> 
+            </td> 
+            <td class="detailTABLE"> 
+              Index of the vertex in the segment indicated by segmentIndex.
+            </td> 
+      </tr> 
+                <tr> 
+                  <td class="detailTABLE"> 
+                  &lt;Boolean> <B>isGhost</B> 
+                  </td> 
+                  <td class="detailTABLE"> 
+                    Specifies whether the event fired for an existing vertex or a ghost vertex. When true, pointIndex indicates the position the vertex will take when added to the graphic. 
+                  </td> 
+      </tr> 
+    </table></td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="onvertexfirstmove"></a>onVertexFirstMove(graphic,vertexInfo)</h4></div>
+        <div class="detaildesc">Fired when the user begins to move the vertex of a polyline or polygon or a point of a multipoint. Applicable only when the EDIT_VERTICES tool is active.</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The graphic associated with the toolbar.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; vertexInfo</td>
+
+        <td class="detailTABLE">The vertexInfo object has the following properties:
+<table class="detailTABLE" cellspacing="0"> 
+      <tr> 
+      <td class="detailTABLE"> 
+      &lt;Number> <B>segmentIndex</B> 
+      </td> 
+      <td class="detailTABLE"> 
+        Index of the ring or path that contains the vertex. Always 0 for multipoints. 
+      </td> 
+      </tr> 
+          <tr> 
+            <td class="detailTABLE"> 
+            &lt;Number> <B>pointIndex</B> 
+            </td> 
+            <td class="detailTABLE"> 
+              Index of the vertex in the segment indicated by segmentIndex.
+            </td> 
+      </tr> 
+                <tr> 
+                  <td class="detailTABLE"> 
+                  &lt;Boolean> <B>isGhost</B> 
+                  </td> 
+                  <td class="detailTABLE"> 
+                    Specifies whether the event fired for an existing vertex or a ghost vertex. When true, pointIndex indicates the position the vertex will take when added to the graphic. 
+                  </td> 
+      </tr> 
+    </table></td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="onvertexmouseout"></a>onVertexMouseOut(graphic,vertexInfo)</h4></div>
+        <div class="detaildesc">Fires as the mouse exits a vertex(polyline, polygon) or a point(multipoint). Applicable only when the EDIT_VERTICES tool is active.</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The graphic associated with the toolbar.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; vertexInfo</td>
+
+        <td class="detailTABLE">The vertexInfo object has the following properties:
+ 
+<table class="detailTABLE" cellspacing="0"> 
+      <tr> 
+      <td class="detailTABLE"> 
+      &lt;Number> <B>segmentIndex</B> 
+      </td> 
+      <td class="detailTABLE"> 
+        Index of the ring or path that contains the vertex. Always 0 for multipoints. 
+      </td> 
+      </tr> 
+          <tr> 
+            <td class="detailTABLE"> 
+            &lt;Number> <B>pointIndex</B> 
+            </td> 
+            <td class="detailTABLE"> 
+              Index of the vertex in the segment indicated by segmentIndex.
+            </td> 
+      </tr> 
+                <tr> 
+                  <td class="detailTABLE"> 
+                  &lt;Boolean> <B>isGhost</B> 
+                  </td> 
+                  <td class="detailTABLE"> 
+                    Specifies whether the event fired for an existing vertex or a ghost vertex. When true, pointIndex indicates the position the vertex will take when added to the graphic. 
+                  </td> 
+      </tr> 
+    </table></td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="onvertexmouseover"></a>onVertexMouseOver(graphic,vertexInfo)</h4></div>
+        <div class="detaildesc">Fired when the mouse moves over a vertex (polyline, polygon) or point (multipoint). Applicable only when the EDIT_VERTICES tool is active.</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The graphic associated with the toolbar.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; vertexInfo</td>
+
+        <td class="detailTABLE">The vertexInfo object has the following properties:
+<table class="detailTABLE" cellspacing="0" style="font-size:125%"> 
+<tr> 
+<td class="detailTABLE"> 
+&lt;Number&gt; <b>segmentIndex</b> 
+</td> 
+<td class="detailTABLE"> 
+Index of the ring or path that contains the vertex. Always 0 for multipoints. 
+</td> 
+</tr> 
+<tr> 
+<td class="detailTABLE"> 
+&lt;Number&gt; <b>pointIndex</b> 
+</td> 
+<td class="detailTABLE"> 
+Index of the vertex in the segment indicated by segmentIndex.
+</td> 
+</tr> 
+<tr> 
+<td class="detailTABLE"> 
+&lt;Boolean&gt; <b>isGhost</b> 
+</td> 
+<td class="detailTABLE"> 
+Specifies whether the event fired for an existing vertex or a ghost vertex. When true, pointIndex indicates the position the vertex will take when added to the graphic. 
+</td> 
+</tr> 
+</table></td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="onvertexmove"></a>onVertexMove(graphic,vertexInfo,transform)</h4></div>
+        <div class="detaildesc">Fired continuously as the user is moving a vertex (polyline, polygon) or point (multipoint). Applicable only when the EDIT_VERTICES tool is active.</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The graphic associated with the toolbar.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; vertexInfo</td>
+
+        <td class="detailTABLE">The vertexInfo object has the following properties:
+<table class="detailTABLE" cellspacing="0" style="font-size:125%"> 
+<tr> 
+<td class="detailTABLE"> 
+&lt;Number&gt; <b>segmentIndex</b> 
+</td> 
+<td class="detailTABLE"> 
+Index of the ring or path that contains the vertex. Always 0 for multipoints. 
+</td> 
+</tr> 
+<tr> 
+<td class="detailTABLE"> 
+&lt;Number&gt; <b>pointIndex</b> 
+</td> 
+<td class="detailTABLE"> 
+Index of the vertex in the segment indicated by segmentIndex.
+</td> 
+</tr> 
+<tr> 
+<td class="detailTABLE"> 
+&lt;Boolean&gt; <b>isGhost</b> 
+</td> 
+<td class="detailTABLE"> 
+Specifies whether the event fired for an existing vertex or a ghost vertex. When true, pointIndex indicates the position the vertex will take when added to the graphic. 
+</td> 
+</tr> 
+</table></td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; transform</td>
+
+        <td class="detailTABLE">Represents the linear transformation applied to the graphic.</td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="onvertexmovestart"></a>onVertexMoveStart(graphic,vertexInfo)</h4></div>
+        <div class="detaildesc">Fired when the mouse button is pressed down on a vertex (polyline, polygon) or point (multipoint). Applicable only when the EDIT_VERTICES tool is active.</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The graphic associated with the toolbar.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; vertexInfo</td>
+
+        <td class="detailTABLE">The vertexInfo object has the following properties:
+<table class="detailTABLE" cellspacing="0" style="font-size:125%"> 
+<tr> 
+<td class="detailTABLE"> 
+&lt;Number&gt; <b>segmentIndex</b> 
+</td> 
+<td class="detailTABLE"> 
+Index of the ring or path that contains the vertex. Always 0 for multipoints. 
+</td> 
+</tr> 
+<tr> 
+<td class="detailTABLE"> 
+&lt;Number&gt; <b>pointIndex</b> 
+</td> 
+<td class="detailTABLE"> 
+Index of the vertex in the segment indicated by segmentIndex.
+</td> 
+</tr> 
+<tr> 
+<td class="detailTABLE"> 
+&lt;Boolean&gt; <b>isGhost</b> 
+</td> 
+<td class="detailTABLE"> 
+Specifies whether the event fired for an existing vertex or a ghost vertex. When true, pointIndex indicates the position the vertex will take when added to the graphic. 
+</td> 
+</tr> 
+</table></td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="onvertexmovestop"></a>onVertexMoveStop(graphic,vertexInfo,transform)</h4></div>
+        <div class="detaildesc">Fired when the mouse button is released from a vertex (polyline, polygon) or point(multipoint). Applicable only when the EDIT_VERTICES tool is active.</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The graphic associated with the toolbar.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; vertexInfo</td>
+
+        <td class="detailTABLE">The vertexInfo object has the following properties:
+<table class="detailTABLE" cellspacing="0" style="font-size:125%"> 
+<tr> 
+<td class="detailTABLE"> 
+&lt;Number&gt; <b>segmentIndex</b> 
+</td> 
+<td class="detailTABLE"> 
+Index of the ring or path that contains the vertex. Always 0 for multipoints. 
+</td> 
+</tr> 
+<tr> 
+<td class="detailTABLE"> 
+&lt;Number&gt; <b>pointIndex</b> 
+</td> 
+<td class="detailTABLE"> 
+Index of the vertex in the segment indicated by segmentIndex.
+</td> 
+</tr> 
+<tr> 
+<td class="detailTABLE"> 
+&lt;Boolean&gt; <b>isGhost</b> 
+</td> 
+<td class="detailTABLE"> 
+Specifies whether the event fired for an existing vertex or a ghost vertex. When true, pointIndex indicates the position the vertex will take when added to the graphic. 
+</td> 
+</tr> 
+</table></td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; transform</td>
+
+        <td class="detailTABLE">Represents the linear transformation applied to the graphic.</td>
+      </tr>
+</table></div>
+      </div></div>
+    </div>
+<div id="wh_footer" class="footnote" align="center">
+  Please <a href="mailto:js_feedback@esri.com?subject=Feedback on API Ref:  Edit.html">contact the team</a> to comment or give suggestions.
+  <br>
+  Copyright &copy; Environmental Systems Research Institute, Inc.
+</div></div> <!-- sub 5 and 6:  main content for a page and feedback link -->
+  </div>
+</div> <!-- end main content -->
+
+<!-- TOC script -->
+<script src="../scripts/tree.js"></script>
+
+<script src="../prettify/prettify.js"></script>
+<script>
+  var dojoConfig = {
+    packages: [{
+      "name": "js",
+      "location": location.pathname.replace(/\/[^/]+$/, "/") + "../scripts"
+    }]
+  };
+</script>
+<script src="//js.arcgis.com/3.8compact/"></script> <!-- add API version -->
+<script src="../scripts/esri-main-apiref.js"></script>
+<script>
+require(["dojo/on", "dojo/query"], function(on, query) {
+  on(query(".eventSwitch"), "click", function(evt){
+    if (evt.target.classList[1] !== "enabled") {
+      query(".eventDiv").toggleClass("hidden");
+      query(".eventSwitch").toggleClass("enabled");
+    };
+  });
+});
+</script>
+<script src="../scripts/classList.js"></script>
+
+<!-- google analytics -->
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-215788-63']);
+  _gaq.push(['_setDomainName', 'arcgis.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+ <!-- google analytics, crazy egg and script to redirect old hash based URLs to static pages -->
+</body>
+</html>

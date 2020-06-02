@@ -1,0 +1,158 @@
+<!doctype html>
+<html >
+<head>
+    <meta charset="utf-8" >
+    <!--The viewport meta tag is used to improve the presentation and behavior of the samples on iOS devices-->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+    <title>Geocoder Tutorial</title>
+    <link rel="stylesheet" type="text/css" href="http://js.arcgis.com/3.8/js/dojo/dijit/themes/soria/soria.css">
+    <link rel="stylesheet" type="text/css" href="http://js.arcgis.com/3.8/js/esri/css/esri.css">
+    <style type="text/css">
+        html, body, #map {
+                height:100%;
+                width:100%;
+                margin:0;
+                padding:0;
+            }
+            #search {
+                display: block;
+                position: absolute;
+                z-index: 3;
+                top: 20px;
+                left: 75px;
+            }
+            .spotlight {
+                z-index:-1;
+                position:absolute;
+                left:50%;
+                top:50%;
+                border-radius:50%;
+                opacity:0;
+                box-shadow:
+                inset rgba(0,0,0,0.25) 0px 0px 20px 20px,
+                rgba(0,0,0,0.25) 0px 0px 0px 1000px;
+                transition:all 1000ms;
+                -moz-transition:all 1000ms;
+                -webkit-transition:all 1000ms;
+            }
+            .spotlight-active {
+                z-index:2;
+                opacity:1;
+            }
+    </style>
+
+    <script src="//js.arcgis.com/3.8/"></script>
+    <script type="text/javascript">
+            dojo.require("esri.map");
+            dojo.require("esri.IdentityManager");
+            dojo.require("esri.arcgis.utils");
+            dojo.require("esri.dijit.Geocoder");
+
+            var map;
+            var Geocoder;
+
+            function init() {
+                esri.config.defaults.io.proxyUrl = "/proxy";
+
+                var webmap = "31075fa2763f43bba0c2163814cc44aa";
+
+                var mapDeferred = esri.arcgis.utils.createMap(webmap, "map");
+
+
+                mapDeferred.addCallback(function (response) {
+                    map = response.map;
+
+                    var html = '<div id="spotlight" class="spotlight"><\/div>';
+
+                    dojo.place(html, dojo.byId('map_container'), 'first');
+
+                    dojo.connect(map, 'onExtentChange', function(){
+                        removeSpotlight();
+                    });
+
+                    // Geocoder with all common options set. Only map is required.
+                    Geocoder = new esri.dijit.Geocoder({
+                        autoComplete: true,
+                        arcgisGeocoder:{
+                            placeholder: "Find a place"
+                        },
+                        map: map
+                    }, dojo.byId('search'));
+
+                    // start widget
+                    Geocoder.startup();
+
+                    // on search results
+                    dojo.connect(Geocoder, 'onSearchResults', function(results){
+                        console.log('search', results);
+                    });
+
+                    // on search results
+                    dojo.connect(Geocoder, 'onGeocoderSelect', function(results){
+                        console.log('onselect', results);
+                    });
+
+                    // on search results
+                    dojo.connect(Geocoder, 'onAutoComplete', function(results){
+                        console.log('autocomplete', results);
+                    });
+
+                    function removeSpotlight(){
+                        dojo.query('.spotlight').removeClass('spotlight-active');
+                        map.graphics.clear();
+                    }
+
+
+                    dojo.connect(Geocoder, 'onSelect', function(result){
+                        var spotlight = dojo.connect(map, 'onExtentChange', function(){
+                            var geom = esri.geometry.toScreenGeometry(map.extent, map.width, map.height, result.extent);
+                            var width = geom.xmax - geom.xmin;
+                            var height = geom.ymin - geom.ymax;
+
+                            var max = height;
+                            if(width > height){
+                                max = width;
+                            }
+
+                            var margin = '-' + Math.floor(max/2) + 'px 0 0 -' + Math.floor(max/2) + 'px';
+
+                            var pt = result.feature.geometry;
+                            var sms = new esri.symbol.SimpleMarkerSymbol().setStyle(
+                            esri.symbol.SimpleMarkerSymbol.STYLE_SQUARE).setColor(
+                            new dojo.Color([255,0,0,0.5]));
+                            var graphic = new esri.Graphic(pt,sms,null,null);
+
+                            map.graphics.add(graphic);
+
+                            dojo.query('.spotlight').addClass('spotlight-active').style({
+                                width: max + 'px',
+                                height: max + 'px',
+                                margin: margin
+                            });
+                            dojo.disconnect(spotlight);
+                        });
+
+
+                    });
+
+                    dojo.connect(Geocoder, 'onClear', function(){
+                        removeSpotlight();
+                    });
+
+                });
+                mapDeferred.addErrback(function (error) {
+                    console.log("Map creation failed: ", dojo.toJson(error));
+                });
+
+            }
+
+            //show map on load
+            dojo.addOnLoad(init);
+    </script>
+</head>
+
+<body class="soria">
+    <div id="search"></div>
+    <div id="map"></div>
+</body>
+</html>

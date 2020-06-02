@@ -1,0 +1,122 @@
+﻿<!DOCTYPE HTML>
+  <head>
+    <title>ExtJS Layout Example</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+
+    <link rel="stylesheet" href="http://cdn.sencha.io/ext-4.0.7-gpl/resources/css/ext-all.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/esri/css/esri.css">
+    <style>
+      html, body {
+        font:normal 12px verdana; 
+        margin:0;
+        padding:0; 
+        border:0 none;
+        overflow:hidden; 
+        height:100%;
+      } 
+    </style>
+    <script src="http://js.arcgis.com/3.8compact/"></script>
+    <!--  Ext JS -->
+    <script src="http://cdn.sencha.io/ext-4.0.7-gpl/ext-all.js"></script></script>
+    <script>
+      dojo.require("esri.map");
+      dojo.require("esri.layers.FeatureLayer");
+      dojo.require("esri.dijit.PopupTemplate");
+      dojo.require("dojo.number");
+
+      var map;
+
+      function init() {
+        var viewport = new Ext.Viewport({
+          layout: "fit",
+          title: "EXT JS Layout",
+          items: [{
+            layout: "border",
+            items: [{
+              region: "center",
+              title: "center",
+              html: "<div id='map' style='height:100%; width:100%;z-index=: 1000;'></div>"
+            }, {
+              region: "north",
+              height: 50,
+              collapsible: false,
+              contentEl:"header" 
+            }, {
+              region: "south",
+              height: 80,
+              collapsible: false,
+              contentEl: "footer" // this gets the content from the div named "footer"
+            }, {
+              region: "west",
+              title: "Left Panel",
+              width: 150,
+              split: true,
+              collapsible: true,
+              html: "Left panel content. This panel is collapsible and can be resized using the splitter",
+              listeners:{
+                collapse: resizeMap,
+                expand: resizeMap
+              }
+            }, {
+              region: "east",
+              width: 200,
+              xtype: 'tabpanel',
+              activeTab: 0, // index or id
+              items:[{
+                  title: 'Tab 1',
+                  html: 'This is tab 1 content.'
+              },{
+                  title: 'Tab 2',
+                  html: 'This is tab 2 content.'
+              },{
+                  title: 'Tab 3',
+                  html: 'This is tab 3 content.'
+              }]
+            }]
+          }]
+        });
+
+        map = new esri.Map("map", {
+          basemap: "topo", 
+          center: [-118.35, 34.45],
+          zoom: 11
+        });
+
+        var template = new esri.dijit.PopupTemplate({
+          title: "Geologic Outcrop",
+          description:"{lithology_type} with the following metamorphic facies: {metamorphic_facies}"
+        });      
+        var featureLayer = new esri.layers.FeatureLayer("http://sampleserver5.arcgisonline.com/ArcGIS/rest/services/Energy/Geology/MapServer/9",{
+          mode:esri.layers.FeatureLayer.MODE_SNAPSHOT,
+          infoTemplate:template,
+          outFields:["lithology_type","metamorphic_facies"]
+        });
+        map.addLayer(featureLayer);
+      }
+      
+      function resizeMap() {
+        map.resize();
+      }
+      dojo.ready(init);
+    </script>
+  </head>
+  
+  <body>
+    <!-- use class="x-hide-display" to prevent a brief flicker of the content
+    -->
+    <div id="header">
+       <span>Header content goes here</span>
+    </div>
+    <div id="center" class="x-hide-display" style="z-index: 100;">
+    </div>
+    <div id="props-panel" class="x-hide-display">
+    </div>
+    <div id="footer" class="x-hide-display">
+      <span>Footer content goes here<span>
+    </div>
+    <div id="north" class="x-hide-display">
+
+    </div>
+  </body>
+
+</html>

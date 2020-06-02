@@ -1,0 +1,1769 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="ie lt-ie9 lt-ie8 lt-ie7 ie6"> <![endif]-->
+<!--[if IE 7]>         <html class="ie lt-ie9 lt-ie8 ie7"> <![endif]-->
+<!--[if IE 8]>         <html class="ie lt-ie9 ie8"> <![endif]-->
+<!--[if gt IE 8]><!--> <html> <!--<![endif]-->
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+  <meta name="content-language" content="en">
+  <meta name="product" content="js-api-arcgis">
+  <meta name="subject" content="DEVELOPER,WEB,WEB APPLICATIONS,MOBILE">
+  <meta name="sub_category" content="JavaScript API">
+  <meta name="search-collection" content="help">
+  <meta name="search-category" content="help-api">
+  <meta name="version" content="arcgis-3.8"> <!-- API version -->
+  <meta name="content_type" content="API Reference"> <!-- options: Help Topic, API Reference, Sample OR Tutorial -->
+  <meta name="last-modified" content="2013-12-19"> <!-- put in date docs were generated -->
+
+  <link rel="stylesheet" href="../styles/screen.css">
+  <link rel="stylesheet" href="../styles/jsdoc.css">
+  <link rel="stylesheet" href="../styles/homepage.css">
+  <link rel="stylesheet" href="../styles/grid.css">
+  <link rel="stylesheet" href="../styles/tree.css">
+  <link rel="stylesheet" href="../prettify/prettify.css">
+  <style>
+    html {
+      overflow-y: auto;
+    }
+    .hidden{
+      display: none;
+    }
+    .eventDiv > .dtH4{
+      display: none;
+    }
+    .switch{
+      font-weight: bold;
+    }
+    .eventSwitch:not(.enabled){
+      color: #00629b;
+      cursor: pointer;
+      font-weight: normal;
+    }
+    .navigation-bar, .section-bar {
+      margin-bottom: 0;
+    }
+    .navigation-bar header h1, .section-bar header h1 {
+      margin-top: .35294em;
+    }
+    .navigation-bar, .section-bar {
+      background: url('../graphics/banner.jpg') no-repeat center center #762783;
+      color: white;
+      min-height: 48px;
+    }
+    .navigation-bar {
+      position: relative;
+      z-index: 10;
+    }
+    #esri-logo {
+      background: url('../graphics/logo-esri.png') no-repeat center center ;
+      width: 100px;
+    }
+    @font-face {
+    font-family:'icomoon';src:url('../fonts/icons.eot');src:url('../fonts/icons.eot?#iefix') format("embedded-opentype"),url('../fonts/icons.woff') format("woff"),url('../fonts/icons.ttf') format("truetype"),url('../fonts/icons.svg#icomoon') format("svg");font-weight:400;font-style:normal
+    }[data-icon]:before {
+      font-family: 'icomoon';
+      content: attr(data-icon);
+      speak: none;
+      font-weight: 400;
+      line-height: 1;
+      -webkit-font-smoothing: antialiased
+    }[class*="icon-"]:before {
+      font-family: 'icomoon';
+      speak: none;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 1;
+      -webkit-font-smoothing: antialiased;
+      text-transform: none
+    }
+    pre {
+      font-size: 1em;
+      line-height: normal;
+      margin: 0;
+      margin-top: 1em;
+    }
+    .navigation-bar input {
+      margin-top: 0;
+      opacity: 1;
+    }
+    #header nav li a {
+      font-size: .875em;
+    }
+    #esri-logo {
+      margin-left: 0;
+    }
+  </style>
+  <!--[if lt IE 9]>
+    <script src="../scripts/libs/html5shiv.js"></script>
+    <script src="../scripts/libs/selectivizr-min.js"></script>
+    <style>
+      #wrapper {
+        min-width: 960px;
+      }
+    </style>
+  <![endif]-->
+  <title>
+    Directions-amd | API Reference | ArcGIS API for JavaScript
+  </title> <!-- class name -->
+</head>
+  
+<body>
+<div id="nav">
+<header id="header">
+  <div class="container relative-container">
+    <div class="header-inner ">
+      <div class="logo-wrap"><a href="../" id="site-logo">Arc<span>GIS</span> API for JavaScript</a><!--span class="down-arrow" id="down-arrow"></span--></div>
+      <nav id="site-nav" class="">
+        <a href="/en/" class="selected">
+          <h4 class="developers">Arc<span>GIS</span> API for JavaScript</h4>
+          <p>Build location-aware applications with ArcGIS</p>
+        </a>
+
+        <a href="https://www.arcgis.com/about/">
+          <h4 class="organizations">Arc<span>GIS</span> for Organizations</h4>
+          <p>Learn more about ArcGIS</p>
+        </a>
+      </nav>
+
+      <a id="esri-logo" href="http://esri.com">Esri</a>
+      <div id="logged-out-navigation" class="dropdown-navigation hide">
+  <a id="login-link" class="btn small light" href="/en/log-in/">Log In</a>
+</div>
+<div id="logged-in-navigation" class="dropdown-navigation dropdown-wrapper hide">
+  <a href="/en/usage-summary" class="dropdown btn small light">
+    <!-- <img src="http://d3w50ib5d2uy0g.cloudfront.net/cdn/2464//js/esri/arcgisonline/css/images/no-user-thumb.jpg" width="16" height="16" alt=""> --><span id="username"></span>
+  </a>
+  <div class="dropdown-content">
+    <ul>
+      <li><a href="/en/usage-summary/">Usage Summary</a></li>
+      <li><a href="/en/applications/">Applications</a></li>
+      <li></li>
+      <li><a href="/en/tools/">GIS Tools</a></li>
+    </ul>
+    <hr>
+    <ul>
+      <li><a href="/en/account/profile/">Account Settings</a></li>
+      <li><a href="/en/feedback/">Feedback</a></li>
+    </ul>
+    <hr>
+    <ul>
+      <li><a id="log-out-link" href="#">Log Out</a></li>
+    </ul>
+  </div>
+</div>
+
+      <div id="mobile-navigation" class="dropdown-navigation dropdown-wrapper">
+        <a href="#" class="dropdown btn small light icon icon-list-2">Select <span>a Section</span></a>
+        <div class="dropdown-content">
+          <ul>
+            <li><a href="../jstutorials/">Tutorials</a></li>
+            <li><a href="../jshelp/">Concepts</a></li>
+            <li><a href="../jssamples/">Samples</a></li>
+            <li><a href="http://forums.arcgis.com/forums/15">Forum</a></li>
+            <li><a href="../../">All Developer Resources</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="navigation-bar">
+  <div class="container">
+    <nav>
+
+      <div id="section-label"><a href=".">API Reference</a></div>
+      
+      <div id="search">
+        <form id="searchForm">
+          <input type="text" id="searchKeyWord" name="searchKeyWord" placeholder="Find a Class" autocomplete="off" disabled="disabled">
+          <!-- <input type="submit" id="searchButton" name="searchButton" value=""> -->
+        </form>
+      </div>
+      <ul>
+        <!--li class="current"><a href="/en/javascript/">Home</a></li-->
+        <li><a href="../jstutorials/">Tutorials</a></li>
+        <li><a href="../jshelp/">Concepts</a></li>
+        <li class="current"><a href=".">API Reference</a></li>
+        <li><a href="../jssamples/">Samples</a></li>
+        <li><a href="http://forums.arcgis.com/forums/15">Forum</a></li>
+        <li><a href="../../">All Developer Resources</a></li>
+      </ul>
+    </nav>
+  </div>
+</div> 
+</div><!-- end nav bar --> <!-- header -->
+
+<div class="container_12">
+  <div class="grid_3 contentWrapper">
+    <div id="toggleToc">
+      <img src="../graphics/tochide.gif"> Hide Table of Contents
+    </div>
+    <div id="apiToc"> <div class="treeDiv" id="tree" style="top: 35px; left: 0px;">
+  <div id="treeRoot" ondragstart="return false" onselectstart="return false">
+    <div class="treeNode">
+      <a class="treeUnselected" href="." onclick="clickAnchor(this)">API Reference Overview</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="api_codeassist.html" onclick="clickAnchor(this)">Code Assist Plugins</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="argument_aliases.html" onclick="clickAnchor(this)">Preferred Argument Aliases</a>
+    </div>
+    <!-- <div class="treeNode">
+      <a class="treeUnselected" href="../tree/" onclick="clickAnchor(this)">Tree Diagram of API Components</a>
+    </div> -->
+    <div class="treeNode">
+      <img class="treeLinkImage" onClick="expandCollapse(this.parentNode)" src="../graphics/treenodeminus.gif"/>
+      <span onClick="expandCollapse(this.parentNode)" style="cursor: pointer;">esri</span>
+      <div class="treeNode">
+        <a class="treeUnselected" href="esri.config-amd.html" onClick="clickAnchor(this)">config</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="credential-amd.html" onClick="clickAnchor(this)">Credential</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="esri.domutils-amd.html" onClick="clickAnchor(this)">domUtils</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="graphic-amd.html" onClick="clickAnchor(this)">Graphic</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="esri.graphicsutils-amd.html" onClick="clickAnchor(this)">graphicsUtils</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="identitymanager-amd.html" onClick="clickAnchor(this)">IdentityManager</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="identitymanagerbase-amd.html" onClick="clickAnchor(this)">IdentityManagerBase</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="infotemplate-amd.html" onClick="clickAnchor(this)">InfoTemplate</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="infowindowbase-amd.html" onClick="clickAnchor(this)">InfoWindowBase</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="esri.kernel-amd.html" onClick="clickAnchor(this)">kernel</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="esri.lang-amd.html" onClick="clickAnchor(this)">lang</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="map-amd.html" onClick="clickAnchor(this)">Map</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="operationbase-amd.html" onClick="clickAnchor(this)">OperationBase</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="esri.request-amd.html" onClick="clickAnchor(this)">request</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="serverinfo-amd.html" onClick="clickAnchor(this)">ServerInfo</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="snappingmanager-amd.html" onClick="clickAnchor(this)">SnappingManager</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="spatialreference-amd.html" onClick="clickAnchor(this)">SpatialReference</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="timeextent-amd.html" onClick="clickAnchor(this)">TimeExtent</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="undomanager-amd.html" onClick="clickAnchor(this)">UndoManager</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="units-amd.html" onClick="clickAnchor(this)">units</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="esri.urlutils-amd.html" onClick="clickAnchor(this)">urlUtils</a>
+      </div>
+      <div class="treeNode">
+        <img class="treeLinkImage" onClick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+        <span onClick="expandCollapse(this.parentNode)" style="cursor: pointer;">arcgis</span>
+        <div class="treeSubnodesHidden">
+          <div class="treeNode">
+            <a class="treeUnselected" href="portal-amd.html" onClick="clickAnchor(this)">Portal</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="portalcomment-amd.html" onClick="clickAnchor(this)">PortalComment</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="portalfolder-amd.html" onClick="clickAnchor(this)">PortalFolder</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="portalgroup-amd.html" onClick="clickAnchor(this)">PortalGroup</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="portalgroupmembers-amd.html" onClick="clickAnchor(this)">PortalGroupMembers</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="portalitem-amd.html" onClick="clickAnchor(this)">PortalItem</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="portalqueryparams-amd.html" onClick="clickAnchor(this)">PortalQueryParams</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="portalqueryresult-amd.html" onClick="clickAnchor(this)">PortalQueryResult</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="portalrating-amd.html" onClick="clickAnchor(this)">PortalRating</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="portaluser-amd.html" onClick="clickAnchor(this)">PortalUser</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="esri.arcgis.utils-amd.html" onClick="clickAnchor(this)">utils</a>
+          </div>
+        </div>
+      </div>
+      <div class="treeNode">
+        <img class="treeLinkImage" onClick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+        <span onClick="expandCollapse(this.parentNode)" style="cursor: pointer;">dijit</span>
+        <div class="treeSubnodesHidden">
+          <div class="treeNode">
+            <a class="treeUnselected" href="attachmenteditor-amd.html" onClick="clickAnchor(this)">AttachmentEditor</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="attributeinspector-amd.html" onClick="clickAnchor(this)">AttributeInspector</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="attribution-amd.html" onClick="clickAnchor(this)">Attribution</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="basemap-amd.html" onClick="clickAnchor(this)">Basemap</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="basemapgallery-amd.html" onClick="clickAnchor(this)">BasemapGallery</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="basemaplayer-amd.html" onClick="clickAnchor(this)">BasemapLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="basemaptoggle-amd.html" onClick="clickAnchor(this)">BasemapToggle</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="bookmarkitem-amd.html" onClick="clickAnchor(this)">BookmarkItem</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="bookmarks-amd.html" onClick="clickAnchor(this)">Bookmarks</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="directions-amd.html" onClick="clickAnchor(this)">Directions</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="editor-amd.html" onClick="clickAnchor(this)">Editor</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="gallery-amd.html" onClick="clickAnchor(this)">Gallery</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="gauge-amd.html" onClick="clickAnchor(this)">Gauge</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="geocoder-amd.html" onClick="clickAnchor(this)">Geocoder</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="histogramtimeslider-amd.html" onClick="clickAnchor(this)">HistogramTimeSlider</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="homebutton-amd.html" onClick="clickAnchor(this)">HomeButton</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="infowindow-amd.html" onClick="clickAnchor(this)">InfoWindow</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="infowindowlite-amd.html" onClick="clickAnchor(this)">InfoWindowLite</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="layerswipe-amd.html" onClick="clickAnchor(this)">LayerSwipe</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="legend-amd.html" onClick="clickAnchor(this)">Legend</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="locatebutton-amd.html" onClick="clickAnchor(this)">LocateButton</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="measurement-amd.html" onClick="clickAnchor(this)">Measurement</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="overviewmap-amd.html" onClick="clickAnchor(this)">OverviewMap</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="popup-amd.html" onClick="clickAnchor(this)">Popup</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="popupmobile-amd.html" onClick="clickAnchor(this)">PopupMobile</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="popuptemplate-amd.html" onClick="clickAnchor(this)">PopupTemplate</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="print-amd.html" onClick="clickAnchor(this)">Print</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="scalebar-amd.html" onClick="clickAnchor(this)">Scalebar</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="templatepicker-amd.html" onClick="clickAnchor(this)">TemplatePicker</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="timeslider-amd.html" onClick="clickAnchor(this)">TimeSlider</a>
+          </div>
+          <div class="treeNode">
+            <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif">
+            <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">
+              Analysis
+            </span>
+            <div class="treeSubnodesHidden">
+              <div class="treeNode">
+                <a class="treeUnselected" href="analysisbase-amd.html" onClick="clickAnchor(this)">AnalysisBase</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="aggregatepoints-amd.html" onClick="clickAnchor(this)">AggregatePoints</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="createbuffers-amd.html" onClick="clickAnchor(this)">CreateBuffers</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="createdrivetimeareas-amd.html" onClick="clickAnchor(this)">CreateDriveTimeAreas</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="dissolveboundaries-amd.html" onClick="clickAnchor(this)">DissolveBoundaries</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="enrichlayer-amd.html" onClick="clickAnchor(this)">EnrichLayer</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="extractdata-amd.html" onClick="clickAnchor(this)">ExtractData</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="findhotspots-amd.html" onClick="clickAnchor(this)">FindHotSpots</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="findnearest-amd.html" onClick="clickAnchor(this)">FindNearest</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="mergelayers-amd.html" onClick="clickAnchor(this)">MergeLayers</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="overlaylayers-amd.html" onClick="clickAnchor(this)">OverlayLayers</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="summarizenearby-amd.html" onClick="clickAnchor(this)">SummarizeNearby</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="summarizewithin-amd.html" onClick="clickAnchor(this)">SummarizeWithin</a>
+              </div>
+            </div>
+          </div>
+          <div class="treeNode">
+            <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif">
+            <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">
+              Geoenrichment
+            </span>
+            <div class="treeSubnodesHidden">
+              <div class="treeNode">
+                <a class="treeUnselected" href="infographic-amd.html" onClick="clickAnchor(this)">Infographic</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="infographicscarousel-amd.html" onClick="clickAnchor(this)">InfographicsCarousel</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="infographicsoptions-amd.html" onClick="clickAnchor(this)">InfographicsOptions</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="infographicsoptions.item-amd.html" onClick="clickAnchor(this)">InfographicsOptions.Item</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="treeNode">
+        <img class="treeLinkImage" onClick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+        <span onClick="expandCollapse(this.parentNode)" style="cursor: pointer;">geometry</span>
+        <div class="treeSubnodesHidden">
+          <div class="treeNode">
+            <a class="treeUnselected" href="circle-amd.html" onClick="clickAnchor(this)">Circle</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="extent-amd.html" onClick="clickAnchor(this)">Extent</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="esri.geometry.geodesicutils-amd.html" onClick="clickAnchor(this)">geodesicUtils</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="geometry-amd.html" onClick="clickAnchor(this)">Geometry</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="esri.geometry.jsonutils-amd.html" onClick="clickAnchor(this)">jsonUtils</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="esri.geometry.mathutils-amd.html" onClick="clickAnchor(this)">mathUtils</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="multipoint-amd.html" onClick="clickAnchor(this)">Multipoint</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="esri.geometry.normalizeutils-amd.html" onClick="clickAnchor(this)">normalizeUtils</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="point-amd.html" onClick="clickAnchor(this)">Point</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="polygon-amd.html" onClick="clickAnchor(this)">Polygon</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="polyline-amd.html" onClick="clickAnchor(this)">Polyline</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="esri.geometry.scaleutils-amd.html" onClick="clickAnchor(this)">scaleUtils</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="screenpoint-amd.html" onClick="clickAnchor(this)">ScreenPoint</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="esri.geometry.screenutils-amd.html" onClick="clickAnchor(this)">screenUtils</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="esri.geometry.webmercatorutils-amd.html" onClick="clickAnchor(this)">webMercatorUtils</a>
+          </div>
+        </div>
+      </div>
+      <div class="treeNode">
+        <img class="treeLinkImage" onClick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+        <span onClick="expandCollapse(this.parentNode)" style="cursor: pointer;">layers</span>
+        <div class="treeSubnodesHidden">
+          <div class="treeNode">
+            <a class="treeUnselected" href="arcgisdynamicmapservicelayer-amd.html" onClick="clickAnchor(this)">ArcGISDynamicMapServiceLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="arcgisimageservicelayer-amd.html" onClick="clickAnchor(this)">ArcGISImageServiceLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="arcgistiledmapservicelayer-amd.html" onClick="clickAnchor(this)">ArcGISTiledMapServiceLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="codedvaluedomain-amd.html" onClick="clickAnchor(this)">CodedValueDomain</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="domain-amd.html" onClick="clickAnchor(this)">Domain</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="dynamiclayerinfo-amd.html" onClick="clickAnchor(this)">DynamicLayerInfo</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="dynamicmapservicelayer-amd.html" onClick="clickAnchor(this)">DynamicMapServiceLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="featureeditresult-amd.html" onClick="clickAnchor(this)">FeatureEditResult</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="featurelayer-amd.html" onClick="clickAnchor(this)">FeatureLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="featuretemplate-amd.html" onClick="clickAnchor(this)">FeatureTemplate</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="featuretype-amd.html" onClick="clickAnchor(this)">FeatureType</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="field-amd.html" onClick="clickAnchor(this)">Field</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="georsslayer-amd.html" onClick="clickAnchor(this)">GeoRSSLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="graphicslayer-amd.html" onClick="clickAnchor(this)">GraphicsLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="imageparameters-amd.html" onClick="clickAnchor(this)">ImageParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="imageserviceparameters-amd.html" onClick="clickAnchor(this)">ImageServiceParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="inheriteddomain-amd.html" onClick="clickAnchor(this)">InheritedDomain</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="joindatasource-amd.html" onClick="clickAnchor(this)">JoinDataSource</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="kmlfolder-amd.html" onClick="clickAnchor(this)">KMLFolder</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="kmlgroundoverlay-amd.html" onClick="clickAnchor(this)">KMLGroundOverlay</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="kmllayer-amd.html" onClick="clickAnchor(this)">KMLLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="labelclass-amd.html" onClick="clickAnchor(this)">LabelClass</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="labellayer-amd.html" onClick="clickAnchor(this)">LabelLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="layer-amd.html" onClick="clickAnchor(this)">Layer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="layerdatasource-amd.html" onClick="clickAnchor(this)">LayerDataSource</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="layerdrawingoptions-amd.html" onClick="clickAnchor(this)">LayerDrawingOptions</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="layerinfo-amd.html" onClick="clickAnchor(this)">LayerInfo</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="layermapsource-amd.html" onClick="clickAnchor(this)">LayerMapSource</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="layertimeoptions-amd.html" onClick="clickAnchor(this)">LayerTimeOptions</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="lod-amd.html" onClick="clickAnchor(this)">LOD</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="mapimage-amd.html" onClick="clickAnchor(this)">MapImage</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="mapimagelayer-amd.html" onClick="clickAnchor(this)">MapImageLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="mosaicrule-amd.html" onClick="clickAnchor(this)">MosaicRule</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="openstreetmaplayer-amd.html" onClick="clickAnchor(this)">OpenStreetMapLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="querydatasource-amd.html" onClick="clickAnchor(this)">QueryDataSource</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="rangedomain-amd.html" onClick="clickAnchor(this)">RangeDomain</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="rasterdatasource-amd.html" onClick="clickAnchor(this)">RasterDataSource</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="rasterfunction-amd.html" onClick="clickAnchor(this)">RasterFunction</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="streamlayer-amd.html" onClick="clickAnchor(this)">StreamLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="tabledatasource-amd.html" onClick="clickAnchor(this)">TableDataSource</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="tileinfo-amd.html" onClick="clickAnchor(this)">TileInfo</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="tiledmapservicelayer-amd.html" onClick="clickAnchor(this)">TiledMapServiceLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="timeinfo-amd.html" onClick="clickAnchor(this)">TimeInfo</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="timereference-amd.html" onClick="clickAnchor(this)">TimeReference</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="wmslayer-amd.html" onClick="clickAnchor(this)">WMSLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="wmslayerinfo-amd.html" onClick="clickAnchor(this)">WMSLayerInfo</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="wmtslayer-amd.html" onClick="clickAnchor(this)">WMTSLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="wmtslayerinfo-amd.html" onClick="clickAnchor(this)">WMTSLayerInfo</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="webtiledlayer-amd.html" onClick="clickAnchor(this)">WebTiledLayer</a>
+          </div>
+        </div>
+      </div>
+      <div class="treeNode">
+        <img class="treeLinkImage" onClick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+        <span onClick="expandCollapse(this.parentNode)" style="cursor: pointer;">renderer</span>
+        <div class="treeSubnodesHidden">
+          <div class="treeNode">
+            <a class="treeUnselected" href="classbreaksrenderer-amd.html" onClick="clickAnchor(this)">ClassBreaksRenderer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="dotdensityrenderer-amd.html" onClick="clickAnchor(this)">DotDensityRenderer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="esri.renderers.jsonutils-amd.html" onClick="clickAnchor(this)">jsonUtils</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="renderer-amd.html" onClick="clickAnchor(this)">Renderer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="scaledependentrenderer-amd.html" onClick="clickAnchor(this)">ScaleDependentRenderer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="simplerenderer-amd.html" onClick="clickAnchor(this)">SimpleRenderer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="symbolager-amd.html" onClick="clickAnchor(this)">SymbolAger</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="temporalrenderer-amd.html" onClick="clickAnchor(this)">TemporalRenderer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="timeclassbreaksager-amd.html" onClick="clickAnchor(this)">TimeClassBreaksAger</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="timerampager-amd.html" onClick="clickAnchor(this)">TimeRampAger</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="uniquevaluerenderer-amd.html" onClick="clickAnchor(this)">UniqueValueRenderer</a>
+          </div>
+        </div>
+      </div>
+      <div class="treeNode">
+        <img class="treeLinkImage" onClick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+        <span onClick="expandCollapse(this.parentNode)" style="cursor: pointer;">symbols</span>
+        <div class="treeSubnodesHidden">
+          <div class="treeNode">
+            <a class="treeUnselected" href="cartographiclinesymbol-amd.html" onClick="clickAnchor(this)">CartographicLineSymbol</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="fillsymbol-amd.html" onClick="clickAnchor(this)">FillSymbol</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="font-amd.html" onClick="clickAnchor(this)">Font</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="esri.symbols.jsonutils-amd.html" onClick="clickAnchor(this)">jsonUtils</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="linesymbol-amd.html" onClick="clickAnchor(this)">LineSymbol</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="markersymbol-amd.html" onClick="clickAnchor(this)">MarkerSymbol</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="picturefillsymbol-amd.html" onClick="clickAnchor(this)">PictureFillSymbol</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="picturemarkersymbol-amd.html" onClick="clickAnchor(this)">PictureMarkerSymbol</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="simplefillsymbol-amd.html" onClick="clickAnchor(this)">SimpleFillSymbol</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="simplelinesymbol-amd.html" onClick="clickAnchor(this)">SimpleLineSymbol</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="simplemarkersymbol-amd.html" onClick="clickAnchor(this)">SimpleMarkerSymbol</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="symbol-amd.html" onClick="clickAnchor(this)">Symbol</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="textsymbol-amd.html" onClick="clickAnchor(this)">TextSymbol</a>
+          </div>
+        </div>
+      </div>
+      <div class="treeNode">
+        <img class="treeLinkImage" onClick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+        <span onClick="expandCollapse(this.parentNode)" style="cursor: pointer;">tasks</span>
+        <div class="treeSubnodesHidden">
+          <div class="treeNode">
+            <a class="treeUnselected" href="addresscandidate-amd.html" onClick="clickAnchor(this)">AddressCandidate</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="algorithmiccolorramp-amd.html" onClick="clickAnchor(this)">AlgorithmicColorRamp</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="areasandlengthsparameters-amd.html" onClick="clickAnchor(this)">AreasAndLengthsParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="bufferparameters-amd.html" onClick="clickAnchor(this)">BufferParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="classbreaksdefinition-amd.html" onClick="clickAnchor(this)">ClassBreaksDefinition</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="classificationdefinition-amd.html" onClick="clickAnchor(this)">ClassificationDefinition</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="closestfacilityparameters-amd.html" onClick="clickAnchor(this)">ClosestFacilityParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="closestfacilitysolveresult-amd.html" onClick="clickAnchor(this)">ClosestFacilitySolveResult</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="closestfacilitytask-amd.html" onClick="clickAnchor(this)">ClosestFacilityTask</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="datafile-amd.html" onClick="clickAnchor(this)">DataFile</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="datalayer-amd.html" onClick="clickAnchor(this)">DataLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="date-amd.html" onClick="clickAnchor(this)">Date</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="directionsfeatureset-amd.html" onClick="clickAnchor(this)">DirectionsFeatureSet</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="distanceparameters-amd.html" onClick="clickAnchor(this)">DistanceParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="featureset-amd.html" onClick="clickAnchor(this)">FeatureSet</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="findparameters-amd.html" onClick="clickAnchor(this)">FindParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="findresult-amd.html" onClick="clickAnchor(this)">FindResult</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="findtask-amd.html" onClick="clickAnchor(this)">FindTask</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="gpmessage-amd.html" onClick="clickAnchor(this)">GPMessage</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="generalizeparameters-amd.html" onClick="clickAnchor(this)">GeneralizeParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="generaterendererparameters-amd.html" onClick="clickAnchor(this)">GenerateRendererParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="generaterenderertask-amd.html" onClick="clickAnchor(this)">GenerateRendererTask</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="geometryservice-amd.html" onClick="clickAnchor(this)">GeometryService</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="geoprocessor-amd.html" onClick="clickAnchor(this)">Geoprocessor</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="identifyparameters-amd.html" onClick="clickAnchor(this)">IdentifyParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="identifyresult-amd.html" onClick="clickAnchor(this)">IdentifyResult</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="identifytask-amd.html" onClick="clickAnchor(this)">IdentifyTask</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="imageserviceidentifyparameters-amd.html" onClick="clickAnchor(this)">ImageServiceIdentifyParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="imageserviceidentifyresult-amd.html" onClick="clickAnchor(this)">ImageServiceIdentifyResult</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="imageserviceidentifytask-amd.html" onClick="clickAnchor(this)">ImageServiceIdentifyTask</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="jobinfo-amd.html" onClick="clickAnchor(this)">JobInfo</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="legendlayer-amd.html" onClick="clickAnchor(this)">LegendLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="lengthsparameters-amd.html" onClick="clickAnchor(this)">LengthsParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="linearunit-amd.html" onClick="clickAnchor(this)">LinearUnit</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="locator-amd.html" onClick="clickAnchor(this)">Locator</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="multipartcolorramp-amd.html" onClick="clickAnchor(this)">MultipartColorRamp</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="namessage-amd.html" onClick="clickAnchor(this)">NAMessage</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="naoutputline-amd.html" onClick="clickAnchor(this)">NAOutputLine</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="naoutputpolygon-amd.html" onClick="clickAnchor(this)">NAOutputPolygon</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="natraveldirection-amd.html" onClick="clickAnchor(this)">NATravelDirection</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="nauturn-amd.html" onClick="clickAnchor(this)">NAUTurn</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="offsetparameters-amd.html" onClick="clickAnchor(this)">OffsetParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="parametervalue-amd.html" onClick="clickAnchor(this)">ParameterValue</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="printparameters-amd.html" onClick="clickAnchor(this)">PrintParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="printtask-amd.html" onClick="clickAnchor(this)">PrintTask</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="printtemplate-amd.html" onClick="clickAnchor(this)">PrintTemplate</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="projectparameters-amd.html" onClick="clickAnchor(this)">ProjectParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="query-amd.html" onClick="clickAnchor(this)">Query</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="querytask-amd.html" onClick="clickAnchor(this)">QueryTask</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="rasterdata-amd.html" onClick="clickAnchor(this)">RasterData</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="relationparameters-amd.html" onClick="clickAnchor(this)">RelationParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="relationshipquery-amd.html" onClick="clickAnchor(this)">RelationshipQuery</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="routeparameters-amd.html" onClick="clickAnchor(this)">RouteParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="routeresult-amd.html" onClick="clickAnchor(this)">RouteResult</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="routetask-amd.html" onClick="clickAnchor(this)">RouteTask</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="serviceareaparameters-amd.html" onClick="clickAnchor(this)">ServiceAreaParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="serviceareasolveresult-amd.html" onClick="clickAnchor(this)">ServiceAreaSolveResult</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="serviceareatask-amd.html" onClick="clickAnchor(this)">ServiceAreaTask</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="statisticdefinition-amd.html" onClick="clickAnchor(this)">StatisticDefinition</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="trimextendparameters-amd.html" onClick="clickAnchor(this)">TrimExtendParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="uniquevaluedefinition-amd.html" onClick="clickAnchor(this)">UniqueValueDefinition</a>
+          </div>
+          <div class="treeNode">
+            <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif">
+            <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">
+              Geoenrichment
+            </span>
+            <div class="treeSubnodesHidden">
+              <div class="treeNode">
+                <a class="treeUnselected" href="drivebuffer-amd.html" onClick="clickAnchor(this)">DriveBuffer</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="driveunits-amd.html" onClick="clickAnchor(this)">DriveUnits</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="geographylevel-amd.html" onClick="clickAnchor(this)">GeographyLevel</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="geometrystudyarea-amd.html" onClick="clickAnchor(this)">GeometryStudyArea</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="intersectinggeographies-amd.html" onClick="clickAnchor(this)">IntersectingGeographies</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="ringbuffer-amd.html" onClick="clickAnchor(this)">RingBuffer</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="treeNode">
+        <img class="treeLinkImage" onClick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+        <span onClick="expandCollapse(this.parentNode)" style="cursor: pointer;">toolbars</span>
+        <div class="treeSubnodesHidden">
+          <div class="treeNode">
+            <a class="treeUnselected" href="draw-amd.html" onClick="clickAnchor(this)">Draw</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="edit-amd.html" onClick="clickAnchor(this)">Edit</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="navigation-amd.html" onClick="clickAnchor(this)">Navigation</a>
+          </div>
+        </div>
+      </div>
+      <div class="treeNode">
+        <img class="treeLinkImage" onClick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+        <span onClick="expandCollapse(this.parentNode)" style="cursor: pointer;">virtualearth</span>
+        <div class="treeSubnodesHidden">
+          <div class="treeNode">
+            <a class="treeUnselected" href="veaddress-amd.html" onClick="clickAnchor(this)">VEAddress</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="vegeocoderesult-amd.html" onClick="clickAnchor(this)">VEGeocodeResult</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="vegeocoder-amd.html" onClick="clickAnchor(this)">VEGeocoder</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="vetiledlayer-amd.html" onClick="clickAnchor(this)">VETiledLayer</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></div> <!-- sub 4:  API ref TOC -->
+  </div>
+  <div class="grid_9 contentWrapper">
+    <div id="topicPane">    <div id="pageBanner">Class: Directions</div>
+    <div style="font-size:12px">[ <b>AMD Module Require</b> | <a href="directions.html">Legacy Module Require</a> ]</div>
+    <div id="nstext">
+      <p><pre class="prettyprint">require(["esri/dijit/Directions"], function(Directions) { /* code goes here */ });</pre></p>
+      <h4 class="dtH4">Description</h4>
+      <div class="detaildesc"><div><i>Class added at v3.4</i></div><p>The Directions widget makes it easy to calculate directions between two or more input locations. The resulting directions are displayed with detailed turn-by-turn instructions.  and if a map is associated with the widget the directions route and stops are displayed on the map. The stops displayed on the map are interactive you can click to display a popup with stop details or drag the stop to a new location to recalculate the route.</p>
+
+<p>Stops can be defined as strings or points and can be added to the widget as a constructor option. For example if you want to provide directions to your business you can set your business address to the default destination. If four or more stops are added then the options menu is displayed allowing users to choose to find the optimal order between stops. The widget offers standard directions capabilities like print and reverse route. </p>
+
+
+<p>The Directions widget uses the <a target="_blank" href="http://links.esri.com/arcgis-online-network-analysis-rest-api">World Network Analysis</a> as the default service used to calculate driving directions. This is a subscription based service available through ArcGIS Online. If you have an ArcGIS Server Network Analysis service that you want to use to calculate directions specify the url to the service using the Directions widget <code>routeTaskUrl</code> constructor parameter. </p></div>
+      <H4 class="dtH4">Samples</H4>
+      Search for <a target="_top" href="../jssamples/#search/Directions">samples</a> that use this class.
+      <H4 class="dtH4">Class hierarchy</H4>
+      <pre class="inherits">esri/dijit/Directions</pre>
+      
+      <h4 class="dtH4">Constructors</h4>
+      <table class="syntaxTABLE" cellspacing="0">
+        <tr><th class="tableheader">Name</th><th class="tableheader">Summary</th></tr>
+        <tr><td class="syntaxTABLE"><a href="#directions1">new Directions(params,options,srcNodeRef,srcNodeRef)</a></td><td class="syntaxTABLE">Creates a new Directions dijit using the given DOM node.</td></tr>
+      </table>
+      
+      <h4 class="dtH4">CSS</h4>
+      <table class="syntaxTABLE" cellspacing="0">
+        <tr><th class="tableheader">Name</th><th class="tableheader">Description</th></tr>
+        <tr><td class="syntaxTABLE">esriDirectionsContainer</td><td class="syntaxTABLE">Class applied to the div that contains the directions widgets including the stops and the directions. </td></tr>
+        <tr><td class="syntaxTABLE">esriFindOptimalOrderOption</td><td class="syntaxTABLE">Class assigned to the list item that contains the 'Find Optimal order' checkbox.</td></tr>
+        <tr><td class="syntaxTABLE">esriInfoWindowRoute</td><td class="syntaxTABLE">The class assigned to the div that contains the content displayed in the popup.</td></tr>
+        <tr><td class="syntaxTABLE">esriPrintBar</td><td class="syntaxTABLE">Class assigned to the div on the print page that contains the print button.</td></tr>
+        <tr><td class="syntaxTABLE">esriPrintButton</td><td class="syntaxTABLE">Class associated with the print button that appears on the print page. </td></tr>
+        <tr><td class="syntaxTABLE">esriPrintFooter</td><td class="syntaxTABLE">Class assigned to the div that contains the legal disclaimer displayed in the footer section of the directions print page. </td></tr>
+        <tr><td class="syntaxTABLE">esriPrintHeader</td><td class="syntaxTABLE">Class assigned to the div that contains the header information on the directions print page. This is the section of the page that displays the route title and distance and provides the space for adding additional notes. </td></tr>
+        <tr><td class="syntaxTABLE">esriPrintLogo</td><td class="syntaxTABLE">Class assigned to the image tag that displays the esri logo on the directions print page. </td></tr>
+        <tr><td class="syntaxTABLE">esriPrintMain</td><td class="syntaxTABLE">Class assigned to the container that contains the direction information on the directions print page. </td></tr>
+        <tr><td class="syntaxTABLE">esriPrintName</td><td class="syntaxTABLE">Class assigned to the div that displays the route name on the directions print page. <pre>
+.simpleDirections .esriPrintName {
+    font-size: 120%;
+    font-weight: bold;
+    margin: 10px 0 5px;
+}
+</pre></td></tr>
+        <tr><td class="syntaxTABLE">esriPrintPage</td><td class="syntaxTABLE">Class assigned to the print page container.</td></tr>
+        <tr><td class="syntaxTABLE">esriResultsButtonsContainer</td><td class="syntaxTABLE">Defines the styles for the container that holds the buttons.</td></tr>
+        <tr><td class="syntaxTABLE">esriResultsContainer</td><td class="syntaxTABLE">Class assigned to the div that contains the direction text results.</td></tr>
+        <tr><td class="syntaxTABLE">esriResultsLoading</td><td class="syntaxTABLE">Define the loading icon that displays when driving directions are being calculated. <pre>
+.simpleDirections .esriResultsLoading .esriResultsContainer {
+    background: url("images/loading.gif") 
+    height: 32px;
+}
+</pre></td></tr>
+        <tr><td class="syntaxTABLE">esriResultsPrint</td><td class="syntaxTABLE">Class assigned to the "Print" button.</td></tr>
+        <tr><td class="syntaxTABLE">esriResultsRouteName</td><td class="syntaxTABLE">Class assigned to the div that contains the route name details. This text is used on the print page.</td></tr>
+        <tr><td class="syntaxTABLE">esriResultsSummary</td><td class="syntaxTABLE">Class assigned to the div that contains the directions summary information like total distance and time.
+<pre>
+.simpleDirections .esriResultsSummary {
+    font-weight: bold;
+    line-height: 18px;
+    margin: 0;
+}
+</pre> </td></tr>
+        <tr><td class="syntaxTABLE">esriResultsViewFullRoute</td><td class="syntaxTABLE">Class assigned to the 'Zoom to full route' button.<pre>
+/*Change the color of the Zoom to full route text*/
+.simpleDirections .esriResultsViewFullRoute{
+  color:#999;
+}
+</pre></td></tr>
+        <tr><td class="syntaxTABLE">esriRoute</td><td class="syntaxTABLE">Class assigned to a row of direction information in the table of driving directions. The row contains two columns one holding the direction maneuver icon and the other contains the text.</td></tr>
+        <tr><td class="syntaxTABLE">esriRouteIcon</td><td class="syntaxTABLE">Class assigned to the div that contains the route icon maneuver image.</td></tr>
+        <tr><td class="syntaxTABLE">esriRouteIconColumn</td><td class="syntaxTABLE">Class assigned to the column in the directions table that contains the maneuver icon. </td></tr>
+        <tr><td class="syntaxTABLE">esriRouteInfo</td><td class="syntaxTABLE">Class assigned to the div that contains text for one step of the directions. Use this to modify the text color for the directions info.<pre>
+.simpleDirections .esriRouteInfo {
+    color: #666666;
+}
+</pre></td></tr>
+        <tr><td class="syntaxTABLE">esriRouteLength</td><td class="syntaxTABLE">Class assigned to the div that contains the direction length information for each step in the directions table. <pre>
+
+.simpleDirections .esriRouteLength {
+    font-size: 11px;
+    line-height: 14px;
+}
+</pre></td></tr>
+        <tr><td class="syntaxTABLE">esriRouteOrigin</td><td class="syntaxTABLE">The origin route styles.</td></tr>
+        <tr><td class="syntaxTABLE">esriRouteText</td><td class="syntaxTABLE">Class assigned to the div that contains the text for one step of the route directions. </td></tr>
+        <tr><td class="syntaxTABLE">esriRouteTextColumn</td><td class="syntaxTABLE">The class assigned to the column in the directions detail table that displays text information about one step of the route. </td></tr>
+        <tr><td class="syntaxTABLE">esriRoutes</td><td class="syntaxTABLE">Class assigned to the container that contains the table of driving directions.</td></tr>
+        <tr><td class="syntaxTABLE">esriRoutesContainer</td><td class="syntaxTABLE">Styles for the container that holds the route results.</td></tr>
+        <tr><td class="syntaxTABLE">esriRoutesError</td><td class="syntaxTABLE">Class assigned to the div that displays error messages.</td></tr>
+        <tr><td class="syntaxTABLE">esriStop</td><td class="syntaxTABLE">The class assigned to the individual rows in the stops table.</td></tr>
+        <tr><td class="syntaxTABLE">esriStopDestination</td><td class="syntaxTABLE">Class used to denote that the stop is the final destination.<pre>
+/*Specify a custom image for the destination icon*/
+.simpleDirections  .esriStopDestination .esriStopIcon {
+  background: url(images/destinationIcon.png);
+}
+</pre>
+</td></tr>
+        <tr><td class="syntaxTABLE">esriStopGeocoderColumn</td><td class="syntaxTABLE">Class assigned to the column in the stops table that contains the geocoder for the stop.</td></tr>
+        <tr><td class="syntaxTABLE">esriStopIcon</td><td class="syntaxTABLE">Defines the column that contains the stop icon in the stop container.</td></tr>
+        <tr><td class="syntaxTABLE">esriStopIconColumn</td><td class="syntaxTABLE">The class assigned to the column in the stops table that contains the stop icons. </td></tr>
+        <tr><td class="syntaxTABLE">esriStopIconRemove</td><td class="syntaxTABLE">Class assigned to the div that contains the 'Remove Stop' button.</td></tr>
+        <tr><td class="syntaxTABLE">esriStopIconRemoveColumn</td><td class="syntaxTABLE">Class applied to the column that contains the remove stop icon in the stops container. </td></tr>
+        <tr><td class="syntaxTABLE">esriStopOrigin</td><td class="syntaxTABLE">Class used to denote that the stop is the origin.<pre>
+/*Define a custom icon for the origin stop*/
+.simpleDirections  .esriStopOrigin .esriStopIcon {
+  background: url(images/customOrigin.png);
+}
+</pre></td></tr>
+        <tr><td class="syntaxTABLE">esriStopReverseColumn</td><td class="syntaxTABLE">Class assigned to the column in the stops table that contains the 'reverse directions' button.</td></tr>
+        <tr><td class="syntaxTABLE">esriStops</td><td class="syntaxTABLE">Class assigned to the table that contains the route stops. </td></tr>
+        <tr><td class="syntaxTABLE">esriStopsAdd</td><td class="syntaxTABLE">Class assigned to the 'Add destination' link. </td></tr>
+        <tr><td class="syntaxTABLE">esriStopsAddDestination</td><td class="syntaxTABLE">The class assigned to the div that contains the 'Add destination' link. /* Set the text color to orange */
+<pre>
+.esriStopsAddDestination{
+  color: #FFA500;
+}
+</pre></td></tr>
+        <tr><td class="syntaxTABLE">esriStopsButtons</td><td class="syntaxTABLE">Class associated with the div that contains the 'Add Destination' link.<pre>
+/*Change the background color of the button*/
+.esriStopsGetDirections {
+ background: #b5bdc8; 
+}
+</pre></td></tr>
+        <tr><td class="syntaxTABLE">esriStopsContainer</td><td class="syntaxTABLE">Class applied to the div that contains the stops and 'Get Directions' button.<pre>
+.esriStopsContainer {
+   margin: 0;
+}
+</pre></td></tr>
+        <tr><td class="syntaxTABLE">esriStopsGetDirections</td><td class="syntaxTABLE">The class assigned to the 'Get Directions' button.</td></tr>
+        <tr><td class="syntaxTABLE">esriStopsGetDirectionsContainer</td><td class="syntaxTABLE">The class assigned to the div that contains the 'Get Directions' button. </td></tr>
+        <tr><td class="syntaxTABLE">esriStopsOptionsEnabled</td><td class="syntaxTABLE">Class added to the directions container when 4 or more stops are added which enables the options menu with the 'Find optimal order' checkbox.</td></tr>
+        <tr><td class="syntaxTABLE">esriStopsOptionsMenu</td><td class="syntaxTABLE">The class assigned to the div that contains additional routing options like 'Find optimal order'.</td></tr>
+        <tr><td class="syntaxTABLE">esriStopsRemovable</td><td class="syntaxTABLE">Class added to the directions container when more than two stops are present. If more than two stops are present a delete icon appears that allows stops to be deleted.</td></tr>
+        <tr><td class="syntaxTABLE">esriStopsReverse</td><td class="syntaxTABLE">Defines the styles associated with the 'Reverse Directions' button.<pre>
+.esriStopsReverse {
+    background: url("images/customImage.png");
+    cursor: pointer;
+    height: 30px;
+    margin: 0;
+    width: 30px;
+}
+</pre></td></tr>
+      </table>
+      
+      <h4 class="dtH4">Properties</h4>
+      <table class="syntaxTABLE" cellspacing="0">
+        <tr><th class="tableheader">Name</th><th class="tableheader">Type</th><th class="tableheader">Summary</th></tr>
+        <tr><td class="syntaxTABLE"><a href="#directions">directions</a></td><td class="syntaxTABLE"><a href="directionsfeatureset-amd.html">DirectionsFeatureSet</a></td><td class="syntaxTABLE">Get the directions to all the locations along the route.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#geocoderresults">geocoderResults</a></td><td class="syntaxTABLE">Object[]</td><td class="syntaxTABLE">An array of  objects that defines the potential matches for the input locations.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#maxstopsreached">maxStopsReached</a></td><td class="syntaxTABLE">Boolean</td><td class="syntaxTABLE">When true the maximum number of stops for the route has been reached.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#mergedroutegraphic">mergedRouteGraphic</a></td><td class="syntaxTABLE"><a href="graphic-amd.html">Graphic</a></td><td class="syntaxTABLE">The graphic for the calculated route.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#routeparams">routeParams</a></td><td class="syntaxTABLE"><a href="routeparameters-amd.html">RouteParameters</a></td><td class="syntaxTABLE">Routing parameters for the widget</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#routetask">routeTask</a></td><td class="syntaxTABLE"><a href="routetask-amd.html">RouteTask</a></td><td class="syntaxTABLE">Routing task for the widget</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#stops">stops</a></td><td class="syntaxTABLE"><a href="graphic-amd.html">Graphic[]</a></td><td class="syntaxTABLE">An array of graphics that define the stop locations along the route.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#theme">theme</a></td><td class="syntaxTABLE">String</td><td class="syntaxTABLE">The css theme used to style the widget.</td></tr>
+      </table>
+      <h4 class="dtH4">Methods</h4>
+      <table class="syntaxTABLE" cellspacing="0">
+        <tr><th class="tableheader">Name</th><th class="tableheader">Type</th><th class="tableheader">Summary</th></tr>
+        <tr><td class="syntaxTABLE"><a href="#addstop">addStop(stop,index)</a></td><td class="syntaxTABLE">Deferred</td><td class="syntaxTABLE">Add a stop to the directions widget at the specified index location.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#addstops">addStops(stops,index)</a></td><td class="syntaxTABLE">Deferred</td><td class="syntaxTABLE">Add multiple stops to the directions list starting at the specified location.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#centeratsegmentstart">centerAtSegmentStart(index)</a></td><td class="syntaxTABLE">None</td><td class="syntaxTABLE">Center the map at the start of the specified route segment.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#cleardirections">clearDirections()</a></td><td class="syntaxTABLE">None</td><td class="syntaxTABLE">Remove the route directions from the directions list.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#destroy">destroy()</a></td><td class="syntaxTABLE">None</td><td class="syntaxTABLE">Destroy the Directions widget.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#getdirections">getDirections()</a></td><td class="syntaxTABLE">Deferred</td><td class="syntaxTABLE">Calculate the route to the input locations and display the list of directions.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#highlightsegment">highlightSegment(index)</a></td><td class="syntaxTABLE">None</td><td class="syntaxTABLE">Highlight the specified route segment on the map.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#removestop">removeStop(index)</a></td><td class="syntaxTABLE">Deferred</td><td class="syntaxTABLE">Remove the stop at the specified index</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#removestops">removeStops()</a></td><td class="syntaxTABLE">None</td><td class="syntaxTABLE">Removes the existing stops from the directions widget.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#reset">reset()</a></td><td class="syntaxTABLE">None</td><td class="syntaxTABLE">Resets the directions widget removing any directions, stops and map graphics</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#startup">startup()</a></td><td class="syntaxTABLE">None</td><td class="syntaxTABLE">Finalizes the creation of this dijit.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#unhighlightsegment">unhighlightSegment()</a></td><td class="syntaxTABLE">None</td><td class="syntaxTABLE">Removes the highlight symbol from the currently highlighted route segment</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#updatestop">updateStop(stop,index)</a></td><td class="syntaxTABLE">Deferred</td><td class="syntaxTABLE">Update the existing stop at the specified index location.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#updatestops">updateStops(stops)</a></td><td class="syntaxTABLE">Deferred</td><td class="syntaxTABLE">Update multiple stops in the directions widget by specifying an array of stops information.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#zoomtofullroute">zoomToFullRoute()</a></td><td class="syntaxTABLE">None</td><td class="syntaxTABLE">Zoom so that the full route is displayed within the current map extent</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#zoomtosegment">zoomToSegment(index)</a></td><td class="syntaxTABLE">None</td><td class="syntaxTABLE">Zoom to the specified route segment</td></tr>
+      </table>
+      <h4 class="dtH4">Events</h4><div class="switch">[ <span class="eventSwitch enabled">On Style Events</span> | <span class="eventSwitch">Connect Style Event</span> ]</div><div>All On Style event listeners receive a single event object. The event properties listed below are accessed from this event object. Additionally, the event object also contains a 'target' property whose value is the object which fired the event.</div><div class="eventDiv"><h4 class="dtH4">Events</h4>
+      <table class="syntaxTABLE" cellspacing="0">
+        <tr><th class="tableheader">Name</th><th class="tableheader">Returned Properties</th><th class="tableheader">Summary</th></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-directions-clear">directions-clear</a></td><td class="syntaxTABLE"></td><td class="syntaxTABLE">Fires when the directions display is reset.
+.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-directions-finish">directions-finish</a></td><td class="syntaxTABLE"><div>&lt;<a href="routeresult-amd.html">RouteResult</a>&gt; result</div></td><td class="syntaxTABLE">Fires when the route service has calculated the route and the directions are ready for display.
+.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-directions-start">directions-start</a></td><td class="syntaxTABLE"></td><td class="syntaxTABLE">Fires when the route services starts to calculate the route</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-load">load</a></td><td class="syntaxTABLE"></td><td class="syntaxTABLE">Fires when the directions widget has fully loaded.
+.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-segment-highlight">segment-highlight</a></td><td class="syntaxTABLE"><div>&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</div></td><td class="syntaxTABLE">Fired when you hover over a route segment in the directions display.
+.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-segment-select">segment-select</a></td><td class="syntaxTABLE"><div>&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</div></td><td class="syntaxTABLE">Fires when a route segment is selected in the directions display.
+.</td></tr>
+      </table></div><div class="eventDiv hidden"><h4 class="dtH4">Old Events</h4>
+      <table class="syntaxTABLE" cellspacing="0">
+        <tr><th class="tableheader">Name</th><th class="tableheader">Summary</th></tr>
+        <tr><td class="syntaxTABLE"><a href="#ondirectionsclear">onDirectionsClear()</a></td><td class="syntaxTABLE">Fires when the directions display is reset.
+.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#ondirectionsfinish">onDirectionsFinish(result)</a></td><td class="syntaxTABLE">Fires when the route service has calculated the route and the directions are ready for display.
+.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#ondirectionsstart">onDirectionsStart()</a></td><td class="syntaxTABLE">Fires when the route services starts to calculate the route</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#onload">onLoad()</a></td><td class="syntaxTABLE">Fires when the directions widget has fully loaded.
+.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#onsegmenthighlight">onSegmentHighlight(graphic)</a></td><td class="syntaxTABLE">Fired when you hover over a route segment in the directions display.
+.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#onsegmentselect">onSegmentSelect(graphic)</a></td><td class="syntaxTABLE">Fires when a route segment is selected in the directions display.
+.</td></tr>
+      </table></div>
+      <div class="sectionDivider">Constructor Details</div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="directions1"></a>new Directions(params,options,srcNodeRef,srcNodeRef)</h4></div>
+        <div class="detaildesc">Creates a new Directions dijit using the given DOM node. </div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; params</td>
+        <td class="detailTABLE">Required</td>
+        <td class="detailTABLE">Various optional parameters that can be used to configure the dijit. </td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; options</td>
+        <td class="detailTABLE">Required</td>
+        <td class="detailTABLE">Various options to configure this dijit. See the list below for details.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;String&gt; srcNodeRef</td>
+        <td class="detailTABLE">Required</td>
+        <td class="detailTABLE">Reference or id of an HTML element where the Directions widget should be rendered.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;DOMNode | String&gt; srcNodeRef</td>
+        <td class="detailTABLE">Required</td>
+        <td class="detailTABLE">Reference or id of a HTML element that this dijit is rendered into. This parameter is always required.</td>
+      </tr>
+</table></div>        <div class="detaildesc"><b>Options:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;Array[] | Boolean | String&gt; alphabet</td>
+
+        <td class="detailTABLE">Defines the values that label each stop. When false no text labels are displayed. Optional</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Boolean&gt; canModifyStops</td>
+
+        <td class="detailTABLE">Display the 'Add Destination' button. This button allows users add additional stops. The default value is true.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Boolean&gt; centerAtSegmentStart</td>
+
+        <td class="detailTABLE">Center the map at the start of the selected route segment. Default value is true.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Boolean&gt; dragging</td>
+
+        <td class="detailTABLE">Enable the dragging of stop locations on the map. When true stops can be dragged to a new location and the route will be recalculated. The default value is true.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Boolean&gt; focusOnNewStop</td>
+
+        <td class="detailTABLE">Focus the cursor in the stop input when a new stop is added. The default value is true.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;<a href="picturemarkersymbol-amd.html">PictureMarkerSymbol</a>&gt; fromSymbol</td>
+
+        <td class="detailTABLE">The symbol that is used to denote the start location on the map. Default Symbol: <a target="_blank" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.4/js/esri/dijit/images/Directions/greenPoint.png">greenPoint.png</a></td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;<a href="picturemarkersymbol-amd.html">PictureMarkerSymbol</a>&gt; fromSymbolDrag</td>
+
+        <td class="detailTABLE">The symbol that displays when the from location is dragged to a new location. Default symbol: <a target="_blank" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.4/js/esri/dijit/images/Directions/greenPointMove.png">greenPointMove.png</a></td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; geocoderOptions</td>
+
+        <td class="detailTABLE">Define optional geocoder options view the <a href="geocoder-amd.html#geocoder1">Geocoder</a> help for details on the object properties. </td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;String&gt; locatorUrl</td>
+
+        <td class="detailTABLE">Specify the service that will be used to find locations. The Directions widget uses the <a target="_blank" 
+href="http://www.arcgis.com/home/item.html?id=305f2e55e67f4389bef269669fc2e284">World Network Analysis</a> as the default service used to find locations.<br>
+
+If you have an ArcGIS Server locator service that you want to use to calculate directions specify the url to the service.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;<a href="map-amd.html">Map</a>&gt; map</td>
+
+        <td class="detailTABLE">Reference to the map object.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;<a href="routeparameters-amd.html">RouteParameters</a>&gt; routeParams</td>
+
+        <td class="detailTABLE">Specify the input parameters for the route task. View the <a href="routeparameters-amd.html">RouteParameters</a> class for details on the available options.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;<a href="simplelinesymbol-amd.html">SimpleLineSymbol</a>&gt; routeSymbol</td>
+
+        <td class="detailTABLE">Define the symbol used to draw the route on the map. </td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;String&gt; routeTaskUrl</td>
+
+        <td class="detailTABLE">Specify the service that will be used to calculate directions. The Directions widget uses the <a target="_blank" href="http://links.esri.com/arcgis-online-network-analysis-rest-api">World Network Analysis</a> as the default service used to calculate driving directions.<br>
+This is a subscription based service available through ArcGIS Online. If you have an ArcGIS Server Network Analysis service that you want to use to calculate directions specify the url to that service.<br></td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;<a href="infotemplate-amd.html">InfoTemplate</a>&gt; segmentInfoTemplate</td>
+
+        <td class="detailTABLE">Define the info template for the popup that appears when the popup for a route segment is displayed. By default the direction details for that route segment are displayed.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;<a href="simplelinesymbol-amd.html">SimpleLineSymbol</a>&gt; segmentSymbol</td>
+
+        <td class="detailTABLE">Specify the symbol used to render the individual route segments that display on the map when a direction step is clicked.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Boolean&gt; showPrintPage</td>
+
+        <td class="detailTABLE">When true the 'Print' button is displayed that allows users to display driving directions in a print page. Default value is true.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Boolean&gt; showReverseStopsButton</td>
+
+        <td class="detailTABLE">Display the 'Show Reverse Stops' button. This button allows users to click to reverse the origin and destination stops. The default value is true.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Boolean&gt; showSegmentHighlight</td>
+
+        <td class="detailTABLE">Highlight the route segment when a directions step is clicked. Default value is true.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Boolean&gt; showSegmentPopup</td>
+
+        <td class="detailTABLE">Display a popup with segment details when a direction step is clicked. The default value is true.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;<a href="picturemarkersymbol-amd.html">PictureMarkerSymbol</a>&gt; stopSymbol</td>
+
+        <td class="detailTABLE">The symbol that displays on the map for the locations between the origin and final destination locations. Default symbol: <a target="_blank" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.4/js/esri/dijit/images/Directions/bluePoint.png">bluePoint.png</a></td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;<a href="picturemarkersymbol-amd.html">PictureMarkerSymbol</a>&gt; stopSymbolDrag</td>
+
+        <td class="detailTABLE">The symbol that displays when an intermediate location is dragged to a new location. Default symbol: <a target="_blank" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.4/js/esri/dijit/images/Directions/bluePointMove.png">bluePointMove.png</a></td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Array[]&gt; stops</td>
+
+        <td class="detailTABLE">Define locations along the route using an array containing either strings defining the route location or a point.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;<a href="infotemplate-amd.html">InfoTemplate</a>&gt; stopsInfoTemplate</td>
+
+        <td class="detailTABLE">Define the info template for the popup that appears when a stop is clicked. By default it displays the stop address information.
+
+</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;<a href="http://dojotoolkit.org/reference-guide/1.8/dojo/Color.html#id2" target="_blank">Color</a>&gt; textSymbolColor</td>
+
+        <td class="detailTABLE">The text color for the text that appears for each destination. Default color is white (255,255,255)
+</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;<a href="font-amd.html">Font</a>&gt; textSymbolFont</td>
+
+        <td class="detailTABLE">The font used for the text that displays on the map for each stop location. (A,B,C). Default is 11px normal weight with a font family of "Arial, Helvetica, sans-serif".</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; textSymbolOffset</td>
+
+        <td class="detailTABLE">Define an x and/or y offset for the text symbols that are used for the stop locations on the map. 
+
+<pre>
+{
+ x: 10,
+ y: 20
+}
+</pre></td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;String&gt; theme</td>
+
+        <td class="detailTABLE">Specify a theme for the widget. The default value is "simpleDirections". To create a custom look for the widget define your own theme using css and specify the theme class name here. Optional</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;<a href="picturemarkersymbol-amd.html">PictureMarkerSymbol</a>&gt; toSymbol</td>
+
+        <td class="detailTABLE">The symbol that is used to denote the final destination location on the map. Default symbol: <a href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.4/js/esri/dijit/images/Directions/redPoint.png" target="_blank">redPoint.png</a></td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;<a href="picturemarkersymbol-amd.html">PictureMarkerSymbol</a>&gt; toSymbolDrag</td>
+
+        <td class="detailTABLE">The symbol that displays when an final destination location is dragged to a new location. Default symbol: <a href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.4/js/esri/dijit/images/Directions/redPointMove.png" target="_blank">redPointMove.png</a></td>
+      </tr>
+</table></div>        <div class="detaildesc"><b>Sample:</b> <pre>
+  var directionsWidget = new Directions({
+    map: map
+   },"dir");
+  directionsWidget.startup();</pre></div>
+      </div><div class="sectionDivider">Property Details</div>
+
+            <div class="detaildiv">
+        <div class="detailname"><h4><a id="directions"></a>&lt;<a href="directionsfeatureset-amd.html">DirectionsFeatureSet</a>&gt; directions</h4></div>
+        <div class="detaildesc">Get the directions to all the locations along the route. See <a href="directionsfeatureset-amd.html">DirectionsFeatureSet</a> for more details.</div>        <div class="detaildesc"><b>Sample:</b> <pre> 
+require(["esri/dijit/Directions"],function(
+    arcgisPortal
+  ){
+    function displayDirections(){
+      var directions = directionsWidget.directions;
+    }
+
+  ....
+});
+</pre></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="geocoderresults"></a>&lt;Object[]&gt; geocoderResults</h4></div>
+        <div class="detaildesc">An array of  objects that defines the potential matches for the input locations. For example, if 'Flagstaff' is input as a stop there is a Flagstaff in Arizona but also one in Jamaica, South Africa and New Zealand this property provides access to the additional address possibilities. 
+
+
+<pre>
+{
+  value: "Flagstaff", //this is the value that was used by the Directions widget
+  results:[{
+     extent: Extent, 
+     feature: Graphic, 
+     name: "Flagstaff, Arizona, United States"
+  },{
+     extent: Extent, 
+     feature: Graphic, 
+     name: "Flagstaff, Saint James, Jamaica"
+  },{
+     extent: Extent, 
+     feature: Graphic, 
+     name: "Flagstaff, Otago, New Zealand"
+  }
+}
+</pre>
+</div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="maxstopsreached"></a>&lt;Boolean&gt; maxStopsReached</h4></div>
+        <div class="detaildesc">When true the maximum number of stops for the route has been reached. </div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="mergedroutegraphic"></a>&lt;<a href="graphic-amd.html">Graphic</a>&gt; mergedRouteGraphic</h4></div>
+        <div class="detaildesc">The graphic for the calculated route. </div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="routeparams"></a>&lt;<a href="routeparameters-amd.html">RouteParameters</a>&gt; routeParams</h4></div>
+        <div class="detaildesc">Routing parameters for the widget. <i>(Added at v3.8)</i></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="routetask"></a>&lt;<a href="routetask-amd.html">RouteTask</a>&gt; routeTask</h4></div>
+        <div class="detaildesc">Routing task for the widget. <i>(Added at v3.8)</i></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="stops"></a>&lt;<a href="graphic-amd.html">Graphic[]</a>&gt; stops</h4></div>
+        <div class="detaildesc">An array of graphics that define the stop locations along the route. </div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="theme"></a>&lt;String&gt; theme</h4></div>
+        <div class="detaildesc">The css theme used to style the widget. </div>
+      </div>
+      <div class="sectionDivider">Method Details</div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="addstop"></a>addStop(stop,index)</h4></div>
+        <div class="detaildesc">Add a stop to the directions widget at the specified index location. If no index value is provided the stop will be added as the last stop. This method will add an extra stop to the list. To update an existing stop see updateStop. 
+</div>        <div class="detaildesc"><b>Return value:</b> Deferred</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;Array | Point&gt; stop</td>
+        <td class="detailTABLE">Required</td>
+        <td class="detailTABLE">A string or point that defines the stop location.<pre>
+  var companyLocation = new esri.geometry.Point(-98.56, 39.82); 
+  //find the customers current location using the geolocation api
+  navigator.geolocation.getCurrentPosition(function(position){
+    var customerLocation = new Point(position.coords);
+     directions = Directions({
+        map: map,
+        stops:[companyLocation,customerLocation]
+      },"dir");
+      directions.startup();
+  });
+</pre></td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Number&gt; index</td>
+        <td class="detailTABLE">Required</td>
+        <td class="detailTABLE">The index location where the stop should be added. </td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="addstops"></a>addStops(stops,index)</h4></div>
+        <div class="detaildesc">Add multiple stops to the directions list starting at the specified location. If no index value is provided the stops will be added to the end of the directions list. To update existing stops see updateStops. </div>        <div class="detaildesc"><b>Return value:</b> Deferred</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;Array[]&gt; stops</td>
+        <td class="detailTABLE">Required</td>
+        <td class="detailTABLE">An array of strings or point that defines the input stops.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Number&gt; index</td>
+        <td class="detailTABLE">Required</td>
+        <td class="detailTABLE">The index location where the stops will be added. </td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="centeratsegmentstart"></a>centerAtSegmentStart(index)</h4></div>
+        <div class="detaildesc">Center the map at the start of the specified route segment. </div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;Number
+&gt; index</td>
+        <td class="detailTABLE">Required</td>
+        <td class="detailTABLE">The index of the segment where the map should be centered.</td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="cleardirections"></a>clearDirections()</h4></div>
+        <div class="detaildesc">Remove the route directions from the directions list. The route and locations persist on the map. </div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="destroy"></a>destroy()</h4></div>
+        <div class="detaildesc">Destroy the Directions widget. Call <code>destroy</code> when the widget is no longer needed by the application. </div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="getdirections"></a>getDirections()</h4></div>
+        <div class="detaildesc">Calculate the route to the input locations and display the list of directions. If a map is specified display the calculated route and locations as graphics on the map. </div>        <div class="detaildesc"><b>Return value:</b> Deferred</div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="highlightsegment"></a>highlightSegment(index)</h4></div>
+        <div class="detaildesc">Highlight the specified route segment on the map. </div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;Number&gt; index</td>
+        <td class="detailTABLE">Required</td>
+        <td class="detailTABLE">The index of the route segment to highlight. </td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="removestop"></a>removeStop(index)</h4></div>
+        <div class="detaildesc">Remove the stop at the specified index.</div>        <div class="detaildesc"><b>Return value:</b> Deferred</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;Number&gt; index</td>
+        <td class="detailTABLE">Required</td>
+        <td class="detailTABLE">The index of the stop to remove. </td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="removestops"></a>removeStops()</h4></div>
+        <div class="detaildesc">Removes the existing stops from the directions widget. If a route has already been calculated based on the input stops the route graphics and directions are not removed. </div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="reset"></a>reset()</h4></div>
+        <div class="detaildesc">Resets the directions widget removing any directions, stops and map graphics.</div>        <div class="detaildesc"><b>See also:</b> <a href="#event-directions-clear">.on("directions-clear")</a></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="startup"></a>startup()</h4></div>
+        <div class="detaildesc">Finalizes the creation of this dijit. This method should be called after the constructor for this dijit is called and before letting the users interact with it.</div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="unhighlightsegment"></a>unhighlightSegment()</h4></div>
+        <div class="detaildesc">Removes the highlight symbol from the currently highlighted route segment.</div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="updatestop"></a>updateStop(stop,index)</h4></div>
+        <div class="detaildesc">Update the existing stop at the specified index location. To add a new stop see the <code>addStop</code> method.
+</div>        <div class="detaildesc"><b>Return value:</b> Deferred</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;String | Point&gt; stop</td>
+        <td class="detailTABLE">Required</td>
+        <td class="detailTABLE">A string or point that defines the new stop information.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Number&gt; index</td>
+        <td class="detailTABLE">Required</td>
+        <td class="detailTABLE">The index of the stop to update.</td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="updatestops"></a>updateStops(stops)</h4></div>
+        <div class="detaildesc">Update multiple stops in the directions widget by specifying an array of stops information. </div>        <div class="detaildesc"><b>Return value:</b> Deferred</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;Array[]&gt; stops</td>
+        <td class="detailTABLE">Required</td>
+        <td class="detailTABLE">An array of stops. </td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="zoomtofullroute"></a>zoomToFullRoute()</h4></div>
+        <div class="detaildesc">Zoom so that the full route is displayed within the current map extent.</div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="zoomtosegment"></a>zoomToSegment(index)</h4></div>
+        <div class="detaildesc">Zoom to the specified route segment.</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;Number&gt; index</td>
+        <td class="detailTABLE">Required</td>
+        <td class="detailTABLE">The index for a route segment.</td>
+      </tr>
+</table></div>
+      </div>
+      <div class="sectionDivider">Event Details</div>
+<div class="switch">[ <span class="eventSwitch enabled">On Style Events</span> | <span class="eventSwitch">Connect Style Event</span> ]</div><div class="eventDiv">      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-directions-clear"></a>directions-clear</h4></div>
+        <div class="detaildesc">Fires when the directions display is reset.
+ <i>(Added at v3.6)</i></div>        <div class="detaildesc"><b>See also:</b> <a href="#reset">reset</a></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-directions-finish"></a>directions-finish</h4></div>
+        <div class="detaildesc">Fires when the route service has calculated the route and the directions are ready for display.
+ <i>(Added at v3.6)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="routeresult-amd.html">RouteResult</a>&gt; result</td>
+
+        <td class="detailTABLE">The result from the route task including route directions. See the &lt;a href=""&gt;RouteResult</a> class for more details.</td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-directions-start"></a>directions-start</h4></div>
+        <div class="detaildesc">Fires when the route services starts to calculate the route. <i>(Added at v3.6)</i></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-load"></a>load</h4></div>
+        <div class="detaildesc">Fires when the directions widget has fully loaded.
+ <i>(Added at v3.6)</i></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-segment-highlight"></a>segment-highlight</h4></div>
+        <div class="detaildesc">Fired when you hover over a route segment in the directions display.
+ <i>(Added at v3.6)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The graphic for the highlighted route segment.</td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-segment-select"></a>segment-select</h4></div>
+        <div class="detaildesc">Fires when a route segment is selected in the directions display.
+ <i>(Added at v3.6)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The graphic for the selected route segment.</td>
+      </tr>
+</table></div>
+      </div></div><div class="eventDiv hidden">      <div class="detaildiv">
+        <div class="detailname"><h4><a id="ondirectionsclear"></a>onDirectionsClear()</h4></div>
+        <div class="detaildesc">Fires when the directions display is reset.
+</div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="ondirectionsfinish"></a>onDirectionsFinish(result)</h4></div>
+        <div class="detaildesc">Fires when the route service has calculated the route and the directions are ready for display.
+</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="routeresult-amd.html">RouteResult</a>&gt; result</td>
+
+        <td class="detailTABLE">The result from the route task including route directions. See the <a href="">RouteResult</a> class for more details.</td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="ondirectionsstart"></a>onDirectionsStart()</h4></div>
+        <div class="detaildesc">Fires when the route services starts to calculate the route.</div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="onload"></a>onLoad()</h4></div>
+        <div class="detaildesc">Fires when the directions widget has fully loaded.
+</div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="onsegmenthighlight"></a>onSegmentHighlight(graphic)</h4></div>
+        <div class="detaildesc">Fired when you hover over a route segment in the directions display.
+</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The graphic for the highlighted route segment.</td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="onsegmentselect"></a>onSegmentSelect(graphic)</h4></div>
+        <div class="detaildesc">Fires when a route segment is selected in the directions display.
+</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+
+        <td class="detailTABLE">The graphic for the selected route segment.</td>
+      </tr>
+</table></div>
+      </div></div>
+    </div>
+<div id="wh_footer" class="footnote" align="center">
+  Please <a href="mailto:js_feedback@esri.com?subject=Feedback on API Ref:  Directions-amd.html">contact the team</a> to comment or give suggestions.
+  <br>
+  Copyright &copy; Environmental Systems Research Institute, Inc.
+</div></div> <!-- sub 5 and 6:  main content for a page and feedback link -->
+  </div>
+</div> <!-- end main content -->
+
+<!-- TOC script -->
+<script src="../scripts/tree.js"></script>
+
+<script src="../prettify/prettify.js"></script>
+<script>
+  var dojoConfig = {
+    packages: [{
+      "name": "js",
+      "location": location.pathname.replace(/\/[^/]+$/, "/") + "../scripts"
+    }]
+  };
+</script>
+<script src="//js.arcgis.com/3.8compact/"></script> <!-- add API version -->
+<script src="../scripts/esri-main-apiref.js"></script>
+<script>
+require(["dojo/on", "dojo/query"], function(on, query) {
+  on(query(".eventSwitch"), "click", function(evt){
+    if (evt.target.classList[1] !== "enabled") {
+      query(".eventDiv").toggleClass("hidden");
+      query(".eventSwitch").toggleClass("enabled");
+    };
+  });
+});
+</script>
+<script src="../scripts/classList.js"></script>
+
+<!-- google analytics -->
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-215788-63']);
+  _gaq.push(['_setDomainName', 'arcgis.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+ <!-- google analytics, crazy egg and script to redirect old hash based URLs to static pages -->
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+    <title></title>
+
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/dojo/dijit/themes/tundra/tundra.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/esri/css/esri.css">
+    <style>
+      html, body { height: 100%; width: 100%; margin: 0; padding: 0; }
+      h3 { margin: 0 0 5px 0; border-bottom: 1px solid #444; }
+      .shadow {
+        -moz-box-shadow: 0 0 5px #888;
+        -webkit-box-shadow: 0 0 5px #888;
+        box-shadow: 0 0 5px #888;
+      }
+      #map{ margin: 0; padding: 0; }
+      #feedback {
+        background: #fff;
+        color: #444;
+        position: absolute;
+        font-family: arial;
+        height: 200px;
+        left: 30px;
+        margin: 5px;
+        padding: 10px;
+        bottom: 30px;
+        width: 300px;
+        z-index: 40;
+      }
+      #note { font-size: 80%; font-weight: 700; padding: 0 0 10px 0; }
+    </style>
+
+    <script>var dojoConfig = { parseOnLoad: true };</script>
+    <script src="http://js.arcgis.com/3.8/"></script>
+    <script>
+      dojo.require("dijit.layout.BorderContainer");
+      dojo.require("dijit.layout.ContentPane");
+      dojo.require("esri.map");
+      dojo.require("esri.tasks.geometry");
+
+      // one global for persistent app variables
+      var app = {};
+
+      function init() {
+        var ext, basemap;
+        app.map = new esri.Map("map", { 
+          basemap: "oceans",
+          center: [-84.977, 59.919],
+          zoom: 4,
+          slider: false
+        });
+
+        app.map.addLayer(new esri.layers.GraphicsLayer({ "id": "Geodesic" }));
+        app.map.addLayer(new esri.layers.GraphicsLayer({ "id": "Euclidean" }));
+
+        dojo.connect(app.map, "onClick", createBuffers);
+
+        app.gsvc = new esri.tasks.GeometryService("http://sampleserver6.arcgisonline.com/arcgis/rest/services/Utilities/Geometry/GeometryServer");
+      }
+
+      function createBuffers(e) {
+        var line, twentyPixels, bufferEuclidean, bufferGeodesic, distance, unit;
+
+        app.map.getLayer("Geodesic").clear();
+        app.map.getLayer("Euclidean").clear();
+        app.map.graphics.clear();
+        app.map.infoWindow.hide();
+        
+        twentyPixels = (app.map.extent.getWidth() / app.map.width) * 20;
+        line = new esri.geometry.Polyline(app.map.spatialReference);
+        line.addPath([
+          [e.mapPoint.x - twentyPixels, e.mapPoint.y - twentyPixels],
+          [e.mapPoint.x + twentyPixels, e.mapPoint.y + twentyPixels]
+        ]);
+        
+        app.map.graphics.add(
+          new esri.Graphic(line, new esri.symbol.SimpleLineSymbol())
+        );
+
+        distance = 1000;
+        unit = esri.tasks.GeometryService.UNIT_KILOMETER;
+
+        bufferEuclidean = new esri.tasks.BufferParameters();
+        bufferEuclidean.geometries = [ line ];
+        bufferEuclidean.distances = [ distance ];
+        bufferEuclidean.unit = unit;
+        bufferEuclidean.outSpatialReference = app.map.spatialReference;
+        
+        bufferGeodesic = new esri.tasks.BufferParameters();
+        bufferGeodesic.geometries = [ line ];
+        bufferGeodesic.distances = [ distance ];
+        bufferGeodesic.outSpatialReference = app.map.spatialReference;
+        bufferGeodesic.unit = unit;
+        bufferGeodesic.geodesic = true;
+
+        app.gsvc.buffer(bufferEuclidean, showEuclidean);
+        app.gsvc.buffer(bufferGeodesic, showGeodesic);
+      }
+
+      function showEuclidean(b) {
+        var attrs, sym;
+        
+        attrs = { "type": "Euclidean" };
+        sym = new esri.symbol.SimpleFillSymbol();
+        sym.setColor(null);
+        sym.setOutline(new esri.symbol.SimpleLineSymbol("solid", new dojo.Color([0, 0, 255, 1]), 2));
+        addGraphic(b[0], attrs, sym);
+      }
+
+      function showGeodesic(b) {
+        var attrs, sym;
+
+        attrs = { "type": "Geodesic" };
+        sym = new esri.symbol.SimpleFillSymbol();
+        sym.setColor(null);
+        sym.setOutline(new esri.symbol.SimpleLineSymbol("solid", new dojo.Color([255, 0, 0, 1]), 2));
+        addGraphic(b[0], attrs, sym);
+      }
+
+      function addGraphic(geom, attrs, sym) {
+        var template, g, s;
+        
+        template = new esri.InfoTemplate("1,000 Kilometer Buffer", "Type: ${type}");
+        g = app.map.getLayer("Geodesic");
+        s = app.map.getLayer("Euclidean");
+        app.map.getLayer(attrs.type).add(
+          new esri.Graphic(geom, sym, attrs, template)
+        );
+        
+        if ( g.graphics.length > 0 &&
+             s.graphics.length > 0 )  {
+          app.map.setExtent(esri.graphicsExtent([g.graphics[0], s.graphics[0]]), true);
+        }
+      }
+
+      function errorHandler(err) {
+        console.log("error: ", err);
+      }
+
+      dojo.ready(init);
+    </script>
+  </head>
+
+  <body class="tundra">
+    <div data-dojo-type="dijit.layout.BorderContainer"
+         data-dojo-props="design:'headline',gutters:false"
+         style="width: 100%; height: 100%; margin: 0;">
+      <div id="map"
+           data-dojo-type="dijit.layout.ContentPane"
+           data-dojo-props="region:'center'">
+
+        <div id="feedback" class="shadow">
+          <h3>Geodesic Buffering</h3>
+          <div id="info">
+            <div id="note">
+              Note:  This sample requires an ArcGIS Server version 10.1 geometry service.
+            </div>
+            <div id="instructions">
+              Click the map to generate a line and buffer the line by 1,000 kilometers. 
+              Geodesic buffer in red, euclidean in blue. The closer the click point to the equator, 
+              the more similar the results will be.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+

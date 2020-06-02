@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+    <title>Map with CSV data</title>
+
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/dojo/dijit/themes/tundra/tundra.css">
+       <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/esri/css/esri.css">
+    <style type="text/css">
+      html, body { height: 100%; width: 100%; margin: 0; } body{ background-color:white;
+      overflow:hidden; font-family: "Trebuchet MS"; } #header { margin: 2px;
+      border: solid 2px #87907d; background-color:white;text-align:left; font-weight:bold;
+      height:70px; }#titleDiv{font-weight:bold; color:#aab6a2; font-size:18pt;
+      padding-top:15px;padding-left:10px; }#subtitleDiv { font-size:small; color:#87907d;
+      padding-left:20px; } #rightPane{ background-color:white; color:#3f3f3f;
+      border: solid 2px #87907d; width:20%; } #leftPane{ margin: 5px; padding:2px;
+      background-color:white; color:#3f3f3f; border: solid 2px #87907d; width:20%;
+      } #map { margin: 5px; border:solid 2px #87907d; -moz-border-radius: 4px;
+      } #footer { margin: 2px; border: solid 2px #87907d; background-color:#ecefe4;
+      font-size:15px; text-align:left; height:40px; padding-left:10px;padding-top:5px;padding-bottom:5px;
+      } #footer a { color:#4086AA; font-size:15px; } .dijitTabInnerDiv{ background-color:#ecefe4;
+      } #tabs{ padding:10px; } #itemsDiv { overflow: auto; /*border-left: 1px
+      solid #AAAAAA;*/ background-color: #FFFFFF; } #itemsList { list-style:
+      none; margin: 0; padding: 3px; overflow: auto; } #itemsList li { padding:
+      2px; padding-bottom: 4px; cursor: pointer; border-bottom: 1px solid #CCCCCC;
+      } #itemsList li:hover { color: #0000FF; } #itemsList li.highlightedItem
+      { color: #0000FF; -moz-border-radius: 5px; -webkit-border-radius: 5px;
+      -moz-box-shadow: 0 0 0.5em black; -webkit-box-shadow: 0 0 0.5em black;
+      } #popupWindow { overflow: auto; border: 2px solid #AAAAAA; background-color:
+      #FFFFFF; padding: 4px; position: absolute; z-index: 100; width: 175px;
+      height: 175px; display: block; left: -1000px; top: -1000px; -moz-border-radius:
+      5px; -webkit-border-radius: 5px; -moz-box-shadow: 0 0 0.5em black; -webkit-box-shadow:
+      0 0 0.5em black; } #popupHide { cursor: pointer; text-decoration:underline;
+      color: blue; text-align: right; font-size: 10px; }
+    </style>
+    <script>var djConfig = { parseOnLoad: true };</script>
+    <script src="http://js.arcgis.com/3.8compact/"></script>
+    <script>
+      dojo.require("dijit.layout.BorderContainer");
+      dojo.require("dijit.layout.ContentPane");
+      dojo.require("esri.map");
+      dojo.require("dojox.data.CsvStore");
+      dojo.require("esri.arcgis.utils");
+
+
+      //This sample requires a proxy page to handle communications with the ArcGIS Server services. You will need to
+      //replace the url below with the location of a proxy on your machine. See the 'Using the proxy page' help topic
+      //for details on setting up a proxy page.
+      var proxyUrl =  "/proxy/proxy.ashx";
+      var defaultFields = ["label", "latitude", "longitude"]; // case insensitive
+      var defaultInfoTemplate = "${*}";
+      var defaultSymbols = "rgba(255,0,0,0.75);rgba(0,0,255,0.75)";
+
+      //Global Variables
+      var map, agoId, title, subtitle, bingMapsKey, urlObject, csvStore, dataUrl, dataLayer, symbol, highlightSymbol, highlightGraphic, popupWindow, highlightedNode;
+
+      function init() {
+        urlObject = esri.urlToObject(document.location.href);
+        if (urlObject.query) {
+          urlObject = esri.urlToObject(window.location.href);
+          urlObject.query = urlObject.query || {};
+          agoId = urlObject.query.webmap;
+          dataUrl = urlObject.query.dataUrl;
+          bingMapsKey = urlObject.query.bingMapsKey;
+          if (urlObject.query.title) {
+            title = urlObject.query.title;
+          }
+          if (urlObject.query.subTitle) {
+            subtitle = urlObject.query.subTitle;
+          }
+          if (urlObject.query.layout === "left") {
+            dojo.place(dojo.byId("itemsCell"), dojo.byId("mapCell"), "before");
+          }
+        }
+        else {
+          urlObject.query = {};
+          agoId = "d5e02a0c1f2b4ec399823fdd3c2fdebd";
+          dataUrl = "http://finder.geocommons.com/overlays/56595.csv";
+          defaultFields[0] = "name";
+          defaultInfoTemplate = "${description}";
+        }
+        var itemDeferred = esri.arcgis.utils.getItem(agoId);
+        itemDeferred.addErrback(function(error) {
+          console.log("getItem failed: ", dojo.toJson(error));
+        });
+        itemDeferred.addCallback(function(itemInfo) {
+          if (!title) {
+            title = itemInfo.item.title;
+          }
+          if (!subtitle) {
+            subtitle = itemInfo.item.snippet;
+          }
+          dojo.byId("titleDiv").innerHTML = title;
+          dojo.byId("subtitleDiv").innerHTML = subtitle;
+          var mapDeferred = esri.arcgis.utils.createMap(itemInfo, "map", {
+            mapOptions: {
+              slider: false,
+              nav: false
+            },
+            bingMapsKey: bingMapsKey,
+            geometryServiceURL: "http://sampleserver3.arcgisonline.com/ArcGIS/rest/services/Geometry/GeometryServer"
+          });
+          mapDeferred.addCallback(function(response) {
+            map = response.map;
+            if (bingMapsKey) {
+              dojo.style(dojo.byId("bingLogo"), "display", "block");
+            }
+            //define symbology
+            var colors = (urlObject.query.symbolOptions || defaultSymbols).split(";");
+            symbol = new esri.symbol.SimpleMarkerSymbol(esri.symbol.SimpleMarkerSymbol.STYLE_X, 10, new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new dojo.Color(colors[0]), 3.5));
+            highlightSymbol = new esri.symbol.SimpleMarkerSymbol(esri.symbol.SimpleMarkerSymbol.STYLE_CIRCLE, 22, new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new dojo.Color(colors[1]), 3.5), new dojo.Color([0, 0, 255, 0.01]));
+
+            if (map.loaded) {
+              mapLoaded();
+            }
+            else {
+              dojo.connect(map, "onLoad", mapLoaded);
+            }
+          });
+          mapDeferred.addErrback(function(error) {
+            console.log("Map creation failed: ", dojo.toJson(error));
+          });
+        });
+
+      }
+
+      function mapLoaded() {
+        dojo.connect(dijit.byId('map'), 'resize', resizeMap);
+
+        highlightGraphic = new esri.Graphic(null, highlightSymbol);
+        map.graphics.add(highlightGraphic);
+
+        popupWindow = dojo.create("div", {
+          id: "popupWindow"
+        }, dojo.body());
+        if (urlObject.query.popupSize) {
+          var sizeArr = urlObject.query.popupSize.split(",");
+          dojo.style(popupWindow, {
+            width: sizeArr[0] + "px",
+            height: sizeArr[1] + "px"
+          });
+        }
+        console.log("Process CSV");
+        processCsvData(dataUrl);
+        dojo.byId("dataSource").innerHTML = "Data from: <a href='" + dataUrl + "'>" + dataUrl + "</a>";
+
+
+        dojo.connect(dojo.byId("itemsDiv"), "onscroll", hideItemDetails);
+        dojo.connect(map, "onMouseDragStart", hideItemDetails);
+        dojo.connect(map, "onZoomStart", hideItemDetails);
+
+
+      }
+
+      function processCsvData(url) {
+        dojo.byId("itemsList").innerHTML = "Downloading data...";
+
+        // CREATE A GRAPHICS LAYER FOR CSV DATA
+        dataLayer = new esri.layers.GraphicsLayer();
+        map.addLayer(dataLayer);
+
+        var frameUrl = new dojo._Url(window.location.href);
+        var csvUrl = new dojo._Url(url);
+        if (frameUrl.host !== csvUrl.host || frameUrl.port !== csvUrl.port || frameUrl.scheme !== csvUrl.scheme) {
+          url = proxyUrl + "?" + url;
+          console.log(url);
+        }
+        csvStore = new dojox.data.CsvStore({
+          url: url
+        });
+
+        csvStore.fetch({
+          onComplete: function(items, request) {
+            var content = "";
+            // RENDER THE TABLE AND MAP
+            var labelField, latField, longField;
+            dojo.forEach(items, function(item, index) {
+              if (index === 0) {
+                var fields = getAttributeFields(item);
+                labelField = urlObject.query.displayField || fields[0];
+                latField = urlObject.query.latitudeField || fields[1];
+                longField = urlObject.query.longitudeField || fields[2];
+              }
+
+              var label = csvStore.getValue(item, labelField) || "";
+              var id = csvStore.getIdentity(item);
+
+
+              content += ("<li onclick='showItemDetails(this, " + id + ");'><b>" + (id + 1) + ".</b> " + label.replace(/^\s+|\s+$/g, "") + "</li>");
+
+              addGraphic(id, csvStore.getValue(item, latField), csvStore.getValue(item, longField));
+            });
+
+            dojo.byId("itemsList").innerHTML = content;
+            // REGISTER CLICK EVENT HANDLER
+            dojo.connect(dataLayer, "onClick", onFeatureClick);
+            dojo.connect(map.graphics, "onClick", onFeatureClick);
+
+            // ZOOM TO THE COLLECTIVE EXTENT OF THE DATA
+            var multipoint = new esri.geometry.Multipoint(new esri.SpatialReference({
+              wkid: 4326
+            }));
+            dojo.forEach(dataLayer.graphics, function(graphic) {
+              var geometry = graphic.geometry;
+              if (geometry) {
+                multipoint.addPoint({
+                  x: geometry.x,
+                  y: geometry.y
+                });
+              }
+            });
+            if (multipoint.points.length > 0) {
+              map.setExtent(multipoint.getExtent(), true);
+            }
+          },
+          //onComplete
+          onError: function(error) {
+            dojo.byId("itemsList").innerHTML = "Unable to download the data.";
+          }
+
+        });
+      }
+
+      function addGraphic(id, latitude, longitude) {
+        latitude = parseFloat(latitude);
+        longitude = parseFloat(longitude);
+
+        if (isNaN(latitude) || isNaN(longitude)) {
+          return;
+        }
+
+        var geometry = new esri.geometry.Point(longitude, latitude);
+        if (dojo.indexOf([102113, 102100, 3857], map.spatialReference.wkid) !== -1) {
+          geometry = esri.geometry.geographicToWebMercator(geometry);
+        }
+        dataLayer.add(new esri.Graphic(geometry, symbol, {
+          id: id
+        }));
+      }
+
+      function highlight(id) {
+        var match = findGraphicById(id);
+        if (match) {
+          highlightGraphic.setGeometry(match.geometry);
+          highlightGraphic.setAttributes({
+            id: match.attributes.id
+          });
+        }
+      }
+
+      function showItemDetails(node, id) {
+        var match = findGraphicById(id);
+        if (match) {
+          // HIGHLIGHT ITEM IN THE TABLE
+          if (highlightedNode) {
+            dojo.removeClass(highlightedNode, "highlightedItem");
+          }
+          dojo.addClass(node, "highlightedItem");
+          highlightedNode = node;
+
+          // SHOW POPUP WITH ITEM ATTRIBUTES
+          setPopupContent(id);
+
+          var coords = dojo.coords(node);
+          if (urlObject.query.layout === "left") {
+            dijit.placeOnScreen(popupWindow, {
+              x: coords.x + coords.w,
+              y: coords.y
+            }, ["TL", "BL"], {
+              x: 10,
+              y: 0
+            });
+          }
+          else {
+            dijit.placeOnScreen(popupWindow, {
+              x: coords.x,
+              y: coords.y
+            }, ["TR", "BR"], {
+              x: 10,
+              y: 0
+            });
+          }
+
+          highlight(id);
+          map.centerAt(match.geometry);
+        }
+      }
+
+      function onFeatureClick(evt) {
+        var graphic = evt.graphic;
+        if (graphic) {
+          if (highlightedNode) {
+            dojo.removeClass(highlightedNode, "highlightedItem");
+          }
+          var node = graphic.getDojoShape().getNode(),
+            id = graphic.attributes.id;
+          highlight(id);
+          setPopupContent(id);
+
+          if (dojo.isWebKit || dojo.isIE) {
+            dijit.placeOnScreen(popupWindow, {
+              x: evt.pageX,
+              y: evt.pageY
+            }, ["TR", "BR", "BL", "TL"], {
+              x: 14,
+              y: 14
+            });
+          }
+          else {
+            dijit.placeOnScreenAroundNode(popupWindow, node, {
+              "TR": "BL",
+              "BR": "TL",
+              "BL": "TR",
+              "TL": "BR"
+            });
+          }
+        }
+      }
+
+      function setPopupContent(id) {
+        csvStore.fetchItemByIdentity({
+          identity: id,
+          onItem: function(item) {
+            var attributes = csvStore.getAttributes(item),
+              data = {};
+            dojo.forEach(attributes, function(attr) {
+              data[attr] = csvStore.getValue(item, attr);
+            });
+            popupWindow.innerHTML = "<div id='popupHide' onclick='hideItemDetails();'>Hide</div>" + esri.substitute(data, urlObject.query.infoTemplate || defaultInfoTemplate);
+          }
+        });
+      }
+
+
+      function hideItemDetails() {
+        if (highlightedNode) {
+          dojo.removeClass(highlightedNode, "highlightedItem");
+        }
+
+        if (popupWindow) {
+          dojo.style(popupWindow, {
+            left: "-1000px",
+            top: "-1000px"
+          });
+        }
+
+      }
+
+      function findGraphicById(id) {
+        var match;
+
+        dojo.some(dataLayer.graphics, function(graphic) {
+          if (graphic.attributes && graphic.attributes.id === id) {
+            match = graphic;
+            return true;
+          }
+          else {
+            return false;
+          }
+        });
+
+        return match;
+      }
+
+      function getAttributeFields(item) {
+        var attributes = csvStore.getAttributes(item);
+        if (!attributes) {
+          return defaultFields;
+        }
+
+        var defLabelField = defaultFields[0],
+          defLatField = defaultFields[1],
+          defLongField = defaultFields[2];
+        var labelField, latField, longField;
+
+        dojo.forEach(attributes, function(attr) {
+          attr = attr || "";
+          var attr_lwr = attr.toLowerCase();
+          switch (attr_lwr) {
+          case defLabelField:
+            if (!labelField) {
+              labelField = attr;
+            }
+            break;
+          case defLatField:
+            if (!latField) {
+              latField = attr;
+            }
+            break;
+          case defLongField:
+            if (!longField) {
+              longField = attr;
+            }
+            break;
+          }
+        });
+
+        return [labelField || defLabelField, latField || defLatField, longField || defLongField];
+      }
+
+      function resizeMap() {
+        //resize the map when the browser resizes - view the 'Resizing and repositioning the map' section in
+        //the following help topic for more details http://help.esri.com/EN/webapi/javascript/arcgis/help/jshelp_start.htm#jshelp/inside_guidelines.htm
+        var resizeTimer;
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+          map.resize();
+          map.reposition();
+        }, 500);
+      }
+      //show map on load
+      dojo.addOnLoad(init);
+    </script>
+  </head>
+
+  <body class="tundra">
+    <div id="mainWindow" dojotype="dijit.layout.BorderContainer" design="headline"
+    gutters="false" style="width:100%; height:100%;">
+      <div id="header" dojotype="dijit.layout.ContentPane" region="top">
+        <div id="titleDiv">
+        </div>
+        <div id="subtitleDiv">
+        </div>
+      </div>
+      <div dojotype="dijit.layout.ContentPane" id="leftPane" region="right">
+        <div id="itemsDiv">
+          <ul id="itemsList">
+          </ul>
+        </div>
+      </div>
+      <div id="map" dojotype="dijit.layout.ContentPane" region="center">
+        <div id="bingLogo" style="position: absolute;bottom: 2px;left: 3px;display:none;z-index:49;">
+          <img src="images/bing_logo.png" border="0" />
+        </div>
+      </div>
+      <div id="footer" dojotype="dijit.layout.ContentPane" region="bottom">
+        <span id="dataSource">
+        </span>
+      </div>
+    </div>
+  </body>
+
+</html>

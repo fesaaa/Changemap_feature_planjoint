@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <!-- Sets whether a web application runs in full-screen mode. -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <!-- Sets the style of the status bar for a web application. -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Geolocate</title>
+
+    <link rel="stylesheet" type="text/css" href="http://js.arcgis.com/3.8/js/esri/css/esri.css">
+    <style type="text/css">
+      html, body {
+        height: 100%;
+        margin: 0px;
+        padding: 0px;
+        width: 100%;
+      }
+      #map {
+        height: 100%;
+        width: 100%;
+      }
+    </style>
+
+    <script src="//js.arcgis.com/3.8compact/"></script>
+    <script>
+      dojo.require("esri.map");
+      dojo.require("esri.layers.FeatureLayer");
+
+      var map, featureLayer;
+
+      function init() {
+        //onorientationchange doesn't always fire in a timely manner in Android so check for both orientationchange and resize
+        var supportsOrientationChange = "onorientationchange" in window, orientationEvent = supportsOrientationChange ? "orientationchange" : "resize";
+
+        window.addEventListener(orientationEvent, function() {
+          orientationChanged();
+        }, false);
+
+        map = new esri.Map("map", {
+          basemap: "streets"
+        });
+        dojo.connect(map, "onLoad", initFunc);
+      }
+
+      function initFunc(map) {
+        //create a layer definition for the gps points
+        var layerDefinition = {
+          "geometryType" : "esriGeometryPoint",
+          "timeInfo" : {
+            "startTimeField" : "DATETIME",
+            "endTimeField" : null,
+            "timeExtent" : [1277412330365],
+            "timeInterval" : 1,
+            "timeIntervalUnits" : "esriTimeUnitsMinutes"
+          },
+          "fields" : [{
+            "name" : "DATETIME",
+            "type" : "esriFieldTypeDate",
+            "alias" : "DATETIME"
+          }]
+        };
+
+        var featureCollection = {
+          layerDefinition : layerDefinition,
+          featureSet : null
+        };
+        // feature layer
+        featureLayer = new esri.layers.FeatureLayer(featureCollection);
+
+        //setup a temporal renderer
+        var sms = new esri.symbol.SimpleMarkerSymbol().setColor(new dojo.Color([255, 0, 0])).setSize(8);
+        var observationRenderer = new esri.renderer.SimpleRenderer(sms);
+        var latestObservationRenderer = new esri.renderer.SimpleRenderer(new esri.symbol.SimpleMarkerSymbol());
+        var infos = [{
+          minAge : 0,
+          maxAge : 1,
+          color : new dojo.Color([255, 0, 0])
+        }, {
+          minAge : 1,
+          maxAge : 5,
+          color : new dojo.Color([255, 153, 0])
+        }, {
+          minAge : 5,
+          maxAge : 10,
+          color : new dojo.Color([255, 204, 0])
+        }, {
+          minAge : 10,
+          maxAge : Infinity,
+          color : new dojo.Color([0, 0, 0, 0])
+        }];
+        var ager = new esri.renderer.TimeClassBreaksAger(infos, esri.renderer.TimeClassBreaksAger.UNIT_MINUTES);
+        var sls = new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new dojo.Color([255, 0, 0]), 3);
+        var trackRenderer = new esri.renderer.SimpleRenderer(sls);
+        var renderer = new esri.renderer.TemporalRenderer(observationRenderer, latestObservationRenderer, trackRenderer, ager);
+        featureLayer.setRenderer(renderer);
+        map.addLayer(featureLayer);
+
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(zoomToLocation, locationError);
+          navigator.geolocation.watchPosition(showLocation, locationError);
+        }
+      }
+
+      function locationError(error) {
+        switch (error.code) {
+          case error.PERMISSION_DENIED:
+            alert("Location not provided");
+            break;
+
+          case error.POSITION_UNAVAILABLE:
+            alert("Current location not available");
+            break;
+
+          case error.TIMEOUT:
+            alert("Timeout");
+            break;
+
+          default:
+            alert("unknown error");
+            break;
+        }
+      }
+
+      function zoomToLocation(location) {
+        var pt = esri.geometry.geographicToWebMercator(new esri.geometry.Point(location.coords.longitude, location.coords.latitude));
+        map.centerAndZoom(pt, 16);
+      }
+
+      function showLocation(location) {
+        if(location.coords.accuracy <= 500) {
+          var now = new Date();
+          var attributes = {};
+          attributes.DATETIME = now.getTime();
+
+          var pt = esri.geometry.geographicToWebMercator(new esri.geometry.Point(location.coords.longitude, location.coords.latitude));
+          var graphic = new esri.Graphic(new esri.geometry.Point(pt, map.spatialReference), null, attributes);
+
+          featureLayer.applyEdits([graphic], null, null, function(adds) {
+            map.setTimeExtent(new esri.TimeExtent(null, new Date()));
+            map.centerAt(graphic.geometry);
+          });
+        } else {
+          console.log("Point not added due to low accuracy: " + location.coords.accuracy);
+        }
+      }
+
+      function orientationChanged() {
+        if(map) {
+          map.reposition();
+          map.resize();
+        }
+      }
+
+      dojo.ready(init);
+    </script>
+  </head>
+
+  <body>
+    <div id="map"></div>
+  </body>
+</html>

@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+    <title></title>
+
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/dojo/dijit/themes/tundra/tundra.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/esri/css/esri.css">
+    <style>
+      html, body { height: 100%; width: 100%; margin: 0; padding: 0; }
+      #map{ margin: 0; padding: 0; }
+      #dashboard { 
+        background: url("images/gray_transparent.png");
+        color: #fff;
+        font-family: arial;
+        height: auto; 
+        overflow: hidden;
+        padding: 5px;
+        position: absolute;
+        right: 30px;
+        text-align: center;
+        top: 30px;
+        width: 300px;
+        z-index: 40;
+        -moz-box-shadow: 0 0 5px #888;
+        -webkit-box-shadow: 0 0 5px #888;
+        box-shadow: 0 0 5px #888;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        border: 1px solid #fff;
+      }
+
+      #dashboardWidgets {
+        background: #fff;
+        color: #888;
+        margin: 0 auto;
+        text-align: left;
+      }
+    </style>
+
+    <script>var dojoConfig = { parseOnLoad: true };</script>
+    <script src="http://js.arcgis.com/3.8/"></script>
+    <script>
+      dojo.require("dijit.layout.BorderContainer");
+      dojo.require("dijit.layout.ContentPane");
+      dojo.require("esri.map");
+      dojo.require("esri.layers.FeatureLayer");
+      dojo.require("esri.dijit.Gauge");
+      
+      var map, gauge;
+      function init() {
+        var ext = new esri.geometry.Extent({"xmin":-11651476,"ymin":3369424,"xmax":372985,"ymax":8251609,"spatialReference":{"wkid":102100}});
+        map = new esri.Map("map",{ 
+          basemap: "oceans",
+          center: [-50.658, 46.188],
+          zoom: 4,
+          slider: false
+        });
+
+        // add the states layer as a feature layer
+        var featuresUrl = "http://servicesbeta.esri.com/ArcGIS/rest/services/Hurricanes/Hurricanes/MapServer/0";
+        var fl = new esri.layers.FeatureLayer(featuresUrl, {
+          "id": "hurricanes",
+          "mode": esri.layers.FeatureLayer.MODE_ONDEMAND, 
+          "outFields": ["OBJECTID", "WINDSPEED", "DAY"]
+        });
+        dojo.connect(fl, "onLoad", createGauge);
+        map.addLayer(fl);
+      }
+
+      function createGauge(fl) {
+        // create JSON and pass it to the Gauge ctor
+        var gaugeParams = {
+          "caption": "Hurricane windspeed.",
+          "color": "#c0c",
+          "dataField": "WINDSPEED", // name of the attribute used for the gauge value
+          "dataFormat": "value",
+          "dataLabelField": "EVENTID",
+          "layer": fl,
+          "maxDataValue": 120, // gauge max value, not used when dataFormat is "percentage" 
+          "noFeatureLabel": "No name",
+          "title": "Atlantic Hurricanes(2000)",
+          "unitLabel": " MPH"
+        }
+        gauge = new esri.dijit.Gauge(gaugeParams, "gaugeDiv");
+        gauge.startup();
+
+        // set up mouse over highlighting
+        var hGraphics = new esri.layers.GraphicsLayer({ "id": "highlights" });
+        map.addLayer(hGraphics);
+        
+        var highlight = new esri.symbol.SimpleMarkerSymbol()
+          .setColor(gaugeParams.color).setSize(12);
+
+        dojo.connect(fl, "onMouseOver", function(e) { 
+          hGraphics.clear();
+          hGraphics.add(
+            new esri.Graphic(e.graphic.geometry, highlight)
+          );
+        });
+      }
+      dojo.ready(init);
+    </script>
+  </head>
+  
+  <body class="tundra">
+    <div data-dojo-type="dijit.layout.BorderContainer" 
+         data-dojo-props="design:'headline',gutters:false" 
+         style="width: 100%; height: 100%; margin: 0;">
+      <div id="map" 
+           data-dojo-type="dijit.layout.ContentPane" 
+           data-dojo-props="region:'center'"> 
+        
+        <div id="dashboard">
+          Dashboard
+          <div id="dashboardWidgets">
+            <div id="gaugeDiv"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </body>
+</html>
+

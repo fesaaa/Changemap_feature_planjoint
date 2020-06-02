@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <!--The viewport meta tag is used to improve the presentation and behavior
+    of the samples on iOS devices-->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+    <title>Info Window with Chart</title>
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/dojo/dijit/themes/claro/claro.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/esri/css/esri.css">
+    <style>
+      html, body, #map {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      .chart {
+        width:200px;
+        height:200px;
+        padding:0px !important;
+      }
+    </style>
+    <script>var dojoConfig = { parseOnLoad: true };</script>
+    <script src="http://js.arcgis.com/3.8/"></script>
+    <script>
+      dojo.require("dijit.layout.ContentPane");
+      dojo.require("esri.map");
+      dojo.require("esri.layers.FeatureLayer");
+      dojo.require("esri.dijit.InfoWindow");
+      dojo.require("dojox.charting.Chart2D");
+      dojo.require("dojox.charting.plot2d.Pie");
+      dojo.require("dojox.charting.action2d.Highlight");
+      dojo.require("dojox.charting.action2d.MoveSlice");
+      dojo.require("dojox.charting.action2d.Tooltip");
+      dojo.require("dojo.number");
+      dojo.require("dijit.layout.TabContainer");
+
+      var map;
+
+      //try other themes (Julie,CubanShirts, PrimaryColors, Charged, BlueDusk, Bahamation,Harmony,Shrooms)
+      var theme = 'Wetland';
+      dojo.require("dojox.charting.themes." + theme);
+
+
+      function init() {
+
+        //use the info window instead of the popup 
+        var infoWindow = new esri.dijit.InfoWindow(null, dojo.create("div"));
+        infoWindow.startup();
+
+
+        map = new esri.Map("map", {
+          basemap: "streets",
+          center: [-113.405, 43.521],
+          infoWindow: infoWindow,
+          zoom: 6
+        });
+
+        var template = new esri.InfoTemplate();
+        //flag icons are from http://twitter.com/thefella, released under creative commons
+        template.setTitle("<b><img src='images/flags/${STATE_ABBR}.png'/>  ${STATE_NAME}</b>");
+        template.setContent(getWindowContent);
+
+        var statesLayer = new esri.layers.FeatureLayer("http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Demographics/ESRI_Census_USA/MapServer/5", {
+          mode: esri.layers.FeatureLayer.MODE_ONDEMAND,
+          infoTemplate: template,
+          outFields: ["*"]
+        });
+        var symbol = new esri.symbol.SimpleFillSymbol();
+        statesLayer.setRenderer(new esri.renderer.SimpleRenderer(symbol));
+
+        map.addLayer(statesLayer);
+
+        map.infoWindow.resize(275, 275);
+      }
+
+
+
+      function getWindowContent(graphic) {
+        //make a tab container 
+        var tc = new dijit.layout.TabContainer({
+          style: "width:100%;height:100%;"
+        }, dojo.create("div"));
+
+        //display attribute information
+        var cp1 = new dijit.layout.ContentPane({
+          title: "Details",
+          content: "<a target='_blank' href='http://en.wikipedia.org/wiki/" + graphic.attributes.STATE_NAME + "'>Wikipedia Entry</a><br /><br />Median Age: " + graphic.attributes.MED_AGE + "<br />Median Age (Male): " + graphic.attributes.MED_AGE_M + "<br />Median Age (Female): " + graphic.attributes.MED_AGE_F
+        });
+
+        //display a dojo pie chart for the male/female percentage
+        var cp2 = new dijit.layout.ContentPane({
+          title: "Pie Chart"
+        });
+
+        tc.addChild(cp1);
+        tc.addChild(cp2);
+
+        //create the chart that will display in the second tab
+        var c = dojo.create("div", {
+          id: "demoChart"
+        }, dojo.create('div'));
+
+        var chart = new dojox.charting.Chart2D(c);
+
+        dojo.addClass(chart, 'chart');
+
+        //apply a color theme to the chart
+        chart.setTheme(dojo.getObject("dojox.charting.themes." + theme));
+
+        chart.addPlot("default", {
+          type: "Pie",
+          radius: 70,
+          htmlLabels: true
+        });
+        dojo.connect(tc,'selectChild',function(tabItem){
+          if(tabItem.title === "Pie Chart"){
+          chart.resize(180,180);
+          }
+        });
+
+        //get percent male/female
+        var total = graphic.attributes.POP2000;
+
+        var male = dojo.number.round(graphic.attributes.MALES / total * 100, 2);
+        var female = dojo.number.round(graphic.attributes.FEMALES / total * 100, 2);
+        chart.addSeries("PopulationSplit", [{
+          y: male,
+          tooltip: male,
+          text: 'Male'
+        }, {
+          y: female,
+          tooltip: female,
+          text: 'Female'
+        }]);
+        //highlight the chart and display tooltips when you mouse over a slice.
+        new dojox.charting.action2d.Highlight(chart, "default");
+        new dojox.charting.action2d.Tooltip(chart, "default");
+        new dojox.charting.action2d.MoveSlice(chart, "default");
+
+        cp2.set('content', chart.node);
+        return tc.domNode;
+      }
+
+      dojo.ready(init);
+    </script>
+  </head>
+  
+  <body class="claro">
+    <div id="map"></div>
+  </body>
+</html>

@@ -1,0 +1,90 @@
+  html, body {
+        height: 100%; width: 100%; margin: 0; 
+      }
+      body{
+        background-color:white;
+        overflow:hidden; 
+        font-family: "Trebuchet MS"; 
+      } 
+      #header {
+        margin: 2px;
+        border: solid 2px #87907d; 
+        background-color:white;text-align:left;
+        font-weight:bold; height:70px;
+      }
+      #titleDiv{
+        font-weight:bold; 
+        color:#aab6a2;
+        font-size:18pt;
+        padding-top:15px;padding-left:10px; 
+      }
+      #subtitleDiv {
+        font-size:small;
+        color:#87907d;
+        padding-left:20px; 
+      } 
+      #rightPane{
+        background-color:white; 
+        color:#3f3f3f;
+        border: solid 2px #87907d;
+        width:20%;
+      }
+      #leftPane{ 
+        margin: 5px; padding:2px;
+        background-color:white; color:#3f3f3f;
+        border: solid 2px #87907d; width:20%;
+      } 
+      #map { 
+        margin: 5px; border:solid 2px #87907d; -moz-border-radius: 4px;
+      } 
+      #footer {
+        margin: 2px; border: solid 2px #87907d; 
+        background-color:#ecefe4;font-size:15px; text-align:left;
+        height:40px; padding-left:10px;padding-top:5px;padding-bottom:5px;
+      } 
+      #footer a {
+        color:#4086AA; 
+        font-size:15px; 
+      } 
+      .dijitTabInnerDiv{ 
+        background-color:#ecefe4;
+      }
+      #tabs{
+        padding:10px; 
+      }
+      #itemsDiv {
+        overflow: auto; /*border-left: 1px
+        solid #aaa;*/ background-color: #fff; 
+      }
+      #itemsList { 
+        list-style:
+        none; margin: 0; padding: 3px; overflow: auto; 
+      }
+      #itemsList li { 
+        padding:2px; padding-bottom: 4px;
+        cursor: pointer; border-bottom: 1px solid #ccc;
+      } 
+      #itemsList li:hover {
+        color: #0000FF; 
+      }
+      #itemsList li.highlightedItem{
+        color: #0000FF; 
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius:5px;
+        -moz-box-shadow: 0 0 0.5em black; -webkit-box-shadow: 0 0 0.5em black;
+      }
+      #popupWindow {
+        overflow: auto; border: 2px solid #aaa; background-color:#fff; 
+        padding: 4px; position: absolute; z-index: 100; width: 175px;
+        height: 175px; display: block; left: -1000px; top: -1000px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius:5px;
+         border-radius: 5px;
+        -moz-box-shadow: 0 0 0.5em black; 
+        -webkit-box-shadow:0 0 0.5em black;
+      }
+      #popupHide {
+        cursor: pointer; text-decoration:underline;
+        color: blue; text-align: right; font-size: 10px;
+      }

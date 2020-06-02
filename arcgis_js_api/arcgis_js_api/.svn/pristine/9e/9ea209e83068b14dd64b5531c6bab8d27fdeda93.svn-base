@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- Sets whether a web application runs in full-screen mode. -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<!-- Sets the style of the status bar for a web application. -->
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Mobile Gallery</title>
+
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.css" />
+<link rel="stylesheet" href="http://js.arcgis.com/3.8/js/esri/css/esri.css" />
+
+<style>
+  html, body {
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+  }
+
+  .ui-content {
+    padding: 0 !important;
+  }
+
+  #map {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 0;
+  }
+
+  .esriMobileNavigationBar {
+    z-index: 1000;
+  }
+
+
+</style>
+
+<script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.js"></script>
+<script src="http://js.arcgis.com/3.8compact/"></script>
+
+<script>
+require([
+  "esri/dijit/AttributeInspector",
+  "esri/dijit/PopupMobile",
+  "esri/InfoTemplate",
+  "esri/geometry/Point",
+  "esri/layers/FeatureLayer",
+  "esri/tasks/locator",
+  "esri/tasks/query",
+  "esri/graphic",
+  "esri/map",
+  "dojo/_base/connect",
+  "dojo/_base/lang",
+  "dojo/dom",
+  "dojo/dom-construct",
+  "dojo/on",
+  "dojo/parser",
+  "dojo/ready",
+  "dijit/form/ComboBox"
+], function(AttributeInspector, PopupMobile, InfoTemplate, Point, FeatureLayer, Locator, Query, Graphic, Map, connect, lang, dom, domConstruct, on, parser, ready, ComboBox) {
+  parser.parse();
+
+  var map, locator, citizenRequestLayer;
+
+  ready(function() {
+    //This sample requires a proxy page to handle communications with the ArcGIS Server services. You will need to
+    //replace the url below with the location of a proxy on your machine. See the 'Using the proxy page' help topic
+    //for details on setting up a proxy page.
+    esri.config.defaults.io.proxyUrl = "/arcgisserver/apis/javascript/proxy/proxy.ashx";
+
+    var popup = new PopupMobile(null, domConstruct.create("div"));
+    map = new Map('map', {
+      basemap   :'topo',
+      center    :[-118.433776, 34.01521],
+      zoom      :11,
+      infoWindow:popup
+    });
+
+    var template = new InfoTemplate();
+    template.setTitle("<b>Request ${objectid}</b>");
+    template.setContent("<b>Date:</b> ${requestdate:DateFormat}<br/><b>Phone:</b>${phone:formatNumber}<br/><b>Name:</b>${name}");
+    //add the citizens request layer to the map as a feature layer
+    citizenRequestLayer = new FeatureLayer("http://sampleserver5.arcgisonline.com/ArcGIS/rest/services/LocalGovernment/CitizenRequests/FeatureServer/0", {
+      mode        :esri.layers.FeatureLayer.MODE_ONDEMAND,
+      infoTemplate:template,
+      outFields   :['*']
+    });
+
+    on(citizenRequestLayer, 'click', function (evt) {
+      map.infoWindow.setFeatures([evt.graphic]);
+    });
+
+    locator = new Locator('http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Locators/ESRI_Geocode_USA/GeocodeServer');
+    map.addLayers([citizenRequestLayer]);
+    map.infoWindow.resize(185, 100);
+
+    on(map, 'load', function (map) {
+      $(document).ready(jQueryReady);
+    });
+
+    on(dom.byId('geolocationButton'), 'click', getLocation);
+  });
+
+  function jQueryReady() {
+    connect.connect(map, 'onLayersAddResult', initEditor);
+  }
+
+  function initEditor(results) {
+    var layerInfo = [{
+      'featureLayer'    :citizenRequestLayer,
+      'showAttachments' :false,
+      'showDeleteButton':false,
+      'isEditable'      :true,
+      'fieldInfos'      :[
+        {
+          'fieldName' :'requesttype',
+          'label'     :'Type',
+          'isEditable':true
+        },
+        {
+          'fieldName' :'name',
+          'label'     :'Name',
+          'isEditable':true
+        },
+        {
+          'fieldName' :'phone',
+          'label'     :'Phone',
+          'isEditable':true
+        },
+        {
+          'fieldName' :'email',
+          'label'     :'Email',
+          'isEditable':true
+        },
+        {
+          'fieldName'        :'comment',
+          'label'            :'Comments',
+          'isEditable'       :true,
+          'stringFieldOption':esri.dijit.AttributeInspector.STRING_FIELD_OPTION_TEXTAREA
+        }
+      ]
+    }
+    ];
+    var attInspector = new AttributeInspector({
+      layerInfos:layerInfo
+    }, "attributeDiv");
+
+    connect.connect(attInspector, "onAttributeChange", function (feature, fieldName, newFieldValue) {
+      feature.attributes[fieldName] = newFieldValue;
+      feature.getLayer().applyEdits(null, [feature], null);
+    });
+
+    $.each(results, function (i, result) {
+      var infos = result.layer.renderer.infos;
+      $.each(infos, function (j, info) {
+        var listItem = $('<li/>').on('click', function (e) {
+          map.setMapCursor('pointer');
+          addFeature(info.label);
+        });
+        listItem.attr('data-theme', 'a');
+        var listContent = [];
+        listContent.push("<a href='#page'>" + info.label + "</a>");
+        listItem.append(listContent.join(''));
+        $('#featureList').append(listItem);
+      });
+    });
+  }
+
+  function addFeature(item) {
+    var itemTemplate = getType(item);
+    var mapclickHandler = on(map, 'click', function (evt) {
+      //only capture one click
+      dojo.disconnect(mapclickHandler);
+      var currentDate = new Date();
+      var newAttributes = lang.mixin({}, itemTemplate.prototype.attributes);
+      newAttributes.requestdate = Date.UTC(currentDate.getUTCFullYear(), currentDate.getUTCMonth(), currentDate.getUTCDate(), currentDate.getUTCHours(), currentDate.getUTCMinutes(), currentDate.getUTCSeconds(), 0);
+      var newGraphic = new Graphic(evt.mapPoint, null, newAttributes);
+      citizenRequestLayer.applyEdits([newGraphic], null, null, function (adds) {
+        var query = new Query();
+        var res = adds[0];
+        query.objectIds = [res.objectId];
+
+        citizenRequestLayer.queryFeatures(query, function (result) {
+          if (result.features.length > 0) {
+            var feat = result.features[0];
+            var pt = esri.geometry.webMercatorToGeographic(feat.geometry);
+            locator.locationToAddress(pt, 100, function (candidate) {
+              var address = [];
+              var displayAddress;
+              if (candidate.address) {
+                if (candidate.address.Address) {
+                  address.push(candidate.address.Address);
+                }
+                if (candidate.address.City) {
+                  address.push(candidate.address.City + ",");
+                }
+                if (candidate.address.State) {
+                  address.push(candidate.address.State);
+                }
+                if (candidate.address.Zip) {
+                  address.push(candidate.address.Zip);
+                }
+                displayAddress = address.join(" ");
+              } else {
+                displayAddress = 'No address for this location';
+              }
+              //display the geocoded address on the attribute dialog.
+              $.mobile.changePage("#attributeDialog", null, true, true);
+              $('#currentAddress')[0].textContent = displayAddress;
+            });
+          }
+        });
+      });
+    });
+  }
+
+  function getType(item) {
+    var returnType = null;
+    $.each(citizenRequestLayer.types, function (index, type) {
+      if (type.name === item) {
+        returnType = type.templates[0];
+      }
+    });
+    return returnType;
+  }
+
+  //use the geolocation api to get the current location
+  function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(zoomToLocation, locationError);
+    }
+  }
+
+  function locationError(error) {
+    switch (error.code) {
+      case error.PERMISSION_DENIED:
+        console.log("Location not provided");
+        break;
+      case error.POSITION_UNAVAILABLE:
+        console.log("Current location not available");
+        break;
+      case error.TIMEOUT:
+        console.log("Timeout");
+        break;
+      default:
+        console.log("unknown error");
+        break;
+    }
+  }
+
+  function zoomToLocation(location) {
+    var pt = esri.geometry.geographicToWebMercator(new Point(location.coords.longitude, location.coords.latitude));
+    map.centerAndZoom(pt, 22);
+  }
+});
+</script>
+</head>
+
+<body>
+<div data-role="page" id="page">
+  <!-- header -->
+  <div data-theme="a" data-role="header" data-position="fixed">
+    <h3>Editing</h3>
+    <a id="geolocationButton" href="#" data-role="button">Location</a>
+    <a href="#featureDialog" data-role="button" class="ui-btn-right">Add</a>
+  </div>
+
+  <!-- content -->
+  <div data-role="content">
+    <div id="map"></div>
+  </div>
+</div>
+
+
+<!--Attribute Insepctor Dialog-->
+<div data-role="page" id="attributeDialog" data-theme="b">
+  <!-- header -->
+  <div data-role="header" data-nobackbtn="true">
+    <h1>Collect</h1>
+  </div>
+
+  <div data-role="content" data-inset="true">
+    <div>
+      <div id="currentAddress" style="font-weight:bold;text-align:center;width:100%;"></div>
+    </div>
+    <div id="attributeDiv"></div>
+    <a href="#page" data-role="button">Finish</a>
+  </div>
+</div>
+
+
+<!--Feature Collection Dialog-->
+<div data-role="page" id="featureDialog" data-theme="b">
+  <div data-role="header" data-position="fixed">
+    <h1>Feature Type</h1>
+  </div>
+  <div data-role="content">
+    <ul id="featureList" data-role="listview" data-inset="true"></ul>
+  </div>
+</div>
+</body>
+</html>

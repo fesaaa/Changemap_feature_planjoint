@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="ie lt-ie9 lt-ie8 lt-ie7 ie6"> <![endif]-->
+<!--[if IE 7]>         <html class="ie lt-ie9 lt-ie8 ie7"> <![endif]-->
+<!--[if IE 8]>         <html class="ie lt-ie9 ie8"> <![endif]-->
+<!--[if gt IE 8]><!--> <html> <!--<![endif]-->
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" href="../styles/screen.css">
+  <link rel="stylesheet" href="../styles/homepage.css">
+  <link rel="stylesheet" href="../styles/grid.css">
+  <link rel="stylesheet" href="../styles/tree.css">
+  <link rel="stylesheet" href="../styles/esri-js-api-samples.css">
+  <link rel="stylesheet" href="../prettify/prettify.css">
+  <style>
+    html {
+      overflow-y: auto;
+    }
+    .hidden{
+      display: none;
+    }
+    .switch{
+      font-size: 0.8em;
+      font-weight: bold;
+    }
+    .switchWrapper > span.enabled{
+      color: #00629b;
+      cursor: pointer;
+      font-weight: normal;
+    }
+    .navigation-bar, .section-bar {
+      margin-bottom: 0;
+    }
+    .navigation-bar header h1, .section-bar header h1 {
+      margin-top: .35294em;
+    }
+    .navigation-bar, .section-bar {
+      background: url('../graphics/banner.jpg') no-repeat center center #762783;
+      min-height: 48px;
+      color: white;
+    }
+    .navigation-bar {
+      position: relative;
+      z-index: 10;
+    }
+    #esri-logo {
+      background: url('../graphics/logo-esri.png') no-repeat center center ;
+      width: 100px;
+    }
+    @font-face {
+    font-family:'icomoon';src:url('../fonts/icons.eot');src:url('../fonts/icons.eot?#iefix') format("embedded-opentype"),url('../fonts/icons.woff') format("woff"),url('../fonts/icons.ttf') format("truetype"),url('../fonts/icons.svg#icomoon') format("svg");font-weight:400;font-style:normal
+    }[data-icon]:before {
+      font-family: 'icomoon';
+      content: attr(data-icon);
+      speak: none;
+      font-weight: 400;
+      line-height: 1;
+      -webkit-font-smoothing: antialiased
+    }[class*="icon-"]:before {
+      font-family: 'icomoon';
+      speak: none;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 1;
+      -webkit-font-smoothing: antialiased;
+      text-transform: none
+    }
+    pre {
+      font-size: 1em;
+      line-height: normal;
+      margin: 0;
+      margin-top: 1em;
+    }
+    .navigation-bar input {
+      margin-top: 0;
+      opacity: 1;
+    }
+    #header nav li a {
+      font-size: .875em;
+    }
+    #esri-logo {
+      margin-left: 0;
+    }
+  </style>
+  <!--[if lt IE 9]>
+    <script src="../scripts/libs/html5shiv.js"></script>
+    <script src="../scripts/libs/selectivizr-min.js"></script>
+    <style>
+      #wrapper {
+        min-width: 960px;
+      }
+    </style>
+  <![endif]-->
+  <title>
+    Display context menu | ArcGIS API for JavaScript
+  </title> <!-- sub 1:  insert sample title -->
+</head>
+
+<body>
+<div id="nav">
+<header id="header">
+  <div class="container relative-container">
+    <div class="header-inner ">
+      <div class="logo-wrap"><a href="../" id="site-logo">Arc<span>GIS</span> API for JavaScript</a><!--span class="down-arrow" id="down-arrow"></span--></div>
+      <nav id="site-nav" class="">
+        <a href="/en/" class="selected">
+          <h4 class="developers">Arc<span>GIS</span> API for JavaScript</h4>
+          <p>Build location-aware applications with ArcGIS</p>
+        </a>
+
+        <a href="https://www.arcgis.com/about/">
+          <h4 class="organizations">Arc<span>GIS</span> for Organizations</h4>
+          <p>Learn more about ArcGIS</p>
+        </a>
+      </nav>
+
+      <a id="esri-logo" href="http://esri.com">Esri</a>
+      <div id="logged-out-navigation" class="dropdown-navigation hide">
+  <a id="login-link" class="btn small light" href="/en/log-in/">Log In</a>
+</div>
+<div id="logged-in-navigation" class="dropdown-navigation dropdown-wrapper hide">
+  <a href="/en/usage-summary" class="dropdown btn small light">
+    <!-- <img src="http://d3w50ib5d2uy0g.cloudfront.net/cdn/2464//js/esri/arcgisonline/css/images/no-user-thumb.jpg" width="16" height="16" alt=""> --><span id="username"></span>
+  </a>
+  <div class="dropdown-content">
+    <ul>
+      <li><a href="/en/usage-summary/">Usage Summary</a></li>
+      <li><a href="/en/applications/">Applications</a></li>
+      <li></li>
+      <li><a href="/en/tools/">GIS Tools</a></li>
+    </ul>
+    <hr>
+    <ul>
+      <li><a href="/en/account/profile/">Account Settings</a></li>
+      <li><a href="/en/feedback/">Feedback</a></li>
+    </ul>
+    <hr>
+    <ul>
+      <li><a id="log-out-link" href="#">Log Out</a></li>
+    </ul>
+  </div>
+</div>
+
+      <div id="mobile-navigation" class="dropdown-navigation dropdown-wrapper">
+        <a href="#" class="dropdown btn small light icon icon-list-2">Select <span>a Section</span></a>
+        <div class="dropdown-content">
+          <ul>
+            <li><a href="../jstutorials/">Tutorials</a></li>
+            <li><a href="../jshelp/">Concepts</a></li>
+            <li><a href="../jsapi/">API Reference</a></li>
+            <li><a href="http://forums.arcgis.com/forums/15">Forum</a></li>
+            <li><a href="../../">All Developer Resources</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="navigation-bar">
+  <div class="container">
+    <nav>
+      
+      <div id="section-label"><a href=".">Samples</a></div>
+      
+      <div id="search">
+        <form id="searchForm">
+          <input type="text" id="searchKeyWord" name="searchKeyWord" size="30" placeholder="Search the samples" disabled="disabled">
+          <!-- <input type="submit" id="searchButton" name="searchButton" value=""> -->
+        </form>
+      </div>
+      <ul>
+        <!--li class="current"><a href="/en/javascript/">Home</a></li-->
+        <li><a href="../jstutorials/">Tutorials</a></li>
+        <li><a href="../jshelp/">Concepts</a></li>
+        <li><a href="../jsapi/">API Reference</a></li>
+        <li class="current"><a href=".">Samples</a></li>
+        <li><a href="http://forums.arcgis.com/forums/15">Forum</a></li>
+        <li><a href="../../">All Developer Resources</a></li>
+      </ul>
+    </nav>
+  </div>
+</div> 
+</div><!-- end nav bar --> <!-- sub 2:  navigation bar -->
+
+<div class="container_12">
+  <div class="grid_3 contentWrapper">
+    <div id="toggleToc">
+      <img src="../graphics/tochide.gif"> Hide Table of Contents
+    </div>
+    <div id="samplesToc">    <div id="tree" style="top: 35px; left: 0px;" class="treeDiv">
+      <div id="treeRoot" onselectstart="return false" ondragstart="return false">
+        <div class="treeNode">
+          <a href="." class="treeUnselected" onclick="clickAnchor(this)">Samples Overview</a>
+        </div>
+        <div class="treeNode">
+          <img src="../graphics/treenodeplus.gif" onclick="expandCollapse(this.parentNode)" class="treeLinkImage">
+          <span onclick="expandCollapse(this.parentNode)" class="category">
+            Latest Samples
+          </span>
+          <div class="treeSubnodesHidden">
+            <div class="treeNode">
+              <a href="renderer_color_ramp.html" class="treeUnselected" onclick="clickAnchor(this)">Color ramp symbols</a>
+            </div>
+            <div class="treeNode">
+              <a href="graphics_create_circles.html" class="treeUnselected" onclick="clickAnchor(this)">Create circles</a>
+            </div>
+          </div>
+        </div>
+        <!--end book-->
+        <div class="treeNode">
+          <img src="../graphics/treenodeplus.gif" onclick="expandCollapse(this.parentNode)" class="treeLinkImage">
+          <span onclick="expandCollapse(this.parentNode)" class="category">
+            Analytics
+          </span>
+          <div class="treeSubnodesHidden">
+            <div class="treeNode">
+              <a href="util_buffergraphic.html" class="treeUnselected" onclick="clickAnchor(this)">Buffer any shape</a>
+            </div>
+            <div class="treeNode">
+              <a href="util_measurepoly.html" class="treeUnselected" onclick="clickAnchor(this)">Calculate feature length or area</a>
+            </div>
+            <div class="treeNode">
+              <a href="geoenrichment_infographic.html" class="treeUnselected" onclick="clickAnchor(this)">Geoenrichment - Infographic</a>
+            </div>
+            <div class="treeNode">
+              <a href="geoenrichment_carousel.html" class="treeUnselected" onclick="clickAnchor(this)">Geoenrichment - InfographicsCarousel</a>
+            </div>
+            <div class="treeNode">
+              <a href="gp_resultmapservice.html" class="treeUnselected" onclick="clickAnchor(this)">Geoprocessing with result map service</a>
+            </div>
+            <div class="treeNode">
+              <a href="analysis_hotspot.html" class="treeUnselected" onclick="clickAnchor(this)">Hotspot Analysis</a>
+            </div>
+            <div class="treeNode">
+              <a href="widget_swipe.html" class="treeUnselected" onclick="clickAnchor(this)">LayerSwipe widget</a>
+            </div>
+            <div class="treeNode">
+              <a href="widget_measurement.html" class="treeUnselected" onclick="clickAnchor(this)">Measurement</a>
+            </div>
+            <div class="treeNode">
+              <a href="util_relation.html" class="treeUnselected" onclick="clickAnchor(this)">Point in polygon search</a>
+            </div>
+            <div class="treeNode">
+              <a href="util_label_point.html" class="treeUnselected" onclick="clickAnchor(this)">Points for labeling</a>
+            </div>
+            <div class="treeNode">
+              <a href="gp_zonalstats.html" class="treeUnselected" onclick="clickAnchor(this)">Population zonal statistics</a>
+            </div>
+            <div class="treeNode">
+              <a href="gp_servicearea.html" class="treeUnselected" onclick="clickAnchor(this)">Service area task</a>
+            </div>
+            <div class="treeNode">
+              <a href="analysis_summarizenearby.html" class="treeUnselected" onclick="clickAnchor(this)">Summarize Nearby Analysis</a>
+            </div>
+            <div class="treeNode">
+              <a href="gp_viewshed.html" class="treeUnselected" onclick="clickAnchor(this)">Viewshed</a>
+            </div>
+          </div>
+        </div>
+        <!--end book-->
+        <div class="treeNode">
+          <img src="../graphics/treenodeplus.gif" onclick="expandCollapse(this.parentNode)" class="treeLinkImage">
+          <span onclick="expandCollapse(this.parentNode)" class="category">
+            Directions and Routing
+          </span>
+          <div class="treeSubnodesHidden">
+            <div class="treeNode">
+              <a href="routetask_basic_servicearea.html" class="treeUnselected" onclick="clickAnchor(this)">Basic service area</a>
+            </div>
+            <div class="treeNode">
+              <a href="widget_directions_basic.html" class="treeUnselected" onclick="clickAnchor(this)">Directions</a>
+            </div>
+            <div class="treeNode">
+              <a href="routetask_closest_facility.html" class="treeUnselected" onclick="clickAnchor(this)">Find closest facilities</a>
+            </div>
+            <div class="treeNode">
+              <a href="ags_traffic.html" class="treeUnselected" onclick="clickAnchor(this)">World traffic</a>
+            </div>
+          </div>
+        </div>
+        <!--end book-->
+        <div class="treeNode">
+          <img src="../graphics/treenodeplus.gif" onclick="expandCollapse(this.parentNode)" class="treeLinkImage">
+          <span onclick="expandCollapse(this.parentNode)" class="category">
+            Dynamic Layers
+          </span>
+          <div class="treeSubnodesHidden">
+            <div class="treeNode">
+              <a href="renderer_dynamic_layer_change_attribute.html" class="treeUnselected" onclick="clickAnchor(this)">Change attribute used for a renderer</a>
+            </div>
+            <div class="treeNode">
+              <a href="renderer_dynamic_layer_class_breaks.html" class="treeUnselected" onclick="clickAnchor(this)">Class breaks renderer with dynamic layer</a>
+            </div>
+            <div class="treeNode">
+              <a href="map_dynamic.html" class="treeUnselected" onclick="clickAnchor(this)">Dynamic map service</a>
+            </div>
+            <div class="treeNode">
+              <a href="map_multiplelayerdef.html" class="treeUnselected" onclick="clickAnchor(this)">Layer definitions on a dynamic map service</a>
+            </div>
+            <div class="treeNode">
+              <a href="layers_dynamic_reorder.html" class="treeUnselected" onclick="clickAnchor(this)">Reorder layers in map service</a>
+            </div>
+            <div class="treeNode">
+              <a href="layers_wmsresourceinfo.html" class="treeUnselected" onclick="clickAnchor(this)">WMS - resource info</a>
+            </div>
+          </div>
+        </div>
+        <!--end book-->
+        <div class="treeNode">
+          <img src="../graphics/treenodeplus.gif" onclick="expandCollapse(this.parentNode)" class="treeLinkImage">
+          <span onclick="expandCollapse(this.parentNode)" class="category">
+            Editing
+          </span>
+          <div class="treeSubnodesHidden">
+            <div class="treeNode">
+              <a href="ed_attachments.html" class="treeUnselected" onclick="clickAnchor(this)">Attachment editor</a>
+            </div>
+            <div class="treeNode">
+              <a href="toolbar_draw.html" class="treeUnselected" onclick="clickAnchor(this)">Drawing tools</a>
+            </div>
+            <div class="treeNode">
+              <a href="ed_feature_creation.html" class="treeUnselected" onclick="clickAnchor(this)">Edit without editor widget</a>
+            </div>
+            <div class="treeNode">
+              <a href="toolbar_edit.html" class="treeUnselected" onclick="clickAnchor(this)">Editing tools</a>
+            </div>
+            <div class="treeNode">
+              <a href="ed_simpletoolbar.html" class="treeUnselected" onclick="clickAnchor(this)">Editor widget with simple toolbar</a>
+            </div>
+            <div class="treeNode">
+              <a href="ed_toolbar.html" class="treeUnselected" onclick="clickAnchor(this)">Move and edit vertices</a>
+            </div>
+            <div class="treeNode">
+              <a href="ed_relatededits.html" class="treeUnselected" onclick="clickAnchor(this)">Query and edit related records</a>
+            </div>
+            <div class="treeNode">
+              <a href="ed_template_picker.html" class="treeUnselected" onclick="clickAnchor(this)">Template picker widget</a>
+            </div>
+            <div class="treeNode">
+              <a href="ed_attribute_inspector.html" class="treeUnselected" onclick="clickAnchor(this)">Using the attribute inspector</a>
+            </div>
+          </div>
+        </div>
+        <!--end book-->
+        <div class="treeNode">
+          <img src="../graphics/treenodeplus.gif" onclick="expandCollapse(this.parentNode)" class="treeLinkImage">
+          <span onclick="expandCollapse(this.parentNode)" class="category">
+            Geocoding
+          </span>
+          <div class="treeSubnodesHidden">
+            <div class="treeNode">
+              <a href="locator_address.html" class="treeUnselected" onclick="clickAnchor(this)">Geocode an address</a>
+            </div>
+            <div class="treeNode">
+              <a href="locator_details.html" class="treeUnselected" onclick="clickAnchor(this)">Geocode details</a>
+            </div>
+            <div class="treeNode">
+              <a href="locator_simple.html" class="treeUnselected" onclick="clickAnchor(this)">Geocoder</a>
+            </div>
+            <div class="treeNode">
+              <a href="locator_service.html" class="treeUnselected" onclick="clickAnchor(this)">Geocoder with custom service</a>
+            </div>
+            <div class="treeNode">
+              <a href="locator_reverse.html" class="treeUnselected" onclick="clickAnchor(this)">Reverse geocode</a>
+            </div>
+          </div>
+        </div>
+        <!--end book-->
+        <div class="treeNode">
+          <img src="../graphics/treenodeplus.gif" onclick="expandCollapse(this.parentNode)" class="treeLinkImage">
+          <span onclick="expandCollapse(this.parentNode)" class="category">
+            Graphics
+          </span>
+          <div class="treeSubnodesHidden">
+            <div class="treeNode">
+              <a href="graphics_add.html" class="treeUnselected" onclick="clickAnchor(this)">Add graphics to a map</a>
+            </div>
+            <div class="treeNode">
+              <a href="graphics_create_circles.html" class="treeUnselected" onclick="clickAnchor(this)">Create circles</a>
+            </div>
+            <div class="treeNode">
+              <a href="graphics_contextmenu.html" class="treeUnselected" onclick="clickAnchor(this)">Display context menu</a>
+            </div>
+            <div class="treeNode">
+              <a href="graphics_undoredo.html" class="treeUnselected" onclick="clickAnchor(this)">Graphics with undo redo</a>
+            </div>
+            <div class="treeNode">
+              <a href="layers_point_clustering.html" class="treeUnselected" onclick="clickAnchor(this)">Point clustering</a>
+            </div>
+            <div class="treeNode">
+              <a href="styling_svg_fb.html" class="treeUnselected" onclick="clickAnchor(this)">SVG and CSS to style polygons</a>
+            </div>
+            <div class="treeNode">
+              <a href="styling_svg_quantize.html" class="treeUnselected" onclick="clickAnchor(this)">SVG and CSS using D3</a>
+            </div>
+            <div class="treeNode">
+              <a href="graphics_svg_path.html" class="treeUnselected" onclick="clickAnchor(this)">SVG path to create a SimpleMarkerSymbol</a>
+            </div>
+          </div>
+        </div>
+        <!--end book-->
+        <div class="treeNode">
+          <img src="../graphics/treenodeplus.gif" onclick="expandCollapse(this.parentNode)" class="treeLinkImage">
+          <span onclick="expandCollapse(this.parentNode)" class="category">
+            HTML5
+          </span>
+          <div class="treeSubnodesHidden">
+            <div class="treeNode">
+              <a href="exp_rasterlayer.html" class="treeUnselected" onclick="clickAnchor(this)">Canvas with raster layer</a>
+            </div>
+            <div class="treeNode">
+              <a href="exp_cors_buffer.html" class="treeUnselected" onclick="clickAnchor(this)">Cross Origin Resource Sharing(CORS) - buffer</a>
+            </div>
+            <div class="treeNode">
+              <a href="exp_dragdrop.html" class="treeUnselected" onclick="clickAnchor(this)">Drag and drop to display data</a>
+            </div>
+            <div class="treeNode">
+              <a href="exp_history.html" class="treeUnselected" onclick="clickAnchor(this)">History API to track selected feature</a>
+            </div>
+          </div>
+        </div>
+        <!--end book-->
+        <div class="treeNode">
+          <img src="../graphics/treenodeplus.gif" onclick="expandCollapse(this.parentNode)" class="treeLinkImage">
+          <span onclick="expandCollapse(this.parentNode)" class="category">
+            Image Layers
+          </span>
+          <div class="treeSubnodesHidden">
+            <div class="treeNode">
+              <a href="image_simpleimageservice.html" class="treeUnselected" onclick="clickAnchor(this)">Image service</a>
+            </div>
+          </div>
+        </div>
+        <!--end book-->
+        <div class="treeNode">
+          <img src="../graphics/treenodeplus.gif" onclick="expandCollapse(this.parentNode)" class="treeLinkImage">
+          <span onclick="expandCollapse(this.parentNode)" class="category">
+            Map
+          </span>
+          <div class="treeSubnodesHidden">
+            <div class="treeNode">
+              <a href="widget_basemap.html" class="treeUnselected" onclick="clickAnchor(this)">Basemap gallery</a>
+            </div>
+            <div class="treeNode">
+              <a href="widget_toggle.html" class="treeUnselected" onclick="clickAnchor(this)">Basemap Toggle</a>
+            </div>
+            <div class="treeNode">
+              <a href="map_simple.html" class="treeUnselected" onclick="clickAnchor(this)">Create a map</a>
+            </div>
+            <div class="treeNode">
+              <a href="mapconfig_smoothpan.html" class="treeUnselected" onclick="clickAnchor(this)">Customize navigation animation</a>
+            </div>
+            <div class="treeNode">
+              <a href="widget_home.html" class="treeUnselected" onclick="clickAnchor(this)">Home Button</a>
+            </div>
+            <div class="treeNode">
+              <a href="widget_legend.html" class="treeUnselected" onclick="clickAnchor(this)">Legend</a>
+            </div>
+            <div class="treeNode">
+              <a href="widget_locate.html" class="treeUnselected" onclick="clickAnchor(this)">Locate Button</a>
+            </div>
+            <div class="treeNode">
+              <a href="widget_overviewmap.html" class="treeUnselected" onclick="clickAnchor(this)">Overview map</a>
+            </div>
+            <div class="treeNode">
+              <a href="widget_scalebar.html" class="treeUnselected" onclick="clickAnchor(this)">Scalebar</a>
+            </div>
+          </div>
+        </div>
+        <!--end book-->
+        <div class="treeNode">
+          <img src="../graphics/treenodeplus.gif" onclick="expandCollapse(this.parentNode)" class="treeLinkImage">
+          <span onclick="expandCollapse(this.parentNode)" class="category">
+            Maps from ArcGIS.com
+          </span>
+          <div class="treeSubnodesHidden">
+            <div class="treeNode">
+              <a href="ags_editor.html" class="treeUnselected" onclick="clickAnchor(this)">Editing layout using map data from ArcGIS.com</a>
+            </div>
+            <div class="treeNode">
+              <a href="ags_fade_webmaps.html" class="treeUnselected" onclick="clickAnchor(this)">Fade effect using ArcGIS.com web maps</a>
+            </div>
+            <div class="treeNode">
+              <a href="widget_gauge_webmap.html" class="treeUnselected" onclick="clickAnchor(this)">Gauges with ArcGIS.com webmap</a>
+            </div>
+            <div class="treeNode">
+              <a href="ags_geodesic_buffers.html" class="treeUnselected" onclick="clickAnchor(this)">Geodesic buffers with ArcGIS.com webmap</a>
+            </div>
+            <div class="treeNode">
+              <a href="ags_createwebmapid.html" class="treeUnselected" onclick="clickAnchor(this)">Web map by ID</a>
+            </div>
+            <div class="treeNode">
+              <a href="ags_createwebmapitem.html" class="treeUnselected" onclick="clickAnchor(this)">Web map using JSON</a>
+            </div>
+          </div>
+        </div>
+        <!--end book-->
+        <div class="treeNode">
+          <img src="../graphics/treenodeplus.gif" onclick="expandCollapse(this.parentNode)" class="treeLinkImage">
+          <span onclick="expandCollapse(this.parentNode)" class="category">
+            Mobile
+          </span>
+          <div class="treeSubnodesHidden">
+            <div class="treeNode">
+              <a href="mobile_citizenrequest.html" class="treeUnselected" onclick="clickAnchor(this)">Attribute editing - mobile</a>
+            </div>
+            <div class="treeNode">
+              <a href="mobile_compass.html" class="treeUnselected" onclick="clickAnchor(this)">Compass</a>
+            </div>
+            <div class="treeNode">
+              <a href="mobile_arcgis.html" class="treeUnselected" onclick="clickAnchor(this)">Mobile ArcGIS.com</a>
+            </div>
+            <div class="treeNode">
+              <a href="mobile_shake.html" class="treeUnselected" onclick="clickAnchor(this)">Shake gesture recognition</a>
+            </div>
+            <div class="treeNode">
+              <a href="mobile_soilmap.html" class="treeUnselected" onclick="clickAnchor(this)">Soil details - mobile</a>
+            </div>
+            <div class="treeNode">
+              <a href="mobile_tilt.html" class="treeUnselected" onclick="clickAnchor(this)">Tilt gesture</a>
+            </div>
+          </div>
+        </div>
+        <!--end book-->
+        <div class="treeNode">
+          <img src="../graphics/treenodeplus.gif" onclick="expandCollapse(this.parentNode)" class="treeLinkImage">
+          <span onclick="expandCollapse(this.parentNode)" class="category">
+            Popups and Info Windows
+          </span>
+          <div class="treeSubnodesHidden">
+            <div class="treeNode">
+              <a href="widget_extendInfowindow.html" class="treeUnselected" onclick="clickAnchor(this)">Custom info window</a>
+            </div>
+            <div class="treeNode">
+              <a href="widget_formatInfoWindow.html" class="treeUnselected" onclick="clickAnchor(this)">Format info window content</a>
+            </div>
+            <div class="treeNode">
+              <a href="gp_popuplink.html" class="treeUnselected" onclick="clickAnchor(this)">Geoprocessing tool link in popup</a>
+            </div>
+            <div class="treeNode">
+              <a href="widget_infowindow.html" class="treeUnselected" onclick="clickAnchor(this)">Info Window Lite</a>
+            </div>
+            <div class="treeNode">
+              <a href="widget_mobilepopup.html" class="treeUnselected" onclick="clickAnchor(this)">Mobile popup</a>
+            </div>
+            <div class="treeNode">
+              <a href="popup_chart.html" class="treeUnselected" onclick="clickAnchor(this)">Popup</a>
+            </div>
+            <div class="treeNode">
+              <a href="popup_sidepanel.html" class="treeUnselected" onclick="clickAnchor(this)">Popup content in side panel</a>
+            </div>
+          </div>
+        </div>
+        <!--end book-->
+        <div class="treeNode">
+          <img src="../graphics/treenodeplus.gif" onclick="expandCollapse(this.parentNode)" class="treeLinkImage">
+          <span onclick="expandCollapse(this.parentNode)" class="category">
+            Portal
+          </span>
+          <div class="treeSubnodesHidden">
+            <div class="treeNode">
+              <a href="portal_addshapefile.html" class="treeUnselected" onclick="clickAnchor(this)">Add shapefile</a>
+            </div>
+            <div class="treeNode">
+              <a href="portal_getgroupamd.html" class="treeUnselected" onclick="clickAnchor(this)">Find group ID</a>
+            </div>
+          </div>
+        </div>
+        <!--end book-->
+        <div class="treeNode">
+          <img src="../graphics/treenodeplus.gif" onclick="expandCollapse(this.parentNode)" class="treeLinkImage">
+          <span onclick="expandCollapse(this.parentNode)" class="category">
+            Printing
+          </span>
+          <div class="treeSubnodesHidden">
+            <div class="treeNode">
+              <a href="widget_print.html" class="treeUnselected" onclick="clickAnchor(this)">Print</a>
+            </div>
+            <div class="treeNode">
+              <a href="widget_print_esri_request.html" class="treeUnselected" onclick="clickAnchor(this)">Print templates with esri.request</a>
+            </div>
+            <div class="treeNode">
+              <a href="widget_print_webmap.html" class="treeUnselected" onclick="clickAnchor(this)">Print webmap</a>
+            </div>
+          </div>
+        </div>
+        <!--end book-->
+        <div class="treeNode">
+          <img src="../graphics/treenodeplus.gif" onclick="expandCollapse(this.parentNode)" class="treeLinkImage">
+          <span onclick="expandCollapse(this.parentNode)" class="category">
+            Query and Select
+          </span>
+          <div class="treeSubnodesHidden">
+            <div class="treeNode">
+              <a href="fl_hover.html" class="treeUnselected" onclick="clickAnchor(this)">Feature layer hover</a>
+            </div>
+            <div class="treeNode">
+              <a href="query_deferred_list.html" class="treeUnselected" onclick="clickAnchor(this)">Manage results from multiple queries</a>
+            </div>
+            <div class="treeNode">
+              <a href="query_nomap.html" class="treeUnselected" onclick="clickAnchor(this)">Query data without a map</a>
+            </div>
+            <div class="treeNode">
+              <a href="fl_paging.html" class="treeUnselected" onclick="clickAnchor(this)">Query with Feature Layer</a>
+            </div>
+            <div class="treeNode">
+              <a href="query_buffer.html" class="treeUnselected" onclick="clickAnchor(this)">Select with Feature Layer</a>
+            </div>
+          </div>
+        </div>
+        <!--end book-->
+        <div class="treeNode">
+          <img src="../graphics/treenodeplus.gif" onclick="expandCollapse(this.parentNode)" class="treeLinkImage">
+          <span onclick="expandCollapse(this.parentNode)" class="category">
+            Renderers
+          </span>
+          <div class="treeSubnodesHidden">
+            <div class="treeNode">
+              <a href="renderer_class_breaks.html" class="treeUnselected" onclick="clickAnchor(this)">Class breaks renderer</a>
+            </div>
+            <div class="treeNode">
+              <a href="renderer_class_breaks_proportional_rotation.html" class="treeUnselected" onclick="clickAnchor(this)">Class breaks with rotation and proportional symbols</a>
+            </div>
+            <div class="treeNode">
+              <a href="renderer_color_ramp.html" class="treeUnselected" onclick="clickAnchor(this)">Color ramp symbols</a>
+            </div>
+            <div class="treeNode">
+              <a href="renderer_dot_density.html" class="treeUnselected" onclick="clickAnchor(this)">Dot density renderer</a>
+            </div>
+            <div class="treeNode">
+              <a href="renderer_generate_renderer.html" class="treeUnselected" onclick="clickAnchor(this)">Generate renderer</a>
+            </div>
+            <div class="treeNode">
+              <a href="renderer_proportional_lines.html" class="treeUnselected" onclick="clickAnchor(this)">Proportional symbols for lines</a>
+            </div>
+            <div class="treeNode">
+              <a href="renderer_proportional_points.html" class="treeUnselected" onclick="clickAnchor(this)">Proportional symbols for points</a>
+            </div>
+            <div class="treeNode">
+              <a href="renderer_function.html" class="treeUnselected" onclick="clickAnchor(this)">Renderer using a function</a>
+            </div>
+            <div class="treeNode">
+              <a href="renderer_proportional_scale_dependent.html" class="treeUnselected" onclick="clickAnchor(this)">Scale dependent renderer</a>
+            </div>
+            <div class="treeNode">
+              <a href="renderer_temporal.html" class="treeUnselected" onclick="clickAnchor(this)">Temporal renderer</a>
+            </div>
+            <div class="treeNode">
+              <a href="renderer_unique_value.html" class="treeUnselected" onclick="clickAnchor(this)">Unique value renderer</a>
+            </div>
+          </div>
+        </div>
+        <!--end book-->
+        <div class="treeNode">
+          <img src="../graphics/treenodeplus.gif" onclick="expandCollapse(this.parentNode)" class="treeLinkImage">
+          <span onclick="expandCollapse(this.parentNode)" class="category">
+            Secure Resources
+          </span>
+          <div class="treeSubnodesHidden">
+            <div class="treeNode">
+              <a href="widget_identitymanager_client_side.html" class="treeUnselected" onclick="clickAnchor(this)">Identity Manager with info persisted client side</a>
+            </div>
+            <div class="treeNode">
+              <a href="portal_oauth_inline.html" class="treeUnselected" onclick="clickAnchor(this)">OAuth Basic</a>
+            </div>
+            <div class="treeNode">
+              <a href="portal_oauth_popup.html" class="treeUnselected" onclick="clickAnchor(this)">OAuth Popup</a>
+            </div>
+          </div>
+        </div>
+        <!--end book-->
+        <div class="treeNode">
+          <img src="../graphics/treenodeplus.gif" onclick="expandCollapse(this.parentNode)" class="treeLinkImage">
+          <span onclick="expandCollapse(this.parentNode)" class="category">
+            Tiled Layers
+          </span>
+          <div class="treeSubnodesHidden">
+            <div class="treeNode">
+              <a href="layers_ags_tiled.html" class="treeUnselected" onclick="clickAnchor(this)">Tiled map service</a>
+            </div>
+            <div class="treeNode">
+              <a href="layers_webtiled_one.html" class="treeUnselected" onclick="clickAnchor(this)">Web tiled</a>
+            </div>
+            <div class="treeNode">
+              <a href="layers_wmtslayerresourceinfo.html" class="treeUnselected" onclick="clickAnchor(this)">WMTS - resource info</a>
+            </div>
+          </div>
+        </div>
+        <!--end book-->
+        <div class="treeNode">
+          <img src="../graphics/treenodeplus.gif" onclick="expandCollapse(this.parentNode)" class="treeLinkImage">
+          <span onclick="expandCollapse(this.parentNode)" class="category">
+            Time
+          </span>
+          <div class="treeSubnodesHidden">
+            <div class="treeNode">
+              <a href="widget_histogram_time_slider.html" class="treeUnselected" onclick="clickAnchor(this)">Histogram Time Slider</a>
+            </div>
+            <div class="treeNode">
+              <a href="time_sliderwithdynamiclayer.html" class="treeUnselected" onclick="clickAnchor(this)">Time slider with dynamic map service layer</a>
+            </div>
+          </div>
+        </div>
+        <!--end book-->
+        <div class="treeNode">
+          <img src="../graphics/treenodeplus.gif" onclick="expandCollapse(this.parentNode)" class="treeLinkImage">
+          <span onclick="expandCollapse(this.parentNode)" class="category">
+            Vector Feature Layers
+          </span>
+          <div class="treeSubnodesHidden">
+            <div class="treeNode">
+              <a href="fl_any_projection.html" class="treeUnselected" onclick="clickAnchor(this)">Any projection</a>
+            </div>
+            <div class="treeNode">
+              <a href="fl_dgrid.html" class="treeUnselected" onclick="clickAnchor(this)">dgrid</a>
+            </div>
+            <div class="treeNode">
+              <a href="fl_featureCollection.html" class="treeUnselected" onclick="clickAnchor(this)">Feature collection</a>
+            </div>
+            <div class="treeNode">
+              <a href="data_gas_prices.html" class="treeUnselected" onclick="clickAnchor(this)">Gas price data by state mashup</a>
+            </div>
+            <div class="treeNode">
+              <a href="layers_georss.html" class="treeUnselected" onclick="clickAnchor(this)">GeoRSS</a>
+            </div>
+            <div class="treeNode">
+              <a href="layers_kml.html" class="treeUnselected" onclick="clickAnchor(this)">KML</a>
+            </div>
+            <div class="treeNode">
+              <a href="layers_kmlbuffer.html" class="treeUnselected" onclick="clickAnchor(this)">KML with buffer</a>
+            </div>
+            <div class="treeNode">
+              <a href="layers_label.html" class="treeUnselected" onclick="clickAnchor(this)">Label Layer</a>
+            </div>
+            <div class="treeNode">
+              <a href="fl_no_basemap.html" class="treeUnselected" onclick="clickAnchor(this)">No basemap</a>
+            </div>
+            <div class="treeNode">
+              <a href="fl_ondemand.html" class="treeUnselected" onclick="clickAnchor(this)">On demand mode</a>
+            </div>
+            <div class="treeNode">
+              <a href="data_requestLayerInfo.html" class="treeUnselected" onclick="clickAnchor(this)">Request layer info</a>
+            </div>
+            <div class="treeNode">
+              <a href="fl_selection.html" class="treeUnselected" onclick="clickAnchor(this)">Select features within a two minute drive time</a>
+            </div>
+            <div class="treeNode">
+              <a href="layers_streamlayer.html" class="treeUnselected" onclick="clickAnchor(this)">Stream Layer</a>
+            </div>
+            <div class="treeNode">
+              <a href="fl_dynamic.html" class="treeUnselected" onclick="clickAnchor(this)">Table source from ArcGIS Server</a>
+            </div>
+          </div>
+        </div>
+        <!--end book-->
+      </div>
+    </div>
+</div> <!-- sub 3:  add TOC -->
+  </div>
+  <div class="grid_9 contentWrapper">
+    <div id="samplePane">
+      <img class="sampleThumbnail" src="https://devext.arcgis.com/sharing/content/items/ec39327de16b4ae299f734739252d0bd/info/thumbnail/Screen_Shot_2013-05-14_at_8.39.39_AM.png" width=200 height=133> <!-- sub 4 -->
+      <div id="pageBanner">Display context menu</div> <!-- sub 5 -->
+      <div id="nstext">
+        <H4 class="dtH4 sampleLinks">
+          <a href="../samples/graphics_contextmenu/" target="_blank">View live sample</a><br> <!-- sub 6 -->
+          <a href="http://devext.arcgis.com/sharing/content/items/a881d1ec6b0b41568baa062850a9d19f/data">Download as a zip file</a><br> <!-- sub 7 -->
+          <a href="../sandbox/sandbox.html?sample=graphics_contextmenu" target="_blank">Explore in the sandbox</a> <!-- sub 8, insert sandbox link, if applicable -->
+        </H4>
+        <H4 class=dtH4>Description</H4><p>This sample shows how to display a context menu when a user right-clicks the map or a graphic. Menu's are created using Dojo's <a href='http://dojotoolkit.org/reference-guide/1.8/dijit/Menu.html' target='_blank'>dijit.Menu</a>. This code snippet shows how to create a new dijit.Menu and calculates the location on the map where the user right-clicked.</p> <p><pre class='prettyprint'>ctxMenuForMap = new dijit.Menu({
+  onOpen: function(box) {
+    currentLocation = getMapPointFromMenuPosition(box);
+    editToolbar.deactivate();
+  }
+});</pre></p> <p>The right-click location is used to create a new graphic and add it to the map.</p> <p><pre class='prettyprint'>ctxMenuForMap.addChild(new dijit.MenuItem({
+  label: "Add Point",
+  onClick: function(evt) {
+    var graphic = new esri.Graphic(esri.geometry.fromJson(currentLocation.toJson()), symbol);
+    map.graphics.add(graphic);
+  }
+}));</pre></p> <!-- sub 9 -->
+
+        <H4 class=dtH4>Code</H4>
+        <div class="detailSample">
+          <pre class="prettyprint">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8"&gt;
+    &lt;meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"&gt;
+    &lt;title&gt;Context Menu for Map and Graphics&lt;/title&gt;
+
+    &lt;link rel="stylesheet" href= "http://js.arcgis.com/3.8/js/dojo/dijit/themes/claro/claro.css"&gt;
+    &lt;link rel="stylesheet" href="http://js.arcgis.com/3.8/js/esri/css/esri.css"&gt;
+    &lt;style&gt;
+      html, body {
+        height:100%;
+        margin: 0;
+        padding: 0;
+        width:100%;
+        overflow:hidden;
+      }
+      #header {
+        overflow:hidden;
+        height: 1.6em;
+      }
+      div.insetType {
+        color: #97F900;
+        font-size: 24px;
+        font-family: Rockwell, Georgia, "Times New Roman", Times, serif;
+        padding-left: 25px;
+      }
+    &lt;/style&gt;
+
+    &lt;script src="http://js.arcgis.com/3.8/"&gt;&lt;/script&gt;
+    &lt;script&gt;
+      var map, editToolbar, ctxMenuForGraphics, ctxMenuForMap;
+      var selected, currentLocation;
+      
+      require([
+        "esri/map", "esri/geometry/Point", "esri/geometry/Polygon", 
+        "esri/toolbars/draw", "esri/toolbars/edit",
+        "esri/symbols/SimpleMarkerSymbol", "esri/symbols/SimpleLineSymbol",
+        "esri/symbols/SimpleFillSymbol",
+        "esri/graphic", "esri/geometry/jsonUtils",
+        "dojo/_base/Color", "dojo/parser",
+        "dijit/Menu", "dijit/MenuItem", "dijit/MenuSeparator",
+        
+        "dijit/form/Button", "dijit/layout/BorderContainer", "dijit/layout/ContentPane", 
+        "dojo/domReady!"
+      ], function(
+        Map, Point, Polygon, 
+        Draw, Edit,
+        SimpleMarkerSymbol, SimpleLineSymbol, 
+        SimpleFillSymbol,
+        Graphic, geometryJsonUtils,
+        Color, parser,
+        Menu, MenuItem, MenuSeparator
+      ) {
+        parser.parse();
+
+        map = new Map("map", {
+          basemap: "satellite",
+          center: [20.039, 62.739],
+          zoom: 3
+        });
+        map.on("load", createToolbarAndContextMenu);
+
+        function createToolbarAndContextMenu() {
+          // Add some graphics to the map
+          addGraphics();
+
+          // Create and setup editing tools
+          editToolbar = new Edit(map);
+
+          map.on("click", function(evt) {
+            editToolbar.deactivate();
+          });
+
+          createMapMenu();
+          createGraphicsMenu();
+        }
+
+        function createMapMenu() {
+          // Creates right-click context menu for map
+          ctxMenuForMap = new Menu({
+            onOpen: function(box) {
+              // Lets calculate the map coordinates where user right clicked.
+              // We'll use this to create the graphic when the user clicks
+              // on the menu item to "Add Point"
+              currentLocation = getMapPointFromMenuPosition(box);          
+              editToolbar.deactivate();
+            }
+          });
+
+          ctxMenuForMap.addChild(new MenuItem({ 
+            label: "Add Point",
+            onClick: function(evt) {
+              var symbol = new SimpleMarkerSymbol(
+                SimpleMarkerSymbol.STYLE_SQUARE, 
+                30, 
+                new SimpleLineSymbol(
+                  SimpleLineSymbol.STYLE_SOLID, 
+                  new Color([200,235, 254, 0.9]), 
+                  2
+                ), new Color([200, 235, 254, 0.5]));
+              var graphic = new Graphic(geometryJsonUtils.fromJson(currentLocation.toJson()), symbol);
+              map.graphics.add(graphic);
+            }
+          }));
+
+          ctxMenuForMap.startup();
+          ctxMenuForMap.bindDomNode(map.container);
+        }
+
+        function createGraphicsMenu() {
+          // Creates right-click context menu for GRAPHICS
+          ctxMenuForGraphics = new Menu({});
+          ctxMenuForGraphics.addChild(new MenuItem({ 
+            label: "Edit",
+            onClick: function() {
+              if ( selected.geometry.type !== "point" ) {
+                editToolbar.activate(Edit.EDIT_VERTICES, selected);
+              } else {
+                alert("Not implemented");
+              }
+            } 
+          }));
+
+          ctxMenuForGraphics.addChild(new MenuItem({ 
+            label: "Move",
+            onClick: function() {
+              editToolbar.activate(Edit.MOVE, selected);
+            } 
+          }));
+
+          ctxMenuForGraphics.addChild(new MenuItem({ 
+            label: "Rotate/Scale",
+            onClick: function() {
+            if ( selected.geometry.type !== "point" ) {
+                editToolbar.activate(Edit.ROTATE | Edit.SCALE, selected);
+              } else {
+                alert("Not implemented");
+              }
+            }
+          }));
+
+          ctxMenuForGraphics.addChild(new MenuItem({ 
+            label: "Style",
+            onClick: function() {
+              alert("Not implemented");
+            }
+          }));
+        
+          ctxMenuForGraphics.addChild(new MenuSeparator());
+          ctxMenuForGraphics.addChild(new MenuItem({ 
+            label: "Delete",
+            onClick: function() {
+              map.graphics.remove(selected);
+            }
+          }));
+
+          ctxMenuForGraphics.startup();
+
+          map.graphics.on("mouse-over", function(evt) {
+            // We'll use this "selected" graphic to enable editing tools
+            // on this graphic when the user click on one of the tools
+            // listed in the menu.
+            selected = evt.graphic;
+
+            // Let's bind to the graphic underneath the mouse cursor           
+            ctxMenuForGraphics.bindDomNode(evt.graphic.getDojoShape().getNode());
+          });
+
+          map.graphics.on("mouse-out", function(evt) {
+            ctxMenuForGraphics.unBindDomNode(evt.graphic.getDojoShape().getNode());
+          });
+        }
+
+        // Helper Methods
+        function getMapPointFromMenuPosition(box) {
+          var x = box.x, y = box.y;
+          switch( box.corner ) {
+            case "TR":
+              x += box.w;
+              break;
+            case "BL":
+              y += box.h;
+              break;
+            case "BR":
+              x += box.w;
+              y += box.h;
+              break;
+          }
+
+          var screenPoint = new Point(x - map.position.x, y - map.position.y);
+          return map.toMap(screenPoint);
+        }
+        
+        function addGraphics() {
+          // Adds pre-defined geometries to map
+          var polygonSymbol = new SimpleFillSymbol(
+            SimpleFillSymbol.STYLE_SOLID, 
+            new SimpleLineSymbol(
+              SimpleLineSymbol.STYLE_DOT, 
+              new Color([151, 249,0,.80]), 
+              3
+            ), 
+            new Color([151, 249, 0, 0.45])
+          );
+          
+          var polygon = new Polygon({
+            "rings": [
+              [
+                [-4226661.916056009, 8496372.808143634],
+                [-3835304.3312360067, 8731187.359035634],
+                [-2269873.991956003, 9005137.668409634],
+                [-1213208.5129420012, 8613780.083589634],
+                [-1017529.7205320001, 8065879.464841632],
+                [-1213208.5129420012, 7478843.087611631],
+                [-2230738.233474003, 6891806.710381631],
+                [-2935181.8861500043, 6735263.6764536295],
+                [-3522218.263380006, 6891806.710381631],
+                [-3952711.606682008, 7165757.01975563],
+                [-4265797.674538009, 7283164.295201631],
+                [-4304933.433020009, 7635386.121539632],
+                [-4304933.433020009, 7674521.880021632],
+                [-4226661.916056009, 8496372.808143634]
+              ]
+            ],
+            "spatialReference": {
+              "wkid": 102100
+            }
+          });
+          var arrow = new Polygon({
+            "rings": [
+              [
+                [9862211.137464028, 6617856.40100763],
+                [8922952.933896024, 5522055.163511626],
+                [8922952.933896024, 5991684.265295628],
+                [6105178.323192019, 5991684.265295628],
+                [6105178.323192019, 7087485.50279163],
+                [8922952.933896024, 7087485.50279163],
+                [8922952.933896024, 7557114.604575632],
+                [9862211.137464028, 6617856.40100763]
+              ]
+            ],
+            "spatialReference": {
+              "wkid": 102100
+            }
+          });
+
+          var triangle = new Polygon({
+            "rings": [
+              [
+                [2426417.02588401, 8535508.566625634],
+                [4304933.433020014, 12292541.380897645],
+                [6183449.840156019, 8535508.566625634],
+                [2426417.02588401, 8535508.566625634]
+              ]
+            ],
+            "spatialReference": {
+              "wkid": 102100
+            }
+          });
+
+          map.graphics.add(new Graphic(polygon, polygonSymbol));
+          map.graphics.add(new Graphic(arrow, polygonSymbol));
+          map.graphics.add(new Graphic(triangle, polygonSymbol));
+        }
+      });
+    &lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body class="claro" style="font-size: 0.75em;"&gt;
+    &lt;div data-dojo-type="dijit/layout/BorderContainer" 
+         data-dojo-props="design:'headline', gutters:false" 
+         style="width:100%;height:100%;"&gt;
+
+      &lt;div id="header" 
+            data-dojo-type="dijit/layout/ContentPane" 
+            data-dojo-props="region:'top'"&gt; 
+
+        &lt;div class="insetType"&gt;Right-click on map or graphic to view context menu&lt;/div&gt;
+
+      &lt;/div&gt;
+
+      &lt;div id="map" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'center'" &gt;&lt;/div&gt;
+
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+ <!-- sub 10 -->
+          </pre>
+        </div>
+        <br/>
+        <br/>
+        <div id="wh_footer" class="footnote" align="center">
+  Please <a href="mailto:js_feedback@esri.com?subject=Feedback on sample:  graphics_contextmenu">contact the team</a> to comment or give suggestions.
+  <br>
+  Copyright &copy; Environmental Systems Research Institute, Inc.
+</div> <!-- sub 11:  feedback markup -->
+      </div>
+    </div>
+  </div>
+</div> <!-- end main content -->
+
+<!-- TOC script -->
+<script src="../scripts/tree.js"></script>
+
+</script>
+<script src="../prettify/prettify.js"></script>
+<script>
+  var dojoConfig = {
+    packages: [{
+      "name": "js",
+      "location": location.pathname.replace(/\/[^/]+$/, "/") + "../scripts"
+    }]
+  };
+</script>
+<script src="//js.arcgis.com/3.8compact/"></script> <!-- add API version -->
+<script src="../scripts/esri-main-samples.js"></script>
+
+
+<!-- google analytics -->
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-215788-63']);
+  _gaq.push(['_setDomainName', 'arcgis.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+ <!-- google analytics -->
+
+</body>
+</html>

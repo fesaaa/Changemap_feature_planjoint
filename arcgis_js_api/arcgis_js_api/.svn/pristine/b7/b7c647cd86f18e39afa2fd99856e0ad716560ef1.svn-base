@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title></title>
+
+    <link rel="stylesheet" type="text/css" href="//js.arcgis.com/3.8/js/esri/css/jsapi.css"/>
+    <link rel="stylesheet" type="text/css" href="slider.css"/>
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=News+Cycle"/>
+
+    <style>
+        html, body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'News Cycle', sans-serif;
+            font-size: 0.90em;
+        }
+
+        #map {
+            height: 100%;
+            width: 100%;
+        }
+
+        #legend {
+            height: 170px;
+            width: 97%;
+            position: absolute;
+            z-index: 1;
+            bottom: 1em;
+            left: 1em;
+            right: 1em;
+            background-color: #f8f8f8;
+            border-radius: 3px;
+            opacity: 0.95;
+            padding: 5px;
+        }
+
+            /* classbreaks */
+        path[data-type="nodata"] {
+            stroke: rgb(255, 0, 0);
+            stroke-width: 3pt;
+            stroke-opacity: 0.9;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        path[data-type="small"] {
+            stroke: rgb(0, 89, 190);
+            stroke-width: 3pt;
+            stroke-opacity: 0.85;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        path[data-type="medium"] {
+            stroke: rgb(0, 89, 190);
+            stroke-width: 10pt;
+            stroke-opacity: 0.65;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        path[data-type="large"] {
+            stroke: rgb(0, 89, 190);
+            stroke-width: 30pt;
+            stroke-opacity: 0.35;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        path[data-type="xlarge"] {
+            stroke: rgb(0, 89, 190);
+            stroke-width: 45pt;
+            stroke-opacity: 0.25;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        path[data-type="xxlarge"] {
+            stroke: rgb(0, 89, 190);
+            stroke-width: 70pt;
+            stroke-opacity: 0.12;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+    </style>
+
+    <script type="text/javascript" src="//js.arcgis.com/3.8/"></script>
+
+    <script>
+        require([
+            "esri/map",
+            "esri/layers/FeatureLayer",
+            "dojo/_base/array",
+            "dojo/dom",
+            "dojo/number",
+            "dojo/on",
+            "dojo/parser",
+            "dojo/ready"
+        ], function (Map, FeatureLayer, array, dom, number, on, parser, ready) {
+
+            parser.parse();
+
+            ready(function () {
+                var dataStore = [];
+                var map = new Map("map", {
+                    basemap:"gray",
+                    center:[-72, 42.028175],
+                    zoom:9
+                });
+
+                var featureLayer = new FeatureLayer("http://services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/colleges/FeatureServer/0", {
+                    id:"featureLayer",
+                    styling:false,
+                    dataAttributes:["COLLEGE", "UNDERGRAD", "GRAD", "CITYST"]
+                });
+
+                if (featureLayer.surfaceType === "svg") {
+                    on(featureLayer, "mouse-over", function (evt) {
+                        var underGradCount = evt.graphic.attributes.UNDERGRAD;
+                        dom.byId("school").innerHTML = evt.graphic.attributes.COLLEGE + "<br />" +
+                                evt.graphic.attributes.CITYST + "<br />Enrollment: " +
+                                number.format(underGradCount, { places:0 }) + "<br />";
+
+                        if (underGradCount < 1) {
+                            dojo.query("svg")[1].childNodes[11].attributes["stroke-width"].value = 10;
+                        } else if (underGradCount > 0 && underGradCount < 3000) {
+                            dojo.query("svg")[1].childNodes[9].attributes["stroke-width"].value = 10;
+                        } else if (underGradCount >= 3000 && underGradCount < 6000) {
+                            dojo.query("svg")[1].childNodes[7].attributes["stroke-width"].value = 10;
+                        } else if (underGradCount >= 6000 && underGradCount < 9000) {
+                            dojo.query("svg")[1].childNodes[5].attributes["stroke-width"].value = 10;
+                        } else if (underGradCount >= 9000 && underGradCount < 12000) {
+                            dojo.query("svg")[1].childNodes[3].attributes["stroke-width"].value = 10;
+                        } else if (underGradCount >= 12000) {
+                            dojo.query("svg")[1].childNodes[1].attributes["stroke-width"].value = 10;
+                        }
+                    });
+
+                    on(featureLayer, "mouse-out", function (evt) {
+                        // hard-coded for now
+                        dojo.query("svg")[1].childNodes[1].attributes["stroke-width"].value = 1;
+                        dojo.query("svg")[1].childNodes[3].attributes["stroke-width"].value = 1;
+                        dojo.query("svg")[1].childNodes[5].attributes["stroke-width"].value = 1;
+                        dojo.query("svg")[1].childNodes[7].attributes["stroke-width"].value = 1;
+                        dojo.query("svg")[1].childNodes[9].attributes["stroke-width"].value = 1;
+                        dojo.query("svg")[1].childNodes[11].attributes["stroke-width"].value = 1;
+                    });
+
+                    on(featureLayer, "graphic-draw", function (evt) {
+                        var underGradCount = evt.graphic.attributes.UNDERGRAD;
+                        var name = evt.graphic.attributes.COLLEGE;
+
+                        var enrollmentSize;
+                        if (underGradCount < 1) {
+                            enrollmentSize = "nodata";
+                        } else if (underGradCount > 0 && underGradCount < 3000) {
+                            enrollmentSize = "small";
+                        } else if (underGradCount >= 3000 && underGradCount < 6000) {
+                            enrollmentSize = "medium";
+                        } else if (underGradCount >= 6000 && underGradCount < 9000) {
+                            enrollmentSize = "large";
+                        } else if (underGradCount >= 9000 && underGradCount < 12000) {
+                            enrollmentSize = "xlarge";
+                        } else if (underGradCount >= 12000) {
+                            enrollmentSize = "xxlarge";
+                        }
+                        // set the data attribute for the feature
+                        evt.node.setAttribute("data-type", enrollmentSize);
+                    });
+                } else {
+                    alert("Your browser does not support SVG.\nPlease user a modern web browser that supports SVG.");
+                    dom.byId("legend").innerHTML = "Your browser does not support SVG.";
+                }
+                map.addLayer(featureLayer);
+            });
+        });
+    </script>
+</head>
+
+<body>
+<div id="map"></div>
+<div id="legend">
+    <div style="font-weight: bold">2012 Undergraduate Enrollment</div>
+    <div id="school" style="position: absolute; left: 680px; bottom: 100px"></div>
+    <svg width="650" height="120" xmlns="http://www.w3.org/2000/svg" version="1.1">
+        <circle cx="70" cy="60" r="45" stroke="rgb(0, 89, 190)" stroke-width="1" fill="rgb(0, 89, 190)"
+                stroke-opacity="0.12" fill-opacity="0.12"/>
+        <circle cx="210" cy="60" r="35" stroke="rgb(0, 89, 190)" stroke-width="1" fill="rgb(0, 89, 190)"
+                stroke-opacity="0.35" fill-opacity="0.35"/>
+        <circle cx="330" cy="60" r="20" stroke="rgb(0, 89, 190)" stroke-width="1" fill="rgb(0, 89, 190)"
+                stroke-opacity="0.65" fill-opacity="0.65"/>
+        <circle cx="430" cy="60" r="8" stroke="rgb(0, 89, 190)" stroke-width="1" fill="rgb(0, 89, 190)"
+                stroke-opacity="0.85" fill-opacity="0.85"/>
+        <circle cx="530" cy="60" r="3" stroke="rgb(0, 89, 190)" stroke-width="1" fill="rgb(0, 89, 190)"
+                stroke-opacity="0.9"
+                fill-opacity="0.9"/>
+        <circle cx="630" cy="60" r="3" stroke="rgb(255, 0, 0)" stroke-width="1" fill="rgb(255, 0, 0)"
+                stroke-opacity="0.9"
+                fill-opacity="0.9"/>
+    </svg>
+    <div style="position: absolute; left: 45px;">+ 12,000</div>
+    <div style="position: absolute; left: 175px;">12,000 - 9,000</div>
+    <div style="position: absolute; left: 300px;">8,999 - 6,000</div>
+    <div style="position: absolute; left: 400px;">5,999 - 3,000</div>
+    <div style="position: absolute; left: 510px;">2,999 - 0</div>
+    <div style="position: absolute; left: 615px;">No data</div>
+</div>
+</body>
+
+</html>

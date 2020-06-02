@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <!--The viewport meta tag is used to improve the presentation and behavior of the samples 
+      on iOS devices-->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+    <title>Create Map Display Mouse Coordinates</title>
+
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/dojo/dijit/themes/claro/claro.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/esri/css/esri.css">
+    
+    <script src="http://js.arcgis.com/3.8/"></script>
+    <script>
+      dojo.require("esri.map");
+
+      var map;
+
+      function init() {
+        map = new esri.Map("map", { 
+          basemap: "streets",
+          center: [-47.109, 14.945],
+          zoom: 2
+        });
+        map.on("load", function(){
+          //after map loads, connect to listen to mouse move & drag events
+          map.on("mouse-move", showCoordinates);
+          map.on("mouse-drag", showCoordinates);
+
+        });
+      }
+
+      function showCoordinates(evt) {
+        console.log("show");
+        //get mapPoint from event
+        //The map is in web mercator - modify the map point to display the results in geographic
+        var mp = esri.geometry.webMercatorToGeographic(evt.mapPoint);
+        //display mouse coordinates
+        dojo.byId("info").innerHTML = mp.x.toFixed(3) + ", " + mp.y.toFixed(3);
+      }
+
+      dojo.ready(init);
+    </script>
+  </head>
+  <body class="claro">
+    <div id="map" style="position:relative; width:900px; height:600px; border:1px solid #000;">
+      <span id="info" style="position:absolute; left:15px; bottom:5px; color:#000; z-index:50;"></span>
+    </div>
+  </body>
+</html>

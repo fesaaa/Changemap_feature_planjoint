@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <!--The viewport meta tag is used to improve the presentation and behavior
+    of the samples on iOS devices-->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+    <title>Add WMTS Layer</title>
+
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/dojo/dijit/themes/claro/claro.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/esri/css/esri.css">
+    <style>
+      html, body { height: 100%; width: 100%; margin: 0; padding: 0; }
+      #map{
+        padding:0;
+      }
+      #citationInfo{
+        position:absolute; 
+        color:black;
+        font-weight:bold;
+        font-size:12pt;
+        left:10px;
+        bottom:10px;
+        z-Index:999;
+      }
+    </style>
+
+    <script>var dojoConfig = {parseOnLoad: true};</script>
+    <script src="http://js.arcgis.com/3.8/"></script>
+    <script>
+      dojo.require("esri.map");
+      dojo.require("esri.layers.wmts");
+      dojo.require("esri.dijit.Scalebar");
+      dojo.require("dijit.layout.BorderContainer");
+      dojo.require("dijit.layout.ContentPane");
+  
+      function init() {
+        esri.config.defaults.io.proxyUrl = "/proxy";
+        
+        var map = new esri.Map("map");
+
+        var layerInfo = new esri.layers.WMTSLayerInfo({
+          identifier: "world",
+          tileMatrixSet: "EPSG:4326",
+          format: "gif"
+        });
+        var options = {
+          serviceMode: "KVP",
+          layerInfo: layerInfo
+        };
+        var wmtsLayer = new esri.layers.WMTSLayer("http://v2.suite.opengeo.org/geoserver/gwc/service/wmts", options);
+        map.addLayer(wmtsLayer);
+      }
+
+      dojo.ready(init);
+    </script>
+  </head>
+  
+  <body class="claro">
+    <div data-dojo-type="dijit.layout.BorderContainer" 
+         data-dojo-props="design:'headline', gutters:false" 
+         style="width: 100%; height: 100%; margin: 0;">
+
+      <div id="map" 
+           data-dojo-type="dijit.layout.ContentPane" 
+           data-dojo-props="region:'center'" > 
+
+        <div id="citationInfo">
+          <a href="http://v2.suite.opengeo.org/geoserver/gwc/service/wmts?SERVICE=WMTS&VERSION=1.0.0&REQUEST=GetCapabilities">WMTS</a>
+            served by
+          <a href="http://opengeo.org/">OpenGeo</a>
+        </div>    
+      </div>
+
+    </div>
+  </body>
+</html>

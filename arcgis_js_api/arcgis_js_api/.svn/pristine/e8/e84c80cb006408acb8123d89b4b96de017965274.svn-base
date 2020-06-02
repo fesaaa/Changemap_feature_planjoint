@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+  <title>Persisting Identity Manager Info</title>
+  <link rel="stylesheet" href="//js.arcgis.com/3.8/js/dojo/dijit/themes/tundra/tundra.css">
+  <link rel="stylesheet" href="//js.arcgis.com/3.8/js/esri/css/esri.css">
+  <style type="text/css">
+      html, body {
+        height: 98%; width: 99%;
+        margin:0;
+        padding-top:4px;
+        padding-left:4px;
+      }
+
+      #rightPanel{
+        width:140px;
+        border:2px solid #617798;
+        -webkit-border-top-right-radius: 4px;
+        -webkit-border-bottom-right-radius: 4px;
+        -moz-border-radius-topright: 4px;
+        -moz-border-radius-bottomright: 4px;
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+      }
+
+      #mapCanvas{
+        border-top:2px solid #617798;
+        border-bottom:2px solid #617798;
+        border-left:2px solid #617798;
+        -webkit-border-top-left-radius: 4px;
+        -webkit-border-bottom-left-radius: 4px;
+        -moz-border-radius-topleft: 4px;
+        -moz-border-radius-bottomleft: 4px;
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+        padding:0px;
+      }
+
+      .templatePicker{
+        height:80%;
+      }
+  </style>
+
+  <script src="//js.arcgis.com/3.8/"></script>
+  <script>
+    var map, cred = "esri_jsapi_id_manager_data"; // cookie/local storage name
+    require([
+      "esri/map", "esri/layers/ArcGISDynamicMapServiceLayer", 
+      "esri/layers/FeatureLayer", "esri/config", "esri/kernel",
+      "dojo/parser", "dojo/cookie", "dojo/json", "dojo/_base/unload",
+      
+      "esri/IdentityManager",
+      "dijit/layout/BorderContainer", "dijit/layout/ContentPane", "dojo/domReady!"
+    ], function(
+      Map, ArcGISDynamicMapServiceLayer, 
+      FeatureLayer, esriConfig, kernel,
+      parser, cookie, JSON, baseUnload
+    ) {
+      // store credentials/serverInfos before the page unloads
+      baseUnload.addOnUnload(storeCredentials);
+      // look for credentials in local storage
+      loadCredentials();
+
+      esriConfig.defaults.io.proxyUrl = "/proxy";
+
+      parser.parse();
+
+      map = new Map("mapCanvas",{
+        basemap: "topo",
+        center: [-107.394, 37.563],
+        zoom: 9
+      });
+      var trailsService = new ArcGISDynamicMapServiceLayer("https://servicesbeta.esri.com/ArcGIS/rest/services/SanJuan/Trails/MapServer");
+      map.addLayer(trailsService);
+      var conditions = new FeatureLayer("https://servicesbeta.esri.com/ArcGIS/rest/services/SanJuan/TrailConditions/FeatureServer/0",{
+        mode: FeatureLayer.MODE_ONDEMAND,
+        outFields:["*"]
+      });
+      map.addLayer(conditions);
+
+      function loadCredentials() {
+        var idJson, idObject;
+
+        if ( supports_local_storage() ) {
+          // read from local storage
+          idJson = window.localStorage.getItem(cred);
+        } else {
+          // read from a cookie
+          idJson = cookie(cred);
+        }
+
+        if ( idJson && idJson != "null" && idJson.length > 4) {
+          idObject = JSON.parse(idJson);
+          kernel.id.initialize(idObject);
+        } else {
+          // console.log("didn't find anything to load :(");
+        }
+      }
+
+      function storeCredentials() {
+        // make sure there are some credentials to persist
+        if ( kernel.id.credentials.length === 0 ) {
+          return;
+        }
+
+        // serialize the ID manager state to a string
+        var idString = JSON.stringify(kernel.id.toJson());
+        // store it client side
+        if ( supports_local_storage() ) {
+          // use local storage
+          window.localStorage.setItem(cred, idString);
+          // console.log("wrote to local storage");
+        } else {
+          // use a cookie
+          cookie(cred, idString, { expires: 1 });
+          // console.log("wrote a cookie :-/");
+        }
+      }
+
+      function supports_local_storage() {
+        try {
+          return "localStorage" in window && window["localStorage"] !== null;
+        } catch( e ) {
+          return false;
+        }
+      }
+    });
+  </script>
+</head>
+
+<body class="tundra">
+  <div data-dojo-type="dijit/layout/BorderContainer"
+       data-dojo-props="design:'headline',gutters:false"
+       style="position:relative;width:100%;height:100%;">
+   <div id="mapCanvas"
+        data-dojo-type="dijit/layout/ContentPane"
+        data-dojo-props="region:'center'">
+
+   </div>
+   <!--right content panel-->
+   <div id="rightPanel"
+        data-dojo-type="dijit/layout/ContentPane"
+        data-dojo-props="region:'right'">
+     <p>
+      This sample shows how to view a secure map service using token-based authentication. Use the following credentials
+      to test the application:</br> User Name: <b>rick</b></br>Password: <b>rick@esri</b>
+     </p>
+      <div id="content" style="height:100%;"></div>
+   </div>
+  </div>
+
+</body>
+</html>

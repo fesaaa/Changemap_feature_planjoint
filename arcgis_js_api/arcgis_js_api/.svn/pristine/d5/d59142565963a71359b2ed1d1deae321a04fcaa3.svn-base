@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <!--The viewport meta tag is used to improve the presentation and behavior of the samples
+      on iOS devices-->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+    <title>Esri Map and jQuery</title>
+
+    <!-- Load jQuery and jQuery UI via Google AJAX Libraries API -->
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/redmond/jquery.ui.all.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/esri/css/esri.css">
+    <style>
+      .simpleInfoWindow, .simpleInfoWindow .title {
+        border-color: #5C9CFF;
+      }
+      .simpleInfoWindow .title{
+        font-weight:bold;
+      }
+    </style>
+
+    <script src="http://js.arcgis.com/3.8compact/"></script>
+    <!-- Note that the new "Auto-Loading" feature is used by encoding the list of required modules in the URL (More info here: http://code.google.com/apis/ajax/documentation/#AutoLoading) -->
+    <script src="http://www.google.com/jsapi?key=ABQIAAAAg58_FLn5bynKiZewfpUCeBTyCV9A2YBg0isNV8i_fASKoO0TiRRYqDCtRVNLgUhnJVaabm69uDjeZg&amp;autoload=%7B%27modules%27%3A%5B%7B%27name%27%3A%27jquery%27%2C%27version%27%3A%271.4.2%27%7D%2C%7B%27name%27%3A%27jqueryui%27%2C%27version%27%3A%271.8.2%27%7D%5D%7D"></script>
+
+    <script>
+      dojo.require("esri.map");
+      dojo.addOnLoad(init);
+
+      var map;
+
+      function init() {
+        var zoomSymbol = new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID, new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new dojo.Color([20,156,255]), 1), new dojo.Color([141,185,219,0.3]));
+        esri.config.defaults.map.zoomSymbol = zoomSymbol.toJson();
+
+        map = new esri.Map("map", { 
+          basemap: "streets",
+          center: [2.352, 48.87],
+          zoom: 12,
+          slider: false
+        });
+        
+        dojo.connect(map, "onLoad", function() {
+          console.log("Map onLoad event");
+          // Hook up jQuery
+          $(document).ready(jQueryReady);
+        });
+        dojo.connect(map, "onLayerAdd", function() {
+          console.log("Map onLayerAdd event");
+        });
+        dojo.connect(map, "onExtentChange", showExtent);
+        map.infoWindow.resize(150,100);
+      }
+
+      function showExtent(extent) {
+        extent = esri.geometry.webMercatorToGeographic(extent);
+        var s = "";
+        s = "XMin: "+ extent.xmin.toFixed(2) + "&nbsp;"
+           +"YMin: " + extent.ymin.toFixed(2) + "&nbsp;"
+           +"XMax: " + extent.xmax.toFixed(2) + "&nbsp;"
+           +"YMax: " + extent.ymax.toFixed(2);
+        dojo.byId("info").innerHTML = s;
+      }
+
+      // jQuery stuff
+      function jQueryReady() {
+
+        // Create jQuery Slider
+        createSlider();
+
+        var markerSymbol = new esri.symbol.SimpleMarkerSymbol(esri.symbol.SimpleMarkerSymbol.STYLE_X, 12, new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new dojo.Color([92,156,255,1]), 4));
+
+        var graphic;
+
+        dojo.connect(map, "onClick", function(evt) {
+          console.log("Map onClick event");
+          // Add a graphic at the clicked location
+          if (graphic) {
+            graphic.setGeometry(evt.mapPoint);
+          }
+          else {
+            graphic = new esri.Graphic(evt.mapPoint, markerSymbol);
+            map.graphics.add(graphic);
+          }
+
+          var content = "Latitude = ${y} <br/> Longitude = ${x}";
+          map.infoWindow.setTitle("Location:");
+          map.infoWindow.setContent(esri.substitute(esri.geometry.webMercatorToGeographic(evt.mapPoint), content));
+          map.infoWindow.show(evt.mapPoint);
+        });
+      }
+
+      function createSlider() {
+        $("#jqSlider").slider({
+          min: 0,
+          max: map.getLayer(map.layerIds[0]).tileInfo.lods.length - 1,
+          value: map.getLevel(),
+          orientation: "vertical",
+          range: "min",
+          change: function(event, ui) {
+            map.setLevel(ui.value);
+          }
+        });
+
+        dojo.connect(map, "onZoomEnd", function(evt) {
+          $("#jqSlider").slider("value", map.getLevel());
+        });
+      }
+
+    </script>
+  </head>
+
+  <body style="font-family: Arial Unicode MS,Arial,sans-serif;">
+    <p>
+      This sample demonstrates the use of <a href="http://jquery.com/" target="_blank">jQuery</a> library with ArcGIS API (compact). This sample uses the       <a href="http://jqueryui.com/demos/slider/" target="_blank">Slider</a> UI widget.
+    </p>
+
+    <div id="info" class="ui-widget-header ui-corner-all" style="width: 688px; z-index: 2; position: absolute; text-align: center; padding: 5px; color: black;"></div>
+
+    <div id="wrapper" style="position: relative; width: 700px; height: 500px;">
+    <!-- Map canvas -->
+    <div id="map" style="position: absolute; width: 700px; height: 500px; z-index: 1;"></div>
+
+
+    <!-- Div that will render jQuery Slider -->
+    <div id="jqSlider" style="position: absolute; right: 20px; top: 40px; height: 180px; z-index: 2; font-size: 9px;"></div>
+    </div>
+
+    <p>Click on the map for location info.</p>
+
+  </body>
+
+</html>

@@ -1,0 +1,77 @@
+#mapPanel {
+	width: 100%;
+	height:100%;
+	float:right;
+	background-color:#EEE;
+	position:relative;
+}
+
+#mainMap0 {
+	border:none;
+	padding:0;
+	height:100%;
+	width:100% !important;
+	overflow: hidden;
+}
+
+#init-settings-views {
+	display: none;
+}
+
+.swiper {
+	position: absolute;
+	top: 50%;
+	height: 48px;
+	margin-top: -24px;
+	width: 51px;
+}
+
+.swiper.infoWindowView{
+	display: none;
+}
+
+.swiper.right {
+	right: 0;
+	/*background-image: url('../../../../resources/icons/swipeRight.png');*/
+	background: url('../../../../resources/icons/sprite-icons.png') -536px -1760px;
+	background-repeat: no-repeat;
+}
+
+.swiper.left {
+	left: 0;
+	/*background-image: url('../../../../resources/icons/swipeLeft.png');*/
+	background: url('../../../../resources/icons/sprite-icons.png') -536px -1662px;
+	background-repeat: no-repeat;
+}
+
+#legendView1 {
+	width: 220px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+#legendView2 {
+	width: 220px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+#locationSearch {
+	display: block;
+	position: absolute;
+	z-index: 99;
+	top: 20px;
+	right: 25px;
+}
+
+#locationSearch input {
+	border-radius:0;
+	margin-bottom: 0;
+	box-shadow: none;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+}
+
+#locationSearch .esriGeocoderIcon { 
+	margin-top: 8px;
+}

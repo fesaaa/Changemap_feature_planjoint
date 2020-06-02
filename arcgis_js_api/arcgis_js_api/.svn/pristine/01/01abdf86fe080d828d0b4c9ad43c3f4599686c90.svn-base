@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <style>
+      .main {
+        font-family: Arial;
+        margin: 0 auto;
+        text-align: center;
+        width: 800px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+
+      <p>
+        The page you're looking for does not exist or has been moved.
+      </p>
+      <p>
+        The ArcGIS API for JavaScript API help, samples and API reference have moved to <a href="http://developers.arcgis.com/en/javascript/">http://developers.arcgis.com/en/javascript/</a>. 
+      </p>
+      <p>
+        Please update your bookmarks. 
+      </p>
+
+      <img src="http://www.arcgis.com/about/graphics/logo-esri.png">
+
+    </div>
+  </body>
+</html>

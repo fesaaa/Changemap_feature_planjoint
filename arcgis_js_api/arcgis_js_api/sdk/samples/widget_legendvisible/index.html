@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <!--The viewport meta tag is used to improve the presentation and behavior of the samples
+    on iOS devices-->
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+  <title>Updating the legend to display visible layers</title>
+
+  <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/dojo/dijit/themes/claro/claro.css">
+  <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/esri/css/esri.css">
+  <style>
+    html, body {
+      height: 97%;
+      width: 98%;
+      margin: 1%;
+    }
+
+    #rightPane {
+      width: 20%;
+    }
+
+    #legendPane {
+      border: solid #97DCF2 1px;
+    }
+  </style>
+
+  <script>var dojoConfig = { parseOnLoad:true };</script>
+  <script src="http://js.arcgis.com/3.8/"></script>
+  <script>
+    dojo.require("dijit.layout.BorderContainer");
+    dojo.require("dijit.layout.ContentPane");
+    dojo.require("dijit.layout.AccordionContainer");
+    dojo.require("esri.map");
+    dojo.require("esri.dijit.Legend");
+    dojo.require("esri.arcgis.utils");
+    dojo.require("dijit.form.CheckBox");
+
+    var map, legendLayers = [];
+
+    function init() {
+      map = new esri.Map("map", {
+        basemap:"topo",
+        center :[-117.45, 34.338],
+        zoom   :10
+      });
+
+      var quakeLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://sampleserver3.arcgisonline.com/ArcGIS/rest/services/Earthquakes/EarthquakesFromLastSevenDays/MapServer", {id:'quakes'});
+
+      legendLayers.push({layer:quakeLayer, title:'Earthquakes'});
+
+      var fireLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://sampleserver3.arcgisonline.com/ArcGIS/rest/services/Fire/Sheep/MapServer", {id:'fire'});
+
+      legendLayers.push({layer:fireLayer, title:"Fire"});
+      dojo.connect(map, 'onLayersAddResult', function (results) {
+        var legend = new esri.dijit.Legend({
+          map       :map,
+          layerInfos:legendLayers
+        }, "legendDiv");
+        legend.startup();
+      });
+      map.addLayers([fireLayer, quakeLayer]);
+
+      dojo.connect(map, 'onLayersAddResult', function (results) {
+
+        //add check boxes 
+        dojo.forEach(legendLayers, function (layer) {
+          var layerName = layer.title;
+          var checkBox = new dijit.form.CheckBox({
+            name    :"checkBox" + layer.layer.id,
+            value   :layer.layer.id,
+            checked :layer.layer.visible,
+            onChange:function (evt) {
+              var clayer = map.getLayer(this.value);
+              clayer.setVisibility(!clayer.visible);
+              this.checked = clayer.visible;
+            }
+          });
+
+          //add the check box and label to the toc
+          dojo.place(checkBox.domNode, dojo.byId("toggle"), "after");
+          var checkLabel = dojo.create('label', {'for':checkBox.name, innerHTML:layerName}, checkBox.domNode, "after");
+          dojo.place("<br />", checkLabel, "after");
+        });
+      });
+    }
+    dojo.ready(init);
+  </script>
+</head>
+
+<body class="claro">
+<!--[if IE 7]>
+<style>
+  html, body {
+    margin: 0;
+  }
+</style>
+<![endif]-->
+<div id="content" data-dojo-type="dijit.layout.BorderContainer"
+     data-dojo-props="design:'headline', gutters:true"
+     style="width: 100%; height: 100%; margin: 0;">
+
+  <div id="rightPane"
+       data-dojo-type="dijit.layout.ContentPane"
+       data-dojo-props="region:'right'">
+
+    <div data-dojo-type="dijit.layout.AccordionContainer">
+      <div data-dojo-type="dijit.layout.ContentPane" id="legendPane"
+           data-dojo-props="title:'Legend', selected:true">
+
+        <div id="legendDiv"></div>
+
+      </div>
+
+      <div data-dojo-type="dijit.layout.ContentPane"
+           data-dojo-props="title:'Natural Disasters'">
+
+        <span style="padding:10px 0;">Click to toggle the visibilty of the various natural disasters</span>
+
+        <div id="toggle" style="padding: 2px 2px;"></div>
+
+      </div>
+    </div>
+  </div>
+  <div id="map"
+       data-dojo-type="dijit.layout.ContentPane"
+       data-dojo-props="region:'center'"
+       style="overflow:hidden;">
+  </div>
+</div>
+
+</body>
+</html>
+

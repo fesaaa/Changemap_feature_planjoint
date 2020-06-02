@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <!--The viewport meta tag is used to improve the presentation and behavior of the samples 
+      on iOS devices-->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+    <title>Find Task</title>
+
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/dojo/dijit/themes/claro/claro.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/dojo/dojox/grid/resources/Grid.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/esri/css/esri.css">
+    <style>
+      html, body { height: 100%; width: 100%; margin: 0; padding: 0; overflow:hidden; }
+      body { font-size: 0.9em; font-family: Geneva, Arial, Helvetica, sans-serif;
+      } .details { font-weight: bold; } #grid { border:
+      1px solid #333;}
+    </style>
+
+    <script>var dojoConfig = { parseOnLoad: true };</script>
+    <script src="http://js.arcgis.com/3.8/"></script>
+    <script>
+      dojo.require("dojox.grid.DataGrid");
+      dojo.require("dojo.data.ItemFileReadStore");
+      dojo.require("esri.map");
+      dojo.require("esri.tasks.find");
+      dojo.require("dijit.layout.BorderContainer");
+      dojo.require("dijit.layout.ContentPane");
+      
+      var findTask, findParams, map;
+
+      function init() {
+        var initExtent = new esri.geometry.Extent({"xmin":-125.0552,"ymin":38.7130,"xmax":-70.2156,"ymax":48.4081,"spatialReference":{"wkid":4326}});
+        map = new esri.Map("map", { extent: initExtent });
+        var censusMapLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Specialty/ESRI_StatesCitiesRivers_USA/MapServer", {
+          id: "usa"
+        });
+        map.addLayer(censusMapLayer);
+
+        //create find task with url to map service
+        findTask = new esri.tasks.FindTask("http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Specialty/ESRI_StatesCitiesRivers_USA/MapServer");
+
+        //create find parameters and define known values
+        findParams = new esri.tasks.FindParameters();
+        findParams.returnGeometry = true;
+        findParams.layerIds = [0, 1, 2];
+        findParams.searchFields = ["CITY_NAME", "NAME", "SYSTEM", "STATE_ABBR", "STATE_NAME"];
+      }
+
+      function execute(searchText) {
+        //set the search text to find parameters
+        findParams.searchText = searchText;
+        findTask.execute(findParams, showResults);
+      }
+
+      function showResults(results) {
+        //symbology for graphics
+        var markerSymbol = new esri.symbol.SimpleMarkerSymbol(esri.symbol.SimpleMarkerSymbol.STYLE_SQUARE, 10, new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new dojo.Color([255, 0, 0]), 1), new dojo.Color([0, 255, 0, 0.25]));
+        var lineSymbol = new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_DASH, new dojo.Color([255, 0, 0]), 1);
+        var polygonSymbol = new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_NONE, new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_DASHDOT, new dojo.Color([255, 0, 0]), 2), new dojo.Color([255, 255, 0, 0.25]));
+
+        //find results return an array of findResult.
+        map.graphics.clear();
+        var dataForGrid = [];
+        //Build an array of attribute information and add each found graphic to the map
+        dojo.forEach(results, function(result) {
+          var graphic = result.feature;
+          dataForGrid.push([result.layerName, result.foundFieldName, result.value]);
+          switch (graphic.geometry.type) {
+          case "point":
+            graphic.setSymbol(markerSymbol);
+            break;
+          case "polyline":
+            graphic.setSymbol(lineSymbol);
+            break;
+          case "polygon":
+            graphic.setSymbol(polygonSymbol);
+            break;
+          }
+          map.graphics.add(graphic);
+        });
+        var data = {
+          items: dataForGrid
+        };
+        var store = new dojo.data.ItemFileReadStore({
+          data: data
+        });
+        grid.setStore(store);
+      }
+      dojo.ready(init);
+    </script>
+  </head>
+  
+  <body class="claro">
+   <div data-dojo-type="dijit.layout.BorderContainer" style="width:100%;height:100%;margin:0" data-dojo-props="design:'headline',gutters:true">
+    <div class="details" data-dojo-type="dijit.layout.BorderContainer" data-dojo-props="region:'top'" style="height:30px;">
+      Find State/City/River:
+      <input type="text" id="searchText" value="KS" />
+      <input type="button" value="Find" onclick="execute(dojo.byId('searchText').value);"/>
+    </div>
+    <div id="map" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="region:'center'" style="border:1px solid #000;"></div>
+    <div data-dojo-type="dijit.layout.ContentPane" data-dojo-props="region:'left'" style="width:300px;">
+    <!--Refer to field by the position id, since the data doesn't have field
+    names-->
+    <table data-dojo-type="dojox.grid.DataGrid" jsid="grid" id="grid" >
+      <thead>
+        <tr>
+          <th field="0" >
+            Layer Name 
+          </th>
+          <th field="1" >
+            Field Name
+          </th>
+          <th field="2" >
+            Value
+          </th>
+        </tr>
+      </thead>
+    </table>
+    </div>
+   </div>
+  </body>
+
+</html>

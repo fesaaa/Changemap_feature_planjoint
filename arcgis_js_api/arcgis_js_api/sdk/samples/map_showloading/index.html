@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <!--The viewport meta tag is used to improve the presentation and behavior of the samples 
+      on iOS devices-->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+
+    <title>Map loading image</title>
+
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/dojo/dijit/themes/claro/claro.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/esri/css/esri.css">
+    
+    <script src="http://js.arcgis.com/3.8/"></script>
+    <script>
+      dojo.require("esri.map");
+      
+      var map;
+      var loading;
+      
+      function init() {
+        loading = dojo.byId("loadingImg");  //loading image. id
+        map = new esri.Map("map", {
+          basemap: "topo",
+          center: [117.773, 28.498],
+          zoom: 6
+        });
+        dojo.connect(map, "onUpdateStart", showLoading);
+        dojo.connect(map, "onUpdateEnd", hideLoading);
+
+        //Takes a URL to a non cached map service.
+        var dynamicMapServiceLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Demographics/ESRI_Population_World/MapServer");
+        dynamicMapServiceLayer.setOpacity(0.4);
+        map.addLayer(dynamicMapServiceLayer);
+      }
+        function showLoading() {
+          esri.show(loading);
+          map.disableMapNavigation();
+          map.hideZoomSlider();
+        }
+
+        function hideLoading(error) {
+          esri.hide(loading);
+          map.enableMapNavigation();
+          map.showZoomSlider();
+        }
+      dojo.ready(init);
+    </script>
+
+  </head>
+  <body class="claro">
+    <div id="map" style="position:relative; width:1024px; height:512px; border:1px solid #000;">
+      <img id="loadingImg" src="images/loading.gif" style="position:absolute; right:512px; top:256px; z-index:100;" />
+    </div>
+  </body>
+
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+    <title>Edit Map Wraparound</title>
+
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/dojo/dijit/themes/claro/claro.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/esri/css/esri.css">
+    <style>
+      html, body {
+        height: 100%; width: 100%; margin: 0; padding: 0;
+      }
+      body{
+       background-color:white; overflow:hidden; font-family: "Trebuchet MS";
+      }
+      #header {
+        border: solid 2px #7EABCD;
+        padding-top:5px;
+        padding-left:10px;
+        background-color:white; color:peru; font-size:18pt;
+        text-align:left; font-weight:bold;
+        height:65px;
+      }
+      .roundedCorners{
+         -moz-border-radius: 4px;
+      }
+      .shadow{
+        -o-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+         box-shadow: 4px 4px 8px #adadad;
+        -webkit-box-shadow: 4px 4px 8px #adadad;
+        -moz-box-shadow: 4px 4px 8px #adadad;
+        -o-box-shadow: 4px 4px 8px #adadad;
+      }
+      #map {
+        background-color:white;
+        border:solid 2px cornflowerblue;
+        margin:5px;
+      }
+      #rightPane{
+        border: solid 1px #7EABCD;
+        background-color:white;color:peru;font-size:10pt; text-align:center; 
+        width:260px;
+        margin:5px;
+      }
+    </style>
+
+    <script>var dojoConfig = { parseOnLoad:true };</script>
+    <script src="http://js.arcgis.com/3.8/"></script>
+    <script>
+      dojo.require("esri.dijit.editing.Editor-all");
+      dojo.require("dijit.layout.BorderContainer");
+      dojo.require("dijit.layout.ContentPane");
+
+      var map;
+      
+      function init() {
+         //This sample requires a proxy page to handle communications with the ArcGIS Server services. You will need to  
+        //replace the url below with the location of a proxy on your machine. See the 'Using the proxy page' help topic 
+        //for details on setting up a proxy page.
+        esri.config.defaults.io.proxyUrl = "/proxy";
+        
+        //This service is for development and testing purposes only. We recommend that you create your own geometry service for use within your applications. 
+        esri.config.defaults.geometryService = new esri.tasks.GeometryService("http://tasks.arcgisonline.com/ArcGIS/rest/services/Geometry/GeometryServer");
+       
+        map = new esri.Map("map", {
+          basemap: "satellite",
+          center: [-27.202, 36.244],
+          zoom: 2
+        });
+
+        dojo.connect(map, "onLayersAddResult", initEditing);
+
+        var incidents = new esri.layers.ArcGISDynamicMapServiceLayer("http://sampleserver5.arcgisonline.com/ArcGIS/rest/services/Energy/HSEC/MapServer");
+        incidents.setDisableClientCaching(true);
+        incidents.setOpacity(0.75);
+
+        map.addLayer(incidents);
+
+        map.infoWindow.resize(400,300);
+
+        var incidentAreas = new esri.layers.FeatureLayer("http://sampleserver5.arcgisonline.com/ArcGIS/rest/services/Energy/HSEC/FeatureServer/2", {
+          mode: esri.layers.FeatureLayer.MODE_SELECTION,
+          outFields: ["*"],
+          opacity: 0.75
+        });
+
+        var incidentLines = new esri.layers.FeatureLayer("http://sampleserver5.arcgisonline.com/ArcGIS/rest/services/Energy/HSEC/FeatureServer/1", {
+          mode: esri.layers.FeatureLayer.MODE_SELECTION,
+          outFields: ["*"]
+        });
+        var incidentPoints = new esri.layers.FeatureLayer("http://sampleserver5.arcgisonline.com/ArcGIS/rest/services/Energy/HSEC/FeatureServer/0", {
+          mode: esri.layers.FeatureLayer.MODE_SELECTION,
+          outFields: ["*"]
+        });
+
+        map.addLayers([incidentPoints,incidentLines,incidentAreas]);
+      }
+
+      function initEditing(results) {
+        var templateLayers = dojo.map(results,function(result){
+          return result.layer;
+        });
+
+        var templatePicker = new esri.dijit.editing.TemplatePicker({
+          featureLayers: templateLayers,
+          grouping: false,
+          rows: 'auto',
+          columns: 3
+        },'editorDiv');
+        templatePicker.startup();
+
+        var layerInfos = dojo.map(results, function(result) {
+          return {'featureLayer':result.layer};
+        });
+
+        var settings = {
+          map: map,
+          templatePicker: templatePicker,
+          layerInfos:layerInfos
+        };
+        var params = {settings: settings};
+        var editorWidget = new esri.dijit.editing.Editor(params);
+        editorWidget.startup();
+      }
+
+      dojo.ready(init);
+    </script>
+  </head>
+  <body class="claro">
+
+    <div id="mainWindow" data-dojo-type="dijit.layout.BorderContainer" data-dojo-props="design:'headline', gutters:false" style="width:100%; height:100%;">
+      <div id="map" class="roundedCorners" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="region:'center'">
+      </div>
+      <div id="rightPane" class="roundedCorners" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="region:'right'">
+        <div id="editorDiv"></div>
+      </div>
+    </div>
+  </body>
+</html>

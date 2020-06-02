@@ -1,0 +1,1662 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="ie lt-ie9 lt-ie8 lt-ie7 ie6"> <![endif]-->
+<!--[if IE 7]>         <html class="ie lt-ie9 lt-ie8 ie7"> <![endif]-->
+<!--[if IE 8]>         <html class="ie lt-ie9 ie8"> <![endif]-->
+<!--[if gt IE 8]><!--> <html> <!--<![endif]-->
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+  <meta name="content-language" content="en">
+  <meta name="product" content="js-api-arcgis">
+  <meta name="subject" content="DEVELOPER,WEB,WEB APPLICATIONS,MOBILE">
+  <meta name="sub_category" content="JavaScript API">
+  <meta name="search-collection" content="help">
+  <meta name="search-category" content="help-api">
+  <meta name="version" content="arcgis-3.8"> <!-- API version -->
+  <meta name="content_type" content="API Reference"> <!-- options: Help Topic, API Reference, Sample OR Tutorial -->
+  <meta name="last-modified" content="2013-12-19"> <!-- put in date docs were generated -->
+
+  <link rel="stylesheet" href="../styles/screen.css">
+  <link rel="stylesheet" href="../styles/jsdoc.css">
+  <link rel="stylesheet" href="../styles/homepage.css">
+  <link rel="stylesheet" href="../styles/grid.css">
+  <link rel="stylesheet" href="../styles/tree.css">
+  <link rel="stylesheet" href="../prettify/prettify.css">
+  <style>
+    html {
+      overflow-y: auto;
+    }
+    .hidden{
+      display: none;
+    }
+    .eventDiv > .dtH4{
+      display: none;
+    }
+    .switch{
+      font-weight: bold;
+    }
+    .eventSwitch:not(.enabled){
+      color: #00629b;
+      cursor: pointer;
+      font-weight: normal;
+    }
+    .navigation-bar, .section-bar {
+      margin-bottom: 0;
+    }
+    .navigation-bar header h1, .section-bar header h1 {
+      margin-top: .35294em;
+    }
+    .navigation-bar, .section-bar {
+      background: url('../graphics/banner.jpg') no-repeat center center #762783;
+      color: white;
+      min-height: 48px;
+    }
+    .navigation-bar {
+      position: relative;
+      z-index: 10;
+    }
+    #esri-logo {
+      background: url('../graphics/logo-esri.png') no-repeat center center ;
+      width: 100px;
+    }
+    @font-face {
+    font-family:'icomoon';src:url('../fonts/icons.eot');src:url('../fonts/icons.eot?#iefix') format("embedded-opentype"),url('../fonts/icons.woff') format("woff"),url('../fonts/icons.ttf') format("truetype"),url('../fonts/icons.svg#icomoon') format("svg");font-weight:400;font-style:normal
+    }[data-icon]:before {
+      font-family: 'icomoon';
+      content: attr(data-icon);
+      speak: none;
+      font-weight: 400;
+      line-height: 1;
+      -webkit-font-smoothing: antialiased
+    }[class*="icon-"]:before {
+      font-family: 'icomoon';
+      speak: none;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 1;
+      -webkit-font-smoothing: antialiased;
+      text-transform: none
+    }
+    pre {
+      font-size: 1em;
+      line-height: normal;
+      margin: 0;
+      margin-top: 1em;
+    }
+    .navigation-bar input {
+      margin-top: 0;
+      opacity: 1;
+    }
+    #header nav li a {
+      font-size: .875em;
+    }
+    #esri-logo {
+      margin-left: 0;
+    }
+  </style>
+  <!--[if lt IE 9]>
+    <script src="../scripts/libs/html5shiv.js"></script>
+    <script src="../scripts/libs/selectivizr-min.js"></script>
+    <style>
+      #wrapper {
+        min-width: 960px;
+      }
+    </style>
+  <![endif]-->
+  <title>
+    UniqueValueRenderer | API Reference | ArcGIS API for JavaScript
+  </title> <!-- class name -->
+</head>
+  
+<body>
+<div id="nav">
+<header id="header">
+  <div class="container relative-container">
+    <div class="header-inner ">
+      <div class="logo-wrap"><a href="../" id="site-logo">Arc<span>GIS</span> API for JavaScript</a><!--span class="down-arrow" id="down-arrow"></span--></div>
+      <nav id="site-nav" class="">
+        <a href="/en/" class="selected">
+          <h4 class="developers">Arc<span>GIS</span> API for JavaScript</h4>
+          <p>Build location-aware applications with ArcGIS</p>
+        </a>
+
+        <a href="https://www.arcgis.com/about/">
+          <h4 class="organizations">Arc<span>GIS</span> for Organizations</h4>
+          <p>Learn more about ArcGIS</p>
+        </a>
+      </nav>
+
+      <a id="esri-logo" href="http://esri.com">Esri</a>
+      <div id="logged-out-navigation" class="dropdown-navigation hide">
+  <a id="login-link" class="btn small light" href="/en/log-in/">Log In</a>
+</div>
+<div id="logged-in-navigation" class="dropdown-navigation dropdown-wrapper hide">
+  <a href="/en/usage-summary" class="dropdown btn small light">
+    <!-- <img src="http://d3w50ib5d2uy0g.cloudfront.net/cdn/2464//js/esri/arcgisonline/css/images/no-user-thumb.jpg" width="16" height="16" alt=""> --><span id="username"></span>
+  </a>
+  <div class="dropdown-content">
+    <ul>
+      <li><a href="/en/usage-summary/">Usage Summary</a></li>
+      <li><a href="/en/applications/">Applications</a></li>
+      <li></li>
+      <li><a href="/en/tools/">GIS Tools</a></li>
+    </ul>
+    <hr>
+    <ul>
+      <li><a href="/en/account/profile/">Account Settings</a></li>
+      <li><a href="/en/feedback/">Feedback</a></li>
+    </ul>
+    <hr>
+    <ul>
+      <li><a id="log-out-link" href="#">Log Out</a></li>
+    </ul>
+  </div>
+</div>
+
+      <div id="mobile-navigation" class="dropdown-navigation dropdown-wrapper">
+        <a href="#" class="dropdown btn small light icon icon-list-2">Select <span>a Section</span></a>
+        <div class="dropdown-content">
+          <ul>
+            <li><a href="../jstutorials/">Tutorials</a></li>
+            <li><a href="../jshelp/">Concepts</a></li>
+            <li><a href="../jssamples/">Samples</a></li>
+            <li><a href="http://forums.arcgis.com/forums/15">Forum</a></li>
+            <li><a href="../../">All Developer Resources</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="navigation-bar">
+  <div class="container">
+    <nav>
+
+      <div id="section-label"><a href=".">API Reference</a></div>
+      
+      <div id="search">
+        <form id="searchForm">
+          <input type="text" id="searchKeyWord" name="searchKeyWord" placeholder="Find a Class" autocomplete="off" disabled="disabled">
+          <!-- <input type="submit" id="searchButton" name="searchButton" value=""> -->
+        </form>
+      </div>
+      <ul>
+        <!--li class="current"><a href="/en/javascript/">Home</a></li-->
+        <li><a href="../jstutorials/">Tutorials</a></li>
+        <li><a href="../jshelp/">Concepts</a></li>
+        <li class="current"><a href=".">API Reference</a></li>
+        <li><a href="../jssamples/">Samples</a></li>
+        <li><a href="http://forums.arcgis.com/forums/15">Forum</a></li>
+        <li><a href="../../">All Developer Resources</a></li>
+      </ul>
+    </nav>
+  </div>
+</div> 
+</div><!-- end nav bar --> <!-- header -->
+
+<div class="container_12">
+  <div class="grid_3 contentWrapper">
+    <div id="toggleToc">
+      <img src="../graphics/tochide.gif"> Hide Table of Contents
+    </div>
+    <div id="apiToc"> <div class="treeDiv" id="tree" style="top: 35px; left: 0px;">
+  <div id="treeRoot" ondragstart="return false" onselectstart="return false">
+    <div class="treeNode">
+      <a class="treeUnselected" href="." onclick="clickAnchor(this)">API Reference Overview</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="api_codeassist.html" onclick="clickAnchor(this)">Code Assist Plugins</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="argument_aliases.html" onclick="clickAnchor(this)">Preferred Argument Aliases</a>
+    </div>
+    <!-- <div class="treeNode">
+      <a class="treeUnselected" href="../tree/" onclick="clickAnchor(this)">Tree Diagram of API Components</a>
+    </div> -->
+    <div class="treeNode">
+      <img class="treeLinkImage" onClick="expandCollapse(this.parentNode)" src="../graphics/treenodeminus.gif"/>
+      <span onClick="expandCollapse(this.parentNode)" style="cursor: pointer;">esri</span>
+      <div class="treeNode">
+        <a class="treeUnselected" href="esri.config-amd.html" onClick="clickAnchor(this)">config</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="credential-amd.html" onClick="clickAnchor(this)">Credential</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="esri.domutils-amd.html" onClick="clickAnchor(this)">domUtils</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="graphic-amd.html" onClick="clickAnchor(this)">Graphic</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="esri.graphicsutils-amd.html" onClick="clickAnchor(this)">graphicsUtils</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="identitymanager-amd.html" onClick="clickAnchor(this)">IdentityManager</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="identitymanagerbase-amd.html" onClick="clickAnchor(this)">IdentityManagerBase</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="infotemplate-amd.html" onClick="clickAnchor(this)">InfoTemplate</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="infowindowbase-amd.html" onClick="clickAnchor(this)">InfoWindowBase</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="esri.kernel-amd.html" onClick="clickAnchor(this)">kernel</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="esri.lang-amd.html" onClick="clickAnchor(this)">lang</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="map-amd.html" onClick="clickAnchor(this)">Map</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="operationbase-amd.html" onClick="clickAnchor(this)">OperationBase</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="esri.request-amd.html" onClick="clickAnchor(this)">request</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="serverinfo-amd.html" onClick="clickAnchor(this)">ServerInfo</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="snappingmanager-amd.html" onClick="clickAnchor(this)">SnappingManager</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="spatialreference-amd.html" onClick="clickAnchor(this)">SpatialReference</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="timeextent-amd.html" onClick="clickAnchor(this)">TimeExtent</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="undomanager-amd.html" onClick="clickAnchor(this)">UndoManager</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="units-amd.html" onClick="clickAnchor(this)">units</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="esri.urlutils-amd.html" onClick="clickAnchor(this)">urlUtils</a>
+      </div>
+      <div class="treeNode">
+        <img class="treeLinkImage" onClick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+        <span onClick="expandCollapse(this.parentNode)" style="cursor: pointer;">arcgis</span>
+        <div class="treeSubnodesHidden">
+          <div class="treeNode">
+            <a class="treeUnselected" href="portal-amd.html" onClick="clickAnchor(this)">Portal</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="portalcomment-amd.html" onClick="clickAnchor(this)">PortalComment</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="portalfolder-amd.html" onClick="clickAnchor(this)">PortalFolder</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="portalgroup-amd.html" onClick="clickAnchor(this)">PortalGroup</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="portalgroupmembers-amd.html" onClick="clickAnchor(this)">PortalGroupMembers</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="portalitem-amd.html" onClick="clickAnchor(this)">PortalItem</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="portalqueryparams-amd.html" onClick="clickAnchor(this)">PortalQueryParams</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="portalqueryresult-amd.html" onClick="clickAnchor(this)">PortalQueryResult</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="portalrating-amd.html" onClick="clickAnchor(this)">PortalRating</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="portaluser-amd.html" onClick="clickAnchor(this)">PortalUser</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="esri.arcgis.utils-amd.html" onClick="clickAnchor(this)">utils</a>
+          </div>
+        </div>
+      </div>
+      <div class="treeNode">
+        <img class="treeLinkImage" onClick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+        <span onClick="expandCollapse(this.parentNode)" style="cursor: pointer;">dijit</span>
+        <div class="treeSubnodesHidden">
+          <div class="treeNode">
+            <a class="treeUnselected" href="attachmenteditor-amd.html" onClick="clickAnchor(this)">AttachmentEditor</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="attributeinspector-amd.html" onClick="clickAnchor(this)">AttributeInspector</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="attribution-amd.html" onClick="clickAnchor(this)">Attribution</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="basemap-amd.html" onClick="clickAnchor(this)">Basemap</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="basemapgallery-amd.html" onClick="clickAnchor(this)">BasemapGallery</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="basemaplayer-amd.html" onClick="clickAnchor(this)">BasemapLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="basemaptoggle-amd.html" onClick="clickAnchor(this)">BasemapToggle</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="bookmarkitem-amd.html" onClick="clickAnchor(this)">BookmarkItem</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="bookmarks-amd.html" onClick="clickAnchor(this)">Bookmarks</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="directions-amd.html" onClick="clickAnchor(this)">Directions</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="editor-amd.html" onClick="clickAnchor(this)">Editor</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="gallery-amd.html" onClick="clickAnchor(this)">Gallery</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="gauge-amd.html" onClick="clickAnchor(this)">Gauge</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="geocoder-amd.html" onClick="clickAnchor(this)">Geocoder</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="histogramtimeslider-amd.html" onClick="clickAnchor(this)">HistogramTimeSlider</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="homebutton-amd.html" onClick="clickAnchor(this)">HomeButton</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="infowindow-amd.html" onClick="clickAnchor(this)">InfoWindow</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="infowindowlite-amd.html" onClick="clickAnchor(this)">InfoWindowLite</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="layerswipe-amd.html" onClick="clickAnchor(this)">LayerSwipe</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="legend-amd.html" onClick="clickAnchor(this)">Legend</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="locatebutton-amd.html" onClick="clickAnchor(this)">LocateButton</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="measurement-amd.html" onClick="clickAnchor(this)">Measurement</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="overviewmap-amd.html" onClick="clickAnchor(this)">OverviewMap</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="popup-amd.html" onClick="clickAnchor(this)">Popup</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="popupmobile-amd.html" onClick="clickAnchor(this)">PopupMobile</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="popuptemplate-amd.html" onClick="clickAnchor(this)">PopupTemplate</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="print-amd.html" onClick="clickAnchor(this)">Print</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="scalebar-amd.html" onClick="clickAnchor(this)">Scalebar</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="templatepicker-amd.html" onClick="clickAnchor(this)">TemplatePicker</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="timeslider-amd.html" onClick="clickAnchor(this)">TimeSlider</a>
+          </div>
+          <div class="treeNode">
+            <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif">
+            <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">
+              Analysis
+            </span>
+            <div class="treeSubnodesHidden">
+              <div class="treeNode">
+                <a class="treeUnselected" href="analysisbase-amd.html" onClick="clickAnchor(this)">AnalysisBase</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="aggregatepoints-amd.html" onClick="clickAnchor(this)">AggregatePoints</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="createbuffers-amd.html" onClick="clickAnchor(this)">CreateBuffers</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="createdrivetimeareas-amd.html" onClick="clickAnchor(this)">CreateDriveTimeAreas</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="dissolveboundaries-amd.html" onClick="clickAnchor(this)">DissolveBoundaries</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="enrichlayer-amd.html" onClick="clickAnchor(this)">EnrichLayer</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="extractdata-amd.html" onClick="clickAnchor(this)">ExtractData</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="findhotspots-amd.html" onClick="clickAnchor(this)">FindHotSpots</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="findnearest-amd.html" onClick="clickAnchor(this)">FindNearest</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="mergelayers-amd.html" onClick="clickAnchor(this)">MergeLayers</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="overlaylayers-amd.html" onClick="clickAnchor(this)">OverlayLayers</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="summarizenearby-amd.html" onClick="clickAnchor(this)">SummarizeNearby</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="summarizewithin-amd.html" onClick="clickAnchor(this)">SummarizeWithin</a>
+              </div>
+            </div>
+          </div>
+          <div class="treeNode">
+            <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif">
+            <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">
+              Geoenrichment
+            </span>
+            <div class="treeSubnodesHidden">
+              <div class="treeNode">
+                <a class="treeUnselected" href="infographic-amd.html" onClick="clickAnchor(this)">Infographic</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="infographicscarousel-amd.html" onClick="clickAnchor(this)">InfographicsCarousel</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="infographicsoptions-amd.html" onClick="clickAnchor(this)">InfographicsOptions</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="infographicsoptions.item-amd.html" onClick="clickAnchor(this)">InfographicsOptions.Item</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="treeNode">
+        <img class="treeLinkImage" onClick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+        <span onClick="expandCollapse(this.parentNode)" style="cursor: pointer;">geometry</span>
+        <div class="treeSubnodesHidden">
+          <div class="treeNode">
+            <a class="treeUnselected" href="circle-amd.html" onClick="clickAnchor(this)">Circle</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="extent-amd.html" onClick="clickAnchor(this)">Extent</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="esri.geometry.geodesicutils-amd.html" onClick="clickAnchor(this)">geodesicUtils</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="geometry-amd.html" onClick="clickAnchor(this)">Geometry</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="esri.geometry.jsonutils-amd.html" onClick="clickAnchor(this)">jsonUtils</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="esri.geometry.mathutils-amd.html" onClick="clickAnchor(this)">mathUtils</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="multipoint-amd.html" onClick="clickAnchor(this)">Multipoint</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="esri.geometry.normalizeutils-amd.html" onClick="clickAnchor(this)">normalizeUtils</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="point-amd.html" onClick="clickAnchor(this)">Point</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="polygon-amd.html" onClick="clickAnchor(this)">Polygon</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="polyline-amd.html" onClick="clickAnchor(this)">Polyline</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="esri.geometry.scaleutils-amd.html" onClick="clickAnchor(this)">scaleUtils</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="screenpoint-amd.html" onClick="clickAnchor(this)">ScreenPoint</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="esri.geometry.screenutils-amd.html" onClick="clickAnchor(this)">screenUtils</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="esri.geometry.webmercatorutils-amd.html" onClick="clickAnchor(this)">webMercatorUtils</a>
+          </div>
+        </div>
+      </div>
+      <div class="treeNode">
+        <img class="treeLinkImage" onClick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+        <span onClick="expandCollapse(this.parentNode)" style="cursor: pointer;">layers</span>
+        <div class="treeSubnodesHidden">
+          <div class="treeNode">
+            <a class="treeUnselected" href="arcgisdynamicmapservicelayer-amd.html" onClick="clickAnchor(this)">ArcGISDynamicMapServiceLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="arcgisimageservicelayer-amd.html" onClick="clickAnchor(this)">ArcGISImageServiceLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="arcgistiledmapservicelayer-amd.html" onClick="clickAnchor(this)">ArcGISTiledMapServiceLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="codedvaluedomain-amd.html" onClick="clickAnchor(this)">CodedValueDomain</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="domain-amd.html" onClick="clickAnchor(this)">Domain</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="dynamiclayerinfo-amd.html" onClick="clickAnchor(this)">DynamicLayerInfo</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="dynamicmapservicelayer-amd.html" onClick="clickAnchor(this)">DynamicMapServiceLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="featureeditresult-amd.html" onClick="clickAnchor(this)">FeatureEditResult</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="featurelayer-amd.html" onClick="clickAnchor(this)">FeatureLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="featuretemplate-amd.html" onClick="clickAnchor(this)">FeatureTemplate</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="featuretype-amd.html" onClick="clickAnchor(this)">FeatureType</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="field-amd.html" onClick="clickAnchor(this)">Field</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="georsslayer-amd.html" onClick="clickAnchor(this)">GeoRSSLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="graphicslayer-amd.html" onClick="clickAnchor(this)">GraphicsLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="imageparameters-amd.html" onClick="clickAnchor(this)">ImageParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="imageserviceparameters-amd.html" onClick="clickAnchor(this)">ImageServiceParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="inheriteddomain-amd.html" onClick="clickAnchor(this)">InheritedDomain</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="joindatasource-amd.html" onClick="clickAnchor(this)">JoinDataSource</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="kmlfolder-amd.html" onClick="clickAnchor(this)">KMLFolder</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="kmlgroundoverlay-amd.html" onClick="clickAnchor(this)">KMLGroundOverlay</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="kmllayer-amd.html" onClick="clickAnchor(this)">KMLLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="labelclass-amd.html" onClick="clickAnchor(this)">LabelClass</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="labellayer-amd.html" onClick="clickAnchor(this)">LabelLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="layer-amd.html" onClick="clickAnchor(this)">Layer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="layerdatasource-amd.html" onClick="clickAnchor(this)">LayerDataSource</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="layerdrawingoptions-amd.html" onClick="clickAnchor(this)">LayerDrawingOptions</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="layerinfo-amd.html" onClick="clickAnchor(this)">LayerInfo</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="layermapsource-amd.html" onClick="clickAnchor(this)">LayerMapSource</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="layertimeoptions-amd.html" onClick="clickAnchor(this)">LayerTimeOptions</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="lod-amd.html" onClick="clickAnchor(this)">LOD</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="mapimage-amd.html" onClick="clickAnchor(this)">MapImage</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="mapimagelayer-amd.html" onClick="clickAnchor(this)">MapImageLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="mosaicrule-amd.html" onClick="clickAnchor(this)">MosaicRule</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="openstreetmaplayer-amd.html" onClick="clickAnchor(this)">OpenStreetMapLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="querydatasource-amd.html" onClick="clickAnchor(this)">QueryDataSource</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="rangedomain-amd.html" onClick="clickAnchor(this)">RangeDomain</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="rasterdatasource-amd.html" onClick="clickAnchor(this)">RasterDataSource</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="rasterfunction-amd.html" onClick="clickAnchor(this)">RasterFunction</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="streamlayer-amd.html" onClick="clickAnchor(this)">StreamLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="tabledatasource-amd.html" onClick="clickAnchor(this)">TableDataSource</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="tileinfo-amd.html" onClick="clickAnchor(this)">TileInfo</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="tiledmapservicelayer-amd.html" onClick="clickAnchor(this)">TiledMapServiceLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="timeinfo-amd.html" onClick="clickAnchor(this)">TimeInfo</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="timereference-amd.html" onClick="clickAnchor(this)">TimeReference</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="wmslayer-amd.html" onClick="clickAnchor(this)">WMSLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="wmslayerinfo-amd.html" onClick="clickAnchor(this)">WMSLayerInfo</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="wmtslayer-amd.html" onClick="clickAnchor(this)">WMTSLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="wmtslayerinfo-amd.html" onClick="clickAnchor(this)">WMTSLayerInfo</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="webtiledlayer-amd.html" onClick="clickAnchor(this)">WebTiledLayer</a>
+          </div>
+        </div>
+      </div>
+      <div class="treeNode">
+        <img class="treeLinkImage" onClick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+        <span onClick="expandCollapse(this.parentNode)" style="cursor: pointer;">renderer</span>
+        <div class="treeSubnodesHidden">
+          <div class="treeNode">
+            <a class="treeUnselected" href="classbreaksrenderer-amd.html" onClick="clickAnchor(this)">ClassBreaksRenderer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="dotdensityrenderer-amd.html" onClick="clickAnchor(this)">DotDensityRenderer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="esri.renderers.jsonutils-amd.html" onClick="clickAnchor(this)">jsonUtils</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="renderer-amd.html" onClick="clickAnchor(this)">Renderer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="scaledependentrenderer-amd.html" onClick="clickAnchor(this)">ScaleDependentRenderer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="simplerenderer-amd.html" onClick="clickAnchor(this)">SimpleRenderer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="symbolager-amd.html" onClick="clickAnchor(this)">SymbolAger</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="temporalrenderer-amd.html" onClick="clickAnchor(this)">TemporalRenderer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="timeclassbreaksager-amd.html" onClick="clickAnchor(this)">TimeClassBreaksAger</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="timerampager-amd.html" onClick="clickAnchor(this)">TimeRampAger</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="uniquevaluerenderer-amd.html" onClick="clickAnchor(this)">UniqueValueRenderer</a>
+          </div>
+        </div>
+      </div>
+      <div class="treeNode">
+        <img class="treeLinkImage" onClick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+        <span onClick="expandCollapse(this.parentNode)" style="cursor: pointer;">symbols</span>
+        <div class="treeSubnodesHidden">
+          <div class="treeNode">
+            <a class="treeUnselected" href="cartographiclinesymbol-amd.html" onClick="clickAnchor(this)">CartographicLineSymbol</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="fillsymbol-amd.html" onClick="clickAnchor(this)">FillSymbol</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="font-amd.html" onClick="clickAnchor(this)">Font</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="esri.symbols.jsonutils-amd.html" onClick="clickAnchor(this)">jsonUtils</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="linesymbol-amd.html" onClick="clickAnchor(this)">LineSymbol</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="markersymbol-amd.html" onClick="clickAnchor(this)">MarkerSymbol</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="picturefillsymbol-amd.html" onClick="clickAnchor(this)">PictureFillSymbol</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="picturemarkersymbol-amd.html" onClick="clickAnchor(this)">PictureMarkerSymbol</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="simplefillsymbol-amd.html" onClick="clickAnchor(this)">SimpleFillSymbol</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="simplelinesymbol-amd.html" onClick="clickAnchor(this)">SimpleLineSymbol</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="simplemarkersymbol-amd.html" onClick="clickAnchor(this)">SimpleMarkerSymbol</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="symbol-amd.html" onClick="clickAnchor(this)">Symbol</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="textsymbol-amd.html" onClick="clickAnchor(this)">TextSymbol</a>
+          </div>
+        </div>
+      </div>
+      <div class="treeNode">
+        <img class="treeLinkImage" onClick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+        <span onClick="expandCollapse(this.parentNode)" style="cursor: pointer;">tasks</span>
+        <div class="treeSubnodesHidden">
+          <div class="treeNode">
+            <a class="treeUnselected" href="addresscandidate-amd.html" onClick="clickAnchor(this)">AddressCandidate</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="algorithmiccolorramp-amd.html" onClick="clickAnchor(this)">AlgorithmicColorRamp</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="areasandlengthsparameters-amd.html" onClick="clickAnchor(this)">AreasAndLengthsParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="bufferparameters-amd.html" onClick="clickAnchor(this)">BufferParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="classbreaksdefinition-amd.html" onClick="clickAnchor(this)">ClassBreaksDefinition</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="classificationdefinition-amd.html" onClick="clickAnchor(this)">ClassificationDefinition</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="closestfacilityparameters-amd.html" onClick="clickAnchor(this)">ClosestFacilityParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="closestfacilitysolveresult-amd.html" onClick="clickAnchor(this)">ClosestFacilitySolveResult</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="closestfacilitytask-amd.html" onClick="clickAnchor(this)">ClosestFacilityTask</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="datafile-amd.html" onClick="clickAnchor(this)">DataFile</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="datalayer-amd.html" onClick="clickAnchor(this)">DataLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="date-amd.html" onClick="clickAnchor(this)">Date</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="directionsfeatureset-amd.html" onClick="clickAnchor(this)">DirectionsFeatureSet</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="distanceparameters-amd.html" onClick="clickAnchor(this)">DistanceParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="featureset-amd.html" onClick="clickAnchor(this)">FeatureSet</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="findparameters-amd.html" onClick="clickAnchor(this)">FindParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="findresult-amd.html" onClick="clickAnchor(this)">FindResult</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="findtask-amd.html" onClick="clickAnchor(this)">FindTask</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="gpmessage-amd.html" onClick="clickAnchor(this)">GPMessage</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="generalizeparameters-amd.html" onClick="clickAnchor(this)">GeneralizeParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="generaterendererparameters-amd.html" onClick="clickAnchor(this)">GenerateRendererParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="generaterenderertask-amd.html" onClick="clickAnchor(this)">GenerateRendererTask</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="geometryservice-amd.html" onClick="clickAnchor(this)">GeometryService</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="geoprocessor-amd.html" onClick="clickAnchor(this)">Geoprocessor</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="identifyparameters-amd.html" onClick="clickAnchor(this)">IdentifyParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="identifyresult-amd.html" onClick="clickAnchor(this)">IdentifyResult</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="identifytask-amd.html" onClick="clickAnchor(this)">IdentifyTask</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="imageserviceidentifyparameters-amd.html" onClick="clickAnchor(this)">ImageServiceIdentifyParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="imageserviceidentifyresult-amd.html" onClick="clickAnchor(this)">ImageServiceIdentifyResult</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="imageserviceidentifytask-amd.html" onClick="clickAnchor(this)">ImageServiceIdentifyTask</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="jobinfo-amd.html" onClick="clickAnchor(this)">JobInfo</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="legendlayer-amd.html" onClick="clickAnchor(this)">LegendLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="lengthsparameters-amd.html" onClick="clickAnchor(this)">LengthsParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="linearunit-amd.html" onClick="clickAnchor(this)">LinearUnit</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="locator-amd.html" onClick="clickAnchor(this)">Locator</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="multipartcolorramp-amd.html" onClick="clickAnchor(this)">MultipartColorRamp</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="namessage-amd.html" onClick="clickAnchor(this)">NAMessage</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="naoutputline-amd.html" onClick="clickAnchor(this)">NAOutputLine</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="naoutputpolygon-amd.html" onClick="clickAnchor(this)">NAOutputPolygon</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="natraveldirection-amd.html" onClick="clickAnchor(this)">NATravelDirection</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="nauturn-amd.html" onClick="clickAnchor(this)">NAUTurn</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="offsetparameters-amd.html" onClick="clickAnchor(this)">OffsetParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="parametervalue-amd.html" onClick="clickAnchor(this)">ParameterValue</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="printparameters-amd.html" onClick="clickAnchor(this)">PrintParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="printtask-amd.html" onClick="clickAnchor(this)">PrintTask</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="printtemplate-amd.html" onClick="clickAnchor(this)">PrintTemplate</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="projectparameters-amd.html" onClick="clickAnchor(this)">ProjectParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="query-amd.html" onClick="clickAnchor(this)">Query</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="querytask-amd.html" onClick="clickAnchor(this)">QueryTask</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="rasterdata-amd.html" onClick="clickAnchor(this)">RasterData</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="relationparameters-amd.html" onClick="clickAnchor(this)">RelationParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="relationshipquery-amd.html" onClick="clickAnchor(this)">RelationshipQuery</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="routeparameters-amd.html" onClick="clickAnchor(this)">RouteParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="routeresult-amd.html" onClick="clickAnchor(this)">RouteResult</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="routetask-amd.html" onClick="clickAnchor(this)">RouteTask</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="serviceareaparameters-amd.html" onClick="clickAnchor(this)">ServiceAreaParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="serviceareasolveresult-amd.html" onClick="clickAnchor(this)">ServiceAreaSolveResult</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="serviceareatask-amd.html" onClick="clickAnchor(this)">ServiceAreaTask</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="statisticdefinition-amd.html" onClick="clickAnchor(this)">StatisticDefinition</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="trimextendparameters-amd.html" onClick="clickAnchor(this)">TrimExtendParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="uniquevaluedefinition-amd.html" onClick="clickAnchor(this)">UniqueValueDefinition</a>
+          </div>
+          <div class="treeNode">
+            <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif">
+            <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">
+              Geoenrichment
+            </span>
+            <div class="treeSubnodesHidden">
+              <div class="treeNode">
+                <a class="treeUnselected" href="drivebuffer-amd.html" onClick="clickAnchor(this)">DriveBuffer</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="driveunits-amd.html" onClick="clickAnchor(this)">DriveUnits</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="geographylevel-amd.html" onClick="clickAnchor(this)">GeographyLevel</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="geometrystudyarea-amd.html" onClick="clickAnchor(this)">GeometryStudyArea</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="intersectinggeographies-amd.html" onClick="clickAnchor(this)">IntersectingGeographies</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="ringbuffer-amd.html" onClick="clickAnchor(this)">RingBuffer</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="treeNode">
+        <img class="treeLinkImage" onClick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+        <span onClick="expandCollapse(this.parentNode)" style="cursor: pointer;">toolbars</span>
+        <div class="treeSubnodesHidden">
+          <div class="treeNode">
+            <a class="treeUnselected" href="draw-amd.html" onClick="clickAnchor(this)">Draw</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="edit-amd.html" onClick="clickAnchor(this)">Edit</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="navigation-amd.html" onClick="clickAnchor(this)">Navigation</a>
+          </div>
+        </div>
+      </div>
+      <div class="treeNode">
+        <img class="treeLinkImage" onClick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+        <span onClick="expandCollapse(this.parentNode)" style="cursor: pointer;">virtualearth</span>
+        <div class="treeSubnodesHidden">
+          <div class="treeNode">
+            <a class="treeUnselected" href="veaddress-amd.html" onClick="clickAnchor(this)">VEAddress</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="vegeocoderesult-amd.html" onClick="clickAnchor(this)">VEGeocodeResult</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="vegeocoder-amd.html" onClick="clickAnchor(this)">VEGeocoder</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="vetiledlayer-amd.html" onClick="clickAnchor(this)">VETiledLayer</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></div> <!-- sub 4:  API ref TOC -->
+  </div>
+  <div class="grid_9 contentWrapper">
+    <div id="topicPane">    <div id="pageBanner">Class: UniqueValueRenderer</div>
+    <div style="font-size:12px">[ <a href="uniquevaluerenderer-amd.html">AMD Module Require</a> | <b>Legacy Module Require</b> ]</div>
+    <div id="nstext">
+      
+      <h4 class="dtH4">Description</h4>
+      <div class="detaildesc"><div><i>Class added at v1.4</i></div>A unique value renderer symbolizes groups of graphics that have matching attributes.  For more information about renderers, see <a href="../jshelp/inside_renderers.html">Symbolizing graphics with renderers</a>.</div>
+      <H4 class="dtH4">Samples</H4>
+      Search for <a target="_top" href="../jssamples/#search/UniqueValueRenderer">samples</a> that use this class.
+      <H4 class="dtH4">Class hierarchy</H4>
+      <pre class="inherits"><a href="renderer-amd.html">esri/renderer/Renderer</a>
+|_esri/renderer/UniqueValueRenderer</pre>
+      
+      <h4 class="dtH4">Constructors</h4>
+      <table class="syntaxTABLE" cellspacing="0">
+        <tr><th class="tableheader">Name</th><th class="tableheader">Summary</th></tr>
+        <tr><td class="syntaxTABLE"><a href="#uniquevaluerenderer1">new esri.renderer.UniqueValueRenderer(defaultSymbol?,attributeField,attributeField2?,attributeField3?,fieldDelimeter?)</a></td><td class="syntaxTABLE">Creates a new UniqueValueRenderer object.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#uniquevaluerenderer2">new esri.renderer.UniqueValueRenderer(json)</a></td><td class="syntaxTABLE">Creates a new Unique Value Renderer</td></tr>
+      </table>
+      
+      
+      
+      <h4 class="dtH4">Properties</h4>
+      <table class="syntaxTABLE" cellspacing="0">
+        <tr><th class="tableheader">Name</th><th class="tableheader">Type</th><th class="tableheader">Summary</th></tr>
+        <tr><td class="syntaxTABLE"><a href="#attributefield">attributeField</a></td><td class="syntaxTABLE">String</td><td class="syntaxTABLE">Attribute field renderer uses to match values.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#attributefield2">attributeField2</a></td><td class="syntaxTABLE">String</td><td class="syntaxTABLE">If needed, specify an additional attribute field the renderer uses to match values.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#attributefield3">attributeField3</a></td><td class="syntaxTABLE">String</td><td class="syntaxTABLE">If needed, specify an additional attribute field the renderer uses to match values.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#colorinfo">colorInfo</a></td><td class="syntaxTABLE">Object</td><td class="syntaxTABLE">An object defining a color ramp used to render the layer.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#defaultlabel">defaultLabel</a></td><td class="syntaxTABLE">String</td><td class="syntaxTABLE">Label for the default symbol used to draw unspecified values.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#defaultsymbol">defaultSymbol</a></td><td class="syntaxTABLE"><a href="symbol-amd.html">Symbol</a></td><td class="syntaxTABLE">Default symbol used when a value or break cannot be matched</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#fielddelimiter">fieldDelimiter</a></td><td class="syntaxTABLE">String</td><td class="syntaxTABLE">String inserted between the values if multiple attribute fields are specified.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#infos">infos</a></td><td class="syntaxTABLE">Object[]</td><td class="syntaxTABLE"><p>Each element in the array is an object that provides information about the unique values associated with the renderer.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#proportionalsymbol">proportionalSymbol</a></td><td class="syntaxTABLE">Object</td><td class="syntaxTABLE">Defines the proportional symbol rendering where feature size is proportional to data value.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#rotationinfo">rotationInfo</a></td><td class="syntaxTABLE">Object</td><td class="syntaxTABLE">Defines how marker symbols are rotated.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#values">values</a></td><td class="syntaxTABLE">String[]</td><td class="syntaxTABLE"><b>Deprecated at v2.0, use <a href="#infos">infos</a> instead.</b> An array of values defined for the renderer</td></tr>
+      </table>
+      <h4 class="dtH4">Methods</h4>
+      <table class="syntaxTABLE" cellspacing="0">
+        <tr><th class="tableheader">Name</th><th class="tableheader">Type</th><th class="tableheader">Summary</th></tr>
+        <tr><td class="syntaxTABLE"><a href="#addvalue">addValue(value or info,symbol?)</a></td><td class="syntaxTABLE">None</td><td class="syntaxTABLE">Adds a unique value and symbol.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#getcolor">getColor(graphic)</a></td><td class="syntaxTABLE">dojo.Color</td><td class="syntaxTABLE">Gets the color for the Graphic.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#getrotationangle">getRotationAngle(graphic)</a></td><td class="syntaxTABLE">Number</td><td class="syntaxTABLE">Returns the angle of rotation (in degrees) for the graphic calculated using rotationInfo.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#getsize">getSize(graphic)</a></td><td class="syntaxTABLE">Number</td><td class="syntaxTABLE">Return the symbol size (in pixels) for the graphic, calculated using <code>proportionalSymbolInfo</code>.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#getsymbol">getSymbol(graphic)</a></td><td class="syntaxTABLE"><a href="symbol-amd.html">Symbol</a></td><td class="syntaxTABLE">Gets the symbol for the Graphic</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#getuniquevalueinfo">getUniqueValueInfo(graphic)</a></td><td class="syntaxTABLE">Object</td><td class="syntaxTABLE">Returns rendering and legend information (as defined by the renderer) associated with the given graphic.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#removevalue">removeValue(value)</a></td><td class="syntaxTABLE">None</td><td class="syntaxTABLE">Removes a unique value.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#setcolorinfo">setColorInfo(info)</a></td><td class="syntaxTABLE"><a href="renderer-amd.html">Renderer</a></td><td class="syntaxTABLE">Sets the <code>colorInfo</code> property.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#setproportionalsymbolinfo">setProportionalSymbolInfo(info)</a></td><td class="syntaxTABLE"><a href="renderer-amd.html">Renderer</a></td><td class="syntaxTABLE">Modify proportional symbol info for the renderer.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#setrotationinfo">setRotationInfo(info)</a></td><td class="syntaxTABLE"><a href="renderer-amd.html">Renderer</a></td><td class="syntaxTABLE">Modifies rotation info for the renderer.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#tojson">toJson()</a></td><td class="syntaxTABLE">Object</td><td class="syntaxTABLE">Converts object to its ArcGIS Server JSON representation.</td></tr>
+      </table>
+      
+      <div class="sectionDivider">Constructor Details</div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="uniquevaluerenderer1"></a>new esri.renderer.UniqueValueRenderer(defaultSymbol?,attributeField,attributeField2?,attributeField3?,fieldDelimeter?)</h4></div>
+        <div class="detaildesc">Creates a new UniqueValueRenderer object. Typically features are rendered based on the unique values of one attribute field. However up to three fields can be combined to generate a unique value. For example, if two fields are used which store the values A and B; and X, Y, and Z respectively, then the unique values for the renderer can be A:X, A:Y, A:Z, B:X, B:Y and B:Z, assuming ":" is the field delimiter.</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="symbol-amd.html">Symbol</a>&gt; defaultSymbol</td>
+        <td class="detailTABLE">Optional</td>
+        <td class="detailTABLE">Default symbol for the renderer.  This symbol is used for unmatched values.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;String&gt; attributeField</td>
+        <td class="detailTABLE">Required</td>
+        <td class="detailTABLE">Specify either the attribute field the renderer uses to match values or starting at version 3.3 a function that returns a value to be compared against unique values. If a function is specified the renderer will call this function once for every graphic drawn on the map. This can be used in cases where you want the unique values to be compared against a computed value that is not available via the attribute fields.<div>At version 3.0 the Class Breaks renderer can be used to render feature layer tracks. Specify the layer's <b>trackIdField</b> as the <b>attributeField</b>.</div></td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;String&gt; attributeField2</td>
+        <td class="detailTABLE">Optional</td>
+        <td class="detailTABLE">If needed, specify an additional attribute field the renderer uses to match values.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;String&gt; attributeField3</td>
+        <td class="detailTABLE">Optional</td>
+        <td class="detailTABLE">If needed, specify an additional attribute field the renderer uses to match values.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;String&gt; fieldDelimeter</td>
+        <td class="detailTABLE">Optional</td>
+        <td class="detailTABLE">String inserted between the values of different fields. Applicable only when more than one attribute field is specifed for the renderer.</td>
+      </tr>
+</table></div>        <div class="detaildesc"><b>Sample:</b> <pre class='prettyprint'>
+var renderer = new esri.renderer.UniqueValueRenderer(defaultSymbol, "SUB_REGION");
+</pre></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="uniquevaluerenderer2"></a>new esri.renderer.UniqueValueRenderer(json)</h4></div>
+        <div class="detaildesc">Creates a new Unique Value Renderer.</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; json</td>
+        <td class="detailTABLE">Required</td>
+        <td class="detailTABLE">JSON object representing the UniqueValueRenderer.</td>
+      </tr>
+</table></div>        <div class="detaildesc"><b>Sample:</b> <pre class='prettyprint'>
+var uvrJson = {"type": "uniqueValue",
+  "field1": "SUB_REGION",
+  "defaultSymbol": {
+    "color": [0, 0, 0, 64],
+    "outline": {
+      "color": [0, 0, 0, 255],
+      "width": 1,
+      "type": "esriSLS",
+      "style": "esriSLSNull"
+    },
+    "type": "esriSFS",
+    "style": "esriSFSNull"
+  },
+  "uniqueValueInfos": [{
+    "value": "Pacific",
+    "symbol": {
+      "color": [255, 0, 0, 128],
+      "outline": {
+        "color": [0, 0, 0, 255],
+        "width": 1,
+        "type": "esriSLS",
+        "style": "esriSLSSolid"
+      },
+      "type": "esriSFS",
+      "style": "esriSFSSolid"
+    }
+  }, {
+    "value": "Mtn",
+    "symbol": {
+      "color": [0, 255, 0, 128],
+      "outline": {
+        "color": [0, 0, 0, 255],
+        "width": 1,
+        "type": "esriSLS",
+        "style": "esriSLSSolid"
+      },
+      "type": "esriSFS",
+      "style": "esriSFSSolid"
+    }
+  }]
+}
+var renderer = new esri.renderer.UniqueValueRenderer(uvrJson);
+</pre></div>
+      </div><div class="sectionDivider">Property Details</div>
+
+            <div class="detaildiv">
+        <div class="detailname"><h4><a id="attributefield"></a>&lt;String&gt; attributeField</h4></div>
+        <div class="detaildesc">Attribute field renderer uses to match values. At version 3.0 the Unique Value renderer can be used to render <a href='temporalrenderer.html'>feature layer tracks</a>. Specify the layer's trackIdField as the <code>attributeField</code></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="attributefield2"></a>&lt;String&gt; attributeField2</h4></div>
+        <div class="detaildesc">If needed, specify an additional attribute field the renderer uses to match values. <i>(Added at v2.0)</i></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="attributefield3"></a>&lt;String&gt; attributeField3</h4></div>
+        <div class="detaildesc">If needed, specify an additional attribute field the renderer uses to match values. <i>(Added at v2.0)</i></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="colorinfo"></a>&lt;Object&gt; colorInfo</h4></div>
+        <div class="detaildesc">An object defining a color ramp used to render the layer. It has following properties:
+<ul>
+<li>&lt;String&gt; <b>field</b>: Name of the feature attribute field that contains the data value.</li>
+<li>&lt;String&gt; <b>normalizationField</b>: Name of the feature attribute field by which the data value will be normalized.</li>
+<li>&lt;Number&gt; <b>minDataValue</b>: Minimum data value.</li>
+<li>&lt;Number&gt; <b>maxDataValue</b>: Maximum data value.</li>
+<li>&lt;dojo.Color[]&gt; <b>colors</b>: An array of colors defining the color ramp. The first color will be used to render minimum data value, and the last color will be used to render maximum data value. At least two colors are required. If there are three or more colors, the intermediate colors will be placed proportionally between the first and the last to create a multi-color ramp.</li>
+</ul> <i>(Added at v3.8)</i></div>        <div class="detaildesc"><b>Sample:</b> <pre class='prettyprint'>renderer.setColorInfo({
+  field: "M086_07",
+  minDataValue: 0,
+  maxDataValue: 100,
+  colors: [
+    new Color([255, 255, 255]),
+    new Color([127, 127, 0])
+  ]
+});</pre></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="defaultlabel"></a>&lt;String&gt; defaultLabel</h4></div>
+        <div class="detaildesc">Label for the default symbol used to draw unspecified values. <i>(Added at v2.0)</i></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="defaultsymbol"></a>&lt;<a href="symbol-amd.html">Symbol</a>&gt; defaultSymbol</h4></div>
+        <div class="detaildesc">Default symbol used when a value or break cannot be matched.</div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="fielddelimiter"></a>&lt;String&gt; fieldDelimiter</h4></div>
+        <div class="detaildesc">String inserted between the values if multiple attribute fields are specified. <i>(Added at v2.0)</i></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="infos"></a>&lt;Object[]&gt; infos</h4></div>
+        <div class="detaildesc"><p>Each element in the array is an object that provides information about the unique values associated with the renderer. The object has the following properties:</p>
+    <table class="detailTABLE" cellspacing="0" style="font-size:125%">
+          <tr>
+          <td class="detailTABLE">
+          &lt;String&gt; <b>value</b>
+          </td>
+          <td class="detailTABLE">
+            The unique value.
+          </td>
+          </tr>
+              <tr>
+                <td class="detailTABLE">
+                &lt;Symbol&gt; <b>symbol</b>
+                </td>
+                <td class="detailTABLE">
+                  The symbol used to display the value.
+                </td>
+          </tr>
+                    <tr>
+                      <td class="detailTABLE">
+                      &lt;String&gt; <b>label</b>
+                      </td>
+                      <td class="detailTABLE">
+                        Label for the symbol used to draw the value. 
+                      </td>
+          </tr>
+                              <tr>
+                      <td class="detailTABLE">
+                      &lt;String&gt; <b>description</b>
+                      </td>
+                      <td class="detailTABLE">
+                        Label for the symbol used to draw the value. 
+                      </td>
+          </tr>
+    </table> <i>(Added at v2.0)</i></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="proportionalsymbol"></a>&lt;Object&gt; proportionalSymbol</h4></div>
+        <div class="detaildesc">Defines the proportional symbol rendering where feature size is proportional to data value. 
+<p><code>proportionalSymbolInfo</code> supports the following properties<p>
+<table class="detailTABLE">
+<tr>
+<th class="tableheader">Property</th>
+<th class="tableheader">Type</th>
+<th class="tableheader">Description</th>
+</tr>
+<tr>
+ <td class="detailTABLE">field</td>
+ <td class="detailTABLE">String or Function</td>
+ <td class="detailTABLE">Name of the feature attribute field that contains the data value. Or a function that returns the data value.<p>This property is required</p></td>
+</tr>
+<tr>
+ <td class="detailTABLE">valueUnit</td>
+ <td class="detailTABLE">String</td>
+ <td class="detailTABLE">Unit of measurement if the data represents a real world distance quantity. Valid values are:
+<code>"unknown","inches", "feet", "yards", "miles", "nautical-miles", "millimeters", "centimeters", "decimeters", "meters", "kilometers", "decimal-degrees"</code>
+<p>If the data value represents a non-distance quantity (e.g.: traffic count, census data) then <code>valueUnit</code> should be set to <code>"unknown"</code>. </p>
+<p>This property is required.</p>
+</td>
+</tr>
+<tr>
+ <td class="detailTABLE">valueRepresentation</td>
+ <td class="detailTABLE">String</td>
+ <td class="detailTABLE">Specifies what the data value measures if it represents a real world distance. The following values are supported: 
+<ul>
+<li><code>radius</code>: Data value represents the radius of a circular feature.</li>
+<li><code>diameter</code>: Data value represents the diameter of a circular feature.</li>
+<li><code>area</code>: Data value represents the area of a feature.</li>
+<li><code>width</code>: Data value represents the width of a line.</li>
+<li><code>distance</code>: Data value represents the distance from the center line (one half of the width).</li>
+</ul>
+<p>This property is required if <code> valueUnit</code> is not equal to "unknown". 
+</td>
+</tr>
+<tr>
+ <td class="detailTABLE">minDataValue</td>
+ <td class="detailTABLE">Number</td>
+ <td class="detailTABLE">Minimum data value. This property is required if <code>valueUnit</code> is set to "unknown".</td>
+</tr>
+<tr>
+ <td class="detailTABLE">minSize</td>
+ <td class="detailTABLE">Number</td>
+ <td class="detailTABLE">Symbol size (in pixels) to use for a feature when a minimum data value. This property is required if <code>valueUnit</code> is set to "unknown". </td>
+</tr>
+<tr>
+ <td class="detailTABLE">maxDataValue</td>
+ <td class="detailTABLE">Number</td>
+ <td class="detailTABLE">Maximum data value. This property is optional.</td>
+</tr>
+<tr>
+ <td class="detailTABLE">maxSize</td>
+ <td class="detailTABLE">Number</td>
+ <td class="detailTABLE">Maximum symbol size (in pixels). This property is optional.</td>
+</tr>
+<tr>
+ <td class="detailTABLE">normalizationField</td>
+ <td class="detailTABLE">String</td>
+ <td class="detailTABLE">Name of the feature attribute field used for data normalization. The data value obtained from <code>field</code> is divided by the value obtained from <code>normalizationField</code> before calculating the symbol size.<p>This property is optional.</p></td>
+</tr>
+<tr>
+ <td class="detailTABLE">legendOptions</td>
+ <td class="detailTABLE">Object</td>
+ <td class="detailTABLE">An object defining a color ramp used to render the layer. It has a property <b>customValues</b>, which is used when customized values in the legend are needed. See the sample section below for code example.</td>
+</tr>
+</table>
+</p> <i>(Added at v3.7)</i></div>        <div class="detaildesc"><b>Sample:</b> Proportional symbol rendering can be applied to two types of data: 
+
+<ul>
+<li>Data that represents a <b>distance quantity</b>. For example:
+<ul>
+<li>If you have tree locations defined as points and an attribute field with the radius of tree canopy, you can use proportional symbols to depict the actual ground area covered by each tree. </li>
+<li>You can use proportionally sized lines to depict the width of water mains.</li>
+</ul>
+</li>
+<li>Data that represents a <b>non-distance</b> quantity. For example:
+<ul>
+<li>Display traffic data like roads and highways as line symbols where stroke width is proportional to the traffic count.</li>
+<li>Create a census map of proportional marker symbols where the area of each symbol reflects the population of the state. </li>
+</ul>
+
+</li>
+</ul>
+<p>In addition, regardless of the type of data described above, you can map a range of data values to a range of symbol sizes. </p>
+<p>For point features, maker size is varied in proportion to the data value. For line features, stroke width is varied. </p>
+
+Data representing <b>distance</b> quantity:
+
+<pre class="prettyprint">
+ {
+  field: "tree_canopy",
+  valueUnit: "meters",
+  valueRepresentation: "diameter"
+ }
+</pre>
+
+<pre class="prettyprint">
+ //ground area covered by trees measured in square feet. 
+ {
+  field: "GroundArea", 
+  valueUnit: "feet",
+  valueRepresentation: "area"
+ }
+
+</pre>
+Specify <code>minSize</code> and <code>maxSize</code> to smooth out outliers. 
+</p>
+<p> Data representing a non-distance quantity.
+<pre class="prettyprint">
+ {
+  field: "avg_daily_traffic",
+  valueUnit: "unknown",
+  minSize: 1000,
+  minDataValue: 8
+ }
+
+</pre>
+Specify <code>maxSize</code> to smooth out outliers. 
+</p>
+<p>Map a range of data values to a range of symbol sizes:
+<pre class="prettyprint">
+{
+ field: "avg_daily_traffic",
+ valueUnit: "unknown",
+ minSize: 1,
+ maxSize: 10,
+ minDataValue: 1000,
+ maxDataValue: 100000
+}
+</pre>
+
+To use <b>legendOptions</b>:
+<pre class="prettyprint">renderer.setProportionalSymbolInfo({
+  field: "POP_PER_DOC",
+  minSize: 2,
+  maxSize: 20,
+  minDataValue: 100,
+  maxDataValue: 10000,
+  valueUnit: "unknown",
+  legendOptions: {
+    customValues: [100, 200, 300, 10000]
+  }
+});</pre></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="rotationinfo"></a>&lt;Object&gt; rotationInfo</h4></div>
+        <div class="detaildesc">Defines how marker symbols are rotated. Use rotation to depict wind direction, vehicle heading etc. Specify an object with the following properties. 
+
+<table class="detailTable">
+<tr>
+<th class="tableheader">Property</th>
+<th class="tableheader">Type</th>
+<th class="tableheader">Description</th>
+</tr>
+<tr>
+<td class="detailTABLE">field</td>
+<td class="detailTABLE">String or Function</td>
+<td class="detailTABLE">
+<p>Name of the feature attribute field that contains the angle of rotation. Or a function that returns the angle of rotation. </p>
+
+<p>A function is useful in cases where the angle of rotation is not available in an attribute field but needs to be computed using a mathematical expression or formula. For example, you can specify a function to compute <a href="http://blogs.esri.com/esri/arcgis/2013/07/17/displaying-speed-and-direction-symbology-from-u-and-v-vectors/">wind or current direction</a> when the underlying data is stored as U or V vectors. View example below. </p>
+<p>This property is required</p>
+</td>
+</tr>
+<tr>
+<td class="detailTABLE">type</td>
+<td class="detailTABLE">String</td>
+<td class="detailTABLE">
+<p>Defines the origin and direction of rotation depending on how the angle of rotation was measured. Can be one of the following: 
+<ul>
+<li><b>geographic: </b> rotates the symbol from the north in a clockwise direction.</li>
+<li><b>arithmetic: </b> rotates the symbol from the east in a counter-clockwise direction.</li>
+</ul>
+</p>
+<p>This property is optional. The default value is "geographic"</p>
+</td>
+</tr>
+</table>
+
+<b>Examples: </b>
+<p>Specify a field that contains the rotation values</p>
+<pre class="prettyprint">
+{
+ field: "WindDirection",
+ type: "geographic"
+}
+</pre>
+<p>Use a function to compute wind direction from wind vectors</p>
+<pre class="prettyprint">
+{
+ field: function(graphic){
+  var U = graphic.attributes.U,
+  V = graphic.attributes.V;
+
+  //Oceanographic Convention
+  return 360 + (180 / Math.PI) * Math.atan2(U,V);
+ }
+}
+</pre> <i>(Added at v3.7)</i></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="values"></a>&lt;String[]&gt; values</h4></div>
+        <div class="detaildesc"><b>Deprecated at v2.0, use <a href="#infos">infos</a> instead.</b> An array of values defined for the renderer.</div>
+      </div>
+      <div class="sectionDivider">Method Details</div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="addvalue"></a>addValue(value or info,symbol?)</h4></div>
+        <div class="detaildesc">Adds a unique value and symbol. You can provide the value and its associated symbol as individual arguments or as an info object.</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;String&gt; value or info</td>
+        <td class="detailTABLE">Required</td>
+        <td class="detailTABLE">Value to match with. The value can be provided as individual arguments or as an info object with the following properties:
+    <table class="detailTABLE" cellspacing="0">
+          <tr>
+          <td class="detailTABLE">
+          &lt;String&gt; <b>value</b>
+          </td>
+          <td class="detailTABLE">
+            The unique value.
+          </td>
+          </tr>
+              <tr>
+                <td class="detailTABLE">
+                &lt;Symbol&gt; <b>symbol</b>
+                </td>
+                <td class="detailTABLE">
+                  The symbol used to display the value.
+                </td>
+          </tr>
+                    <tr>
+                      <td class="detailTABLE">
+                      &lt;String&gt; <b>label</b>
+                      </td>
+                      <td class="detailTABLE">
+                        Label for the symbol used to draw the value. 
+                      </td>
+          </tr>
+                              <tr>
+                      <td class="detailTABLE">
+                      &lt;String&gt; <b>description</b>
+                      </td>
+                      <td class="detailTABLE">
+                        Label for the symbol used to draw the value. 
+                      </td>
+          </tr>
+    </table></td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;<a href="symbol-amd.html">Symbol</a>&gt; symbol</td>
+        <td class="detailTABLE">Optional</td>
+        <td class="detailTABLE">Symbol used for the value.</td>
+      </tr>
+</table></div>        <div class="detaildesc"><b>Sample:</b> Specify the value and symbol as individual arguments.
+<pre class='prettyprint'>
+renderer.addValue("KS", symbol);
+</pre>
+Specify the symbol and value using the info object.
+<pre class='prettyprint'>
+renderer.addValue({
+  value: "KS",
+  symbol: new esri.symbol.SimpleFillSymbol(),
+  label: "Kansas",
+  description: "The Sunflower State"
+});
+</pre></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="getcolor"></a>getColor(graphic)</h4></div>
+        <div class="detaildesc">Gets the color for the Graphic. <i>(Added at v3.8)</i></div>        <div class="detaildesc"><b>Return value:</b> dojo.Color</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+        <td class="detailTABLE">Required</td>
+        <td class="detailTABLE">Graphic to get color from.</td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="getrotationangle"></a>getRotationAngle(graphic)</h4></div>
+        <div class="detaildesc">Returns the angle of rotation (in degrees) for the graphic calculated using rotationInfo.  <i>(Added at v3.7)</i></div>        <div class="detaildesc"><b>Return value:</b> Number</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+        <td class="detailTABLE">Required</td>
+        <td class="detailTABLE">An input graphic for which you want to get the angle of rotation.</td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="getsize"></a>getSize(graphic)</h4></div>
+        <div class="detaildesc">Return the symbol size (in pixels) for the graphic, calculated using <code>proportionalSymbolInfo</code>. <i>(Added at v3.7)</i></div>        <div class="detaildesc"><b>Return value:</b> Number</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+        <td class="detailTABLE">Required</td>
+        <td class="detailTABLE">The graphic for which you want to calculate the symbol size. </td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="getsymbol"></a>getSymbol(graphic)</h4></div>
+        <div class="detaildesc">Gets the symbol for the Graphic.</div>        <div class="detaildesc"><b>Return value:</b> <a href="symbol-amd.html">Symbol</a></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+        <td class="detailTABLE">Required</td>
+        <td class="detailTABLE">Graphic to symbolize.  Used when creating a custom renderer.</td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="getuniquevalueinfo"></a>getUniqueValueInfo(graphic)</h4></div>
+        <div class="detaildesc">Returns rendering and legend information (as defined by the renderer) associated with the given graphic. <i>(Added at v3.7)</i></div>        <div class="detaildesc"><b>Return value:</b> Object</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;<a href="graphic-amd.html">Graphic</a>&gt; graphic</td>
+        <td class="detailTABLE">Required</td>
+        <td class="detailTABLE">The graphic whose rendering and legend information will be returned.</td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="removevalue"></a>removeValue(value)</h4></div>
+        <div class="detaildesc">Removes a unique value.  After making changes, you must refresh the graphic.</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;String&gt; value</td>
+        <td class="detailTABLE">Required</td>
+        <td class="detailTABLE">Value to remove.</td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="setcolorinfo"></a>setColorInfo(info)</h4></div>
+        <div class="detaildesc">Sets the <code>colorInfo</code> property. <i>(Added at v3.8)</i></div>        <div class="detaildesc"><b>Return value:</b> <a href="renderer-amd.html">Renderer</a></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; info</td>
+        <td class="detailTABLE">Required</td>
+        <td class="detailTABLE">An info object that defines the color. It has the same properties as <code>colorInfo</code>.</td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="setproportionalsymbolinfo"></a>setProportionalSymbolInfo(info)</h4></div>
+        <div class="detaildesc">Modify proportional symbol info for the renderer. The <code>info</code> object has the same properties as <code>proportionalSymbolInfo</code>.
+<p>For changes to take effect call the GraphicsLayer <code>redraw</code> method after calling this method.</p> <i>(Added at v3.7)</i></div>        <div class="detaildesc"><b>Return value:</b> <a href="renderer-amd.html">Renderer</a></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; info</td>
+        <td class="detailTABLE">Required</td>
+        <td class="detailTABLE">An info object that defines the proportional symbol. The info argument has the same properties as <code>proportionalSymbolInfo</code>. </td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="setrotationinfo"></a>setRotationInfo(info)</h4></div>
+        <div class="detaildesc">Modifies rotation info for the renderer. The info argument has the same properties as <code>rotationInfo</code>.
+<p>For the changes to take effect, you need to call <code>GraphicsLayer.redraw</code> after calling this method. </code> <i>(Added at v3.7)</i></div>        <div class="detaildesc"><b>Return value:</b> <a href="renderer-amd.html">Renderer</a></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; info</td>
+        <td class="detailTABLE">Required</td>
+        <td class="detailTABLE">An object with the same properties as <code>rotationInfo</code>.</td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="tojson"></a>toJson()</h4></div>
+        <div class="detaildesc">Converts object to its ArcGIS Server JSON representation. Not supported for the TemporalRenderer. <i>(Added at v2.1)</i></div>        <div class="detaildesc"><b>Return value:</b> Object</div>
+      </div>
+      
+    </div>
+<div id="wh_footer" class="footnote" align="center">
+  Please <a href="mailto:js_feedback@esri.com?subject=Feedback on API Ref:  UniqueValueRenderer.html">contact the team</a> to comment or give suggestions.
+  <br>
+  Copyright &copy; Environmental Systems Research Institute, Inc.
+</div></div> <!-- sub 5 and 6:  main content for a page and feedback link -->
+  </div>
+</div> <!-- end main content -->
+
+<!-- TOC script -->
+<script src="../scripts/tree.js"></script>
+
+<script src="../prettify/prettify.js"></script>
+<script>
+  var dojoConfig = {
+    packages: [{
+      "name": "js",
+      "location": location.pathname.replace(/\/[^/]+$/, "/") + "../scripts"
+    }]
+  };
+</script>
+<script src="//js.arcgis.com/3.8compact/"></script> <!-- add API version -->
+<script src="../scripts/esri-main-apiref.js"></script>
+<script>
+require(["dojo/on", "dojo/query"], function(on, query) {
+  on(query(".eventSwitch"), "click", function(evt){
+    if (evt.target.classList[1] !== "enabled") {
+      query(".eventDiv").toggleClass("hidden");
+      query(".eventSwitch").toggleClass("enabled");
+    };
+  });
+});
+</script>
+<script src="../scripts/classList.js"></script>
+
+<!-- google analytics -->
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-215788-63']);
+  _gaq.push(['_setDomainName', 'arcgis.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+ <!-- google analytics, crazy egg and script to redirect old hash based URLs to static pages -->
+</body>
+</html>

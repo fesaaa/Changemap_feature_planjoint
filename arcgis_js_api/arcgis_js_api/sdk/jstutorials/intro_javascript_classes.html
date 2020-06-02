@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="ie lt-ie9 lt-ie8 lt-ie7 ie6"> <![endif]-->
+<!--[if IE 7]>         <html class="ie lt-ie9 lt-ie8 ie7"> <![endif]-->
+<!--[if IE 8]>         <html class="ie lt-ie9 ie8"> <![endif]-->
+<!--[if gt IE 8]><!--> <html> <!--<![endif]-->
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+  <meta name="content-language" content="en">
+  <meta name="product" content="js-api-arcgis">
+  <meta name="subject" content="DEVELOPER,WEB,WEB APPLICATIONS,MOBILE">
+  <meta name="sub_category" content="JavaScript API">
+  <meta name="search-collection" content="help">
+  <meta name="search-category" content="help-api">
+  <meta name="version" content="arcgis-3.8"> <!-- API version -->
+  <meta name="content_type" content="Tutorial"> <!-- options: Help Topic, API Reference or Tutorial -->
+  <meta name="last-modified" content="2013-12-19"> <!-- put in date docs were generated -->
+
+  <link rel="stylesheet" href="../styles/screen.css">
+  <link rel="stylesheet" href="../styles/jsdoc.css">
+  <link rel="stylesheet" href="../styles/homepage.css">
+  <link rel="stylesheet" href="../styles/grid.css">
+  <link rel="stylesheet" href="../styles/tree.css">
+  <link rel="stylesheet" href="../prettify/prettify.css">
+  <style>
+    html {
+      overflow-y: auto;
+    }
+    .navigation-bar, .section-bar {
+      margin-bottom: 0;
+    }
+    .navigation-bar header h1, .section-bar header h1 {
+      margin-top: .35294em;
+    }
+    .navigation-bar, .section-bar {
+      background: url('../graphics/banner.jpg') no-repeat center center #762783;
+      min-height: 48px;
+      color: white;
+    }
+    #esri-logo {
+      background: url('../graphics/logo-esri.png') no-repeat center center ;
+      width: 100px;
+    }
+    @font-face {
+    font-family:'icomoon';src:url('../fonts/icons.eot');src:url('../fonts/icons.eot?#iefix') format("embedded-opentype"),url('../fonts/icons.woff') format("woff"),url('../fonts/icons.ttf') format("truetype"),url('../fonts/icons.svg#icomoon') format("svg");font-weight:400;font-style:normal
+    }[data-icon]:before {
+      font-family: 'icomoon';
+      content: attr(data-icon);
+      speak: none;
+      font-weight: 400;
+      line-height: 1;
+      -webkit-font-smoothing: antialiased
+    }[class*="icon-"]:before {
+      font-family: 'icomoon';
+      speak: none;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 1;
+      -webkit-font-smoothing: antialiased;
+      text-transform: none
+    }
+    pre {
+      font-size: 1.1em;
+      line-height: normal;
+      margin: 0;
+    }
+    #header nav li a {
+      font-size: .875em;
+    }
+    #esri-logo {
+      margin-left: 0;
+    }
+  </style>
+  <!--[if lt IE 9]>
+    <script src="../scripts/libs/html5shiv.js"></script>
+    <script src="../scripts/libs/selectivizr-min.js"></script>
+    <style>
+      #wrapper {
+        min-width: 960px;
+      }
+    </style>
+  <![endif]-->
+  <title>
+    Tutorials | ArcGIS API for JavaScript 
+  </title>
+</head>
+  
+<body>
+<div id="nav">
+<header id="header">
+  <div class="container relative-container">
+    <div class="header-inner ">
+      <div class="logo-wrap"><a href="../" id="site-logo">Arc<span>GIS</span> API for JavaScript</a><!--span class="down-arrow" id="down-arrow"></span--></div>
+      <nav id="site-nav" class="">
+        <a href="/en/" class="selected">
+          <h4 class="developers">Arc<span>GIS</span> API for JavaScript</h4>
+          <p>Build location-aware applications with ArcGIS</p>
+        </a>
+
+        <a href="https://www.arcgis.com/about/">
+          <h4 class="organizations">Arc<span>GIS</span> for Organizations</h4>
+          <p>Learn more about ArcGIS</p>
+        </a>
+      </nav>
+
+      <a id="esri-logo" href="http://esri.com">Esri</a>
+      <div id="logged-out-navigation" class="dropdown-navigation hide">
+  <a id="login-link" class="btn small light" href="/en/log-in/">Log In</a>
+</div>
+<div id="logged-in-navigation" class="dropdown-navigation dropdown-wrapper hide">
+  <a href="/en/usage-summary" class="dropdown btn small light">
+    <!-- <img src="http://d3w50ib5d2uy0g.cloudfront.net/cdn/2464//js/esri/arcgisonline/css/images/no-user-thumb.jpg" width="16" height="16" alt=""> --><span id="username"></span>
+  </a>
+  <div class="dropdown-content">
+    <ul>
+      <li><a href="/en/usage-summary/">Usage Summary</a></li>
+      <li><a href="/en/applications/">Applications</a></li>
+      <li></li>
+      <li><a href="/en/tools/">GIS Tools</a></li>
+    </ul>
+    <hr>
+    <ul>
+      <li><a href="/en/account/profile/">Account Settings</a></li>
+      <li><a href="/en/feedback/">Feedback</a></li>
+    </ul>
+    <hr>
+    <ul>
+      <li><a id="log-out-link" href="#">Log Out</a></li>
+    </ul>
+  </div>
+</div>
+
+      <div id="mobile-navigation" class="dropdown-navigation dropdown-wrapper">
+        <a href="#" class="dropdown btn small light icon icon-list-2">Select <span>a Section</span></a>
+        <div class="dropdown-content">
+          <ul>
+            <li><a href="../jshelp/">Concepts</a></li>
+            <li><a href="../jsapi/">API Reference</a></li>
+            <li><a href="../jssamples/">Samples</a></li>
+            <li><a href="http://forums.arcgis.com/forums/15">Forum</a></li>
+            <li><a href="../../">All Developer Resources</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="navigation-bar">
+  <div class="container">
+    <nav>
+      <div id="section-label"><a href=".">Tutorials</a></div>
+      <ul>
+        <!--li class="current"><a href="/en/javascript/">Home</a></li-->
+        <li class="current"><a href=".">Tutorials</a></li>
+        <li><a href="../jshelp/">Concepts</a></li>
+        <li><a href="../jsapi/">API Reference</a></li>
+        <li><a href="../jssamples/">Samples</a></li>
+        <li><a href="http://forums.arcgis.com/forums/15">Forum</a></li>
+        <li><a href="../../">All Developer Resources</a></li>
+      </ul>
+    </nav>
+  </div>
+</div> 
+</div><!-- end nav bar --> <!-- sub 2: header and navigation -->
+
+<div class="container_12">
+  <div class="grid_3 contentWrapper">
+    <div id="toggleToc">
+      <img src="../graphics/tochide.gif"> Hide Table of Contents
+    </div>
+    <div id="apiToc"><div class="treeDiv" id="tree" style="top: 35px; left: 0px;">
+  <div id="treeRoot">
+    <div class="treeNode">
+      <a class="treeUnselected" href="intro_firstmap_amd.html" onclick="clickAnchor(this)">Build your first application</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="intro_agstemplate_amd.html" onclick="clickAnchor(this)">Use an ArcGIS.com webmap</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="mobile_dev.html" onclick="clickAnchor(this)">Mobile-specific application</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="intro_directions.html" onclick="clickAnchor(this)">Directions widget</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="tutorial_geocoder.html" onclick="clickAnchor(this)">Geocoder widget</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="tutorial_label_layer.html" onclick="clickAnchor(this)">Labeling features client-side</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="intro_javascript_classes.html" onclick="clickAnchor(this)">Write a class</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="intro_custom_dijit.html" onclick="clickAnchor(this)">Create a re-usable widget</a>
+    </div>
+  </div>
+</div>
+<!-- pretty printed via http://prettydiff.com/?m=beautify&html --></div> <!-- Conceptual help TOC -->
+  </div>
+  <div class="grid_9 contentWrapper">
+    <div id="topicPane"><div id="pageBanner">Writing a Class</div>
+
+<div id="nstext">
+
+<!--***START TEXT - DO NOT WRITE ABOVE THIS LINE***-->
+<p class="tutorial-outline">This tutorial covers the following:</p>
+<ol class="tutorial-outline">
+  <li><a href="#step1">Using modules and classes to manage your code</a></li>
+  <li><a href="#step2">Create a module</a></li>
+  <li><a href="#step3">Create a class</a></li>
+  <li><a href="#step4">Load a custom module</a></li>
+  <li><a href="#step5">Use a custom class</a></li>
+  <li><a href="#step6">Inherit from Esri classes</a></li>
+  <li><a href="#step7">Additional examples</a></li>
+</ol>
+
+<ol class="tutorial-content">
+  <li id="step1"><h3>Using modules and classes to manage your code</h3>
+    <p>Most developers who have worked on the web for a significant amount of time have likely evolved in how they manage their JavaScript code. When first starting out, it is common to put everything (HTML, CSS and JavaScript) in a single file. Eventually, this becomes cumbersome and JavaScript (as well as CSS) is moved to a separate file or files. As the amount of JS code continues to grow, so do the number of JS files. Over time, managing several different files that reference variables and objects defined in other places becomes hard to maintain.</p> 
+
+    <p>One solution to this problem is to use patterns from object-oriented (OO) programming to handle large JavaScript code bases. By using an object-oriented style, you can avoid spaghetti-code in your apps as well as increase the likelihood for code to be re-used. Application maintenance is also simplified allowing for bugs to be fixed faster and new features to be implemented in less time.</p>
+
+    <p>The primary goals of this tutorial are to save developers some of the headache of figuring this out on their own, provide some examples of how to write classes with the tools provided by Dojo, how to use classes provided by both Dojo and the ArcGIS API for JavaScript in your own classes and how to package classes as modules that conform to the Asynchronouse Module Definition (AMD) specification.</p>
+
+    <p>This tutorial will walk through writing a class to search <a href="http://seatgeek.com/" target="_blank">Seat Geek</a> via their <a href="http://platform.seatgeek.com/" target="_blank">API</a> which accepts a latitude, longitude coordinate pair and a search radius. The Seat Geek API returns information for events (concerts, baseball games, etc.) that fall within the specified area of interest.</p>
+
+    <p>The class to search Seat Geek will be called "SeatGeekSearch" and will live in a folder named "extras". The module where this class will live is "extras/SeatGeekSearch" and, rather than hard-coding that name, the module name is derived from the path to SeatGeekSearch.js.</p>
+
+    <p>Before working with the various Dojo components that help make OO JS possible, spend a little time reading through a couple of Dojo tutorials:</p> 
+    <ul>
+      <li><a href="http://dojotoolkit.org/documentation/tutorials/1.9/modules/" target="_blank">Defining Modules</a>
+      <li><a href="http://dojotoolkit.org/documentation/tutorials/1.9/declare/" target="_blank">Classy JavaScript with dojo/_base/declare</a>
+    </ul>
+    <p>Those tutorials provide the basic concepts that will be used throughout this tutorial to illustate best practices in organizing JavaScript code.</p>
+  </li>
+
+  <li id="step2"><h3>Create a module</h3>
+    <p>Before writing a class, we need to create a module where a class will live. <a href="http://dojotoolkit.org/reference-guide/1.9/loader/amd.html#the-amd-api" target="_blank">define()</a> is how we do this and also load any dependencies required by a class. The define function is part of Dojo's module loader and is similar to define provided by other AMD loaders, such as require.js.</p>
+
+    <p>Note that a module and a class are not the same thing. In the example shown here, the module created contains a single class. This is the recommended pattern to follow. It is possible for a module to contain multiple classes, but that is not encouraged.</p>
+
+    <p>The code below goes at the top of SeatGeekSearch.js and calls define():</p>
+    <div class="detailSample">
+    <pre class="prettyprint" style="border:none;">
+define(
+  ["dojo/_base/declare", "dojo/_base/lang", "esri/request"], 
+  function(declare, lang, esriRequest) { ... }
+);
+</pre>
+    </div>
+
+    <p>The first argument to define is an array of module identifiers. Modules listed in the array of module identifiers will be loaded and passed to the callback function (the second argument to define). Preferred argument aliases are used to name the arguments to callback function. These argument names can be anything you like, but the recommendation is to use <a href="https://docs.google.com/spreadsheet/ccc?key=0Avm8Hjje-xiXdFBVSURNdFpHSmNzOXlMcnU5V3k1Rmc#gid=0" target="_blank">Dojo's preferred argument aliases</a> and <a href="../jsapi/argument_aliases.html" target="_blank">Esri's preferred argument aliases</a> for Dojo and Esri modules, respectively.</p>
+
+    <p>SeatGeekSearch is a simple module and has three dependencies:  <a href="http://dojotoolkit.org/reference-guide/1.9/dojo/_base/declare.html#dojo-base-declare" target="_blank">dojo/_base/declare</a>, <a href="http://dojotoolkit.org/reference-guide/1.9/dojo/_base/lang.html" target="_blank">dojo/_base/lang</a> and <a href="../jsapi/namespace_esri-amd.html#request" target="_blank">esri/request</a>. Declare is used to create a class that can be instantiated, the lang module is brought in so that its <a href="http://dojotoolkit.org/reference-guide/1.9/dojo/_base/lang.html#hitch" target="_blank">hitch</a> function is available to provide the proper context for the response from the SeatGeek API and esri/request is used to talk to the SeatGeek API.</p>
+  </li>
+
+  <li id="step3"><h3>Create a class</h3>
+    <p>Once inside the callback function passed to define we know that all dependencies are loaded so we can create a class:</p>
+    <div class="detailSample">
+    <pre class="prettyprint" style="border:none;">
+declare(null, { ... });
+</pre>
+    </div>
+
+    <p>As used here, <a href="http://dojotoolkit.org/reference-guide/1.9/dojo/_base/declare.html#dojo-base-declare" target="_blank">declare</a> takes take two arguments:  superclass(es) and an object with properties and methods. <a href="http://dojotoolkit.org/documentation/tutorials/1.9/declare/" target="_blank">Dojo's "Classy JavaScript" tutorial</a> for more information on each parameter. Two arguments are used here so that an anonymous class is created. The advantage of creating an anonymous class is that the class is not tied to a specific module path and no globals are created.</p>
+
+    <p>All code for a custom class lives inside the properties and methods object that is passed to declare as the last argument. Below is the object that is passed to declare to implement the SeatGeekSearch class's functionality:</p>
+
+    <div class="detailSample">
+    <pre class="prettyprint" style="border:none;">
+{
+  distance: null,
+  lastSearchResult: null,
+  perPage: null,
+  queryParams: null,
+  seatGeekUrl: null,
+
+  constructor: function(options){
+    // specify class defaults
+    this.distance = options.distance || "20mi"; // default seat geek range is 30mi
+    this.perPage = options.perPage || 50; // default to 50 results per page
+    this.seatGeekUrl = "http://api.seatgeek.com/2/events";
+    
+    // returnEvents is called by an external function, esri.request
+    // hitch() is used to provide the proper context so that returnEvents
+    // will have access to the instance of this class
+    this.returnEvents = lang.hitch(this, this.returnEvents);
+  },
+
+  searchByLoc: function(geopoint) {
+    var eventsResponse;
+
+    this.queryParams = {
+      "lat": geopoint.y,
+      "lon": geopoint.x,
+      "page": 1,
+      "per_page": this.perPage,
+      "range": this.distance
+    }
+
+    // seat geek endpoints:
+    // petco park search using lat, lon:
+    // http://api.seatgeek.com/2/events?lat=32.7078&lon=-117.157&range=20mi&callback=c
+    // lat, lon for petco park:  32.7078, -117.157
+    eventsResponse = esriRequest({
+      "url": this.seatGeekUrl,
+      "callbackParamName": "callback",
+      "content": this.queryParams
+    });
+    return eventsResponse.then(this.returnEvents, this.err);
+  },
+
+  getMore: function() {
+    var eventsResponse;
+
+    // increment the page number
+    this.queryParams.page++;
+    
+    eventsResponse = esri.request({
+      "url": this.seatGeekUrl,
+      "callbackParamName": "callback",
+      "content": this.queryParams
+    });
+    return eventsResponse.then(this.returnEvents, this.err);
+  },
+
+  returnEvents: function(response) {  
+    // check number of results 
+    if ( response.meta.total == 0 ) {
+      // console.log("Seat Geek returned zero events: ", response);
+      return null;
+    }
+
+    // save search result
+    this.lastSearchResult = response;
+    // console.log("set last search result: ", response, this);
+
+    return response;
+  },
+
+  err: function(err) {
+    console.log("Failed to get results from Seat Geek due to an error: ", err);
+  }
+}
+</pre>
+</div>
+
+  <p>Starting at the top, various class properties are initialized to null. When the class's constructor runs (this happens whenever <code>new SeatGeekSearch()</code> is called), class properties are populated with values supplied via the object passed to the class constructor or with default values. The code in the constructor is also using <a href="http://dojotoolkit.org/reference-guide/1.9/dojo/_base/lang.html#hitch">lang.hitch</a> to provide the proper contenxt for the returnEvents method so that it will be able to access the correct instance properties when called from another function. If the lang.hitch call were omitted, returnEvents would not be able to access properties of the class when called as a callback from esriRequest.</p>
+
+  <p>That's it for creating a custom module that defines a class.</p>
+</li>
+
+<li id="step4"><h3>Load a custom module</h3>
+  <p>Once you've created a custom module, you need to load it. This comes down to telling Dojo's module loader how to resolve the path for your module which means mapping a module identifier to a file on your web server.</p>
+
+  <p>Dojo provides multiple options for doing this, the simplest of which is dojoConfig.paths. On the SitePen blog, there's a <a href="http://www.sitepen.com/blog/2013/06/20/dojo-faq-what-is-the-difference-packages-vs-paths-vs-aliases/" target="_blank">post discussing the differences between aliases, paths and packages</a> which is a good read. You can use dojoConfig.paths or dojoConfig.packages to tell Dojo where to find your custom module(s), but paths has the simplest syntax.</p>
+
+  <p>Here's how we can load the SeatGeekSearch module when using the JSAPI from the esri cdn:</p>
+    <div class="detailSample">
+    <pre class="prettyprint" style="border:none;">
+var dojoConfig = { 
+  paths: { extras: location.pathname.replace(/\/[^/]+$/, "") + "/extras" }
+};
+</pre>
+    </div>
+
+  <p>The value for extras looks like gibberish but is necessary to derive an absolute path for the extras folder from the location of the current .html page. There's more info about this in the <a href="http://dojotoolkit.org/documentation/tutorials/1.9/cdn/" target="_blank">Using Custom Modules with a CDN Dojo tutorial</a> as well as in a <a href="http://forums.arcgis.com/threads/86718-Meaning-of-Pathname-characters?p=306503&viewfull=1#post306503" target="_blank">forum post in the JSAPI forum that goes into detail about the regular expression used</a>.
+  </p>
+</li>
+
+<li id="step5"><h3>Use a custom class</h3>
+
+  <p>Now that Dojo knows where to find modules in the extras folder, <a href="http://dojotoolkit.org/reference-guide/1.9/loader/amd.html#the-amd-api" target="_blank">require</a> can be used to load it along with other modules used by an application.</p>
+
+  <p>Here's a require block that loads the extras/SeatGeekSearch module as well as a couple of other Dojo and Esri modules:</p>
+    <div class="detailSample">
+    <pre class="prettyprint" style="border:none;">
+require([
+  "dojo/_base/array", 
+  "extras/SeatGeekSearch", 
+  "esri/map", 
+  "esri/geometry/webMercatorUtils",
+  "dojo/domReady!"
+], function(
+  arrayUtils, SeatGeekSearch, Map, webMercatorUtils
+) { 
+  // SeatGeekSearch, as well other modules, are available here
+});
+</pre>
+    </div>
+
+  <p>The next step is to create an instance of the SeatGeekSearch class using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new" target="_blank">JavaScript's new keyword</a>:</p>
+
+    <div class="detailSample">
+    <pre class="prettyprint" style="border:none;">
+// instantiate the Seat Geek Search class
+var sg = new SeatGeekSearch({
+  distance: "20mi",
+  perPage: 10
+});
+</pre>
+    </div>
+
+  <p>Finally, hook up an event listener to call SeatGeekSearch.searchByLoc when the map is clicked:</p>
+
+    <div class="detailSample">
+    <pre class="prettyprint" style="border:none;">
+// search Seat Geek for events when the map is clicked
+map.on("click", function(e) {
+  // Seat Geek expects latitude, longitude
+  var geographic = webMercatorUtils.webMercatorToGeographic(e.mapPoint);
+  // searchByLoc returns a deferred
+  // once the deferred is resolved, 
+  // pass the results to a callback function
+  var sgResults = sg.searchByLoc(geographic);
+  sgResults.then(searchSucceeded, searchFailed);
+});
+</pre>
+    </div>
+
+  <p>If the request to the Seat Geek API completes successfully, searchSucceeded will run. Otherwise, searchFailed will run and log the error that occured.</p>
+
+  <p>A full example is also available:  <a href="http://servicesbeta.esri.com/demos/using-classes-with-javascript/seatgeek-search/" target="_blank">SeatGeekSearch example</a>. Results from Seat Geek are logged to the browser's console after clicking the map.</p>
+</li>
+
+<li id="step6"><h3>Inherit from Esri classes</h3>
+
+  <p>Occasionally, it is necessary to extend an Esri provided class to create a new class that behaves differently than the Esri version. To do this, the same patterns as creating a custom module and class from scratch apply. But there are a couple of differences. Specifically:</p>
+
+  <ul>
+    <li>Load the class to inherit from as a dependency.</li>
+    <li>Specify the class or classes to inherit from as a superclass in declare</li>
+    <li>Override methods or properties to implement custom functionality</li>
+  </ul>
+
+  <p>For instance, if a developer wanted to create a custom renderer, the workflow would be to load the appropriate renderer module, specify the renderer class as a super class via declare and override <a href="../jsapi/simplerenderer-amd.html#getsymbol" target="_blank">getSymbol</a> to create and return an appropriate symbol.</p>
+</li>
+
+<li id="step7"><h3>Additional examples</h3>
+  <p>There are serveral samples in the SDK that create custom classes:</p>
+  <ul>
+    <li><a href="../jssamples/exp_rasterlayer.html" target="_blank">Canvas with Raster Layer</a>
+    <li><a href="../jssamples/layers_custom_wms.html" target="_blank">Creating a Custom Layer</a>
+    <li><a href="../jssamples/graphics_undoredo.html" target="_blank">Custom Undo/Redo Operation</a>
+    <li><a href="../jssamples/widget_extendInfowindow.html" target="_blank">Info Window - Custom</a>
+    <li><a href="../jssamples/layers_point_clustering.html" target="_blank">Point Clustering</a>
+  </ul>
+</li>
+
+<!--***END TEXT - DO NOT WRITE BELOW THIS LINE***-->
+</div>
+<div id="wh_footer" class="footnote" align="center">
+  Please <a href="mailto:js_feedback@esri.com?subject=Feedback on jstutorials/intro_javascript_classes.html">contact the team</a> to comment or give suggestions.
+  <br>
+  Copyright &copy; Environmental Systems Research Institute, Inc.
+</div></div> <!-- main content for a page and feedback markup-->
+  </div>
+</div> <!-- end main content -->
+
+<!-- TOC script -->
+<script src="../scripts/tree.js"></script>
+
+<script src="../prettify/prettify.js"></script>
+<script>
+  var dojoConfig = {
+    packages: [{
+      "name": "js",
+      "location": location.pathname.replace(/\/[^/]+$/, "/") + "../scripts"
+    }]
+  };
+</script>
+<script src="//js.arcgis.com/3.8compact/"></script> <!-- add API version -->
+<script src="../scripts/esri-main-tutorials.js"></script>
+
+<!-- google analytics -->
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-215788-63']);
+  _gaq.push(['_setDomainName', 'arcgis.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+ <!-- sub 5:  add script to redirect old hash based URLs to static pages and google analytics-->
+
+</body>
+</html>

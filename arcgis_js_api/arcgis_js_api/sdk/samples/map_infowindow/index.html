@@ -1,0 +1,56 @@
+ <!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <!--The viewport meta tag is used to improve the presentation and behavior of the samples 
+      on iOS devices-->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+    <title>Non graphic info window</title>
+    
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/esri/css/esri.css">
+    <style>
+      html, body, #map{
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    
+    <script src="http://js.arcgis.com/3.8/"></script>
+    <script>
+      require([
+          "esri/map",
+          "dojo/domReady!"
+        ], function(
+          Map
+        ){
+          var map = new Map("map", {
+            basemap: "satellite",
+            center: [-116.96, 33.184],
+            zoom: 7
+          });  
+
+          map.on("load", function(){
+            map.infoWindow.resize(250,100);
+          });
+
+          map.on("click", addPoint);
+
+          function addPoint(evt) {
+            map.infoWindow.setTitle("Coordinates");
+            //Need to convert the coordinates from the map's spatial reference (web mercator) to geographic to display lat/lon values
+      
+            var latitude = evt.mapPoint.getLatitude();
+            var longitude = evt.mapPoint.getLongitude();
+     
+            map.infoWindow.setContent("lat/lon : " +latitude.toFixed(2) + ", " + longitude.toFixed(2) +
+              "<br>screen x/y : " + evt.screenPoint.x + ", " + evt.screenPoint.y);
+            map.infoWindow.show(evt.mapPoint,map.getInfoWindowAnchor(evt.screenPoint));
+          }
+        });
+    </script>
+  </head>
+  <body>
+    <div id="map"></div>
+  </body>
+</html>

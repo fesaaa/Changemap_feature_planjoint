@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html manifest="mobile.manifest">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <!-- Sets whether a web application runs in full-screen mode. -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <!-- Sets the style of the status bar for a web application. -->
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <title>Soil Survey</title>
+
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.css" />
+  <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/esri/css/esri.css" />
+
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0px;
+      padding: 0px;
+      width: 100%;
+    }
+
+    .ui-content {
+      padding: 0 !important;
+    }
+
+    #contentDiv {
+      font-size: 0.85em;
+      padding: 5px;
+    }
+
+    #map {
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      z-index: 0;
+    }
+
+  </style>
+
+  <script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
+  <script src="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.js"></script>
+  <script src="http://js.arcgis.com/3.8compact"></script>
+
+  <script>
+    require([
+      "dojo/_base/array",
+      "dojo/_base/Color",
+      "dojo/dom",
+      "dojo/on",
+      "dojo/parser",
+      "dojo/ready",
+      "esri/map",
+      "esri/geometry/Point",
+      "esri/graphic",
+      "esri/layers/ArcGISDynamicMapServiceLayer",
+      "esri/layers/FeatureLayer",
+      "esri/layers/ImageParameters",
+      "esri/dijit/Legend",
+      "esri/symbols/PictureMarkerSymbol",
+      "esri/symbols/SimpleFillSymbol",
+      "esri/tasks/query"],
+        function (array, Color, dom, on, parser, ready, Map, Point, Graphic, ArcGISDynamicMapServiceLayer, FeatureLayer, ImageParameters, Legend, PictureMarkerSymbol, SimpleFillSymbol, Query) {
+          parser.parse();
+
+          var map, soilSurvey, query;
+
+          ready(function () {
+            if (navigator.geolocation) {
+              // if you want to track as the user moves setup navigator.geolocation.watchPostion
+              navigator.geolocation.getCurrentPosition(initMap, locationError);
+            }
+          });
+
+          function initMap(position) {
+            // create the map
+            map = new Map("map", {
+              center :[-100.21318, 37.032053],
+              zoom   :7,
+              basemap:"gray"
+            });
+            on(map, "load", mapLoadHandler);
+
+            var imageParameters = new ImageParameters();
+            imageParameters.layerIds = [0];
+            imageParameters.layerOption = ImageParameters.LAYER_OPTION_SHOW;
+            var soilDynamicLayer = new ArcGISDynamicMapServiceLayer("http://server.arcgisonline.com/ArcGIS/rest/services/Specialty/Soil_Survey_Map/MapServer", {"opacity":.50, imageParameters:imageParameters});
+            map.addLayer(soilDynamicLayer);
+
+            soilSurvey = new FeatureLayer("http://server.arcgisonline.com/ArcGIS/rest/services/Specialty/Soil_Survey_Map/MapServer/0", {
+              mode     :esri.layers.FeatureLayer.MODE_SELECTION,
+              outFields:["*"]
+            });
+            soilSurvey.setSelectionSymbol(new SimpleFillSymbol().setColor(new Color([254, 216, 93, .60])));
+            map.addLayer(soilSurvey);
+            map.infoWindow.resize(200, 250);
+
+            zoomToLocation(position);
+          }
+
+          function mapLoadHandler(map) {
+            $(document).ready(jQueryReady);
+          }
+
+          function jQueryReady() {
+            var legend = new Legend({
+              map                   :map,
+              respectCurrentMapScale:false,
+              layerInfos            :[
+                {
+                  layer:soilSurvey, title:"Dominant Soil Order"
+                }
+              ]
+            }, "legendDiv");
+            legend.startup();
+          }
+
+          function locationError(error) {
+            switch (error.code) {
+              case error.PERMISSION_DENIED:
+                console.log("Location not provided");
+                break;
+              case error.POSITION_UNAVAILABLE:
+                console.log("Current location not available");
+                break;
+              case error.TIMEOUT:
+                console.log("Timeout");
+                break;
+              default:
+                console.log("unknown error");
+                break;
+            }
+          }
+
+          function zoomToLocation(position) {
+            $.mobile.hidePageLoadingMsg(); //true hides the dialog
+            var pt = esri.geometry.geographicToWebMercator(new Point(position.coords.longitude, position.coords.latitude));
+            map.centerAndZoom(pt, 13);
+            //uncomment to add a graphic at the current location
+            var symbol = new PictureMarkerSymbol("images/bluedot.png", 40, 40);
+            map.graphics.add(new Graphic(pt, symbol));
+            console.dir(position);
+          }
+        }
+    )
+  </script>
+</head>
+
+<body>
+<div data-role="page" id="page">
+  <!-- header -->
+  <div data-theme="a" data-role="header" data-position="fixed">
+    <h3>Soil Map</h3>
+    <a href="#triangleDialog" data-rel="popup" data-theme="a" data-position-to="window" data-role="button"
+       data-inline="true" data-transition="pop" data-icon="info" data-iconpos="notext">Soil Texture</a>
+    <a href="#legendDialog" data-rel="popup" data-theme="a" data-position-to="window" data-role="button"
+       data-inline="true" data-transition="pop" data-icon="grid" data-iconpos="notext">Legend</a>
+  </div>
+
+  <!-- content -->
+  <div data-role="content">
+    <div id="map"></div>
+  </div>
+
+  <div data-role="popup" id="triangleDialog" data-theme="a">
+    <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext"
+       class="ui-btn-right">Close</a>
+
+    <div data-role="header">
+      <h1>Soil Texture</h1>
+    </div>
+    <div data-role="content">
+      <img src="images/soilTriangle.jpg" width="300" height="300" />
+    </div>
+  </div>
+
+  <div data-role="popup" id="legendDialog" data-overlay-theme="a" data-theme="a" data-dismissible="false"
+       class="ui-corner-all" style="width:250px; height: 250px">
+    <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext"
+       class="ui-btn-right">Close</a>
+
+    <div data-role="header" data-theme="a" class="ui-corner-top">
+      <h1>Legend</h1>
+    </div>
+    <div data-role="content" data-theme="d" class="ui-corner-bottom ui-content">
+      <div id="legendDiv"></div>
+    </div>
+  </div>
+
+  <div data-role="popup" id="attributePage" data-overlay-theme="a" data-theme="a" data-dismissible="false"
+       class="ui-corner-all popupStyle" style="width:250px; height: 250px">
+    <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext"
+       class="ui-btn-right">Close</a>
+
+    <div data-role="header" data-theme="a" class="ui-corner-top">
+      <h1>Soil Information</h1>
+    </div>
+    <div data-role="content" data-theme="d" class="ui-corner-bottom ui-content">
+      <div id="contentDiv"></div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

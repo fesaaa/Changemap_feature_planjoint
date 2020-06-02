@@ -1,0 +1,182 @@
+/*
+  Portions from Gridpak Beta CSS:  http://gridpak.com/
+  Gridpak created by @erskinedesign
+*/
+
+body,
+html,
+div {
+  color: #fff;
+  font-family: sans-serif;
+  margin: 0;
+  padding:0;
+ }
+ 
+.page {
+  margin: 0 auto;
+  max-width: 98%;
+  overflow: hidden;
+  position: relative;
+}
+
+.shadow {
+  -moz-box-shadow: 0 0 5px #888;
+  -webkit-box-shadow: 0 0 5px #888;
+  box-shadow: 0 0 5px #888;
+}
+
+/* Reusable column setup from gridpak */
+.col {
+  border:0px solid rgba(0,0,0,0);
+  float:left;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  box-sizing:border-box;
+  -moz-background-clip:padding-box !important;
+  -webkit-background-clip:padding-box !important;
+  background-clip:padding-box !important;
+  background: #777;
+  margin-bottom: 1%;
+}
+.top {
+  background: transparent;
+  color: #777;
+  margin-bottom: 0;
+  margin-top: 1%;
+  text-shadow: 0px 1px 2px #666;
+}
+.top span {
+  color: #fff;
+  cursor: pointer;
+  float: left;
+  font-size: 1.2em;
+  font-weight: bold;
+  margin: 4px 0 0 0;
+}
+
+#header {
+  background: transparent;
+  font-size: 1.6em; 
+  font-weight: bold;
+  padding: 4px 0 4px 0;
+  text-align: right; 
+}
+#subheader {
+  font-size: 1em;
+  font-weight: bold;
+  text-align:right;
+}
+#map {
+  background: transparent;
+}
+
+/* drop shadow styles */
+.ds { background: #000; overflow: hidden; position: absolute; z-index: 2; }
+#ds-l div { height: 100%; }
+#ds .o1 { filter: alpha(opacity=10); opacity: .1; }
+#ds .o2 { filter: alpha(opacity=8); opacity: .08; }
+#ds .o3 { filter: alpha(opacity=6); opacity: .06; }
+#ds .o4 { filter: alpha(opacity=4); opacity: .04; }
+#ds .o5 { filter: alpha(opacity=2); opacity: .02; }
+#ds .v1 { width: 1px; }
+#ds .v2 { width: 2px; }
+#ds .v3 { width: 3px; }
+#ds .v4 { width: 4px; }
+#ds .v5 { width: 5px; }
+
+/* Adapted from gridpak.com */
+/* media query for screens less than 800px */
+@media screen and (min-width: 0px) and (max-width: 799px) {
+  html {
+    background: #999; /* don't use a background image on small screens */
+  }
+  .col {
+    margin-left:2%;
+  	padding:0 1%;
+  }
+
+  .row .col:first-child {
+    margin-left:0;
+  }
+
+  #header {
+    font-size: 1em;
+  }
+  #subheader {
+    font-size: 0.8em;
+  }
+  .top span {
+    font-size: 1em;
+  }
+
+  #mapLayerContainer {
+    display: none;
+  }
+
+  .top,
+  .mapContainer {
+    width:100%;
+    height: 3em;
+    margin-left:0;
+  }
+  .top button {
+    visibility: visible;
+  }
+  .mapContainer {
+    height: 500px;
+    padding: 0;
+  }
+  #map {
+    height: 500px;
+    position: relative;
+    width: 100%;
+  }
+  .ds {
+    visibility: hidden;
+  }
+}
+
+/* media query for screens wider than 800px */
+@media screen and (min-width: 800px) {
+  html {
+    /* http://subtlepatterns.com/retro-intro/ */
+    background: url("../images/retro_intro.png") #fff;
+  } 
+  .row {
+    margin-left:-12px;
+  }
+  .col {
+    border-left-width:12px;
+    padding:0 12px;
+  }
+
+  #mapLayerContainer {
+    height: 500px;
+    padding-top: 10px;
+    width:25.0%;
+  }
+
+  .mapContainer {
+    border-left-width: 0;
+    height: 500px;
+    padding: 0;
+    width:75.0%;
+  }
+
+  .top {
+    width: 100%;
+    height: 60px;
+    margin-left: 0;
+  }
+  .top span {
+    visibility: hidden;
+  }
+  #mapLayerList {
+    padding: 5px 0 0 0;
+  }
+  #map {
+    height: 500px;
+    position: relative;
+    width: 100%;
+  }
+}

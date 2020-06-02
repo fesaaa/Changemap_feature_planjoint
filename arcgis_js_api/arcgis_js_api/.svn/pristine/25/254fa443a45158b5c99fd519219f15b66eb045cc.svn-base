@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=7, IE=9, IE=10">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title></title>
+    <link rel="stylesheet" href="//js.arcgis.com/3.8/js/dojo/dijit/themes/claro/claro.css">
+    <link rel="stylesheet" href="//js.arcgis.com/3.8/js/esri/css/esri.css">
+    <style>
+      html, body, #map {
+        height: 100%; width: 100%; margin: 0; padding: 0; 
+      }
+      #classList {
+        word-break: break-all;
+        padding: 1em;
+      }
+    </style>
+
+    <script src="//js.arcgis.com/3.8/"></script>
+    <script>
+      var map;
+    
+      require([
+        "esri/request",
+        "dojo/_base/array",
+        "dojo/dom",
+        "esri/IdentityManager",
+        "dojo/domReady!"
+      ], function(
+        esriRequest, arrayUtils, dom
+      ) {
+        // var url = "http://services.arcgis.com/V6ZHFr6zdgNZuVG0/ArcGIS/rest/services/JSAPI/FeatureServer/main/query";
+        var url = "http://services.arcgis.com/V6ZHFr6zdgNZuVG0/ArcGIS/rest/services/arcgis-js/FeatureServer/1/query";
+        var req = esriRequest({
+          url: url,
+          content: {
+            f: "json",
+            where: "1=1",
+            returnGeometry: false,
+            outFields: "*"
+          },
+          callbackParamName: "callback"
+        })
+        req.then(
+          function(results) {
+            console.log("results", results);
+            var classes = results.features;
+            // if all class are to be included, can use arrayUtils.map
+            //
+            // var classArray = arrayUtils.map(classes, function(c) {
+            //   return "\"" + c.attributes.package + "." + c.attributes.class_name + "\"";
+            // });
+            // 
+            // since some need to be left out, use forEach and ignore stuff
+            // var ignore = ["esri.dijit.analysis", "LabelClass", "esri.arcgis.utils"];
+            var ignore = ["esri.arcgis.utils", "InfographicsOptions.Item", "ShieldLabelSymbol", "GeometryStudyArea", "AddressStudyArea", "StandardGeographyStudyArea", "StudyArea", "esri.geometry.jsonUtils", "esri.renderers.jsonUtils", "esri.symbols.jsonUtils"];
+            var classArray = [];
+            arrayUtils.forEach(classes, function(cls) {
+              var f = cls.attributes.folder;
+              var c = cls.attributes.name;
+              if ( arrayUtils.indexOf(ignore, c) == -1 && arrayUtils.indexOf(ignore, f) == -1 && f && c ) {
+                // console.log("adding", f, c);
+                // classArray.push("\"" + f + "." + c + "\"");
+                classArray.push("\"" + f + "." + c + "\"");
+              } else {
+                console.log("ignoring", f, c);
+              }
+            });
+
+            // put class list in a format that can be copied into a .js file
+            // ideally, this would be done with python instead of JS + copy/paste
+            dom.byId("classList").innerHTML = "var classList = [" + classArray.join(",") + "];";
+          },
+          function(error) {
+            console.log("error", error);
+          }
+        );
+        console.log("sent request...");
+      });
+    </script>
+  </head>
+  <body class="claro">
+    <div id="classList"></div>
+  </body>
+</html>

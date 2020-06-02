@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <!--The viewport meta tag is used to improve the presentation and behavior of the samples 
+      on iOS devices-->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+    <title>Formatter Function</title>
+
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/dojo/dijit/themes/soria/soria.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/dojo/dojox/layout/resources/ExpandoPane.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/esri/css/esri.css">
+    <style>
+      html, body { height: 100%; width: 100%; margin: 0; padding: 0; }
+    </style>
+
+    <script>var dojoConfig = { parseOnLoad: true };</script>
+    <script src="http://js.arcgis.com/3.8/"></script>
+    <script language="Javascript">
+      dojo.require("dojo.number");
+      dojo.require("dojo.fx.easing");
+      dojo.require("dijit.layout.BorderContainer");
+      dojo.require("dijit.layout.ContentPane");
+      dojo.require("dojox.layout.ExpandoPane");
+      dojo.require("esri.layers.FeatureLayer");
+      dojo.require("esri.map");
+     
+      var map, counties;
+
+      function init() {
+        map = new esri.Map("mapDiv",{
+          basemap: "streets",
+          center: [-86.796, 47.13],
+          zoom: 7
+        });
+        
+        var infoTemplate = new esri.InfoTemplate();
+        infoTemplate.setTitle("Population in ${NAME}");
+        infoTemplate.setContent( "<b>2007: </b>${POP2007:compare}<br/>"
+                             + "<b>2007 density: </b>${POP07_SQMI:compare}<br/><br/>"
+                             + "<b>2000: </b>${POP2000:NumberFormat}<br/>"
+                             + "<b>2000 density: </b>${POP00_SQMI:NumberFormat}");
+        
+        counties = new esri.layers.FeatureLayer("http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Demographics/ESRI_Census_USA/MapServer/3",{
+          mode: esri.layers.FeatureLayer.MODE_SNAPSHOT,
+          infoTemplate:infoTemplate,
+          outFields:["NAME", "POP2000", "POP2007", "POP00_SQMI", "POP07_SQMI"]
+        
+        });
+        counties.setDefinitionExpression("STATE_NAME = 'Michigan'");
+      
+        //apply a renderer
+        var symbol = new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID, new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new dojo.Color([255,255,255,0.35]), 1),new dojo.Color([109,146,155,0.35]));
+        counties.setRenderer(new esri.renderer.SimpleRenderer(symbol));
+      
+        map.addLayer(counties);
+       
+        dojo.byId("chkT1").checked = true;
+      }      
+
+      function compare(value, key, data) {
+        var result = "", diff, pctChange;
+
+        switch(key) {
+          case "POP2007":
+            result = value > data.POP2000 ? "images/up.png" : "images/down.png";
+            diff = data.POP2007 - data.POP2000;
+            pctChange = (diff * 100) / data.POP2000;
+            break;
+
+          case "POP07_SQMI":
+            result = value > data.POP00_SQMI ? "images/up.png" : "images/down.png";
+            diff = data.POP07_SQMI - data.POP00_SQMI;
+            pctChange = (diff * 100) / data.POP00_SQMI;
+            break;
+        }
+
+        return dojo.number.format(value) + 
+               "&nbsp;&nbsp; <img src='" + result + "'/>" + 
+               "&nbsp;&nbsp;<span style='color: " + (pctChange < 0 ? "red" : "green") + ";'>" 
+               + dojo.number.format(pctChange, { places: 3 }) + "%</span>";
+      }
+
+      function compare2(value, key, data) {
+        var diff = data.POP2007 - data.POP2000;
+        var result = diff > 0 ? "images/up.png" : "images/down.png";
+        var pctChange = (diff * 100) / data.POP2000;
+
+        return "<img src='" + result + "'/>" + 
+               "&nbsp;&nbsp;<span style='color: " + (pctChange < 0 ? "red" : "green") + ";'>" 
+               + dojo.number.format(pctChange, { places: 3 }) + "%</span>";
+      }
+
+      function changeInfoTemplate() {
+        console.log("changed");
+        map.infoWindow.hide(); 
+
+        var t1 = dojo.byId("chkT1").checked;
+        var t2 = dojo.byId("chkT2").checked;
+
+        switch(true) {
+          case t1:
+            counties.infoTemplate.setContent( "<b>2007: </b>${POP2007:compare}<br/>"
+                                 + "<b>2007 density: </b>${POP07_SQMI:compare}<br/><br/>"
+                                 + "<b>2000: </b>${POP2000:NumberFormat}<br/>"
+                                 + "<b>2000 density: </b>${POP00_SQMI:NumberFormat}");
+            break;
+
+          case t2:
+            counties.infoTemplate.setContent( "<b>2007: </b>${POP2007}<br/>"
+                                 + "<b>2007 density: </b>${POP07_SQMI}<br/><br/>"
+                                 + "<b>2000: </b>${POP2000:NumberFormat}<br/>"
+                                 + "<b>2000 density: </b>${POP00_SQMI:NumberFormat}<br/><br/>"
+                                 + "Diff: ${DIFF:compare2}");
+            break;
+        }
+      }
+      dojo.ready(init);
+    </script>
+  </head>
+  <body class="soria">
+    <div data-dojo-type="dijit.layout.BorderContainer" 
+         data-dojo-props="design:'headline', gutters:true" 
+         style="width: 100%; height: 100%; margin: 0;">
+
+      <div data-dojo-type="dojox.layout.ExpandoPane" 
+           data-dojo-props="duration:300, title:'Details', region:'left', maxWidth:'220px', easeIn:'dojo.fx.easing.linear', easeOut:'dojo.fx.easing.linear'" 
+           style="width:220px;">
+         <p>
+          Click a county to view the population change between 2000 and 2007.<br/> <br/>
+          <b>Change the info template:</b> Template 1 displays the percentage growth (or decline) in population. The values are color-coded green for popluation increase and red for decline in population. Template 2 creates a new calculated field called diff that displays the population difference. <br/>
+          <input id="chkT1" name="template" type="radio" onclick="changeInfoTemplate();" />
+          <label for="chkT1">Template 1</label>
+          <br />
+          <input id="chkT2" name="template" type="radio" onclick="changeInfoTemplate();" />
+          <label for="chkT2">Template 2</label>
+        </p>
+      </div>
+      <div id="mapDiv" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="region:'center'"></div>
+    </div>
+  </body>
+
+</html>

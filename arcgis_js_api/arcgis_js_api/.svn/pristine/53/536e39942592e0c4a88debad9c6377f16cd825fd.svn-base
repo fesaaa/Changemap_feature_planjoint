@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <!--The viewport meta tag is used to improve the presentation and behavior of the samples 
+    on iOS devices-->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+    <title>Customize Map Zoom Rectangle Symbol</title>
+    
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/dojo/dijit/themes/claro/claro.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/esri/css/esri.css">
+     
+    <script src="http://js.arcgis.com/3.8/"></script>
+    <script>
+      dojo.require("esri.map");
+
+      var map;
+
+      function init() {
+        // configure map zoom rectangle by creating a symbol, 
+        // converting to JSON and specifying it as the default zoomSymbol
+        var sfs = esri.symbol.SimpleFillSymbol;
+        var sls = esri.symbol.SimpleLineSymbol;
+        var zoomSymbol = new sfs(
+          "solid", 
+          new sls("dashdot", new dojo.Color([0,0,255]), 2), 
+          new dojo.Color([255,255,0,0.5])
+        );
+        esri.config.defaults.map.zoomSymbol = zoomSymbol.toJson();
+        
+        var initExtent = new esri.geometry.Extent({"xmin":-13814922,"ymin":332653,"xmax":6222585,"ymax":10351408,"spatialReference":{"wkid":102100}});
+        map = new esri.Map("map", {
+          center: [-34.102, 43.197],
+          zoom: 3
+        });
+        map.addLayer(new esri.layers.ArcGISTiledMapServiceLayer("http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer"));
+      }
+
+      dojo.ready(init);
+    </script>
+  </head>
+  <body class="claro">
+    Configure map zoom rectangle symbol
+    <div id="map" style="width:1024px; height:512px; border:1px solid #000;"></div>
+  </body>
+</html>

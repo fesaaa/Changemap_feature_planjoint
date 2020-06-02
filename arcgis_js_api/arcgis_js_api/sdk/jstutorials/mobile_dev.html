@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="ie lt-ie9 lt-ie8 lt-ie7 ie6"> <![endif]-->
+<!--[if IE 7]>         <html class="ie lt-ie9 lt-ie8 ie7"> <![endif]-->
+<!--[if IE 8]>         <html class="ie lt-ie9 ie8"> <![endif]-->
+<!--[if gt IE 8]><!--> <html> <!--<![endif]-->
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+  <meta name="content-language" content="en">
+  <meta name="product" content="js-api-arcgis">
+  <meta name="subject" content="DEVELOPER,WEB,WEB APPLICATIONS,MOBILE">
+  <meta name="sub_category" content="JavaScript API">
+  <meta name="search-collection" content="help">
+  <meta name="search-category" content="help-api">
+  <meta name="version" content="arcgis-3.8"> <!-- API version -->
+  <meta name="content_type" content="Tutorial"> <!-- options: Help Topic, API Reference or Tutorial -->
+  <meta name="last-modified" content="2013-12-19"> <!-- put in date docs were generated -->
+
+  <link rel="stylesheet" href="../styles/screen.css">
+  <link rel="stylesheet" href="../styles/jsdoc.css">
+  <link rel="stylesheet" href="../styles/homepage.css">
+  <link rel="stylesheet" href="../styles/grid.css">
+  <link rel="stylesheet" href="../styles/tree.css">
+  <link rel="stylesheet" href="../prettify/prettify.css">
+  <style>
+    html {
+      overflow-y: auto;
+    }
+    .navigation-bar, .section-bar {
+      margin-bottom: 0;
+    }
+    .navigation-bar header h1, .section-bar header h1 {
+      margin-top: .35294em;
+    }
+    .navigation-bar, .section-bar {
+      background: url('../graphics/banner.jpg') no-repeat center center #762783;
+      min-height: 48px;
+      color: white;
+    }
+    #esri-logo {
+      background: url('../graphics/logo-esri.png') no-repeat center center ;
+      width: 100px;
+    }
+    @font-face {
+    font-family:'icomoon';src:url('../fonts/icons.eot');src:url('../fonts/icons.eot?#iefix') format("embedded-opentype"),url('../fonts/icons.woff') format("woff"),url('../fonts/icons.ttf') format("truetype"),url('../fonts/icons.svg#icomoon') format("svg");font-weight:400;font-style:normal
+    }[data-icon]:before {
+      font-family: 'icomoon';
+      content: attr(data-icon);
+      speak: none;
+      font-weight: 400;
+      line-height: 1;
+      -webkit-font-smoothing: antialiased
+    }[class*="icon-"]:before {
+      font-family: 'icomoon';
+      speak: none;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 1;
+      -webkit-font-smoothing: antialiased;
+      text-transform: none
+    }
+    pre {
+      font-size: 1.1em;
+      line-height: normal;
+      margin: 0;
+    }
+    #header nav li a {
+      font-size: .875em;
+    }
+    #esri-logo {
+      margin-left: 0;
+    }
+  </style>
+  <!--[if lt IE 9]>
+    <script src="../scripts/libs/html5shiv.js"></script>
+    <script src="../scripts/libs/selectivizr-min.js"></script>
+    <style>
+      #wrapper {
+        min-width: 960px;
+      }
+    </style>
+  <![endif]-->
+  <title>
+    Tutorials | ArcGIS API for JavaScript 
+  </title>
+</head>
+  
+<body>
+<div id="nav">
+<header id="header">
+  <div class="container relative-container">
+    <div class="header-inner ">
+      <div class="logo-wrap"><a href="../" id="site-logo">Arc<span>GIS</span> API for JavaScript</a><!--span class="down-arrow" id="down-arrow"></span--></div>
+      <nav id="site-nav" class="">
+        <a href="/en/" class="selected">
+          <h4 class="developers">Arc<span>GIS</span> API for JavaScript</h4>
+          <p>Build location-aware applications with ArcGIS</p>
+        </a>
+
+        <a href="https://www.arcgis.com/about/">
+          <h4 class="organizations">Arc<span>GIS</span> for Organizations</h4>
+          <p>Learn more about ArcGIS</p>
+        </a>
+      </nav>
+
+      <a id="esri-logo" href="http://esri.com">Esri</a>
+      <div id="logged-out-navigation" class="dropdown-navigation hide">
+  <a id="login-link" class="btn small light" href="/en/log-in/">Log In</a>
+</div>
+<div id="logged-in-navigation" class="dropdown-navigation dropdown-wrapper hide">
+  <a href="/en/usage-summary" class="dropdown btn small light">
+    <!-- <img src="http://d3w50ib5d2uy0g.cloudfront.net/cdn/2464//js/esri/arcgisonline/css/images/no-user-thumb.jpg" width="16" height="16" alt=""> --><span id="username"></span>
+  </a>
+  <div class="dropdown-content">
+    <ul>
+      <li><a href="/en/usage-summary/">Usage Summary</a></li>
+      <li><a href="/en/applications/">Applications</a></li>
+      <li></li>
+      <li><a href="/en/tools/">GIS Tools</a></li>
+    </ul>
+    <hr>
+    <ul>
+      <li><a href="/en/account/profile/">Account Settings</a></li>
+      <li><a href="/en/feedback/">Feedback</a></li>
+    </ul>
+    <hr>
+    <ul>
+      <li><a id="log-out-link" href="#">Log Out</a></li>
+    </ul>
+  </div>
+</div>
+
+      <div id="mobile-navigation" class="dropdown-navigation dropdown-wrapper">
+        <a href="#" class="dropdown btn small light icon icon-list-2">Select <span>a Section</span></a>
+        <div class="dropdown-content">
+          <ul>
+            <li><a href="../jshelp/">Concepts</a></li>
+            <li><a href="../jsapi/">API Reference</a></li>
+            <li><a href="../jssamples/">Samples</a></li>
+            <li><a href="http://forums.arcgis.com/forums/15">Forum</a></li>
+            <li><a href="../../">All Developer Resources</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="navigation-bar">
+  <div class="container">
+    <nav>
+      <div id="section-label"><a href=".">Tutorials</a></div>
+      <ul>
+        <!--li class="current"><a href="/en/javascript/">Home</a></li-->
+        <li class="current"><a href=".">Tutorials</a></li>
+        <li><a href="../jshelp/">Concepts</a></li>
+        <li><a href="../jsapi/">API Reference</a></li>
+        <li><a href="../jssamples/">Samples</a></li>
+        <li><a href="http://forums.arcgis.com/forums/15">Forum</a></li>
+        <li><a href="../../">All Developer Resources</a></li>
+      </ul>
+    </nav>
+  </div>
+</div> 
+</div><!-- end nav bar --> <!-- sub 2: header and navigation -->
+
+<div class="container_12">
+  <div class="grid_3 contentWrapper">
+    <div id="toggleToc">
+      <img src="../graphics/tochide.gif"> Hide Table of Contents
+    </div>
+    <div id="apiToc"><div class="treeDiv" id="tree" style="top: 35px; left: 0px;">
+  <div id="treeRoot">
+    <div class="treeNode">
+      <a class="treeUnselected" href="intro_firstmap_amd.html" onclick="clickAnchor(this)">Build your first application</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="intro_agstemplate_amd.html" onclick="clickAnchor(this)">Use an ArcGIS.com webmap</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="mobile_dev.html" onclick="clickAnchor(this)">Mobile-specific application</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="intro_directions.html" onclick="clickAnchor(this)">Directions widget</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="tutorial_geocoder.html" onclick="clickAnchor(this)">Geocoder widget</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="tutorial_label_layer.html" onclick="clickAnchor(this)">Labeling features client-side</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="intro_javascript_classes.html" onclick="clickAnchor(this)">Write a class</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="intro_custom_dijit.html" onclick="clickAnchor(this)">Create a re-usable widget</a>
+    </div>
+  </div>
+</div>
+<!-- pretty printed via http://prettydiff.com/?m=beautify&html --></div> <!-- Conceptual help TOC -->
+  </div>
+  <div class="grid_9 contentWrapper">
+    <div id="topicPane"><div id="pageBanner">Mobile Template</div>
+<div id="nstext">
+  <!--***START TEXT - DO NOT WRITE ABOVE THIS LINE***-->
+  <p class="tutorial-outline">This tutorial demonstrates creating a mobile friendly webapp in a responsive mobile specific layout widget. In it you will learn about:</p>
+  <ol class="tutorial-outline">
+    <li><a href="#step1">Supported Devices and Orientations</a></li>
+    <li><a href="#step2">Using Mobile Web App Meta Tags</a></li>
+    <li><a href="#step3">The Compact Build of the ArcGIS Javascript API</a></li>
+    <li><a href="#step4">Intializing the App</a></li>
+    <li><a href="#step5">Handling Changes in Device Orientation</a></li>
+    <li><a href="#step6">Creating the Map</a></li>
+    <li><a href="#step7">Resources</a></li>
+  </ol>
+  <div class="tutNote"><p class="padded">The following tutorial uses the <a href="../jshelp/inside_compactbuild.html" target="_blank">compact</a> build of the ArcGIS API for JavaScript to build an application that displays a basemap from <a href="http://www.arcgis.com" target="_blank">ArcGIS.com</a>.</p></div>
+  <ol class="tutorial-content">
+    <li id="step1"><h3>Supported Devices and Orientations</h3>
+      <p>
+      This template targets iOS and Android phones and tablets in both portrait and landscape orientations.  It uses the Dojo Mobile <a href="http://dojotoolkit.org/features/mobile" target="_blank">framework</a> and includes the Dojo Heading <a href="http://dojotoolkit.org/reference-guide/1.9/dojox/mobile/Heading.html" target="_blank">widget</a>.
+      </p>
+      <p>
+      <img alt="iPhone in portrait orientation" src="../jshelp/images/iphone_p.png" />
+      <img alt="iPhone in landscape orientation" src="../jshelp/images/iphone_l.png" /><br />
+      <img alt="iPad in portrait orientation" src="../jshelp/images/ipad_p.png" />
+      <img alt="iPad in landscape orientation" src="../jshelp/images/ipad_l.png" />
+      </p>
+    </li>
+    <li id="step2"><h3>Using Mobile Web App Meta Tags</h3>
+      <p>
+      The meta tag properties <code>viewport</code>, <code>apple-mobile-web-app-capable</code>, and <code>apple-mobile-web-app-status-bar-style</code> contain several useful properties when building mobile friendly web applications.
+      </p>
+      <div class="detailSample">
+<pre class="prettyprint" style="border:none;">
+&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8"&gt;
+&lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
+&lt;meta name="apple-mobile-web-app-capable" content="yes"&gt;
+&lt;meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"&gt;
+</pre>
+      </div>
+    </li>
+    <li id="step3"><h3>Use the Compact Build of the ArcGIS API for JavaScript</h3>
+      <p>The compact build contains only the essential parts of the API and does <b>not</b> include the desktop focused widgets &amp; layouts. It is a better choice as a starting point for mobile development.
+      </p>
+      <p>
+      To begin working with the compact version of the API, add the following script and style sheet tags inside the <code>&lt;head&gt;</code> element of your HTML page:
+      </p>
+      <div class="detailSample">
+<pre class="prettyprint" style="border:none;">
+&lt;script src="http://js.arcgis.com/3.7compact/">&lt;/script&gt;
+&lt;link rel="stylesheet" href="http://js.arcgis.com/3.7/js/esri/css/esri.css" /&gt;
+&lt;!-- css used to customize the UI of the application --&gt;
+&lt;link rel="stylesheet" href="css/main.css" /&gt;
+</pre>
+      </div>
+      <p>
+      The <code>&lt;script&gt;</code> tag uses the ArcGIS API for JavaScript from a Content Delivery Network(CDN) provided by Esri. When new versions of the API are released, upgrades are done by updating the version number in the URL to the API. The esri.css file is also required to use the API. For more info on esri.css, refer to the <a href="../jshelp/css.html">required CSS page</a>.
+      </p>
+    </li>
+    <li id="step4"><h3>Initialize the App</h3>
+      <p>
+      First, we need to require the Map, mobile, and supporting classes into our application. Then we use the mobile parser to create the widgets from markup.
+      Calling the parser directly is preferable to using the <code>parseOnLoad: true</code> dojoConfig option, when using the mobile specific dijits. It is smaller than the
+      default parser and tuned for loading the mobile dijits more quickly than the default parser. Finally, we ensure that the address bar is <i>really</i> hidden.
+      The meta tags above alone aren't sufficient to hide the address bar on Android phones and the iPhone in portrait mode. The dojox.mobile utility function
+      specifically handles various device differences and corner cases where a simple <code>window.scrollTo</code> call does not work.
+      </p>
+      <div class="detailSample">
+<pre class="prettyprint" style="border:none;">
+&lt;script&gt;
+require(["esri/map", "dojox/mobile", "dojox/mobile/parser", "esri/sniff", 
+          "dojox/mobile/deviceTheme", "dojo/dom", "dijit/registry", "dojo/on", 
+          "dojox/mobile/ToolBarButton", "dojox/mobile/View"],
+    
+function(Map, mobile, parser, has, dTheme, dom, registry, on) {
+  parser.parse();
+  mobile.hideAddressBar();
+...
+&lt;/script&gt;
+</pre>
+      </div></li>
+      <li id="step5"><h3>Handle Changes in Device Orientation</h3>
+        <p>
+        The map <code><a href="../jsapi/map-amd.html#resize" target="_blank">resize()</a></code> and <code><a href="../jsapi/map-amd.html#reposition" target="_blank">reposition()</a></code> methods are useful for updating the size and position on the map. This tutorial uses Dojo's <a href="http://dojotoolkit.org/reference-guide/1.9/dojox/mobile/Heading.html" target="_blank">header</a> widget.  The header represents a navigation bar, which usually appears at the top of the viewport.  Therefore, we need to use a few additional properties to adjust the map size when the device's orientation changes.</p>
+        <p>
+        We can use the <code>has</code> functions to determine the device's OS and device category. Either <code>window.matchMedia</code> or <code>mobile.getScreenSize</code> can be used to
+        determine the device's current orientation (landscape or portrait). For this example, we use the <code>mobile.getScreenSize</code> technique. The height of the header
+        bar and any of the browser's own visible components are subtracted from the map size, such that the map always exactly fills the available space regardless of
+        device or orientation.</p>
+        <div class="tutNote"> <p class="padded">
+          Special care and extra adjustments are required for iPhones. These adjustments are separated out into the <code>iphoneAdjustment</code> function. This function adjusts for the delayed address bar hiding and the ever-present bottom buttonbar in portrait mode. It also sets up additional single use event listeners to handle the
+          true fullscreen toggling in landscape mode. Please refer to Apple's <a href="http://developer.apple.com/library/safari/#documentation/appleapplications/reference/safariwebcontent/usingtheviewport/usingtheviewport.html" target="_blank">documentation</a> for exact dimension of UI components.</p>
+          <p class="padded">In iOS, <code>screen.availHeight</code> gives the total edge to edge measurement of the screen, whereas, <code>window.innerHeight</code> gives the dimensions available in between the browser's native UI components. Therefore, <code>screen.availHeight - window.innerHeight</code> gives the height of the visible native browser UI.
+        </p></div><br>
+        <div class="detailSample">
+<pre class="prettyprint" style="border:none;">
+// onorientationchange doesn't always fire in a timely manner in Android so check for both orientationchange and resize
+var resizeEvt = (window.onorientationchange !== undefined && !has('android')) ? "orientationchange" : "resize";
+on(window, resizeEvt, resizeMap);
+function resizeMap() {
+  mobile.hideAddressBar();
+  adjustMapHeight();
+  map.resize();
+  map.reposition();
+}
+function adjustMapHeight() {
+  var availHeight = mobile.getScreenSize().h - registry.byId('header').domNode.clientHeight - 1;
+  if (has('iphone') || has('ipod')) {
+    availHeight += iphoneAdjustment();
+  }
+  dom.byId("map").style.height = availHeight + "px";
+}
+function iphoneAdjustment() {
+  var sz = mobile.getScreenSize();
+  if (sz.h > sz.w) { //portrait
+    //Need to add address bar height back to map because it has not been hidden yet
+     /* 44 = height of bottom safari button bar */
+     return screen.availHeight - window.innerHeight - 44; 
+  } else { //landscape
+    //Need to react to full screen / bottom button bar visible toggles
+    var _conn = on(window, 'resize', function() {
+      _conn.remove();
+      resizeMap();
+    });
+    return 0;
+  }
+}
+</pre>
+        </div>
+      </li>
+      <li id="step6"><h3>Create the Map</h3>
+        <p>
+        The <code>map</code> is created the same way regardless of the platform being targeted. To ensure that the map is properly sized when returning from any other "views", we also resize the map after transitioning back to the map.
+        </p>
+        <div class="detailSample">
+<pre class="prettyprint" style="border:none;">
+var map = new esri.Map("map", {
+  basemap: "topo",
+  center: [-118.696, 34.111],
+  zoom: 7,
+  slider: false
+});
+map.on("load", mapLoadHandler);
+function mapLoadHandler(evt) {
+  resizeMap();
+  registry.byId('mapView').on('AfterTransitionIn', resizeMap);
+}
+</pre>
+        </div>
+      </li>
+      <li id="step7"><h3>Resources</h3>
+    <ul> 
+      <li>
+        You can view this application on your mobile device or WebKit browser (Chrome or Safari) <a href="../samples/mobile_template/index.html" target="_blank">here</a>.
+      </li>
+      <li>
+        The source code for this sample can be found <a href="http://www.arcgis.com/sharing/content/items/194a24ac15c64ca38916f2ce4f68c306/data" target="_blank">here</a>.
+      </li>
+    </ul>
+    </li>
+    </ol>
+    <!--***END TEXT - DO NOT WRITE BELOW THIS LINE***-->
+  </div><div id="wh_footer" class="footnote" align="center">
+  Please <a href="mailto:js_feedback@esri.com?subject=Feedback on jstutorials/mobile_dev.html">contact the team</a> to comment or give suggestions.
+  <br>
+  Copyright &copy; Environmental Systems Research Institute, Inc.
+</div></div> <!-- main content for a page and feedback markup-->
+  </div>
+</div> <!-- end main content -->
+
+<!-- TOC script -->
+<script src="../scripts/tree.js"></script>
+
+<script src="../prettify/prettify.js"></script>
+<script>
+  var dojoConfig = {
+    packages: [{
+      "name": "js",
+      "location": location.pathname.replace(/\/[^/]+$/, "/") + "../scripts"
+    }]
+  };
+</script>
+<script src="//js.arcgis.com/3.8compact/"></script> <!-- add API version -->
+<script src="../scripts/esri-main-tutorials.js"></script>
+
+<!-- google analytics -->
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-215788-63']);
+  _gaq.push(['_setDomainName', 'arcgis.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+ <!-- sub 5:  add script to redirect old hash based URLs to static pages and google analytics-->
+
+</body>
+</html>

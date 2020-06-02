@@ -1,0 +1,1611 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="ie lt-ie9 lt-ie8 lt-ie7 ie6"> <![endif]-->
+<!--[if IE 7]>         <html class="ie lt-ie9 lt-ie8 ie7"> <![endif]-->
+<!--[if IE 8]>         <html class="ie lt-ie9 ie8"> <![endif]-->
+<!--[if gt IE 8]><!--> <html> <!--<![endif]-->
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+  <meta name="content-language" content="en">
+  <meta name="product" content="js-api-arcgis">
+  <meta name="subject" content="DEVELOPER,WEB,WEB APPLICATIONS,MOBILE">
+  <meta name="sub_category" content="JavaScript API">
+  <meta name="search-collection" content="help">
+  <meta name="search-category" content="help-api">
+  <meta name="version" content="arcgis-3.8"> <!-- API version -->
+  <meta name="content_type" content="API Reference"> <!-- options: Help Topic, API Reference, Sample OR Tutorial -->
+  <meta name="last-modified" content="2013-12-19"> <!-- put in date docs were generated -->
+
+  <link rel="stylesheet" href="../styles/screen.css">
+  <link rel="stylesheet" href="../styles/jsdoc.css">
+  <link rel="stylesheet" href="../styles/homepage.css">
+  <link rel="stylesheet" href="../styles/grid.css">
+  <link rel="stylesheet" href="../styles/tree.css">
+  <link rel="stylesheet" href="../prettify/prettify.css">
+  <style>
+    html {
+      overflow-y: auto;
+    }
+    .hidden{
+      display: none;
+    }
+    .eventDiv > .dtH4{
+      display: none;
+    }
+    .switch{
+      font-weight: bold;
+    }
+    .eventSwitch:not(.enabled){
+      color: #00629b;
+      cursor: pointer;
+      font-weight: normal;
+    }
+    .navigation-bar, .section-bar {
+      margin-bottom: 0;
+    }
+    .navigation-bar header h1, .section-bar header h1 {
+      margin-top: .35294em;
+    }
+    .navigation-bar, .section-bar {
+      background: url('../graphics/banner.jpg') no-repeat center center #762783;
+      color: white;
+      min-height: 48px;
+    }
+    .navigation-bar {
+      position: relative;
+      z-index: 10;
+    }
+    #esri-logo {
+      background: url('../graphics/logo-esri.png') no-repeat center center ;
+      width: 100px;
+    }
+    @font-face {
+    font-family:'icomoon';src:url('../fonts/icons.eot');src:url('../fonts/icons.eot?#iefix') format("embedded-opentype"),url('../fonts/icons.woff') format("woff"),url('../fonts/icons.ttf') format("truetype"),url('../fonts/icons.svg#icomoon') format("svg");font-weight:400;font-style:normal
+    }[data-icon]:before {
+      font-family: 'icomoon';
+      content: attr(data-icon);
+      speak: none;
+      font-weight: 400;
+      line-height: 1;
+      -webkit-font-smoothing: antialiased
+    }[class*="icon-"]:before {
+      font-family: 'icomoon';
+      speak: none;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 1;
+      -webkit-font-smoothing: antialiased;
+      text-transform: none
+    }
+    pre {
+      font-size: 1em;
+      line-height: normal;
+      margin: 0;
+      margin-top: 1em;
+    }
+    .navigation-bar input {
+      margin-top: 0;
+      opacity: 1;
+    }
+    #header nav li a {
+      font-size: .875em;
+    }
+    #esri-logo {
+      margin-left: 0;
+    }
+  </style>
+  <!--[if lt IE 9]>
+    <script src="../scripts/libs/html5shiv.js"></script>
+    <script src="../scripts/libs/selectivizr-min.js"></script>
+    <style>
+      #wrapper {
+        min-width: 960px;
+      }
+    </style>
+  <![endif]-->
+  <title>
+    createdrivetimeareas | API Reference | ArcGIS API for JavaScript
+  </title> <!-- class name -->
+</head>
+  
+<body>
+<div id="nav">
+<header id="header">
+  <div class="container relative-container">
+    <div class="header-inner ">
+      <div class="logo-wrap"><a href="../" id="site-logo">Arc<span>GIS</span> API for JavaScript</a><!--span class="down-arrow" id="down-arrow"></span--></div>
+      <nav id="site-nav" class="">
+        <a href="/en/" class="selected">
+          <h4 class="developers">Arc<span>GIS</span> API for JavaScript</h4>
+          <p>Build location-aware applications with ArcGIS</p>
+        </a>
+
+        <a href="https://www.arcgis.com/about/">
+          <h4 class="organizations">Arc<span>GIS</span> for Organizations</h4>
+          <p>Learn more about ArcGIS</p>
+        </a>
+      </nav>
+
+      <a id="esri-logo" href="http://esri.com">Esri</a>
+      <div id="logged-out-navigation" class="dropdown-navigation hide">
+  <a id="login-link" class="btn small light" href="/en/log-in/">Log In</a>
+</div>
+<div id="logged-in-navigation" class="dropdown-navigation dropdown-wrapper hide">
+  <a href="/en/usage-summary" class="dropdown btn small light">
+    <!-- <img src="http://d3w50ib5d2uy0g.cloudfront.net/cdn/2464//js/esri/arcgisonline/css/images/no-user-thumb.jpg" width="16" height="16" alt=""> --><span id="username"></span>
+  </a>
+  <div class="dropdown-content">
+    <ul>
+      <li><a href="/en/usage-summary/">Usage Summary</a></li>
+      <li><a href="/en/applications/">Applications</a></li>
+      <li></li>
+      <li><a href="/en/tools/">GIS Tools</a></li>
+    </ul>
+    <hr>
+    <ul>
+      <li><a href="/en/account/profile/">Account Settings</a></li>
+      <li><a href="/en/feedback/">Feedback</a></li>
+    </ul>
+    <hr>
+    <ul>
+      <li><a id="log-out-link" href="#">Log Out</a></li>
+    </ul>
+  </div>
+</div>
+
+      <div id="mobile-navigation" class="dropdown-navigation dropdown-wrapper">
+        <a href="#" class="dropdown btn small light icon icon-list-2">Select <span>a Section</span></a>
+        <div class="dropdown-content">
+          <ul>
+            <li><a href="../jstutorials/">Tutorials</a></li>
+            <li><a href="../jshelp/">Concepts</a></li>
+            <li><a href="../jssamples/">Samples</a></li>
+            <li><a href="http://forums.arcgis.com/forums/15">Forum</a></li>
+            <li><a href="../../">All Developer Resources</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="navigation-bar">
+  <div class="container">
+    <nav>
+
+      <div id="section-label"><a href=".">API Reference</a></div>
+      
+      <div id="search">
+        <form id="searchForm">
+          <input type="text" id="searchKeyWord" name="searchKeyWord" placeholder="Find a Class" autocomplete="off" disabled="disabled">
+          <!-- <input type="submit" id="searchButton" name="searchButton" value=""> -->
+        </form>
+      </div>
+      <ul>
+        <!--li class="current"><a href="/en/javascript/">Home</a></li-->
+        <li><a href="../jstutorials/">Tutorials</a></li>
+        <li><a href="../jshelp/">Concepts</a></li>
+        <li class="current"><a href=".">API Reference</a></li>
+        <li><a href="../jssamples/">Samples</a></li>
+        <li><a href="http://forums.arcgis.com/forums/15">Forum</a></li>
+        <li><a href="../../">All Developer Resources</a></li>
+      </ul>
+    </nav>
+  </div>
+</div> 
+</div><!-- end nav bar --> <!-- header -->
+
+<div class="container_12">
+  <div class="grid_3 contentWrapper">
+    <div id="toggleToc">
+      <img src="../graphics/tochide.gif"> Hide Table of Contents
+    </div>
+    <div id="apiToc"> <div class="treeDiv" id="tree" style="top: 35px; left: 0px;">
+  <div id="treeRoot" ondragstart="return false" onselectstart="return false">
+    <div class="treeNode">
+      <a class="treeUnselected" href="." onclick="clickAnchor(this)">API Reference Overview</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="api_codeassist.html" onclick="clickAnchor(this)">Code Assist Plugins</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="argument_aliases.html" onclick="clickAnchor(this)">Preferred Argument Aliases</a>
+    </div>
+    <!-- <div class="treeNode">
+      <a class="treeUnselected" href="../tree/" onclick="clickAnchor(this)">Tree Diagram of API Components</a>
+    </div> -->
+    <div class="treeNode">
+      <img class="treeLinkImage" onClick="expandCollapse(this.parentNode)" src="../graphics/treenodeminus.gif"/>
+      <span onClick="expandCollapse(this.parentNode)" style="cursor: pointer;">esri</span>
+      <div class="treeNode">
+        <a class="treeUnselected" href="esri.config-amd.html" onClick="clickAnchor(this)">config</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="credential-amd.html" onClick="clickAnchor(this)">Credential</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="esri.domutils-amd.html" onClick="clickAnchor(this)">domUtils</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="graphic-amd.html" onClick="clickAnchor(this)">Graphic</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="esri.graphicsutils-amd.html" onClick="clickAnchor(this)">graphicsUtils</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="identitymanager-amd.html" onClick="clickAnchor(this)">IdentityManager</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="identitymanagerbase-amd.html" onClick="clickAnchor(this)">IdentityManagerBase</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="infotemplate-amd.html" onClick="clickAnchor(this)">InfoTemplate</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="infowindowbase-amd.html" onClick="clickAnchor(this)">InfoWindowBase</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="esri.kernel-amd.html" onClick="clickAnchor(this)">kernel</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="esri.lang-amd.html" onClick="clickAnchor(this)">lang</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="map-amd.html" onClick="clickAnchor(this)">Map</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="operationbase-amd.html" onClick="clickAnchor(this)">OperationBase</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="esri.request-amd.html" onClick="clickAnchor(this)">request</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="serverinfo-amd.html" onClick="clickAnchor(this)">ServerInfo</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="snappingmanager-amd.html" onClick="clickAnchor(this)">SnappingManager</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="spatialreference-amd.html" onClick="clickAnchor(this)">SpatialReference</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="timeextent-amd.html" onClick="clickAnchor(this)">TimeExtent</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="undomanager-amd.html" onClick="clickAnchor(this)">UndoManager</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="units-amd.html" onClick="clickAnchor(this)">units</a>
+      </div>
+      <div class="treeNode">
+        <a class="treeUnselected" href="esri.urlutils-amd.html" onClick="clickAnchor(this)">urlUtils</a>
+      </div>
+      <div class="treeNode">
+        <img class="treeLinkImage" onClick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+        <span onClick="expandCollapse(this.parentNode)" style="cursor: pointer;">arcgis</span>
+        <div class="treeSubnodesHidden">
+          <div class="treeNode">
+            <a class="treeUnselected" href="portal-amd.html" onClick="clickAnchor(this)">Portal</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="portalcomment-amd.html" onClick="clickAnchor(this)">PortalComment</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="portalfolder-amd.html" onClick="clickAnchor(this)">PortalFolder</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="portalgroup-amd.html" onClick="clickAnchor(this)">PortalGroup</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="portalgroupmembers-amd.html" onClick="clickAnchor(this)">PortalGroupMembers</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="portalitem-amd.html" onClick="clickAnchor(this)">PortalItem</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="portalqueryparams-amd.html" onClick="clickAnchor(this)">PortalQueryParams</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="portalqueryresult-amd.html" onClick="clickAnchor(this)">PortalQueryResult</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="portalrating-amd.html" onClick="clickAnchor(this)">PortalRating</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="portaluser-amd.html" onClick="clickAnchor(this)">PortalUser</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="esri.arcgis.utils-amd.html" onClick="clickAnchor(this)">utils</a>
+          </div>
+        </div>
+      </div>
+      <div class="treeNode">
+        <img class="treeLinkImage" onClick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+        <span onClick="expandCollapse(this.parentNode)" style="cursor: pointer;">dijit</span>
+        <div class="treeSubnodesHidden">
+          <div class="treeNode">
+            <a class="treeUnselected" href="attachmenteditor-amd.html" onClick="clickAnchor(this)">AttachmentEditor</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="attributeinspector-amd.html" onClick="clickAnchor(this)">AttributeInspector</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="attribution-amd.html" onClick="clickAnchor(this)">Attribution</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="basemap-amd.html" onClick="clickAnchor(this)">Basemap</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="basemapgallery-amd.html" onClick="clickAnchor(this)">BasemapGallery</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="basemaplayer-amd.html" onClick="clickAnchor(this)">BasemapLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="basemaptoggle-amd.html" onClick="clickAnchor(this)">BasemapToggle</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="bookmarkitem-amd.html" onClick="clickAnchor(this)">BookmarkItem</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="bookmarks-amd.html" onClick="clickAnchor(this)">Bookmarks</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="directions-amd.html" onClick="clickAnchor(this)">Directions</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="editor-amd.html" onClick="clickAnchor(this)">Editor</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="gallery-amd.html" onClick="clickAnchor(this)">Gallery</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="gauge-amd.html" onClick="clickAnchor(this)">Gauge</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="geocoder-amd.html" onClick="clickAnchor(this)">Geocoder</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="histogramtimeslider-amd.html" onClick="clickAnchor(this)">HistogramTimeSlider</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="homebutton-amd.html" onClick="clickAnchor(this)">HomeButton</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="infowindow-amd.html" onClick="clickAnchor(this)">InfoWindow</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="infowindowlite-amd.html" onClick="clickAnchor(this)">InfoWindowLite</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="layerswipe-amd.html" onClick="clickAnchor(this)">LayerSwipe</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="legend-amd.html" onClick="clickAnchor(this)">Legend</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="locatebutton-amd.html" onClick="clickAnchor(this)">LocateButton</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="measurement-amd.html" onClick="clickAnchor(this)">Measurement</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="overviewmap-amd.html" onClick="clickAnchor(this)">OverviewMap</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="popup-amd.html" onClick="clickAnchor(this)">Popup</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="popupmobile-amd.html" onClick="clickAnchor(this)">PopupMobile</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="popuptemplate-amd.html" onClick="clickAnchor(this)">PopupTemplate</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="print-amd.html" onClick="clickAnchor(this)">Print</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="scalebar-amd.html" onClick="clickAnchor(this)">Scalebar</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="templatepicker-amd.html" onClick="clickAnchor(this)">TemplatePicker</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="timeslider-amd.html" onClick="clickAnchor(this)">TimeSlider</a>
+          </div>
+          <div class="treeNode">
+            <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif">
+            <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">
+              Analysis
+            </span>
+            <div class="treeSubnodesHidden">
+              <div class="treeNode">
+                <a class="treeUnselected" href="analysisbase-amd.html" onClick="clickAnchor(this)">AnalysisBase</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="aggregatepoints-amd.html" onClick="clickAnchor(this)">AggregatePoints</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="createbuffers-amd.html" onClick="clickAnchor(this)">CreateBuffers</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="createdrivetimeareas-amd.html" onClick="clickAnchor(this)">CreateDriveTimeAreas</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="dissolveboundaries-amd.html" onClick="clickAnchor(this)">DissolveBoundaries</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="enrichlayer-amd.html" onClick="clickAnchor(this)">EnrichLayer</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="extractdata-amd.html" onClick="clickAnchor(this)">ExtractData</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="findhotspots-amd.html" onClick="clickAnchor(this)">FindHotSpots</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="findnearest-amd.html" onClick="clickAnchor(this)">FindNearest</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="mergelayers-amd.html" onClick="clickAnchor(this)">MergeLayers</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="overlaylayers-amd.html" onClick="clickAnchor(this)">OverlayLayers</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="summarizenearby-amd.html" onClick="clickAnchor(this)">SummarizeNearby</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="summarizewithin-amd.html" onClick="clickAnchor(this)">SummarizeWithin</a>
+              </div>
+            </div>
+          </div>
+          <div class="treeNode">
+            <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif">
+            <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">
+              Geoenrichment
+            </span>
+            <div class="treeSubnodesHidden">
+              <div class="treeNode">
+                <a class="treeUnselected" href="infographic-amd.html" onClick="clickAnchor(this)">Infographic</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="infographicscarousel-amd.html" onClick="clickAnchor(this)">InfographicsCarousel</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="infographicsoptions-amd.html" onClick="clickAnchor(this)">InfographicsOptions</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="infographicsoptions.item-amd.html" onClick="clickAnchor(this)">InfographicsOptions.Item</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="treeNode">
+        <img class="treeLinkImage" onClick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+        <span onClick="expandCollapse(this.parentNode)" style="cursor: pointer;">geometry</span>
+        <div class="treeSubnodesHidden">
+          <div class="treeNode">
+            <a class="treeUnselected" href="circle-amd.html" onClick="clickAnchor(this)">Circle</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="extent-amd.html" onClick="clickAnchor(this)">Extent</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="esri.geometry.geodesicutils-amd.html" onClick="clickAnchor(this)">geodesicUtils</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="geometry-amd.html" onClick="clickAnchor(this)">Geometry</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="esri.geometry.jsonutils-amd.html" onClick="clickAnchor(this)">jsonUtils</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="esri.geometry.mathutils-amd.html" onClick="clickAnchor(this)">mathUtils</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="multipoint-amd.html" onClick="clickAnchor(this)">Multipoint</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="esri.geometry.normalizeutils-amd.html" onClick="clickAnchor(this)">normalizeUtils</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="point-amd.html" onClick="clickAnchor(this)">Point</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="polygon-amd.html" onClick="clickAnchor(this)">Polygon</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="polyline-amd.html" onClick="clickAnchor(this)">Polyline</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="esri.geometry.scaleutils-amd.html" onClick="clickAnchor(this)">scaleUtils</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="screenpoint-amd.html" onClick="clickAnchor(this)">ScreenPoint</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="esri.geometry.screenutils-amd.html" onClick="clickAnchor(this)">screenUtils</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="esri.geometry.webmercatorutils-amd.html" onClick="clickAnchor(this)">webMercatorUtils</a>
+          </div>
+        </div>
+      </div>
+      <div class="treeNode">
+        <img class="treeLinkImage" onClick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+        <span onClick="expandCollapse(this.parentNode)" style="cursor: pointer;">layers</span>
+        <div class="treeSubnodesHidden">
+          <div class="treeNode">
+            <a class="treeUnselected" href="arcgisdynamicmapservicelayer-amd.html" onClick="clickAnchor(this)">ArcGISDynamicMapServiceLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="arcgisimageservicelayer-amd.html" onClick="clickAnchor(this)">ArcGISImageServiceLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="arcgistiledmapservicelayer-amd.html" onClick="clickAnchor(this)">ArcGISTiledMapServiceLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="codedvaluedomain-amd.html" onClick="clickAnchor(this)">CodedValueDomain</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="domain-amd.html" onClick="clickAnchor(this)">Domain</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="dynamiclayerinfo-amd.html" onClick="clickAnchor(this)">DynamicLayerInfo</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="dynamicmapservicelayer-amd.html" onClick="clickAnchor(this)">DynamicMapServiceLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="featureeditresult-amd.html" onClick="clickAnchor(this)">FeatureEditResult</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="featurelayer-amd.html" onClick="clickAnchor(this)">FeatureLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="featuretemplate-amd.html" onClick="clickAnchor(this)">FeatureTemplate</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="featuretype-amd.html" onClick="clickAnchor(this)">FeatureType</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="field-amd.html" onClick="clickAnchor(this)">Field</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="georsslayer-amd.html" onClick="clickAnchor(this)">GeoRSSLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="graphicslayer-amd.html" onClick="clickAnchor(this)">GraphicsLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="imageparameters-amd.html" onClick="clickAnchor(this)">ImageParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="imageserviceparameters-amd.html" onClick="clickAnchor(this)">ImageServiceParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="inheriteddomain-amd.html" onClick="clickAnchor(this)">InheritedDomain</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="joindatasource-amd.html" onClick="clickAnchor(this)">JoinDataSource</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="kmlfolder-amd.html" onClick="clickAnchor(this)">KMLFolder</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="kmlgroundoverlay-amd.html" onClick="clickAnchor(this)">KMLGroundOverlay</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="kmllayer-amd.html" onClick="clickAnchor(this)">KMLLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="labelclass-amd.html" onClick="clickAnchor(this)">LabelClass</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="labellayer-amd.html" onClick="clickAnchor(this)">LabelLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="layer-amd.html" onClick="clickAnchor(this)">Layer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="layerdatasource-amd.html" onClick="clickAnchor(this)">LayerDataSource</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="layerdrawingoptions-amd.html" onClick="clickAnchor(this)">LayerDrawingOptions</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="layerinfo-amd.html" onClick="clickAnchor(this)">LayerInfo</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="layermapsource-amd.html" onClick="clickAnchor(this)">LayerMapSource</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="layertimeoptions-amd.html" onClick="clickAnchor(this)">LayerTimeOptions</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="lod-amd.html" onClick="clickAnchor(this)">LOD</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="mapimage-amd.html" onClick="clickAnchor(this)">MapImage</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="mapimagelayer-amd.html" onClick="clickAnchor(this)">MapImageLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="mosaicrule-amd.html" onClick="clickAnchor(this)">MosaicRule</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="openstreetmaplayer-amd.html" onClick="clickAnchor(this)">OpenStreetMapLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="querydatasource-amd.html" onClick="clickAnchor(this)">QueryDataSource</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="rangedomain-amd.html" onClick="clickAnchor(this)">RangeDomain</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="rasterdatasource-amd.html" onClick="clickAnchor(this)">RasterDataSource</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="rasterfunction-amd.html" onClick="clickAnchor(this)">RasterFunction</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="streamlayer-amd.html" onClick="clickAnchor(this)">StreamLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="tabledatasource-amd.html" onClick="clickAnchor(this)">TableDataSource</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="tileinfo-amd.html" onClick="clickAnchor(this)">TileInfo</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="tiledmapservicelayer-amd.html" onClick="clickAnchor(this)">TiledMapServiceLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="timeinfo-amd.html" onClick="clickAnchor(this)">TimeInfo</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="timereference-amd.html" onClick="clickAnchor(this)">TimeReference</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="wmslayer-amd.html" onClick="clickAnchor(this)">WMSLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="wmslayerinfo-amd.html" onClick="clickAnchor(this)">WMSLayerInfo</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="wmtslayer-amd.html" onClick="clickAnchor(this)">WMTSLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="wmtslayerinfo-amd.html" onClick="clickAnchor(this)">WMTSLayerInfo</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="webtiledlayer-amd.html" onClick="clickAnchor(this)">WebTiledLayer</a>
+          </div>
+        </div>
+      </div>
+      <div class="treeNode">
+        <img class="treeLinkImage" onClick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+        <span onClick="expandCollapse(this.parentNode)" style="cursor: pointer;">renderer</span>
+        <div class="treeSubnodesHidden">
+          <div class="treeNode">
+            <a class="treeUnselected" href="classbreaksrenderer-amd.html" onClick="clickAnchor(this)">ClassBreaksRenderer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="dotdensityrenderer-amd.html" onClick="clickAnchor(this)">DotDensityRenderer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="esri.renderers.jsonutils-amd.html" onClick="clickAnchor(this)">jsonUtils</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="renderer-amd.html" onClick="clickAnchor(this)">Renderer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="scaledependentrenderer-amd.html" onClick="clickAnchor(this)">ScaleDependentRenderer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="simplerenderer-amd.html" onClick="clickAnchor(this)">SimpleRenderer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="symbolager-amd.html" onClick="clickAnchor(this)">SymbolAger</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="temporalrenderer-amd.html" onClick="clickAnchor(this)">TemporalRenderer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="timeclassbreaksager-amd.html" onClick="clickAnchor(this)">TimeClassBreaksAger</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="timerampager-amd.html" onClick="clickAnchor(this)">TimeRampAger</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="uniquevaluerenderer-amd.html" onClick="clickAnchor(this)">UniqueValueRenderer</a>
+          </div>
+        </div>
+      </div>
+      <div class="treeNode">
+        <img class="treeLinkImage" onClick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+        <span onClick="expandCollapse(this.parentNode)" style="cursor: pointer;">symbols</span>
+        <div class="treeSubnodesHidden">
+          <div class="treeNode">
+            <a class="treeUnselected" href="cartographiclinesymbol-amd.html" onClick="clickAnchor(this)">CartographicLineSymbol</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="fillsymbol-amd.html" onClick="clickAnchor(this)">FillSymbol</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="font-amd.html" onClick="clickAnchor(this)">Font</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="esri.symbols.jsonutils-amd.html" onClick="clickAnchor(this)">jsonUtils</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="linesymbol-amd.html" onClick="clickAnchor(this)">LineSymbol</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="markersymbol-amd.html" onClick="clickAnchor(this)">MarkerSymbol</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="picturefillsymbol-amd.html" onClick="clickAnchor(this)">PictureFillSymbol</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="picturemarkersymbol-amd.html" onClick="clickAnchor(this)">PictureMarkerSymbol</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="simplefillsymbol-amd.html" onClick="clickAnchor(this)">SimpleFillSymbol</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="simplelinesymbol-amd.html" onClick="clickAnchor(this)">SimpleLineSymbol</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="simplemarkersymbol-amd.html" onClick="clickAnchor(this)">SimpleMarkerSymbol</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="symbol-amd.html" onClick="clickAnchor(this)">Symbol</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="textsymbol-amd.html" onClick="clickAnchor(this)">TextSymbol</a>
+          </div>
+        </div>
+      </div>
+      <div class="treeNode">
+        <img class="treeLinkImage" onClick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+        <span onClick="expandCollapse(this.parentNode)" style="cursor: pointer;">tasks</span>
+        <div class="treeSubnodesHidden">
+          <div class="treeNode">
+            <a class="treeUnselected" href="addresscandidate-amd.html" onClick="clickAnchor(this)">AddressCandidate</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="algorithmiccolorramp-amd.html" onClick="clickAnchor(this)">AlgorithmicColorRamp</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="areasandlengthsparameters-amd.html" onClick="clickAnchor(this)">AreasAndLengthsParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="bufferparameters-amd.html" onClick="clickAnchor(this)">BufferParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="classbreaksdefinition-amd.html" onClick="clickAnchor(this)">ClassBreaksDefinition</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="classificationdefinition-amd.html" onClick="clickAnchor(this)">ClassificationDefinition</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="closestfacilityparameters-amd.html" onClick="clickAnchor(this)">ClosestFacilityParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="closestfacilitysolveresult-amd.html" onClick="clickAnchor(this)">ClosestFacilitySolveResult</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="closestfacilitytask-amd.html" onClick="clickAnchor(this)">ClosestFacilityTask</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="datafile-amd.html" onClick="clickAnchor(this)">DataFile</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="datalayer-amd.html" onClick="clickAnchor(this)">DataLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="date-amd.html" onClick="clickAnchor(this)">Date</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="directionsfeatureset-amd.html" onClick="clickAnchor(this)">DirectionsFeatureSet</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="distanceparameters-amd.html" onClick="clickAnchor(this)">DistanceParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="featureset-amd.html" onClick="clickAnchor(this)">FeatureSet</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="findparameters-amd.html" onClick="clickAnchor(this)">FindParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="findresult-amd.html" onClick="clickAnchor(this)">FindResult</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="findtask-amd.html" onClick="clickAnchor(this)">FindTask</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="gpmessage-amd.html" onClick="clickAnchor(this)">GPMessage</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="generalizeparameters-amd.html" onClick="clickAnchor(this)">GeneralizeParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="generaterendererparameters-amd.html" onClick="clickAnchor(this)">GenerateRendererParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="generaterenderertask-amd.html" onClick="clickAnchor(this)">GenerateRendererTask</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="geometryservice-amd.html" onClick="clickAnchor(this)">GeometryService</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="geoprocessor-amd.html" onClick="clickAnchor(this)">Geoprocessor</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="identifyparameters-amd.html" onClick="clickAnchor(this)">IdentifyParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="identifyresult-amd.html" onClick="clickAnchor(this)">IdentifyResult</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="identifytask-amd.html" onClick="clickAnchor(this)">IdentifyTask</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="imageserviceidentifyparameters-amd.html" onClick="clickAnchor(this)">ImageServiceIdentifyParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="imageserviceidentifyresult-amd.html" onClick="clickAnchor(this)">ImageServiceIdentifyResult</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="imageserviceidentifytask-amd.html" onClick="clickAnchor(this)">ImageServiceIdentifyTask</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="jobinfo-amd.html" onClick="clickAnchor(this)">JobInfo</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="legendlayer-amd.html" onClick="clickAnchor(this)">LegendLayer</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="lengthsparameters-amd.html" onClick="clickAnchor(this)">LengthsParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="linearunit-amd.html" onClick="clickAnchor(this)">LinearUnit</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="locator-amd.html" onClick="clickAnchor(this)">Locator</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="multipartcolorramp-amd.html" onClick="clickAnchor(this)">MultipartColorRamp</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="namessage-amd.html" onClick="clickAnchor(this)">NAMessage</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="naoutputline-amd.html" onClick="clickAnchor(this)">NAOutputLine</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="naoutputpolygon-amd.html" onClick="clickAnchor(this)">NAOutputPolygon</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="natraveldirection-amd.html" onClick="clickAnchor(this)">NATravelDirection</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="nauturn-amd.html" onClick="clickAnchor(this)">NAUTurn</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="offsetparameters-amd.html" onClick="clickAnchor(this)">OffsetParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="parametervalue-amd.html" onClick="clickAnchor(this)">ParameterValue</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="printparameters-amd.html" onClick="clickAnchor(this)">PrintParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="printtask-amd.html" onClick="clickAnchor(this)">PrintTask</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="printtemplate-amd.html" onClick="clickAnchor(this)">PrintTemplate</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="projectparameters-amd.html" onClick="clickAnchor(this)">ProjectParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="query-amd.html" onClick="clickAnchor(this)">Query</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="querytask-amd.html" onClick="clickAnchor(this)">QueryTask</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="rasterdata-amd.html" onClick="clickAnchor(this)">RasterData</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="relationparameters-amd.html" onClick="clickAnchor(this)">RelationParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="relationshipquery-amd.html" onClick="clickAnchor(this)">RelationshipQuery</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="routeparameters-amd.html" onClick="clickAnchor(this)">RouteParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="routeresult-amd.html" onClick="clickAnchor(this)">RouteResult</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="routetask-amd.html" onClick="clickAnchor(this)">RouteTask</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="serviceareaparameters-amd.html" onClick="clickAnchor(this)">ServiceAreaParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="serviceareasolveresult-amd.html" onClick="clickAnchor(this)">ServiceAreaSolveResult</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="serviceareatask-amd.html" onClick="clickAnchor(this)">ServiceAreaTask</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="statisticdefinition-amd.html" onClick="clickAnchor(this)">StatisticDefinition</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="trimextendparameters-amd.html" onClick="clickAnchor(this)">TrimExtendParameters</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="uniquevaluedefinition-amd.html" onClick="clickAnchor(this)">UniqueValueDefinition</a>
+          </div>
+          <div class="treeNode">
+            <img class="treeLinkImage" onclick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif">
+            <span onclick="expandCollapse(this.parentNode)" style="cursor: pointer;">
+              Geoenrichment
+            </span>
+            <div class="treeSubnodesHidden">
+              <div class="treeNode">
+                <a class="treeUnselected" href="drivebuffer-amd.html" onClick="clickAnchor(this)">DriveBuffer</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="driveunits-amd.html" onClick="clickAnchor(this)">DriveUnits</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="geographylevel-amd.html" onClick="clickAnchor(this)">GeographyLevel</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="geometrystudyarea-amd.html" onClick="clickAnchor(this)">GeometryStudyArea</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="intersectinggeographies-amd.html" onClick="clickAnchor(this)">IntersectingGeographies</a>
+              </div>
+              <div class="treeNode">
+                <a class="treeUnselected" href="ringbuffer-amd.html" onClick="clickAnchor(this)">RingBuffer</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="treeNode">
+        <img class="treeLinkImage" onClick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+        <span onClick="expandCollapse(this.parentNode)" style="cursor: pointer;">toolbars</span>
+        <div class="treeSubnodesHidden">
+          <div class="treeNode">
+            <a class="treeUnselected" href="draw-amd.html" onClick="clickAnchor(this)">Draw</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="edit-amd.html" onClick="clickAnchor(this)">Edit</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="navigation-amd.html" onClick="clickAnchor(this)">Navigation</a>
+          </div>
+        </div>
+      </div>
+      <div class="treeNode">
+        <img class="treeLinkImage" onClick="expandCollapse(this.parentNode)" src="../graphics/treenodeplus.gif"/>
+        <span onClick="expandCollapse(this.parentNode)" style="cursor: pointer;">virtualearth</span>
+        <div class="treeSubnodesHidden">
+          <div class="treeNode">
+            <a class="treeUnselected" href="veaddress-amd.html" onClick="clickAnchor(this)">VEAddress</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="vegeocoderesult-amd.html" onClick="clickAnchor(this)">VEGeocodeResult</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="vegeocoder-amd.html" onClick="clickAnchor(this)">VEGeocoder</a>
+          </div>
+          <div class="treeNode">
+            <a class="treeUnselected" href="vetiledlayer-amd.html" onClick="clickAnchor(this)">VETiledLayer</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></div> <!-- sub 4:  API ref TOC -->
+  </div>
+  <div class="grid_9 contentWrapper">
+    <div id="topicPane">    <div id="pageBanner">Class: CreateDriveTimeAreas</div>
+    <div style="font-size:12px">[ <a href="createdrivetimeareas-amd.html">AMD Module Require</a> | <b>Legacy Module Require</b> ]</div>
+    <div id="nstext">
+      <p><pre class="prettyprint">dojo.require("esri.dijit.analysis.CreateDriveTimeAreas");</pre></p>
+      <h4 class="dtH4">Description</h4>
+      <div class="detaildesc"><div><i>Class added at v3.7</i></div>The CreateDriveTimeAreas dijit creates drive-time (or drive-distance) polygons around input points for the given drive-time values.
+<br><br>
+View the <a href="http://developers.arcgis.com/en/rest/analysis/api-reference/create-drivetime.htm" target="_blank">ArcGIS REST API documentation</a> for the <b>Create Drive-Time Areas</b> task for more details.
+<br><br>
+<img src="images/create-drivetime.png"></div>
+      <H4 class="dtH4">Samples</H4>
+      Search for <a target="_top" href="../jssamples/#search/CreateDriveTimeAreas">samples</a> that use this class.
+      <H4 class="dtH4">Class hierarchy</H4>
+      <pre class="inherits"><a href="analysisbase-amd.html">esri/dijit/analysis/AnalysisBase</a>
+|_esri/dijit/analysis/CreateDriveTimeAreas</pre>
+      
+      <h4 class="dtH4">Constructors</h4>
+      <table class="syntaxTABLE" cellspacing="0">
+        <tr><th class="tableheader">Name</th><th class="tableheader">Summary</th></tr>
+        <tr><td class="syntaxTABLE"><a href="#createdrivetimeareas1">new esri.dijit.analysis.CreateDriveTimeAreas(params,srcNodeRef)</a></td><td class="syntaxTABLE">Creates a new CreateDriveTimeAreas dijit using the given DOM node</td></tr>
+      </table>
+      
+      
+      
+      <h4 class="dtH4">Properties</h4>
+      <table class="syntaxTABLE" cellspacing="0">
+        <tr><th class="tableheader">Name</th><th class="tableheader">Type</th><th class="tableheader">Summary</th></tr>
+        <tr><td class="syntaxTABLE"><a href="#analysisgpserver">analysisGpServer</a></td><td class="syntaxTABLE">String</td><td class="syntaxTABLE">URL to the GPServer to be used for this analysis</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#breakunits">breakUnits</a></td><td class="syntaxTABLE">String</td><td class="syntaxTABLE">The units of the <code>breakValues</code> parameter</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#breakvalues">breakValues</a></td><td class="syntaxTABLE">Number[]</td><td class="syntaxTABLE">An array of driving time break values.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#inputlayer">inputLayer</a></td><td class="syntaxTABLE"><a href="featurelayer-amd.html">FeatureLayer</a></td><td class="syntaxTABLE">The point feature layer around which drive-time areas will be drawn</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#inputtype">inputType</a></td><td class="syntaxTABLE">String</td><td class="syntaxTABLE">The geometry type of the input layer</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#map">map</a></td><td class="syntaxTABLE"><a href="map-amd.html">Map</a></td><td class="syntaxTABLE">Reference to the map object</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#outputlayername">outputLayerName</a></td><td class="syntaxTABLE">String</td><td class="syntaxTABLE">The name of the output layer to be shown in the <b>Result layer name</b> inputbox.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#overlappolicy">overlapPolicy</a></td><td class="syntaxTABLE">String</td><td class="syntaxTABLE">The rule of overlap.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#portalurl">portalUrl</a></td><td class="syntaxTABLE">String</td><td class="syntaxTABLE">The url to the ArcGIS.com site or in-house portal where the GP server is hosted</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#returnfeaturecollection">returnFeatureCollection</a></td><td class="syntaxTABLE">Boolean</td><td class="syntaxTABLE">When true, returns the result of analysis as feature collection and creates a feature service.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#showchooseextent">showChooseExtent</a></td><td class="syntaxTABLE">Boolean</td><td class="syntaxTABLE">When true, the <b>choose extent</b> checkbox will be shown</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#showcredits">showCredits</a></td><td class="syntaxTABLE">Boolean</td><td class="syntaxTABLE">When true, the <b>show credit</b> option is visible</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#showhelp">showHelp</a></td><td class="syntaxTABLE">Boolean</td><td class="syntaxTABLE">When true, the help links will be shown</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#showselectfolder">showSelectFolder</a></td><td class="syntaxTABLE">Boolean</td><td class="syntaxTABLE">When true, the <b>select folder</b> dropdown will be shown.</td></tr>
+      </table>
+      <h4 class="dtH4">Methods</h4>
+      <table class="syntaxTABLE" cellspacing="0">
+        <tr><th class="tableheader">Name</th><th class="tableheader">Type</th><th class="tableheader">Summary</th></tr>
+        <tr><td class="syntaxTABLE"><a href="#cancel">cancel(jobInfo)</a></td><td class="syntaxTABLE">None</td><td class="syntaxTABLE">Cancels an analysis job that is being processed</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#execute">execute(params)</a></td><td class="syntaxTABLE">None</td><td class="syntaxTABLE">Starts an analysis tool</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#getcreditsestimate">getCreditsEstimate(toolName,jobParams)</a></td><td class="syntaxTABLE"><a href="http://dojotoolkit.org/reference-guide/1.8/dojo/Deferred.html" target="_blank">dojo.Deferred</a></td><td class="syntaxTABLE">Gets credits estimate for a specific analysis job.</td></tr>
+      </table>
+      <h4 class="dtH4">Events</h4><div class="switch">[ <span class="eventSwitch enabled">On Style Events</span> | <span class="eventSwitch">Connect Style Event</span> ]</div><div>All On Style event listeners receive a single event object. The event properties listed below are accessed from this event object. Additionally, the event object also contains a 'target' property whose value is the object which fired the event.</div><div class="eventDiv"><h4 class="dtH4">Events</h4>
+      <table class="syntaxTABLE" cellspacing="0">
+        <tr><th class="tableheader">Name</th><th class="tableheader">Returned Properties</th><th class="tableheader">Summary</th></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-close">close</a></td><td class="syntaxTABLE"></td><td class="syntaxTABLE">Fires when close icon is clicked or when run analysis button is clicked.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-drawtool-activate">drawtool-activate</a></td><td class="syntaxTABLE"></td><td class="syntaxTABLE">Fires when the <b>drawn boundaries</b> option is activated.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-drawtool-deactivate">drawtool-deactivate</a></td><td class="syntaxTABLE"></td><td class="syntaxTABLE">Fires when the <b>drawn boundaries</b> option is deactivated.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-job-cancel">job-cancel</a></td><td class="syntaxTABLE"><div>&lt;Object&gt; response</div></td><td class="syntaxTABLE">Fires when the job in cancelled.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-job-fail">job-fail</a></td><td class="syntaxTABLE"><div>&lt;Object&gt; error</div></td><td class="syntaxTABLE">Fires when the job fails.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-job-result">job-result</a></td><td class="syntaxTABLE"><div>&lt;Object&gt; result</div></td><td class="syntaxTABLE">Fires after the job fetches result data.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-job-status">job-status</a></td><td class="syntaxTABLE"><div>&lt;Object&gt; jobInfo</div></td><td class="syntaxTABLE">Fires when the job execution status is received.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-job-submit">job-submit</a></td><td class="syntaxTABLE"><div>&lt;Object&gt; params</div></td><td class="syntaxTABLE">Fires when the job is submitted to the server for asynchronous processing.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-job-success">job-success</a></td><td class="syntaxTABLE"><div>&lt;Object&gt; jobInfo</div></td><td class="syntaxTABLE">Fires when the job succeeds.</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#event-start">start</a></td><td class="syntaxTABLE"><div>&lt;Object&gt; params</div></td><td class="syntaxTABLE">Fires when the execute method is called.</td></tr>
+      </table></div><div class="eventDiv hidden"><h4 class="dtH4">Old Events</h4>
+      <table class="syntaxTABLE" cellspacing="0">
+        <tr><th class="tableheader">Name</th><th class="tableheader">Summary</th></tr>
+        <tr><td class="syntaxTABLE"><a href="#onclose">onClose()</a></td><td class="syntaxTABLE">Fires when the job is closed</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#onexecute">onExecute(params)</a></td><td class="syntaxTABLE">Fires when the job is submitted after createservice is called</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#onjobcancel">onJobCancel(response)</a></td><td class="syntaxTABLE">Fires when the job in cancelled</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#onjobfailed">onJobFailed(error)</a></td><td class="syntaxTABLE">Fires when the job fails</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#onjobresult">onJobResult(result)</a></td><td class="syntaxTABLE">Fires after the job fetches result data</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#onjobstatus">onJobStatus(jobInfo)</a></td><td class="syntaxTABLE">Fires when the job execution status is received</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#onjobsubmit">onJobSubmit(params)</a></td><td class="syntaxTABLE">Fires when a job is submitted to the server for asynchronous processing</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#onjobsuccess">onJobSuccess(jobInfo)</a></td><td class="syntaxTABLE">Fires when the job succeeds</td></tr>
+        <tr><td class="syntaxTABLE"><a href="#onsave">onSave()</a></td><td class="syntaxTABLE">Fires when the job is saved</td></tr>
+      </table></div>
+      <div class="sectionDivider">Constructor Details</div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="createdrivetimeareas1"></a>new esri.dijit.analysis.CreateDriveTimeAreas(params,srcNodeRef)</h4></div>
+        <div class="detaildesc">Creates a new CreateDriveTimeAreas dijit using the given DOM node.</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; params</td>
+        <td class="detailTABLE">Required</td>
+        <td class="detailTABLE">Various options to configure this dijit.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;DOMNode | String&gt; srcNodeRef</td>
+        <td class="detailTABLE">Required</td>
+        <td class="detailTABLE">Reference or id of a HTML element that this dijit is rendered into.</td>
+      </tr>
+</table></div>        <div class="detaildesc"><b>Options:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;String&gt; analysisGpServer</td>
+
+        <td class="detailTABLE">The URL to the GPServer used to execute an analysis job.<br><br><b>* Required</b> when <code>portalUrl</code> is not specified.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;String&gt; breakUnits</td>
+
+        <td class="detailTABLE">The units of the <code>breakValues</code> parameter. The default is <code>"Minutes"</code>.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Number[]&gt; breakValues</td>
+
+        <td class="detailTABLE">An array of driving time break values. The numeric break value or values are passed in as an array of numbers. By setting multiple, unique values in the array, polygons of different sizes are generated around each input location.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;<a href="featurelayer-amd.html">FeatureLayer</a>&gt; inputLayer</td>
+
+        <td class="detailTABLE">The point feature layer around which drive-time areas will be drawn.<br><br><b>* Required.</a></td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;String&gt; inputType</td>
+
+        <td class="detailTABLE">The geometry type of the input layer.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;<a href="map-amd.html">Map</a>&gt; map</td>
+
+        <td class="detailTABLE">Reference to the map object.<br><br><b>* Required</b> when <code>showChooseExtent</code> is <code>true</code>.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;String&gt; outputLayerName</td>
+
+        <td class="detailTABLE">The name of the output layer to be shown in the <b>Result layer name</b> inputbox. If not specified, <code>"Drive from ${input_layer_title} (${time_or_distance})"</code> will be shown by default.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;String&gt; overlapPolicy</td>
+
+        <td class="detailTABLE">The rule of overlap. When generating areas for more than one location, the drive-time areas may converge. You can choose to let the converging areas:
+<ul>
+<li><code>Overlap</code> - Drive-time areas from different input points may cover the same road. This is useful when you need to know all the input points that can reach a particular location within the given drive time or distance.</li>
+<li><code>Dissolve</code> - All drive-time areas are merged into one, and no more than one area can cover a particular location. This is useful when all you need to know is that an area can be reached within a given time or distance, but you don't need to know which specific input points can reach the location. If multiple break values are passed in to create various drive-time areas around each input location, the areas with the same break values are dissolved together, irrespective of the input point from which they are measured.</li>
+<li><code>Split</code> - The drive-time areas from different input locations that would overlap each other are split in the middle so they abut one another instead. This is useful when you want to see which areas are within a given time or distance of the input points and at the same time determine which input point is closest to that area.</li>
+</ul></td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;String&gt; portalUrl</td>
+
+        <td class="detailTABLE">The url to the ArcGIS.com site or in-house portal where the GP server is hosted.<br><br><b>* Required</b> when <code>analysisGpServer</code> is not specified.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Boolean&gt; returnFeatureCollection</td>
+
+        <td class="detailTABLE">When true, returns the result of analysis as feature collection and creates a feature service. This value determines whether or not the result will be saved and published on a user's arcgis.com account.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Boolean&gt; showChooseExtent</td>
+
+        <td class="detailTABLE">When true, the <b>choose extent</b> checkbox will be shown.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Boolean&gt; showCredits</td>
+
+        <td class="detailTABLE">When true, the <b>show credit</b> option is visible.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Boolean&gt; showHelp</td>
+
+        <td class="detailTABLE">When true, the help links will be shown.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;Boolean&gt; showSelectFolder</td>
+
+        <td class="detailTABLE">When true, the <b>select folder</b> dropdown will be shown. This parameter should be used when you want to allow users to select a folder in their arcgis.com account where the output feature layer will be exported as a service.</td>
+      </tr>
+</table></div>        <div class="detaildesc"><b>Sample:</b> <pre class='prettyprint'>var createDriveTimeAreas = new esri.dijit.analysis.CreateDriveTimeAreas({
+  inputLayer: results[0].layer,
+  map: map,
+  portalUrl: "http://www.arcgis.com"
+}, "analysis-tool");</pre></div>
+      </div><div class="sectionDivider">Property Details</div>
+
+            <div class="detaildiv">
+        <div class="detailname"><h4><a id="analysisgpserver"></a>&lt;String&gt; analysisGpServer</h4></div>
+        <div class="detaildesc">URL to the GPServer to be used for this analysis.</div>        <div class="detaildesc"><b>Sample:</b> <pre class='prettyprint'>"http://analysis.arcgis.com/arcgis/rest/services/tasks/GPServer"</pre></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="breakunits"></a>&lt;String&gt; breakUnits</h4></div>
+        <div class="detaildesc">The units of the <code>breakValues</code> parameter.</div>        <div class="detaildesc"><b>Known values:</b> "Seconds" | "Minutes" | "Hours" |  "Feet" | "Yards" | "Meters" | "Kilometers" | "Miles"</div>        <div class="detaildesc"><b>Default value:</b> "Minute"</div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="breakvalues"></a>&lt;Number[]&gt; breakValues</h4></div>
+        <div class="detaildesc">An array of driving time break values. The numeric break value or values are passed in as an array of numbers. By setting multiple, unique values in the array, polygons of different sizes are generated around each input location.</div>        <div class="detaildesc"><b>Default value:</b> [ 5 , 10 , 15 ]</div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="inputlayer"></a>&lt;<a href="featurelayer-amd.html">FeatureLayer</a>&gt; inputLayer</h4></div>
+        <div class="detaildesc">The point feature layer around which drive-time areas will be drawn.</div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="inputtype"></a>&lt;String&gt; inputType</h4></div>
+        <div class="detaildesc">The geometry type of the input layer.</div>        <div class="detaildesc"><b>Known values:</b> "point" | "line" | "polygon"</div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="map"></a>&lt;<a href="map-amd.html">Map</a>&gt; map</h4></div>
+        <div class="detaildesc">Reference to the map object.</div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="outputlayername"></a>&lt;String&gt; outputLayerName</h4></div>
+        <div class="detaildesc">The name of the output layer to be shown in the <b>Result layer name</b> inputbox. If not specified, <code>"Drive from ${input_layer_title} (${time_or_distance})"</code> will be shown by default.</div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="overlappolicy"></a>&lt;String&gt; overlapPolicy</h4></div>
+        <div class="detaildesc">The rule of overlap. When generating areas for more than one location, the drive-time areas may converge. You can choose to let the converging areas:
+<ul>
+<li><code>Overlap</code> - Drive-time areas from different input points may cover the same road. This is useful when you need to know all the input points that can reach a particular location within the given drive time or distance.</li>
+<li><code>Dissolve</code> - All drive-time areas are merged into one, and no more than one area can cover a particular location. This is useful when all you need to know is that an area can be reached within a given time or distance, but you don't need to know which specific input points can reach the location. If multiple break values are passed in to create various drive-time areas around each input location, the areas with the same break values are dissolved together, irrespective of the input point from which they are measured.</li>
+<li><code>Split</code> - The drive-time areas from different input locations that would overlap each other are split in the middle so they abut one another instead. This is useful when you want to see which areas are within a given time or distance of the input points and at the same time determine which input point is closest to that area.</li>
+</ul></div>        <div class="detaildesc"><b>Known values:</b> "Overlap" | "Dissolve" | "Split"</div>        <div class="detaildesc"><b>Default value:</b> "Overlap"</div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="portalurl"></a>&lt;String&gt; portalUrl</h4></div>
+        <div class="detaildesc">The url to the ArcGIS.com site or in-house portal where the GP server is hosted.</div>        <div class="detaildesc"><b>Sample:</b> <pre class='prettyprint'>"http://www.arcgis.com"</pre></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="returnfeaturecollection"></a>&lt;Boolean&gt; returnFeatureCollection</h4></div>
+        <div class="detaildesc">When true, returns the result of analysis as feature collection and creates a feature service. This value determines whether or not the result will be saved and published on a user's arcgis.com account.</div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="showchooseextent"></a>&lt;Boolean&gt; showChooseExtent</h4></div>
+        <div class="detaildesc">When true, the <b>choose extent</b> checkbox will be shown.</div>        <div class="detaildesc"><b>Default value:</b> true</div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="showcredits"></a>&lt;Boolean&gt; showCredits</h4></div>
+        <div class="detaildesc">When true, the <b>show credit</b> option is visible.</div>        <div class="detaildesc"><b>Default value:</b> true</div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="showhelp"></a>&lt;Boolean&gt; showHelp</h4></div>
+        <div class="detaildesc">When true, the help links will be shown.</div>        <div class="detaildesc"><b>Default value:</b> true</div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="showselectfolder"></a>&lt;Boolean&gt; showSelectFolder</h4></div>
+        <div class="detaildesc">When true, the <b>select folder</b> dropdown will be shown. This parameter should be used when you want to allow users to select a folder in their arcgis.com account where the output feature layer will be exported as a service.</div>        <div class="detaildesc"><b>Default value:</b> false</div>
+      </div>
+      <div class="sectionDivider">Method Details</div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="cancel"></a>cancel(jobInfo)</h4></div>
+        <div class="detaildesc">Cancels an analysis job that is being processed.</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; jobInfo</td>
+        <td class="detailTABLE">Required</td>
+        <td class="detailTABLE">An object containing job information including job ID, status, message, etc. returned by the <a href="#job-status">.on("job-status")</a> event.</td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="execute"></a>execute(params)</h4></div>
+        <div class="detaildesc">Starts an analysis tool.</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;String&gt; params</td>
+        <td class="detailTABLE">Required</td>
+        <td class="detailTABLE">An object contains the following properties:
+<table class="syntaxTable">
+<tr>
+<td class="detailTable">&lt;Object&gt; <b>jobParams</b></td>
+<td class="detailTable">The input job parameters. Required parameters vary from class to class. Refer to the <a href="http://developers.arcgis.com/en/rest/analysis/api-reference/getting-started.htm" target="_blank">Analysis REST API Documentation</a> for details (Under the <b>Request Parameters</b> section of each task). When creating a hosted service, the <code>OutputName</code> property is required.</td>
+</tr>
+<tr>
+<td class="detailTable">&lt;Object&gt; <b>itemParams</b></td>
+<td class="detailTable">Parameters for creating the output service item. Refer to the <a href="http://resources.arcgis.com/en/help/arcgis-rest-api/index.html#/Add_Item/02r30000008q000000/" target="_blank">ArcGIS REST API - Add Item</a> help topic for a list of available parameters. <b>Optional.</b> Only used when the analysis task creates a hosted service.</td>
+</tr>
+</table></td>
+      </tr>
+</table></div>        <div class="detaildesc"><b>Sample:</b> <pre class='prettyprint'>var params = {
+  itemParams: {
+    description: "Item description.",
+    snippet: "A short summary about this item.",
+    tags: "&lt;tag1&gt;, &lt;tag2&gt;, &lt;tag3&gt;, ... ",
+    typeKeywords: "&lt;typeKeyword1&gt;, &lt;typeKeyword2&gt;, &lt;typeKeyword3&gt;, ... "
+  },
+  jobParams: {
+    OutputName: "{\"serviceProperties\":{\"name\":\"Name of the output feature service\"},\"itemProperties\":{\"itemId\":\"&lt;itemId&gt;\"}}",
+    ...
+  }
+}
+
+analysisBase.execute(params);
+</pre></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="getcreditsestimate"></a>getCreditsEstimate(toolName,jobParams)</h4></div>
+        <div class="detaildesc">Gets credits estimate for a specific analysis job. This method returns a deferred object. The callback function has an object containing the number of records to be processed and the estimated credit cost for this job.</div>        <div class="detaildesc"><b>Return value:</b> <a href="http://dojotoolkit.org/reference-guide/1.8/dojo/Deferred.html" target="_blank">dojo.Deferred</a></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;String&gt; toolName</td>
+        <td class="detailTABLE">Required</td>
+        <td class="detailTABLE">The name of the analysis tool from which a credits estimate will be returned.</td>
+      </tr>
+      <tr>
+        <td class="detailTABLE">&lt;String&gt; jobParams</td>
+        <td class="detailTABLE">Required</td>
+        <td class="detailTABLE">The input job parameters. This value should be the same as the <code>jobParams</code> property of an analysis tool dijit. Refer to the <code>jobParams</code> property of this class for detailed syntax.</td>
+      </tr>
+</table></div>        <div class="detaildesc"><b>Sample:</b> <pre class='prettyprint'>
+analysisBase.getCreditsEstimate("FindHotSpots",{
+  AnalysisLayer: layer._json,
+  context: '{"outSR":{"wkid":102100}}',
+  isProcessInfo: true,
+  returnFeatureCollection: true
+}).then(function(result){
+  console.log(result);
+});
+
+//the "result" argument above:
+//{
+//  "cost": 1.472,
+//  "totalRecords": 1472,
+//}</pre></div>
+      </div>
+      <div class="sectionDivider">Event Details</div>
+<div class="switch">[ <span class="eventSwitch enabled">On Style Events</span> | <span class="eventSwitch">Connect Style Event</span> ]</div><div class="eventDiv">      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-close"></a>close</h4></div>
+        <div class="detaildesc">Fires when close icon is clicked or when run analysis button is clicked. <i>(Added at v3.7)</i></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-drawtool-activate"></a>drawtool-activate</h4></div>
+        <div class="detaildesc">Fires when the <b>drawn boundaries</b> option is activated. Only valid when using the FindHotSpots or ExtractData widget. A typical usage is to disable the zoom/pan/popup handlers when drawing is activated. <i>(Added at v3.7)</i></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-drawtool-deactivate"></a>drawtool-deactivate</h4></div>
+        <div class="detaildesc">Fires when the <b>drawn boundaries</b> option is deactivated. Only valid when using the FindHotSpots or ExtractData widget. A typical usage is to enable the zoom/pan/popup handlers when drawing is deactivated. <i>(Added at v3.7)</i></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-job-cancel"></a>job-cancel</h4></div>
+        <div class="detaildesc">Fires when the job in cancelled. <i>(Added at v3.7)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; response</td>
+
+        <td class="detailTABLE">An <code>GP job</code> object returned by the GP server. Refer to the <a href="http://resources.arcgis.com/en/help/arcgis-rest-api/#/GP_Job/02r3000000r4000000/" target="_blank">GP Job</a> and the <a href="http://developers.arcgis.com/en/rest/analysis/api-reference/checking-job-status.htm" target="_blank">Checking job status</a> topics in the ArcGIS REST API Documentation for more information and syntax.<pre class='prettyprint'>{
+  "inputs": {},
+  "jobId": &lt;job id&gt;,
+  "jobStatus": &lt;job status&gt;,
+  "messages": &lt;an array of message text&gt;,
+  "results": {}
+}</pre></td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-job-fail"></a>job-fail</h4></div>
+        <div class="detaildesc">Fires when the job fails. <i>(Added at v3.7)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; error</td>
+
+        <td class="detailTABLE">The error message returned by a failed job.<pre class='prettyprint'>{
+  "analysisReport": &lt;analysis report message&gt;,
+  "dataType": &lt;analysis report message&gt;,
+  "paramName": &lt; parameter  name &gt;,
+  "value": &lt;output item info | feature collection&gt;
+}</pre></td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-job-result"></a>job-result</h4></div>
+        <div class="detaildesc">Fires after the job fetches result data. The returned argument contains the output value (either a feature collection or a url to the hosted service), which you may add to the map as a feature layer. <i>(Added at v3.7)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; result</td>
+
+        <td class="detailTABLE">An object containing the resulted message and value. Based on the <a href="http://resources.arcgis.com/en/help/arcgis-rest-api/#/GP_Result/02r3000000q7000000/" target="_blank">GP result</a> object returned by the GP server with the <code>analysisReport</code> property added.
+<br><br>
+If output is a feature collection, <code>value</code> is a feature collection object; if output is a hosted arcgis.com feature service, <code>value</code> is an object with item information including ID and URL. Refer to the <a href="http://developers.arcgis.com/en/rest/analysis/api-reference/feature-output.htm" target="_blank">ArcGIS REST API documentation - Feature Output</a> for more information.<pre class='prettyprint'>{
+  "analysisReport": &lt;analysis report message&gt;,
+  "dataType": &lt;analysis report message&gt;,
+  "paramName": &lt; parameter  name &gt;,
+  "value": &lt;output item info | feature collection&gt;
+}</pre></td>
+      </tr>
+</table></div>        <div class="detaildesc"><b>Sample:</b> <pre class='prettyprint'>analysisTool.on("job-result", function(result){
+  var featureLayer = new esri.layers.FeatureLayer(result.value['url'] || result.value);
+  map.addLayer(featureLayer);
+})
+</pre></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-job-status"></a>job-status</h4></div>
+        <div class="detaildesc">Fires when the job execution status is received. <i>(Added at v3.7)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; jobInfo</td>
+
+        <td class="detailTABLE">An object containing job information including job ID, status, message, etc. Based on the <code>GP job</code> object returned by the GP server with the <code>jobParam</code> property attached. Refer to the <a href="http://resources.arcgis.com/en/help/arcgis-rest-api/#/GP_Job/02r3000000r4000000/" target="_blank">GP Job</a> and the <a href="http://developers.arcgis.com/en/rest/analysis/api-reference/checking-job-status.htm" target="_blank">Checking job status</a> topics in the ArcGIS REST API Documentation for more information and syntax.<pre class='prettyprint'>{
+  "inputs": {},
+  "jobParams": &lt;job parameters&gt;,
+  "jobId": &lt;job id&gt;,
+  "jobStatus": &lt;job status&gt;,
+  "messages": &lt;an array of message text&gt;,
+  "results": {}
+}</pre></td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-job-submit"></a>job-submit</h4></div>
+        <div class="detaildesc">Fires when the job is submitted to the server for asynchronous processing. <i>(Added at v3.7)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; params</td>
+
+        <td class="detailTABLE">The input job parameters.</td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-job-success"></a>job-success</h4></div>
+        <div class="detaildesc">Fires when the job succeeds. <i>(Added at v3.7)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; jobInfo</td>
+
+        <td class="detailTABLE">An object containing job information including job ID, status, message, etc. Based on the <code>GP job</code> object returned by the GP server with the <code>jobParam</code> property attached. Refer to the <a href="http://resources.arcgis.com/en/help/arcgis-rest-api/#/GP_Job/02r3000000r4000000/" target="_blank">GP Job</a> and the <a href="http://developers.arcgis.com/en/rest/analysis/api-reference/checking-job-status.htm" target="_blank">Checking job status</a> topics in the ArcGIS REST API Documentation for more information and syntax.
+<br><br>
+This returned object can be passed into the <a href="#cancel">.cancel(jobInfo)</a> method to terminate a job.<pre class='prettyprint'>{
+  "inputs": {},
+  "jobParams": &lt;job parameters&gt;,
+  "jobId": &lt;job id&gt;,
+  "jobStatus": &lt;job status&gt;,
+  "messages": &lt;an array of message text&gt;,
+  "results": {}
+}</pre></td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="event-start"></a>start</h4></div>
+        <div class="detaildesc">Fires when the execute method is called. <i>(Added at v3.7)</i></div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; params</td>
+
+        <td class="detailTABLE">The input job parameters.</td>
+      </tr>
+</table></div>
+      </div></div><div class="eventDiv hidden">      <div class="detaildiv">
+        <div class="detailname"><h4><a id="onclose"></a>onClose()</h4></div>
+        <div class="detaildesc">Fires when the job is closed.</div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="onexecute"></a>onExecute(params)</h4></div>
+        <div class="detaildesc">Fires when the job is submitted after createservice is called.</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; params</td>
+
+        <td class="detailTABLE">The input job parameters. This value should be the same as the <code>jobParams</code> property of an analysis tool dijit. Refer to the <code>jobParams</code> property of this class for detailed syntax.</td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="onjobcancel"></a>onJobCancel(response)</h4></div>
+        <div class="detaildesc">Fires when the job in cancelled.</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; response</td>
+
+        <td class="detailTABLE">An response object returned by a GP server.<pre class='prettyprint'>{
+  "inputs": {},
+  "jobId": "j04c9eb46b5fd442ba93001a8682d551c",
+  "jobStatus": "esriJobCancelled",
+  "messages": &lt;an array of message text&gt;,
+  "results": {}
+}</pre></td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="onjobfailed"></a>onJobFailed(error)</h4></div>
+        <div class="detaildesc">Fires when the job fails.</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;Error&gt; error</td>
+
+        <td class="detailTABLE">The error message returned by a failed job.</td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="onjobresult"></a>onJobResult(result)</h4></div>
+        <div class="detaildesc">Fires after the job fetches result data.</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; result</td>
+
+        <td class="detailTABLE">An object containing the following properties:<pre class='prettyprint'>{
+  "_ssl": false,
+  "analysisReport": "report message",
+  "dataType": "GPString",
+  "paramName": "hotSpotsResultLayer",
+  "value": &lt;a feature collection object&gt;
+}</pre></td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="onjobstatus"></a>onJobStatus(jobInfo)</h4></div>
+        <div class="detaildesc">Fires when the job execution status is received.</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; jobInfo</td>
+
+        <td class="detailTABLE">An object containing job ID, job status, and the initial input parameters.<pre class='prettyprint'>{
+  jobId: "jf07254b24ffb4e67ba4daa311de45f00",
+  jobStatus: "esriJobSubmitted",
+  jobParams: &lt;the jobParams property of this analysis tool&gt;
+}</pre></td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="onjobsubmit"></a>onJobSubmit(params)</h4></div>
+        <div class="detaildesc">Fires when a job is submitted to the server for asynchronous processing.</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; params</td>
+
+        <td class="detailTABLE">The input job parameters. The input job parameters. This value should be the same as the <code>jobParams</code> property of an analysis tool dijit. Refer to the <code>jobParams</code> property of this class for detailed syntax.</td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="onjobsuccess"></a>onJobSuccess(jobInfo)</h4></div>
+        <div class="detaildesc">Fires when the job succeeds.</div>        <div class="detaildesc"><b>Parameters:</b> <table class="syntaxTABLE" cellspacing="0">
+      <tr>
+        <td class="detailTABLE">&lt;Object&gt; jobInfo</td>
+
+        <td class="detailTABLE">An object containing job ID, job status, the initial input parameters, messages and result info.<pre class='prettyprint'>{
+  "inputs": {},
+  "jobId": "j00177ce97f8a4d01b0e8a44d735f5667",
+  "jobParams": &lt;the jobParams property of this analysis tool&gt;,
+  "jobStatus": "esriJobSucceeded"
+  "messages": &lt;an array of message text&gt;,
+  "results": {
+    "hotSpotsResultLayer": {
+      "paramUrl": "results/hotSpotsResultLayer"
+    },
+    "processInfo": {
+      "paramUrl": "results/processInfo"
+    }
+  }
+}</pre></td>
+      </tr>
+</table></div>
+      </div>
+      <div class="detaildiv">
+        <div class="detailname"><h4><a id="onsave"></a>onSave()</h4></div>
+        <div class="detaildesc">Fires when the job is saved.</div>
+      </div></div>
+    </div>
+<div id="wh_footer" class="footnote" align="center">
+  Please <a href="mailto:js_feedback@esri.com?subject=Feedback on API Ref:  createdrivetimeareas.html">contact the team</a> to comment or give suggestions.
+  <br>
+  Copyright &copy; Environmental Systems Research Institute, Inc.
+</div></div> <!-- sub 5 and 6:  main content for a page and feedback link -->
+  </div>
+</div> <!-- end main content -->
+
+<!-- TOC script -->
+<script src="../scripts/tree.js"></script>
+
+<script src="../prettify/prettify.js"></script>
+<script>
+  var dojoConfig = {
+    packages: [{
+      "name": "js",
+      "location": location.pathname.replace(/\/[^/]+$/, "/") + "../scripts"
+    }]
+  };
+</script>
+<script src="//js.arcgis.com/3.8compact/"></script> <!-- add API version -->
+<script src="../scripts/esri-main-apiref.js"></script>
+<script>
+require(["dojo/on", "dojo/query"], function(on, query) {
+  on(query(".eventSwitch"), "click", function(evt){
+    if (evt.target.classList[1] !== "enabled") {
+      query(".eventDiv").toggleClass("hidden");
+      query(".eventSwitch").toggleClass("enabled");
+    };
+  });
+});
+</script>
+<script src="../scripts/classList.js"></script>
+
+<!-- google analytics -->
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-215788-63']);
+  _gaq.push(['_setDomainName', 'arcgis.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+ <!-- google analytics, crazy egg and script to redirect old hash based URLs to static pages -->
+</body>
+</html>

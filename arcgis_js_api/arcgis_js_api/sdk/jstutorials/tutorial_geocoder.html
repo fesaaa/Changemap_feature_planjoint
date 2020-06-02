@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="ie lt-ie9 lt-ie8 lt-ie7 ie6"> <![endif]-->
+<!--[if IE 7]>         <html class="ie lt-ie9 lt-ie8 ie7"> <![endif]-->
+<!--[if IE 8]>         <html class="ie lt-ie9 ie8"> <![endif]-->
+<!--[if gt IE 8]><!--> <html> <!--<![endif]-->
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+  <meta name="content-language" content="en">
+  <meta name="product" content="js-api-arcgis">
+  <meta name="subject" content="DEVELOPER,WEB,WEB APPLICATIONS,MOBILE">
+  <meta name="sub_category" content="JavaScript API">
+  <meta name="search-collection" content="help">
+  <meta name="search-category" content="help-api">
+  <meta name="version" content="arcgis-3.8"> <!-- API version -->
+  <meta name="content_type" content="Tutorial"> <!-- options: Help Topic, API Reference or Tutorial -->
+  <meta name="last-modified" content="2013-12-19"> <!-- put in date docs were generated -->
+
+  <link rel="stylesheet" href="../styles/screen.css">
+  <link rel="stylesheet" href="../styles/jsdoc.css">
+  <link rel="stylesheet" href="../styles/homepage.css">
+  <link rel="stylesheet" href="../styles/grid.css">
+  <link rel="stylesheet" href="../styles/tree.css">
+  <link rel="stylesheet" href="../prettify/prettify.css">
+  <style>
+    html {
+      overflow-y: auto;
+    }
+    .navigation-bar, .section-bar {
+      margin-bottom: 0;
+    }
+    .navigation-bar header h1, .section-bar header h1 {
+      margin-top: .35294em;
+    }
+    .navigation-bar, .section-bar {
+      background: url('../graphics/banner.jpg') no-repeat center center #762783;
+      min-height: 48px;
+      color: white;
+    }
+    #esri-logo {
+      background: url('../graphics/logo-esri.png') no-repeat center center ;
+      width: 100px;
+    }
+    @font-face {
+    font-family:'icomoon';src:url('../fonts/icons.eot');src:url('../fonts/icons.eot?#iefix') format("embedded-opentype"),url('../fonts/icons.woff') format("woff"),url('../fonts/icons.ttf') format("truetype"),url('../fonts/icons.svg#icomoon') format("svg");font-weight:400;font-style:normal
+    }[data-icon]:before {
+      font-family: 'icomoon';
+      content: attr(data-icon);
+      speak: none;
+      font-weight: 400;
+      line-height: 1;
+      -webkit-font-smoothing: antialiased
+    }[class*="icon-"]:before {
+      font-family: 'icomoon';
+      speak: none;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 1;
+      -webkit-font-smoothing: antialiased;
+      text-transform: none
+    }
+    pre {
+      font-size: 1.1em;
+      line-height: normal;
+      margin: 0;
+    }
+    #header nav li a {
+      font-size: .875em;
+    }
+    #esri-logo {
+      margin-left: 0;
+    }
+  </style>
+  <!--[if lt IE 9]>
+    <script src="../scripts/libs/html5shiv.js"></script>
+    <script src="../scripts/libs/selectivizr-min.js"></script>
+    <style>
+      #wrapper {
+        min-width: 960px;
+      }
+    </style>
+  <![endif]-->
+  <title>
+    Tutorials | ArcGIS API for JavaScript 
+  </title>
+</head>
+  
+<body>
+<div id="nav">
+<header id="header">
+  <div class="container relative-container">
+    <div class="header-inner ">
+      <div class="logo-wrap"><a href="../" id="site-logo">Arc<span>GIS</span> API for JavaScript</a><!--span class="down-arrow" id="down-arrow"></span--></div>
+      <nav id="site-nav" class="">
+        <a href="/en/" class="selected">
+          <h4 class="developers">Arc<span>GIS</span> API for JavaScript</h4>
+          <p>Build location-aware applications with ArcGIS</p>
+        </a>
+
+        <a href="https://www.arcgis.com/about/">
+          <h4 class="organizations">Arc<span>GIS</span> for Organizations</h4>
+          <p>Learn more about ArcGIS</p>
+        </a>
+      </nav>
+
+      <a id="esri-logo" href="http://esri.com">Esri</a>
+      <div id="logged-out-navigation" class="dropdown-navigation hide">
+  <a id="login-link" class="btn small light" href="/en/log-in/">Log In</a>
+</div>
+<div id="logged-in-navigation" class="dropdown-navigation dropdown-wrapper hide">
+  <a href="/en/usage-summary" class="dropdown btn small light">
+    <!-- <img src="http://d3w50ib5d2uy0g.cloudfront.net/cdn/2464//js/esri/arcgisonline/css/images/no-user-thumb.jpg" width="16" height="16" alt=""> --><span id="username"></span>
+  </a>
+  <div class="dropdown-content">
+    <ul>
+      <li><a href="/en/usage-summary/">Usage Summary</a></li>
+      <li><a href="/en/applications/">Applications</a></li>
+      <li></li>
+      <li><a href="/en/tools/">GIS Tools</a></li>
+    </ul>
+    <hr>
+    <ul>
+      <li><a href="/en/account/profile/">Account Settings</a></li>
+      <li><a href="/en/feedback/">Feedback</a></li>
+    </ul>
+    <hr>
+    <ul>
+      <li><a id="log-out-link" href="#">Log Out</a></li>
+    </ul>
+  </div>
+</div>
+
+      <div id="mobile-navigation" class="dropdown-navigation dropdown-wrapper">
+        <a href="#" class="dropdown btn small light icon icon-list-2">Select <span>a Section</span></a>
+        <div class="dropdown-content">
+          <ul>
+            <li><a href="../jshelp/">Concepts</a></li>
+            <li><a href="../jsapi/">API Reference</a></li>
+            <li><a href="../jssamples/">Samples</a></li>
+            <li><a href="http://forums.arcgis.com/forums/15">Forum</a></li>
+            <li><a href="../../">All Developer Resources</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="navigation-bar">
+  <div class="container">
+    <nav>
+      <div id="section-label"><a href=".">Tutorials</a></div>
+      <ul>
+        <!--li class="current"><a href="/en/javascript/">Home</a></li-->
+        <li class="current"><a href=".">Tutorials</a></li>
+        <li><a href="../jshelp/">Concepts</a></li>
+        <li><a href="../jsapi/">API Reference</a></li>
+        <li><a href="../jssamples/">Samples</a></li>
+        <li><a href="http://forums.arcgis.com/forums/15">Forum</a></li>
+        <li><a href="../../">All Developer Resources</a></li>
+      </ul>
+    </nav>
+  </div>
+</div> 
+</div><!-- end nav bar --> <!-- sub 2: header and navigation -->
+
+<div class="container_12">
+  <div class="grid_3 contentWrapper">
+    <div id="toggleToc">
+      <img src="../graphics/tochide.gif"> Hide Table of Contents
+    </div>
+    <div id="apiToc"><div class="treeDiv" id="tree" style="top: 35px; left: 0px;">
+  <div id="treeRoot">
+    <div class="treeNode">
+      <a class="treeUnselected" href="intro_firstmap_amd.html" onclick="clickAnchor(this)">Build your first application</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="intro_agstemplate_amd.html" onclick="clickAnchor(this)">Use an ArcGIS.com webmap</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="mobile_dev.html" onclick="clickAnchor(this)">Mobile-specific application</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="intro_directions.html" onclick="clickAnchor(this)">Directions widget</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="tutorial_geocoder.html" onclick="clickAnchor(this)">Geocoder widget</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="tutorial_label_layer.html" onclick="clickAnchor(this)">Labeling features client-side</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="intro_javascript_classes.html" onclick="clickAnchor(this)">Write a class</a>
+    </div>
+    <div class="treeNode">
+      <a class="treeUnselected" href="intro_custom_dijit.html" onclick="clickAnchor(this)">Create a re-usable widget</a>
+    </div>
+  </div>
+</div>
+<!-- pretty printed via http://prettydiff.com/?m=beautify&html --></div> <!-- Conceptual help TOC -->
+  </div>
+  <div class="grid_9 contentWrapper">
+    <div id="topicPane"><div id="pageBanner">Geocoder widget</div>
+
+<div id="nstext">
+<!--***START TEXT - DO NOT WRITE ABOVE THIS LINE***-->
+
+<p class="tutorial-outline">This tutorial covers the following:</p>
+<ol class="tutorial-outline">
+  <li><a href="#step1">Introduction to the Geocoder widget</a></li>
+  <li><a href="#step2">Require modules</a></li>
+  <li><a href="#step3">Create an element in your HTML document to house the widget</a></li>
+  <li><a href="#step4">Specify a style to position the widget over the map and make the map fill the entire page</a></li>
+  <li><a href="#step5">Instantiate the widget</a></li>
+  <li><a href="#step6">Enable auto-complete</a></li>
+  <li><a href="#step7">Show selected result on the map</a></li>
+  <li><a href="#step8">Using Placeholder Text</a></li>
+  <li><a href="#step9">Create a spotlight effect</a></li>
+  <li><a href="#step10">Putting it all together</a></li>
+  <li><a href="#step11">Bonus:  Use a custom geocoder</a></li>
+</ol>
+
+<ol class="tutorial-content">
+  <li id="step1"><h3>Introduction to the Geocoder widget</h3>
+    
+    <p>Panning and zooming a map to get to the place you’d like to go can be time consuming and a pain in your wrist. One way to provide easier map navigation is by adding a search box. A search box lets users to jump to a location quickly and easily.</p>
+    
+    <p>Now it's easier to add a search box that does just that by using the Geocoder widget with the ArcGIS Global Geocoding service.</p>
+    
+    <p>View a <a href="../sandbox/sandbox.html?sample=widget_geocoder_tutorial" target="_blank">live version of a samples that uses the Geocoder widget in the ArcGIS API for JavaScript Sandbox</a>. The sandbox is a live code editor that allows you to modify the sample's source and view the changes live.</p>
+
+    <p>In this tutorial, you will add the Geocoder widget to a basic web map to allow your users to easily search for locations. Once added, we’ll go through a few customizations that can be applied to the Geocoder widget.</p>
+
+  </li>
+
+  <li id="step2"><h3>Require modules</h3>
+
+    <p>Require the widget and additional modules.</p>
+
+    <div class="detailSample">
+    <pre class="prettyprint" style="border:none;">
+require([
+  "esri/map",
+  "esri/dijit/Geocoder",
+
+  "esri/graphic",
+  "esri/symbols/SimpleMarkerSymbol",
+  "esri/geometry/screenUtils",
+
+  "dojo/dom",
+  "dojo/dom-construct",
+  "dojo/query",
+  "dojo/_base/Color",
+
+  "dojo/domReady!"
+], function(
+  Map, Geocoder,
+  Graphic, SimpleMarkerSymbol, screenUtils,
+  dom, domConstruct, query, Color
+) { 
+  // create a map and instance of the geocoder widget here
+});
+</pre>
+    </div>
+    <p></p>
+  </li>
+
+  <li id="step3"><h3>Create an element in your HTML document to house the widget.</h3>
+    <div class="detailSample">
+    <pre class="prettyprint" style="border:none;">
+&lt;body&gt;
+  &lt;div id="search"&gt;&lt;/div&gt;
+  &lt;div id="map"&gt;&lt;/div&gt;            
+&lt;/body&gt;
+</pre>
+    </div>
+    <p></p>
+  </li>
+
+  <li id="step4"><h3>Specify a style to position the widget over the map and make the map fill the entire page.</h3>
+    <div class="detailSample">
+    <pre class="prettyprint" style="border:none;">
+&lt;style&gt;
+  html, body, #map {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  #search {
+    display: block;
+    position: absolute;
+    z-index: 3;
+    top: 20px;
+    left: 75px;
+  }
+&lt;/style&gt;
+</pre>
+    </div>
+    <p></p>
+  </li>
+
+  <li id="step5"><h3>Instantiate the widget</h3>
+    
+    <p>Create a map and create an instance of the Geocoder widget. As the second parameter to the Geocoder constructor, pass a reference to the node where you want to attach the widget. This node already exists in our HTML document and has a an ID of "search". This sample specifies the minimum required Geocoder parameters. After creating the widget, be sure to call startup().</p>
+    <div class="detailSample">
+    <pre class="prettyprint" style="border:none;">
+var map = new Map("map", {
+  basemap: "topo", 
+  center: [ -100, 40 ], 
+  zoom: 10
+});
+var geocoder = new Geocoder({
+  map: map,
+}, dom.byId("search"));
+geocoder.startup();
+</pre>
+    </div>
+  
+    <p>At this point, we have the default Geocoder widget in the page:</p>
+    <img src="../jshelp/images/Geocoder.png" style="padding-left:20px;">
+  </li>
+
+  <li id="step6"><h3>Enable auto-complete</h3>
+    <p>The Geocoder widget has additional capabilities such as address auto-complete that can be enabled by setting geocoder options. Set the <code>autoComplete</code> option to true to display a list of potential locations as users are typing.</p>
+    <div class="detailSample">
+    <pre class="prettyprint" style="border:none;">
+var geocoder = new Geocoder({
+  autoComplete: true,
+  map: map
+}, dom.byId("search"));
+  </pre>
+    </div>
+    <p>Below is a screen shot of what the Geocoder widget looks like with auto-complete enabled:</p>
+    <img src="../jshelp/images/autocomplete.png" style="padding-left:20px;"/>
+  </li>
+
+  <li id="step7"><h3>Show selected result on the map</h3>
+    <p>Next we'll add code to the application to add a symbol and display an info window for the found location. 
+    <div class="detailSample">
+    <pre class="prettyprint" style="border:none;">
+geocoder.on("select", showLocation);
+
+function showLocation(evt) {
+  map.graphics.clear();
+  var point = evt.result.feature.geometry;
+  var symbol = new SimpleMarkerSymbol()
+    .setStyle("square")
+    .setColor(new Color([255,0,0,0.5]));
+  var graphic = new Graphic(point, symbol);
+  map.graphics.add(graphic);
+
+  map.infoWindow.setTitle("Search Result");
+  map.infoWindow.setContent(evt.result.name);
+  map.infoWindow.show(evt.result.feature.geometry);
+});
+</pre>
+    </div>
+    <p></p>
+
+  <li id="step8"><h3>Using Placeholder Text</h3>
+    <p>In this step the Geocoder code is updated to define custom text to appear in the Geocoder search box. This text provides a hint to users about what they should enter in the search box. Specify the custom text by setting the <code>placeholder</code> option for the geocoder.</p>
+
+    <div class="detailSample">
+    <pre class="prettyprint" style="border:none;">
+var geocoder =  new Geocoder({
+  arcgisGeocoder: {
+    placeholder: "Find a place"
+  }, 
+  map: map
+}, dom.byId("search"));
+</pre>
+    </div>
+  <p>After adding the placeholder option the Geocoder displays the text in the widget itself:</p>
+  <img src="../jshelp/images/placeholder.png" style="padding-left:20px;"/>
+</li> 
+
+  <li id="step9"><h3>Create a spotlight effect</h3>
+    
+    <p>The next couple of code snippets will add a spotlight effect highlight the selected location.</p>
+
+    <p>First, define the css styles that determine how the spotlight effect will look. Put the following inside an existing &lt;style&gt; tag:</p>
+
+    <div class="detailSample">
+    <pre class="prettyprint" style="border:none;">
+.spotlight {
+  z-index:-1;
+  position:absolute;
+  left:50%;
+  top:50%;
+  border-radius:50%;
+  opacity:0;
+  box-shadow:
+  inset rgba(0,0,0,0.25) 0px 0px 20px 20px,
+  rgba(0,0,0,0.25) 0px 0px 0px 1000px;
+  transition:all 1000ms;
+  -moz-transition:all 1000ms;
+  -webkit-transition:all 1000ms;
+}
+.spotlight-active {
+  z-index:2;
+  opacity:1;
+}
+</pre>
+    </div>
+  
+    <p>Add code that adds a spotlight div to the map container once the map loads. </p>
+
+    <div class="detailSample">
+    <pre class="prettyprint" style="border:none;">
+map.on("load", enableSpotlight);
+
+function enableSpotlight() {
+  var html = "&lt;div id='spotlight' class='spotlight'&gt;&lt;/div&gt;"
+  domConstruct.place(html, dom.byId("map_container"), "first");
+}
+</pre>
+    </div>
+  
+    <p>When a result is clicked or the enter key is pressed, add the spotlight to the map. Modify the <code>showLocation</code> function to be:</p>
+
+    <div class="detailSample">
+    <pre class="prettyprint" style="border:none;">
+function showLocation(evt) {
+  map.graphics.clear();
+  var point = evt.result.feature.geometry;
+  var symbol = new SimpleMarkerSymbol().setStyle(
+    SimpleMarkerSymbol.STYLE_SQUARE).setColor(
+    new Color([255,0,0,0.5])
+  );
+  var graphic = new Graphic(point, symbol);
+  map.graphics.add(graphic);
+
+  map.infoWindow.setTitle("Search Result");
+  map.infoWindow.setContent(evt.result.name);
+  map.infoWindow.show(evt.result.feature.geometry);
+
+  var spotlight = map.on("extent-change", function(extentChange) {
+    var geom = screenUtils.toScreenGeometry(map.extent, map.width, map.height, extentChange.extent);
+    var width = geom.xmax - geom.xmin;
+    var height = geom.ymin - geom.ymax;
+
+    var max = height;
+    if ( width > height ) {
+        max = width;
+    }
+
+    var margin = '-' + Math.floor(max/2) + 'px 0 0 -' + Math.floor(max/2) + 'px';
+
+    query(".spotlight").addClass("spotlight-active").style({
+      width: max + "px",
+      height: max + "px",
+      margin: margin
+    });
+    spotlight.remove();
+  });
+}
+</pre>
+    </div>
+  
+    <p>Finally, add logic to remove the spotlight when the map's extent changes. </p>
+
+    <div class="detailSample">
+    <pre class="prettyprint" style="border:none;">
+geocoder.on("clear", removeSpotlight);
+
+function removeSpotlight() {
+  query(".spotlight").removeClass("spotlight-active");
+  map.infoWindow.hide();
+  map.graphics.clear();
+}
+</pre>
+    </div>
+    <p>After adding the code above, the selected result has a spotlight effect:</p>
+    <img src="../jshelp/images/spotlight.png" style="padding-left:20px;"/>
+  </li>
+
+  <li id="step10"><h3>Putting it all together</h3>
+    
+    <p>Complete spotlight example:</p>
+
+    <div class="detailSample">
+    <pre class="prettyprint" style="border:none;">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8"&gt;
+    &lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
+    &lt;meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no"&gt;
+    &lt;title&gt;&lt;/title&gt;
+    &lt;link rel="stylesheet" href="http://js.arcgis.com/3.7/js/esri/css/esri.css"&gt;
+    &lt;style&gt;
+      html, body, #map {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #search {
+        display: block;
+        position: absolute;
+        z-index: 3;
+        top: 20px;
+        left: 75px;
+      }
+      .spotlight {
+        z-index:-1;
+        position:absolute;
+        left:50%;
+        top:50%;
+        border-radius:50%;
+        opacity:0;
+        box-shadow:
+        inset rgba(0,0,0,0.25) 0px 0px 20px 20px,
+        rgba(0,0,0,0.25) 0px 0px 0px 1000px;
+        transition:all 1000ms;
+        -moz-transition:all 1000ms;
+        -webkit-transition:all 1000ms;
+      }
+      .spotlight-active {
+        z-index:2;
+        opacity:1;
+      }
+    &lt;/style&gt;
+    
+    &lt;script src="http://js.arcgis.com/3.7/"&gt;&lt;/script&gt;
+    &lt;script&gt;
+      require([
+        "esri/map",
+        "esri/dijit/Geocoder",
+
+        "esri/graphic",
+        "esri/symbols/SimpleMarkerSymbol",
+        "esri/geometry/screenUtils",
+
+        "dojo/dom",
+        "dojo/dom-construct",
+        "dojo/query",
+        "dojo/_base/Color",
+
+        "dojo/domReady!"
+      ], function(
+        Map, Geocoder,
+        Graphic, SimpleMarkerSymbol, screenUtils,
+        dom, domConstruct, query, Color
+      ) { 
+        // create a map and instance of the geocoder widget here
+        var map = new Map("map", {
+          basemap: "topo", 
+          center: [ -100, 40 ], 
+          zoom: 10
+        });
+        var geocoder =  new Geocoder({
+          arcgisGeocoder: {
+            placeholder: "Find a place"
+          }, 
+          autoComplete: true,
+          map: map
+        }, dom.byId("search"));
+
+        map.on("load", enableSpotlight);
+
+        geocoder.on("select", showLocation);
+        geocoder.on("clear", removeSpotlight);
+
+        function showLocation(evt) {
+          map.graphics.clear();
+          var point = evt.result.feature.geometry;
+          var symbol = new SimpleMarkerSymbol().setStyle(
+            SimpleMarkerSymbol.STYLE_SQUARE).setColor(
+            new Color([255,0,0,0.5])
+          );
+          var graphic = new Graphic(point, symbol);
+          map.graphics.add(graphic);
+
+          map.infoWindow.setTitle("Search Result");
+          map.infoWindow.setContent(evt.result.name);
+          map.infoWindow.show(evt.result.feature.geometry);
+
+          var spotlight = map.on("extent-change", function(extentChange) {
+            var geom = screenUtils.toScreenGeometry(map.extent, map.width, map.height, extentChange.extent);
+            var width = geom.xmax - geom.xmin;
+            var height = geom.ymin - geom.ymax;
+
+            var max = height;
+            if ( width &gt; height ) {
+                max = width;
+            }
+
+            var margin = '-' + Math.floor(max/2) + 'px 0 0 -' + Math.floor(max/2) + 'px';
+
+            query(".spotlight").addClass("spotlight-active").style({
+              width: max + "px",
+              height: max + "px",
+              margin: margin
+            });
+            spotlight.remove();
+          });
+        }
+
+        function enableSpotlight() {
+          var html = "&lt;div id='spotlight' class='spotlight'&gt;&lt;/div&gt;"
+          domConstruct.place(html, dom.byId("map_container"), "first");
+        }
+
+        function removeSpotlight() {
+          query(".spotlight").removeClass("spotlight-active");
+          map.infoWindow.hide();
+          map.graphics.clear();
+        }
+      });
+    &lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body class="soria"&gt;
+    &lt;div id="search"&gt;&lt;/div&gt;
+    &lt;div id="map"&gt;&lt;/div&gt;            
+  &lt;/body&gt; 
+&lt;/html&gt;
+</pre>
+  </div>
+
+  <p></p>
+  </li>
+
+  <li id="step11"><h3>Bonus:  Use a custom geocoder</h3>
+    
+    <p>The Geocoder widget allows you to specify a custom geocoder to use along with or in place of the default geocoder. Use <code>arcgisGeocoder: false</code> and the <code>geocoders</code> constructor option to specify your own geocoding service:</p>
+    <div class="detailSample">
+    <pre class="prettyprint" style="border:none;">
+var geocoder = new Geocoder({
+  arcgisGeocoder: false,
+  geocoders: [ {
+    url: "http://tasks.arcgisonline.com/ArcGIS/rest/services/Locators/TA_Address_NA_10/GeocodeServer",
+    name: "Esri Geocoder USA",
+    placeholder: "Locate",
+    outFields: "*"
+  }], 
+  map: map
+}, dom.byId("search"));
+</pre>
+  </div>
+
+  <p>Additional Geocoder samples are available in the <a href="../jssamples/#geocoding">Geocoding category</a> of the samples section of this site.</p>
+
+  </li>
+</ol>
+
+<!--***END TEXT - DO NOT WRITE BELOW THIS LINE***-->
+</div>
+<div id="wh_footer" class="footnote" align="center">
+  Please <a href="mailto:js_feedback@esri.com?subject=Feedback on jstutorials/tutorial_geocoder.html">contact the team</a> to comment or give suggestions.
+  <br>
+  Copyright &copy; Environmental Systems Research Institute, Inc.
+</div></div> <!-- main content for a page and feedback markup-->
+  </div>
+</div> <!-- end main content -->
+
+<!-- TOC script -->
+<script src="../scripts/tree.js"></script>
+
+<script src="../prettify/prettify.js"></script>
+<script>
+  var dojoConfig = {
+    packages: [{
+      "name": "js",
+      "location": location.pathname.replace(/\/[^/]+$/, "/") + "../scripts"
+    }]
+  };
+</script>
+<script src="//js.arcgis.com/3.8compact/"></script> <!-- add API version -->
+<script src="../scripts/esri-main-tutorials.js"></script>
+
+<!-- google analytics -->
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-215788-63']);
+  _gaq.push(['_setDomainName', 'arcgis.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+ <!-- sub 5:  add script to redirect old hash based URLs to static pages and google analytics-->
+
+</body>
+</html>

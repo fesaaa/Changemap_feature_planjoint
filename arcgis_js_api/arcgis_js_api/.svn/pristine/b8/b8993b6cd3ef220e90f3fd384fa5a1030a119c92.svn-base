@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <!--The viewport meta tag is used to improve the presentation and behavior of the samples 
+      on iOS devices-->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+    <title>Geometry Service: Relation</title>
+
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/dojo/dijit/themes/claro/claro.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/esri/css/esri.css">
+
+    <style>
+      html, body, #mapDiv {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+      }
+      #info {
+        bottom: 20px;
+        color: #444;
+        height: auto;
+        font-family: arial;
+        left: 20px;
+        margin: 5px;
+        padding: 10px;
+        position: absolute;
+        text-align: left;
+        width: 200px;
+        z-index: 40;
+      }
+      .label {
+        display: inline-block;
+        width: 4em;
+      }
+    </style>
+
+    <script src="http://js.arcgis.com/3.8/"></script>
+    <script>
+      require(["dojo/dom",
+    "dojo/_base/array",
+    "dojo/_base/Color",
+    "dojo/promise/all",
+
+    "esri/domUtils",
+    "esri/map",
+    "esri/graphic",
+    "esri/geometry/Geometry",
+    "esri/geometry/Point",
+    "esri/geometry/webMercatorUtils",
+    "esri/tasks/GeometryService",
+    "esri/tasks/Geoprocessor",
+    "esri/tasks/FeatureSet",
+    "esri/tasks/RelationParameters",
+    "esri/symbols/SimpleLineSymbol",
+    "esri/symbols/SimpleMarkerSymbol",
+    "esri/symbols/SimpleFillSymbol",
+    "esri/request",
+
+    "dijit/layout/BorderContainer",
+    "dijit/layout/ContentPane"
+], function(dom, array, Color, all,
+  domUtils, Map, Graphic, Geometry, Point, webMercatorUtils, GeometryService, Geoprocessor, FeatureSet, RelationshipParameters, SimpleLineSymbol, SimpleMarkerSymbol, SimpleFillSymbol, esriRequest) {
+
+  var map, geoprocessor, geometryService, geometries, baseGraphics;
+
+  map = new esri.Map("mapDiv", {
+    basemap: "topo",
+    center: [-117.215, 34.05],
+    zoom: 13
+  });
+
+  map.on("click", mapClicked);
+
+  // configure the proxy url for the application
+  esriConfig.defaults.io.proxyUrl = "/proxy";
+  esriConfig.defaults.io.alwaysUseProxy = false;
+
+  geometryService = new GeometryService("http://tasks.arcgisonline.com/ArcGIS/rest/services/Geometry/GeometryServer");
+  geoprocessor = new Geoprocessor("http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Network/ESRI_DriveTime_US/GPServer/CreateDriveTimePolygons");
+  geoprocessor.setOutSpatialReference({
+    wkid: 102100
+  });
+
+  function mapClicked(evt) {
+    geometries = [];
+    map.graphics.clear();
+
+    // add a simple marker graphic at the location where the user clicked on the map.
+    var pointSymbol = new SimpleMarkerSymbol(
+      SimpleMarkerSymbol.STYLE_CROSS, 22,
+      new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID, new Color([0, 128, 0]), 4));
+
+    var clickPointGraphic = new Graphic(evt.mapPoint, pointSymbol);
+    map.graphics.add(clickPointGraphic);
+
+    // create a deferred so that points and polygon can be sent to 
+    // a geometry service when both are available
+    var dl = new all([
+      executeYahooLocalSearch(clickPointGraphic),
+      getDriveTimePolygon(clickPointGraphic)
+    ]).then(relateGeometries);
+  }
+
+  function executeYahooLocalSearch(graphic) {
+    // find 20 pizza restaurants within a 4 mile radius of the selected location
+    var params = {
+      query: "pizza",
+      latitude: graphic.geometry.getLatitude(),
+      longitude: graphic.geometry.getLongitude(),
+      radius: 4,
+      results: 20,
+      output: "json",
+      appid: "7XxH60zV34FxiHah8D.ri33zlPCRS3aUZdpzEFtA8YxyJxZMbmsfDsec4oCtV5HxjO4L"
+    };
+
+    return esriRequest({
+      url: "http://local.yahooapis.com/LocalSearchService/V2/localSearch",
+      content: params,
+      callbackParamName: "callback",
+      load: buildYahooLocalLocations,
+      error: esriConfig.defaults.io.errorHandler
+    });
+  }
+
+  function buildYahooLocalLocations(response) {
+    // create a symbol (Red Square) for pizza restaurants
+    var yahooPointSymbol = new SimpleMarkerSymbol(
+      SimpleMarkerSymbol.STYLE_SQUARE, 6,
+      new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID, new Color([0, 0, 0]), 1),
+      new Color([255, 0, 0]));
+
+    // add the pizza restaurants to the map
+    var results = response.ResultSet.Result;
+    baseGraphics = [];
+    for (var i = 0, il = results.length; i < il; i++) {
+      var point = webMercatorUtils.geographicToWebMercator(new Point(results[i].Longitude, results[i].Latitude, map.spatialReference));
+      var graphic = new Graphic(point, yahooPointSymbol);
+      map.graphics.add(graphic);
+      baseGraphics.push(graphic);
+    }
+  }
+
+  function getDriveTimePolygon(graphic) {
+    // the graphic representing the selected location is passed onto the GP Task
+    var featureSet = new FeatureSet();
+    featureSet.features = [graphic];
+
+    var params = {
+      "Input_Location": featureSet,
+      "Drive_Times": 3
+    };
+    return geoprocessor.execute(params, parseDriveTimeResponse);
+  }
+
+  function parseDriveTimeResponse(results, messages) {
+    var feature = results[0].value.features[0];
+
+    // add the drive time polygon to the map
+    var polySymbolRed = new SimpleFillSymbol(
+      SimpleLineSymbol.STYLE_SOLID,
+      new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID,
+      new Color([0, 0, 0, 1]), 1),
+      new Color([255, 0, 0, 0.2]));
+    feature.setSymbol(polySymbolRed);
+    map.graphics.add(feature);
+  }
+
+  function relateGeometries(results) {
+    // check that both requests completed successfully
+    if (!results[0] || !results[1]) {
+      alert("Unable to compute point in polygon.");
+    }
+    var relationParams = new RelationParameters();
+    relationParams.geometries1 = esri.getGeometries(baseGraphics);
+    relationParams.geometries2 = esri.getGeometries(results[1][1][0].value.features);
+    relationParams.relation = RelationParameters.SPATIAL_REL_WITHIN;
+
+    geometryService.relation(relationParams, addRelateResultsToMap);
+    // alternatively, could use polygon.contains instead of using the geometry service
+  }
+
+  function addRelateResultsToMap(relations) {
+    console.log("add relate results", relations);
+    // create a Green Square symbol
+    var symbol = new SimpleMarkerSymbol(
+      SimpleMarkerSymbol.STYLE_SQUARE, 8,
+      new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID,
+      new Color([0, 0, 0]), 1),
+      new Color([0, 255, 0]));
+    // highlight the pizza places that satisfy the spatial relation (WITHIN) against the 3-minute drive time polygon
+    array.forEach(relations, function(relation) {
+      baseGraphics[relation.geometry1Index].setSymbol(symbol).getDojoShape().moveToFront();
+    });
+  }
+});
+    </script>
+
+  </head>
+
+  <body class="claro">
+    <div id="mapDiv"></div>
+    <div id="info" class="esriSimpleSlider">
+      Click on the map to show Pizza restaurants (from Yahoo! Local Search) that are within 3 minute drive time.
+    </div>
+  </body>
+</html>

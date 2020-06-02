@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+    <title>Add zoom button to DataGrid</title>
+
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/dojo/dijit/themes/claro/claro.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/dojo/dojox/grid/resources/Grid.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/esri/css/esri.css">
+    <style>
+      body,html,#main{margin:0;padding:0;height:100%;width:100%;}
+      #map{padding:0;border:solid 1px;}
+    </style>
+
+    <script>var dojoConfig = { parseOnLoad:true };</script>
+    <script src="http://js.arcgis.com/3.8/"></script>
+    <script>
+      dojo.require("esri.map");
+      dojo.require("esri.layers.FeatureLayer");
+      dojo.require("dojo.parser");
+      dojo.require("dijit.layout.BorderContainer");
+      dojo.require("dijit.layout.ContentPane");
+      dojo.require("dijit.form.Button");
+      dojo.require("dijit.form.TextBox");
+      dojo.require("dojox.grid.DataGrid");
+      dojo.require("dojo.data.ItemFileReadStore");
+
+      var map, statesLayer;
+
+      function init() {
+        map = new esri.Map("map",{
+          basemap: "gray",
+          center: [-97.031, 42.618],
+          zoom: 4
+        });
+
+        //add the states demographic data
+        statesLayer = new esri.layers.FeatureLayer("http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Demographics/ESRI_Census_USA/MapServer/5",{
+          mode:esri.layers.FeatureLayer.MODE_SELECTION,
+          outFields:["STATE_NAME","POP2000","ObjectID"]
+        });
+        
+        //define a selection symbol 
+        var highlightSymbol = new esri.symbol.SimpleFillSymbol().setColor( new dojo.Color([50,205,50,.25]));
+        statesLayer.setSelectionSymbol(highlightSymbol);
+        
+        dojo.connect(statesLayer,'onLoad',function(layer){     
+          var query = new esri.tasks.Query();    
+          query.where = "1=1";
+          layer.queryFeatures(query,function(featureSet){
+            var items = dojo.map(featureSet.features,function(feature){
+              return feature.attributes;
+            });
+            var data = {
+              identifier:"ObjectID",
+              items:items};
+            store = new dojo.data.ItemFileReadStore({data:data});
+            grid.setStore(store);
+            grid.setSortIndex(1,"true"); //sort on the state name          
+          });
+        });
+        map.addLayers([statesLayer]);
+        
+        //modify the grid so only the STATE_NAME field is sortable
+        grid.canSort = function(col){ if(Math.abs(col) == 2) { return true; } else { return false; } };
+      }
+
+      function makeZoomButton(id){
+        var zBtn = "<div data-dojo-type='dijit.form.Button'><img src='images/zoom.png'";
+        zBtn = zBtn + " width='18' height='18'";
+        zBtn = zBtn + " onClick=\"zoomRow('"+id+"')\"></div>";
+        return zBtn;
+      }
+
+      function zoomRow(id){
+        statesLayer.clearSelection();
+        var query = new esri.tasks.Query();
+        query.objectIds = [id];
+        statesLayer.selectFeatures(query,esri.layers.FeatureLayer.SELECTION_NEW,function(features){
+          //zoom to the selected feature
+          var stateExtent = features[0].geometry.getExtent().expand(5.0);
+          map.setExtent(stateExtent);
+        });
+      }
+      dojo.ready(init);
+    </script>
+  </head>
+  <body class="claro">
+    <div id="mainWindow" data-dojo-type="dijit.layout.BorderContainer" data-dojo-props="design:'headline'" style="width:100%; height:100%;">
+      <div id="map" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="region:'center'" >
+      </div>
+      <div data-dojo-type="dijit.layout.ContentPane" data-dojo-props="region:'left'" style="width:255px">
+        <table data-dojo-type="dojox.grid.DataGrid" jsid="grid" id="grid" selectionMode="none">
+         <thead>
+            <tr>
+              <th field="ObjectID" formatter="makeZoomButton" width="25px">
+                <img alt="+" src="images/zoom.png"/>
+              </th>
+              <th field="STATE_NAME" width="100px">State</th>
+              <th field="POP2000" width="100px">Population</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

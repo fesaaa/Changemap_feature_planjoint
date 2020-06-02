@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <!--The viewport meta tag is used to improve the presentation and behavior of the samples 
+      on iOS devices-->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+    <title>Create Map</title>
+
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/dojo/dijit/themes/claro/claro.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/esri/css/esri.css">
+
+    <script src="http://js.arcgis.com/3.8/"></script>
+    <script>
+      dojo.require("esri.map");
+
+      function init() {
+        var initialExtent = new esri.geometry.Extent({"xmin":244598,"ymin":6241389,"xmax":278995,"ymax":6264320,"spatialReference":{"wkid":102100}});
+        var map = new esri.Map("map", {
+          basemap: "streets",
+          extent: initialExtent
+        });
+        dojo.connect(map, "onExtentChange", showExtent);
+      }
+
+      function showExtent(extent) {
+        var s = "";
+        s = "XMin: "+ extent.xmin.toFixed(2) + "&nbsp;"
+           +"YMin: " + extent.ymin.toFixed(2) + "&nbsp;"
+           +"XMax: " + extent.xmax.toFixed(2) + "&nbsp;"
+           +"YMax: " + extent.ymax.toFixed(2);
+        dojo.byId("info").innerHTML = s;
+      }
+
+      dojo.ready(init);
+    </script>
+  </head>
+  <body class="claro">
+    <div id="map" style="width:900px; height:600px; border:1px solid #000;"></div>
+    <div id="info" style="padding:5px; margin:5px; background-color:#eee;"></div>
+    Creates a map and adds an ArcGISTiledMapServiceLayer.  On map onExtentChanged event you should see the extent printed below the map.<br />
+    Map navigation using mouse:
+    <ul>
+      <li>Drag to pan</li>
+      <li>SHIFT + Click to recenter</li>
+      <li>SHIFT + Drag to zoom in</li>
+      <li>SHIFT + CTRL + Drag to zoom out</li>
+      <li>Mouse Scroll Forward to zoom in</li>
+      <li>Mouse Scroll Backward to zoom out</li>
+      <li>Use Arrow keys to pan</li>
+      <li>+ key to zoom in a level</li>
+      <li>- key to zoom out a level</li>
+      <li>Double Click to Center and Zoom in</li>
+    </ul>
+  </body>
+</html>

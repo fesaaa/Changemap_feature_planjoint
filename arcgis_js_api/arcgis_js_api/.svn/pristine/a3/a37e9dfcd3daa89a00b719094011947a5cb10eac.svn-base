@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+
+  <title>Page through records</title>
+
+  <style>
+    html, body {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      overflow: hidden;
+      overflow: hidden;
+      font-family: "Roboto Condensed", sans-serif;
+      font-size: 0.90em;
+      margin: 0 auto;
+      width: 750px;
+    }
+
+    #grid {
+      height: 336px;
+      width: 100%;
+    }
+
+    .field-name {
+      width: 200px;
+      font-size: .80em;
+      font-weight: normal;
+    }
+
+    .field-magnitude {
+      width: 50px;
+      font-size: .80em;
+      font-weight: normal;
+    }
+
+    .field-deaths {
+      width: 70px;
+      font-size: .80em;
+      font-weight: normal;
+    }
+
+    .field-date {
+      width: 70px;
+      font-size: .80em;
+      font-weight: normal;
+    }
+
+    #grid .dgrid-row-odd {
+      background: #F2F5F9;
+    }
+  </style>
+
+  <script src="http://js.arcgis.com/3.8/">
+  </script>
+  <script>
+    var featureLayer, pageInfo, grid;
+    require([
+      "esri/layers/FeatureLayer", "esri/tasks/query", "esri/TimeExtent",
+      "dojo/number", "dojo/date/locale", "dojo/dom","dojo/on",
+      "dojo/_base/array", "dojo/store/Memory",
+      "dgrid/OnDemandGrid", "dojo/domReady!"
+    ], function(
+      FeatureLayer, Query, TimeExtent,
+      number, locale, dom, on,
+      arrayUtils, Memory,
+      OnDemandGrid
+    ) {
+      // create a dgrid 
+      var sortAttr = [{
+        attribute: "magnitude",
+        descending: true
+      }];
+      grid = new OnDemandGrid({
+        store: Memory({
+          idProperty: "name"
+        }),
+        columns:{
+          name: "Name",
+          magnitude: {
+            label: "Magnitude",
+            formatter: formatRound
+          },
+          deaths: "Deaths",
+          date:{
+            label: "Date",
+            formatter: formatDate
+          }
+        },
+        sort: sortAttr
+      }, "grid");
+
+      // create a feature layer
+      featureLayer = new FeatureLayer("http://sampleserver3.arcgisonline.com/ArcGIS/rest/services/Earthquakes/Since_1970/MapServer/0", {
+        outFields:["*"]
+      });
+
+      // get object IDs from the table (feature layer)
+      featureLayer.on("load", function () {
+        // create the query to fetch object IDs for earthquakes that have a magnitude greater than 6.0
+        // that occurred after January 1st 2007
+        var query = new Query();
+        query.where = "Magnitude > 6.0 AND Num_Deaths >= 1";
+        query.timeExtent = new TimeExtent(new Date("01/01/2007 UTC"));
+        featureLayer.queryIds(query, function (objectIds) {
+          fetchRecords(objectIds);
+        });
+      });
+
+      // click listeners for prev/next page buttons
+      on(dom.byId("prev"), "click", function() {
+        queryRecordsByPage(pageInfo.currentPage - 1);
+      });
+      on(dom.byId("next"), "click", function() {
+        queryRecordsByPage(pageInfo.currentPage + 1);
+      });
+
+      // formatting function for numbers
+      function formatRound(value) {
+        return number.round(value, 2);
+      }
+
+      // formatting function for dates
+      function formatDate(value) {
+        var inputDate = new Date(value);
+        return locale.format(inputDate, {
+          selector: "date",
+          datePattern: "MMMM d, y"
+        });
+      }
+
+      function fetchRecords(objectIds) {
+        if (objectIds.length > 0) {
+          updatePageInformation(objectIds);
+          queryRecordsByPage(1);
+        } else {
+          grid.showMessage("No matching records");
+          grid.setStore(null);
+        }
+      }
+
+      function updatePageInformation(objectIds, page) {
+        pageInfo = {
+          objectIds: objectIds,
+          totalRecords: objectIds.length,
+          totalPages: Math.ceil(objectIds.length / 15),
+          currentPage: page || 0,
+          recordsPerPage: 15
+        };
+
+        dom.byId("pageInfo").innerHTML = pageInfo.currentPage + "/" + pageInfo.totalPages;
+        dom.byId("recordsInfo").innerHTML = pageInfo.totalRecords;
+
+        if (pageInfo.currentPage > pageInfo.totalPages) {
+          queryRecordsByPage(pageInfo.currentPage - 1);
+        }
+      }
+
+      function queryRecordsByPage(pageNumber) {
+        // check if the page number is valid
+        if (pageNumber < 1 || pageNumber > pageInfo.totalPages) {
+          return;
+        }
+
+        //grid.showMessage("Fetching records...");
+
+        var begin = pageInfo.recordsPerPage * (pageNumber - 1);
+        var end = begin + pageInfo.recordsPerPage;
+
+        // create the query
+        var query = new Query();
+        query.objectIds = pageInfo.objectIds.slice(begin, end);
+        query.outFields = ["*"];
+
+        // Query for the records with the given object IDs and populate the grid
+        featureLayer.queryFeatures(query, function (featureSet) {
+          updateGrid(featureSet, pageNumber);
+        });
+      }
+
+      function updateGrid(featureSet, pageNumber) {
+        var data = arrayUtils.map(featureSet.features, function (entry, i) {
+          return {
+            name: entry.attributes.Name,
+            magnitude: entry.attributes.Magnitude,
+            deaths: entry.attributes.Num_Deaths,
+            date: entry.attributes.Date_
+          };
+        });
+        grid.store.setData(data);
+        grid.refresh();
+
+        // update application state
+        pageInfo.currentPage = pageNumber;
+        dom.byId("pageInfo").innerHTML = pageInfo.currentPage + "/" + pageInfo.totalPages;
+      }
+
+    });
+  </script>
+</head>
+
+<body>
+<p>
+  Total records: 
+  <span id="recordsInfo">0</span>
+  &nbsp;&nbsp;|&nbsp;&nbsp;
+  
+  <button id="prev">Prev Page</button>
+  &nbsp;&nbsp<span id="pageInfo"></span>&nbsp;&nbsp
+  
+  <button id="next">Next Page</button>
+</p>
+
+<!-- dgrid will be created in this div -->
+<div id="grid"></div>
+
+</body>
+
+</html>
