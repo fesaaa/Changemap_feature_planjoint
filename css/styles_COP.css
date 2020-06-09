@@ -1,0 +1,220 @@
+/*------ Projecttor Landscape-------*/
+@media screen 
+  and (min-device-width: 600px) 
+  and (max-device-width: 800px) 
+  and (orientation: landscape) {
+	body {
+		font-size:0.7em; 
+	}
+	#slideIcon {
+		width:12px;
+		height:12px;	
+	}
+	#verticalLineRight {
+		position:absolute;
+		right:30px;
+		top:15%;
+		bottom:0;
+		z-index:2;
+	}
+	#verticalLineRight img {
+		width:85%;
+		height:85%;
+	}
+	#verticalLineLeft img {
+		width:85%;
+		height:85%;
+	}
+	#drawmap {
+		max-width:250px;
+	}
+	#divDrawContainer {
+		max-width:250px;
+	}
+	#symbol {
+		max-width:250px;
+	}
+	#divSymbolContainer {
+		max-width:250px;
+	}
+	#tool {
+		max-width:250px;
+	}
+	#divMeasurementContainer {
+		max-width:250px;
+	}
+	#staffMap {
+		max-width:280px;
+	}
+	#divStaffContainer {
+		max-width:280px;
+	}
+	#baseMap {
+		max-width:280px;
+	}
+	#divBaseMapContainer {
+		max-width:280px;
+	}
+	.searchA2 {
+		max-width:300px;
+	}
+	#divNewsReportSearchContainer {
+		max-width:300px;
+	}
+	#menu {
+		max-width:280px;
+	}
+	#divMenuContainer {
+		max-width:280px;
+	}
+}
+
+/*******THSarabunNew**********/
+@font-face {
+    font-family: 'THSarabunNew';
+    src: url('../../font/thsarabunnew-webfont/thsarabunnew-webfont.eot');
+    src: url('../../font/thsarabunnew-webfont/thsarabunnew-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../../font/thsarabunnew-webfont/thsarabunnew-webfont.woff') format('woff'),
+         url('../../font/thsarabunnew-webfont/thsarabunnew-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'THSarabunNew';
+    src: url('../../font/thsarabunnew-webfont/thsarabunnew_bolditalic-webfont.eot');
+    src: url('../../font/thsarabunnew-webfont/thsarabunnew_bolditalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../../font/thsarabunnew-webfont/thsarabunnew_bolditalic-webfont.woff') format('woff'),
+         url('../../font/thsarabunnew-webfont/thsarabunnew_bolditalic-webfont.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+
+}
+
+@font-face {
+    font-family: 'THSarabunNew';
+    src: url('../../font/thsarabunnew-webfont/thsarabunnew_italic-webfont.eot');
+    src: url('../../font/thsarabunnew-webfont/thsarabunnew_italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../../font/thsarabunnew-webfont/thsarabunnew_italic-webfont.woff') format('woff'),
+         url('../../font/thsarabunnew-webfont/thsarabunnew_italic-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+
+}
+
+@font-face {
+    font-family: 'THSarabunNew';
+    src: url('../../font/thsarabunnew-webfont/thsarabunnew_bold-webfont.eot');
+    src: url('../../font/thsarabunnew-webfont/thsarabunnew_bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../../font/thsarabunnew-webfont/thsarabunnew_bold-webfont.woff') format('woff'),
+         url('../../font/thsarabunnew-webfont/thsarabunnew_bold-webfont.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+
+}
+
+html, body { height: 100%; width: 100%; margin: 0; padding: 0; overflow:hidden; font-family:"THSarabunNew", tahoma,ms sans serif;}
+#containner {
+	width:100%;
+	height:100%;
+	position:relative;
+    font-size: 0.7em;
+}
+.dateEvent {
+  font-size:11px; 
+  color:#006699;
+  white-space:nowrap;
+}
+#verticalLineLeft
+{
+    position:absolute;
+    top:15%;
+    bottom:0;
+	z-index:2;
+}
+#verticalLineRight
+{
+    position:absolute;
+	right:0;
+    top:15%;
+    bottom:0;
+	z-index:2;
+}
+#backgroundimage
+{
+position: absolute;
+	left:50%;
+	top:0;
+	z-index: 2;
+    margin-left:-260px;
+}
+#footer {
+ background:url(../images/footer_center.png);
+ background-repeat:no-repeat;
+ position:fixed;bottom:0;left:50%;margin-left:-260px;margin-top:40px;width:100%;
+ height:22px;
+ vertical-align:bottom;
+}
+.hr1 { border: 0; height: 1px; background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0)); }
+.hr2 { border: 0; height: 0; border-top: 1px solid rgba(0, 0, 0, 0.1); border-bottom: 1px solid rgba(255, 255, 255, 0.3); }
+.trheader1 {background:#1d2f30; color:#a8e0c1; height: 1.7em; font-family: "THSarabunNew", tahoma,ms sans serif; font-size: 1em;}
+.trheader2 {background-color:#4a4a4b; color:#f2f1f1; height:1.7em;}
+.title1 {font-size:1.1em; font-weight:bold;}
+.title2 {font-size:1.1em;}
+.title3 {font-size:1em;font-weight:bold;}
+.trodd {background:#2a4e50; color:#a8e0c1; font-family: "THSarabunNew", tahoma,ms sans serif; font-size: 0.9em;}
+.treven {background:#305f62; color:#a8e0c1; font-family: "THSarabunNew", tahoma,ms sans serif; font-size: 0.9em;}
+.trpageLabel{
+ color:#333333;
+ margin-right:5px;
+ font-size:.95em;
+}
+.divCOP {background-color: rgba(10, 19, 26, 0.95);color:#97d0b0;border-style:solid;border-width:1px;border-color:#97d0b0;position:absolute;display:none;z-index:1; font-size: 1.1em;}
+.titleDivCOP {padding:4px 0px 5px 25px; color:#EBEBEB; text-align: left;}
+.tableDraw {font-size:0.85em;color:#FFFFFF;}
+input[type=button]
+{
+    background-color: #1d2f30;
+    color: #97d0b0;
+    font-size: 0.85em;
+    text-decoration: none;
+    cursor: pointer;
+    border:1px solid #97d0b0; 
+    -webkit-border-radius: 10px;
+    border-radius: 0px;
+    padding-left: 9px;
+    padding-right: 9px;
+}
+
+input[type=button]:hover
+{
+    border: none;
+    background:#1d2f30;
+    color: #ffffff;
+    border:1px solid #97d0b0; 
+    -webkit-border-radius: 10px;
+    border-radius: 0px;
+    padding-left: 9px;
+    padding-right: 9px;
+}
+.esriSimpleSlider {  
+	display:block;
+}
+.esriMeasurement {
+	color:#FFFFFF;
+}
+.esriToggleButton{
+  	background-color:#CCCCCC;
+  	width:30%;
+	border-radius:6px;
+}
+
+input[type=text]
+{
+    background-color: #1d2f30;
+    color: #97d0b0;
+    font-size: 0.85em;
+    text-decoration: none;
+    border:1px solid #97d0b0; 
+}

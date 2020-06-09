@@ -1,0 +1,147 @@
+/*------ Projecttor Landscape-------*/
+@media screen 
+  and (min-device-width: 600px) 
+  and (max-device-width: 800px) 
+  and (orientation: landscape) {
+	body {
+		font-size:0.7em; 
+	}
+	#logo_welcome {
+		width:12%;
+		height:55%;	
+	}
+    #cssmenu{
+        font-size: 1.2em;
+    }
+    .primary img{display: none;}
+      
+    
+}
+
+/*******THSarabunNew**********/
+@font-face {
+    font-family: 'THSarabunNew';
+    src: url('../../font/thsarabunnew-webfont/thsarabunnew-webfont.eot');
+    src: url('../../font/thsarabunnew-webfont/thsarabunnew-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../../font/thsarabunnew-webfont/thsarabunnew-webfont.woff') format('woff'),
+         url('../../font/thsarabunnew-webfont/thsarabunnew-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'THSarabunNew';
+    src: url('../../font/thsarabunnew-webfont/thsarabunnew_bolditalic-webfont.eot');
+    src: url('../../font/thsarabunnew-webfont/thsarabunnew_bolditalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../../font/thsarabunnew-webfont/thsarabunnew_bolditalic-webfont.woff') format('woff'),
+         url('../../font/thsarabunnew-webfont/thsarabunnew_bolditalic-webfont.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+
+}
+
+@font-face {
+    font-family: 'THSarabunNew';
+    src: url('../../font/thsarabunnew-webfont/thsarabunnew_italic-webfont.eot');
+    src: url('../../font/thsarabunnew-webfont/thsarabunnew_italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../../font/thsarabunnew-webfont/thsarabunnew_italic-webfont.woff') format('woff'),
+         url('../../font/thsarabunnew-webfont/thsarabunnew_italic-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+
+}
+
+@font-face {
+    font-family: 'THSarabunNew';
+    src: url('../../font/thsarabunnew-webfont/thsarabunnew_bold-webfont.eot');
+    src: url('../../font/thsarabunnew-webfont/thsarabunnew_bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../../font/thsarabunnew-webfont/thsarabunnew_bold-webfont.woff') format('woff'),
+         url('../../font/thsarabunnew-webfont/thsarabunnew_bold-webfont.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+
+}
+
+html, body { 
+    height: 100%; 
+    width: 100%; 
+    margin: 0; 
+    padding: 0; 
+    color:#10befb; 
+    font-family:"THSarabunNew", tahoma,ms sans serif;      
+    background-color: #112331; 
+  background: url(../images/bg3.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+form {
+	padding: 2% 2.5em;
+}
+form li {
+    border: 1px solid #B4B2B2;
+    list-style: none;
+    margin-bottom: 10px;
+    width: 85%;
+    background: white;
+    border-radius: 0.3em;
+    -webkit-border-radius: 0.3em;
+    -moz-border-radius: 0.3em;
+}
+
+input[type="text"], input[type="password"] {
+	
+    width: 200px;
+    padding: 10px;
+    color: #ABABAB;
+    font-size: 16px;
+    outline: none;
+    background: none;
+    border: none;
+	}
+form li:hover{
+	border:1px solid #40A9DF;
+	 box-shadow: 0 0 1em #40A9DF;
+	 -webkit-box-shadow: 0 0 1em #40A9DF;
+	 -o-box-shadow: 0 0 1em #40A9DF;
+	 -moz-box-shadow: 0 0 1em #40A9DF;
+}
+
+.btn{
+
+    float: center;
+    font-size: 0.9em;
+    font-family:"THSarabunNew", tahoma,ms sans serif; 
+    color: #48bbfc;
+    transition: 0.1s all;
+    -webkit-transition: 0.1s all;
+    -moz-transition: 0.1s all;
+    -o-transition: 0.1s all;
+    cursor: pointer;
+    outline: none;
+    padding: 12px 0px;
+    margin-top: 20px;
+    width: 35%;
+    border: none;
+    border-radius: 0.3em;
+    -webkit-border-radius: 0.3em;
+    -moz-border-radius: 0.3em;
+    background: #034869;
+    border: 1px outset #1daafa;
+}
+.btn:hover{
+	color: #fb0338 !important;
+    background: #062738;
+    border: 1px outset #fb0338;	
+}
+.loginbox{
+width: 450px; 
+height: 450px; 
+/*background-image: url("../images/bg_login.png");*/
+margin-top: 150px;
+color: #fff;
+}
+

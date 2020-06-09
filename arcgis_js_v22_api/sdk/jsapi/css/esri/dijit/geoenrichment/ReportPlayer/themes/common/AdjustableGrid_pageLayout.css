@@ -1,0 +1,36 @@
+﻿/* Outer (layout table) grid */
+
+.outerAdjustableGrid.esriGEAdjustableGrid {
+    position: relative;
+}
+
+    /* preview */
+
+    /*
+    .outerAdjustableGrid.esriGEAdjustableGrid.adjustableGridPreviewMode > .adjustableGridMainNode > .esriGEAdjustableGridValueField {
+        border-left: 1px dashed #b2b2b2;
+        border-top: 1px dashed #b2b2b2;
+    }
+
+        .outerAdjustableGrid.esriGEAdjustableGrid.adjustableGridPreviewMode > .adjustableGridMainNode > .esriGEAdjustableGridValueField.lastInRow {
+            border-right: 1px dashed #b2b2b2;
+        }
+
+        .outerAdjustableGrid.esriGEAdjustableGrid.adjustableGridPreviewMode > .adjustableGridMainNode > .esriGEAdjustableGridValueField.lastRow {
+            border-bottom: 1px dashed #b2b2b2;
+        }
+        */
+
+        .outerAdjustableGrid.esriGEAdjustableGrid.adjustableGridPreviewMode > .adjustableGridMainNode > .esriGEAdjustableGridValueField > .valueField_contentBlock {
+            border: 1px solid transparent;
+        }
+
+        .outerAdjustableGrid.esriGEAdjustableGrid.adjustableGridPreviewMode > .adjustableGridMainNode > .esriGEAdjustableGridValueField.outer_valueFieldFocused > .valueField_contentBlock {
+            border: 1px solid transparent;
+        }
+
+        .outerAdjustableGrid.esriGEAdjustableGrid.adjustableGridPreviewMode > .adjustableGridMainNode > .esriGEAdjustableGridValueField > .valueField_contentBlock > .esriGEDisabledContent {
+            background-color: white;
+            opacity: 0;
+            position: relative;
+        }
